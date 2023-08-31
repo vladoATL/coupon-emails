@@ -1,0 +1,47 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+ <style>
+
+.myday-setting .form-table {
+ 	font-size: 12px;
+ }
+ .myday-setting .form-table th  {
+ 	padding: 5px;
+ 	width: 350px;
+ }
+  .myday-setting .form-table tr td {
+ 	padding: 5px;
+ }
+  .myday-setting .form-table {
+ 	margin: 20px;
+ }
+ 
+  .myday-setting input[type=checkbox] {
+	   transform : scale(1.4);
+	   margin: 8px 4px;
+}
+ 
+  .myday-setting select {
+  	line-height: normal;
+  	vertical-align: initial;
+  }
+  
+ .myday-setting .textarea_,  #log-table .textarea_ {
+ 	width: 100% !important;
+ }
+ 
+ .myday-setting input,  .myday-setting select  {
+	 vertical-align: initial  !important;
+ }
+ 
+  .myday-setting input,  .myday-setting .select2-container {
+	vertical-align: middle  !important;
+}
+ 
+ #restore_values_btn, #restore_reorder_values_btn, #restore_bd_values_btn, #restore_one_values_btn, #restore_afterorder_values_btn {
+    float: right;
+    margin-right: 5%;
+}
+ </style>
