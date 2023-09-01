@@ -44,4 +44,27 @@
     float: right;
     margin-right: 5%;
 }
+
+.title-center {
+	text-align: center !important;
+	}	
+	.couponemails_wrapper {
+		overflow: hidden;
+	}
+	.couponemails_left  {
+		float: left;
+		width: 600px;
+	}
+	.couponemails_right {
+		overflow: hidden;
+	}
+
+	@media screen and (max-width: 1080px) {
+		.couponemails_left {
+			float: none;
+			margin-right: 0;
+			width: auto;
+		}
+	}	
+
  </style>

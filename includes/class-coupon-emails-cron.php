@@ -46,7 +46,7 @@ function couponemails_run_cron_setup($type)
 		} else {
 			$tm = time();
 		}		
-		//$res = wp_schedule_event( $tm, 'daily', $type . '_cron' );
+
 		$res = wp_reschedule_event( $tm, 'daily', $type . '_cron' );
 		if ($res == 1 )
 			$logs->couponemails_add_log("Cron scheduled " . date("T H:i", $tm));

@@ -38,10 +38,13 @@ class Namedays
 			$names = $calendar->get_austrian_namedays_array();
 				break;
 		}
+		
 		$names_str = $names->{"$d" . "." . "$m" . "."};
 
 		if ($with_alt == true) {
-			$names_str = $names_str . ", " . $this->remove_accents($names_str);
+			//$names_str = $names_str . ", " . $this->remove_accents($names_str);
+			$names_str = $names_str . ", " . \remove_accents($names_str);
+			
 
 			$arr    = explode(',', $names_str);
 			$trimmed_array = array_map('trim', $arr);
@@ -53,6 +56,7 @@ class Namedays
 	public function get_celebrating_users($d, $m, $with_alt = true)
 	{
 		global $wpdb;
+	
 		$names_str = $this->get_names_for_day($d, $m, $with_alt);
 		if (empty($names_str))
 			return;
@@ -72,6 +76,7 @@ class Namedays
 		$options = get_option('namedayemail_options');
 		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
 			$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] . ' day'));
+			
 			$dateValue = strtotime($str_nameday);
 			$m = intval(date("m", $dateValue));
 			$d = intval(date("d", $dateValue));

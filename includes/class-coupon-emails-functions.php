@@ -10,12 +10,14 @@ class EmailFunctions
 	protected $type;
 	protected $options_name;
 	protected $options_array;
+	protected $emails_cnt;
 	
 	public function __construct($type = "")
 	{
 		$this->type = $type;
 		$this->options_name = $type . '_options';
 		$this->options_array = get_option($this->options_name);
+		$this->emails_cnt = 0;
 	}
 		
 	function couponemails_create($user, $istest = false)
@@ -28,7 +30,7 @@ class EmailFunctions
 		$from_address = $options['from_address'];
 		$header  = $options['header'];	
 		$coupon = "";
-				
+	
 		if ($istest == true) {
 			$headers_user   = $this->couponemails_headers($from_name, $from_address,"", "", true);
 			$email = $options['bcc_address'];
@@ -85,12 +87,18 @@ class EmailFunctions
 			}
 			$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(__( "This is a test email sent to %s instead of to", 'coupon-emails' ), $admin_email)  . ': ' . $email . "</p>";
 			
-			if ($options['wc_template'] == 1) {
-				$this->couponemails_send_wc_email_html($subject_user, $admin_email, $html_body, $header);
-			} else {
-				$sendmail_user = wp_mail( $admin_email, $subject_user, $html_body, $headers_user );
+			if ($this->emails_cnt < 10 ) {
+				if ($options['wc_template'] == 1) {
+					$this->couponemails_send_wc_email_html($subject_user, $admin_email, $html_body, $header);
+				} else {
+					$sendmail_user = wp_mail( $admin_email, $subject_user, $html_body, $headers_user );
+				}
+				$this->couponemails_add_log("Email has been sent as Test to"  . ' ' . $admin_email . " instead of to " . $email) ;
+			} else{
+				$this->couponemails_add_log("Email has been created but not sent to " . $email . " because of Test.") ;
 			}
-			$this->couponemails_add_log("Email has been sent as Test to"  . ' ' . $admin_email . " instead of to " . $email) ;
+			
+			$this->emails_cnt +=1;
 			$success = false;
 		}
 		return $success;
@@ -150,7 +158,7 @@ class EmailFunctions
 		JOIN {$wpdb->prefix}users AS u ON upm.meta_value = u.ID AND  u.user_email = '{$user_email}'
 		WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'
 		GROUP BY upm.meta_value" ;
-		$order_date = $wpdb->get_var($wpdb->prepare($sql));
+		$order_date = $wpdb->get_var($sql);
 		$date_format = get_option( 'date_format' );
 		return date($date_format, strtotime($order_date));
 	}
@@ -289,41 +297,116 @@ class EmailFunctions
 		update_post_meta( $new_coupon_id, 'usage_limit', '1' );
 		update_post_meta( $new_coupon_id, 'limit_usage_to_x_items', $max_products );
 		update_post_meta( $new_coupon_id, 'usage_limit_per_user', '1' );
-		update_post_meta( $new_coupon_id, 'date_expires', $expiry_date );
+		$expiry_date_unix = strtotime($expiry_date);
+		update_post_meta( $new_coupon_id, 'date_expires', $expiry_date_unix );
+		//update_post_meta( $new_coupon_id, 'date_expires', $expiry_date );
 		update_post_meta( $new_coupon_id, 'free_shipping', $free_shipping );
 		update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
 
-		if (  is_plugin_active( 'advanced-coupons-for-woocommerce-free/advanced-coupons-for-woocommerce-free.php' ) ) {
 			update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
 			update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->id );
 			update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
-		}
 
-		if (isset($options['category']))
-			$cat_id = $this->couponemails_coupon_category($new_coupon_id, $options['category']);
+		$cat_id = 0;
+		if (isset($options['coupon_cat']))
+			$cat_id = $this->couponemails_coupon_category($new_coupon_id, $options['coupon_cat']);
+
 		return $generated_code;
 	}
 
-	function couponemails_coupon_category($new_coupon_id, $cat_slug)
+	function couponemails_coupon_category($new_coupon_id, $category)
 	{
 		global $wpdb;
-		if ( ! is_plugin_active( 'advanced-coupons-for-woocommerce-free/advanced-coupons-for-woocommerce-free.php' ) )
-			return 0;
-			$term_id = $this->couponemails_get_cat_slug_id($cat_slug) ;
-		if (! empty($term_id)) {
-			$sql = "INSERT INTO {$wpdb->prefix}term_relationships
-								SET object_id = $new_coupon_id, term_taxonomy_id =
-								(SELECT pt.term_id FROM {$wpdb->prefix}term_taxonomy AS pt
-								INNER JOIN {$wpdb->prefix}terms AS t ON t.term_id = pt.term_id
-								WHERE t.slug =  '$cat_slug')";
+		$cat_slug = sanitize_title($category);
 
-			$results = $wpdb->query($sql);
-		} else {
-			$results = 0;
+		$term_id = $this->couponemails_get_cat_slug_id($cat_slug) ;
+		if ( empty($term_id)) {
+			$term_id = $this->couponemails_coupon_category_create($category, $cat_slug) ;
 		}
-		return $results;
+
+		$sql = "INSERT INTO {$wpdb->prefix}term_relationships
+							SET object_id = $new_coupon_id, term_taxonomy_id =
+							(SELECT pt.term_id FROM {$wpdb->prefix}term_taxonomy AS pt
+							INNER JOIN {$wpdb->prefix}terms AS t ON t.term_id = pt.term_id
+							WHERE t.slug =  '$cat_slug')";
+
+		$wpdb->query($sql);
+		return $term_id;
 	}
 
+	function couponemails_coupon_category_create($category, $cat_slug)
+	{
+		global $wpdb;
+		$sql = "INSERT INTO {$wpdb->prefix}terms SET name = '$category', slug = '$cat_slug' ";
+		$wpdb->query($sql);
+		$term_id = $wpdb->insert_id;
+		$sql = "INSERT INTO {$wpdb->prefix}term_taxonomy SET term_id = $term_id, taxonomy = 'shop_coupon_cat' ";
+		$wpdb->query($sql);	
+		$term_taxonomy_id = $wpdb->insert_id;
+		return $term_taxonomy_id;	
+	}
+	
+	function couponemails_get_cat_names(){
+		$names_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail"];
+		$cats_array = array();
+		
+		foreach ($names_array as $name) {
+			$options = get_option($name . '_options');
+			$cat_name = isset($options["coupon_cat"]) ? $options["coupon_cat"] : "";
+			if (! empty($cat_name))
+				$cats_array[] = $cat_name;
+		}
+		$names = sprintf("'%s'", implode("','", $cats_array ) );
+		return $names;
+	}
+	
+	
+	function couponemails_get_stats()
+	{
+		global $wpdb;
+		$cat_names = $this->couponemails_get_cat_names();
+		$sql = "SELECT t.name, COUNT(p.ID) as total_count, notexpired.notexpired_count, expired.expired_count, used.used_count
+				FROM {$wpdb->prefix}posts AS p
+				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id AND tr.term_taxonomy_id IN (
+				SELECT term_id FROM {$wpdb->prefix}terms AS t WHERE t.name IN ($cat_names) )
+				JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tt.term_id
+
+				LEFT OUTER JOIN (
+				SELECT COUNT(ID) AS expired_count, tr.term_taxonomy_id AS term_taxonomy_id
+				FROM {$wpdb->prefix}posts AS p
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
+				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
+				WHERE post_type = 'shop_coupon' AND pm.meta_value < UNIX_TIMESTAMP() AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
+				GROUP BY tr.term_taxonomy_id
+				) AS expired ON tr.term_taxonomy_id = expired.term_taxonomy_id
+
+				LEFT OUTER JOIN (
+				SELECT COUNT(ID) AS notexpired_count, tr.term_taxonomy_id AS term_taxonomy_id
+				FROM {$wpdb->prefix}posts AS p
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
+				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
+				WHERE post_type = 'shop_coupon' AND pm.meta_value >= UNIX_TIMESTAMP()
+				GROUP BY tr.term_taxonomy_id
+				) AS notexpired ON tr.term_taxonomy_id = notexpired.term_taxonomy_id
+				
+				LEFT OUTER JOIN (
+				SELECT COUNT(ID) AS used_count, tr.term_taxonomy_id AS term_taxonomy_id
+				FROM {$wpdb->prefix}posts AS p
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
+				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
+				WHERE post_type = 'shop_coupon' AND pmu.meta_value > 0
+				GROUP BY tr.term_taxonomy_id
+				) AS used ON tr.term_taxonomy_id = used.term_taxonomy_id				
+
+				WHERE p.post_type = 'shop_coupon'
+				GROUP BY tr.term_taxonomy_id";
+		$result = $wpdb->get_results($sql, OBJECT);
+		return $result;
+				
+	}
 	function couponemails_get_cat_slug_id($cat_slug)
 	{
 		global $wpdb;
@@ -391,20 +474,22 @@ class EmailFunctions
 
 	function namedayemail_get_next_names()
 	{
-		$m = intval(date('m'));
-		$d = intval(date('d'));
 		$options = $this->options_array;
 		$prior_days =$options['days_before'];
 		if (! isset($prior_days)) {
 			$prior_days = 0;
-		}
+		}		
+		$str_nameday =  date('Y-m-d',strtotime('+' . $prior_days . ' day'));
+		$dateValue = strtotime($str_nameday);
+		$m = intval(date("m", $dateValue));
+		$d = intval(date("d", $dateValue));		
+
 		$nd = new Namedays();
+		
 		$names = $nd->get_names_for_day($d + $prior_days, $m , false );
 		if (empty($names))
 			return;
 		$names = implode(',',array_unique(explode(',', $names)));
-
-		$d = $d + $prior_days ;
 
 		if ($prior_days == 0) {
 			return  sprintf(__(  'Today %s is Name Day celebrated by',  'coupon-emails'), $d . '.' . $m . '.') . " : " . $names;

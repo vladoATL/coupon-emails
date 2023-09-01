@@ -172,9 +172,10 @@ class Coupon_Emails {
 		$this->loader->add_action( 'wp_ajax_onetimeemail_make_test', $plugin_admin, 'onetimeemail_make_test' );	
 		$this->loader->add_action( 'wp_ajax_afterorderemail_make_test', $plugin_admin, 'afterorderemail_make_test' );			
 		
-
+		
+//		$this->loader->add_action('updated_option_birthdayemail_options',  $plugin_admin, 'updated_option_function');
 	}
-
+	
 	/**
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.

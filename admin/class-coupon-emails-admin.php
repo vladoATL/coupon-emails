@@ -50,9 +50,10 @@ class Coupon_Email_Admin {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
-		
+		$this->version = $version;		
 	}
+
+
 
 	/**
 	 * Register the stylesheets for the admin area.
@@ -219,6 +220,11 @@ class Coupon_Email_Admin {
 			die();
 		}
 	}	
+		
+
+/*	function updated_option_function(){
+	birthdayemail_run_cron();
+	}	*/
 			
 	/**
 	 * Register the JavaScript for the admin area.

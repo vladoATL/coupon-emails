@@ -118,7 +118,7 @@ id="restore_afterorder_values_btn" />
 			<td>
 				<select id="afterorderemail_options[bought_cats]" name="afterorderemail_options[bought_cats][]" style="width: 50%;"  class="wc-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'All categories', 'woocommerce' ); ?>">
 					<?php
-		$category_ids = $options['bought_cats'];
+		$category_ids = isset($options['bought_cats']) ? $options['bought_cats'] : "";
 		$categories   = get_terms( 'product_cat', 'orderby=name&hide_empty=0' );
 		if ( $categories ) {
 			foreach ( $categories as $cat ) {
@@ -135,7 +135,7 @@ id="restore_afterorder_values_btn" />
 			<td>
 				<select id="afterorderemail_options[not_bought_cats]" name="afterorderemail_options[not_bought_cats][]" style="width: 50%;"  class="wc-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'No categories', 'woocommerce' ); ?>">
 					<?php
-		$category_ids = $options['not_bought_cats'];
+					$category_ids = isset($options['not_bought_cats']) ? $options['not_bought_cats'] : "";
 		$categories   = get_terms( 'product_cat', 'orderby=name&hide_empty=0' );
 		if ( $categories ) {
 			foreach ( $categories as $cat ) {
@@ -332,17 +332,17 @@ id="restore_afterorder_values_btn" />
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Coupon category slug', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo __( 'Coupon category', 'coupon-emails' ); ?>:</th>
 			<td>
 				<?php
 	$acfw ="";
 	if ( ! is_plugin_active( 'advanced-coupons-for-woocommerce-free/advanced-coupons-for-woocommerce-free.php' ) ) {
-		$acfw = 'disabled';
+		$acfw = 'readonly';
 	}
 	?>
-				<input type="text" id="afterorderemail_options[category]" name="afterorderemail_options[category]"  style="width: 200px;" value="<?php echo $options['category'] ?? ''; ?>"
+				<input type="text" id="afterorderemail_options[coupon_cat]" name="afterorderemail_options[coupon_cat]"  style="width: 200px;" value="<?php echo $options['coupon_cat'] ?? ''; ?>"
 				<?php echo $acfw; ?>>
-				<?php  echo wc_help_tip(__( 'This can only be used if the Advanced Coupons for WooCommerce (free) plugin is installed. Specify the slug of the coupon category that must exist.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(__( 'This can only be used if the Advanced Coupons for WooCommerce (free) plugin is installed. Enter the name of the coupon category that will be created if it does not exist.', 'coupon-emails' ), false); ?>
 			</td>
 		</tr>
 

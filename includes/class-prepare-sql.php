@@ -53,7 +53,7 @@ class PrepareSQL
 			$result = $wpdb->get_results($sql, OBJECT);
 		} else {
 			$result = $wpdb->get_results($sql, ARRAY_A);
-		}		$result = $wpdb->get_results($sql, ARRAY_A);
+		}		
 
 		return $result;
 	}
@@ -107,7 +107,7 @@ class PrepareSQL
 			$result = $wpdb->get_results($sql, OBJECT);
 		} else {
 			$result = $wpdb->get_results($sql, ARRAY_A);
-		}		$result = $wpdb->get_results($sql, ARRAY_A);
+		}		
 
 		return $result;
 	}

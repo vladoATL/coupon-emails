@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @since             0.3.0
+ * @since             0.3.1
  * @package           Coupon_Emails
  *
  * @wordpress-plugin
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '0.3.0.1' );
+define( 'COUPON_EMAILS_VERSION', '0.3.1.2' );
 
 /**
  * The code that runs during plugin activation.
@@ -131,7 +131,7 @@ function birthdayemail_save_defaults($add_new = false)
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
-	'category' =>	_x('birth-day','Coupon category', 'coupon-emails'	) ,
+	'coupon_cat' =>	_x('Birth day email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
 		add_option( 'birthdayemail_options', $option_array );
@@ -145,7 +145,7 @@ function reorderemail_save_defaults($add_new = false)
 	$current_user = wp_get_current_user();
 
 	$option_array = array(
-	'subject'	=>	_x("{fname}, it's time to order again","Email Subject","coupon-emails") ,
+	'subject'	=>	_x("{fname}, it's time to order with discount","Email Subject","coupon-emails") ,
 	'header'  =>	_x('Your discount','Email Header','coupon-emails') ,
 	'characters' =>	7,
 	'wc_template' =>	1,
@@ -161,13 +161,13 @@ function reorderemail_save_defaults($add_new = false)
 	'description' => _x('Reorder {fname} {lname}: {email}','Coupon description','coupon-emails') ,
 	'coupon_amount'	=>	10,
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We have a special discount for you, {fname}!</p>
-<p style='font-size: 18px;'>Take advantage of this  discount code and order again:</p>
+	<p style='font-size: 18px;'>Last time you ordered with us {last_order_date}. Take advantage of this  discount code and order again:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
 <p style='font-size: 18px;'>During the next {expires_in_days} days you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
-	'category' =>	_x('reorder','Coupon category', 'coupon-emails'	) ,
+	'coupon_cat' =>	_x('Reorder email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
 		add_option( 'reorderemail_options', $option_array );
@@ -205,7 +205,7 @@ function afterorderemail_save_defaults($add_new = false)
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
-	'category' =>	_x('after-order','Coupon category', 'coupon-emails'	) ,
+	'coupon_cat' =>	_x('After order email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
 		add_option( 'afterorderemail_options', $option_array );
@@ -241,7 +241,7 @@ function onetimeemail_save_defaults($add_new = false)
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
-	'category' =>	_x('one-time','Coupon category', 'coupon-emails'	) ,
+	'coupon_cat' =>	_x('One-time email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
 		add_option( 'onetimeemail_options', $option_array );
@@ -276,7 +276,7 @@ function namedayemail_save_defaults($add_new = false){
 <p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
-				'category' =>	_x('name-day','Coupon category', 'coupon-emails'	) ,
+				'coupon_cat' =>	_x('Name day email','Coupon category', 'coupon-emails'	) ,
 			);
 			if ($add_new == true) {
 				add_option( 'namedayemail_options', $option_array );	

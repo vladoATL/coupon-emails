@@ -248,7 +248,7 @@
 
 	 	jQuery( document ).on(
 		"click",
-		"#namedaysemail-setting #test_btn",
+		"#namedaysemail-setting #test_namedayemail_btn",
 		function(){
 			event.preventDefault();
 			var nonce = jQuery( this ).attr( 'attr-nonce' );
