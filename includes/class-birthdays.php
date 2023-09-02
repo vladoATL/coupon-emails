@@ -27,7 +27,7 @@ class Birthdays
 	{
 		global $wpdb;	
 	
-		$sql = "SELECT  SUBSTRING(m.meta_value FROM 6)  as day, fmu.meta_value AS fname, lmu.meta_value AS lname, u.user_email AS email, m.user_id AS id,
+		$sql = "SELECT  DATE_FORMAT( m.meta_value, '%e.%c')  as day, fmu.meta_value AS fname, lmu.meta_value AS lname, u.user_email AS email, m.user_id AS id,
 				TIMESTAMPDIFF(YEAR, m.meta_value, CURDATE()) AS age, dmu.meta_value AS sent
 				FROM $wpdb->users  AS u
 				JOIN $wpdb->usermeta AS m ON u.ID = m.user_id AND m.meta_key = 'billing_birth_date'

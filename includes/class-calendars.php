@@ -751,7 +751,7 @@ class Calendars
 			public function get_austrian_namedays_array()
 			{
 				$ndjson = '{
-1.1.": "Maria,Wilhelm",
+"1.1.": "Maria,Wilhelm",
 "2.1.": "Basilius,Dietmar,Gregor",
 "3.1.": "Genoveva,Odilo",
 "4.1.": "Angela,Marius,Rüdiger,Titus",
@@ -1493,6 +1493,1494 @@ class Calendars
 				$names_array = json_decode($ndjson);
 				return $names_array;				
 			} 	
+			public function get_croatian_namedays_array()
+			{
+				$ndjson = '{
+					"1.1": "Marija, Reljefima",
+					"2.1": "Bazilije, Grgur",
+					"3.1": "Isusovo, Genoveva, Cvijeta",
+					"4.1": "Sdislava",
+					"5.1": "Emilijana, Radoslav, Miljenko",
+					"6.1": "Gašpar",
+					"7.1": "Rajmund, Lucijan, Zorislav",
+					"8.1": "Severin, Bogoljub, Apolinarij",
+					"9.1": "Julijan, Živko, Miodrag",
+					"10.1": "Agaton, Dobroslav, Aldo",
+					"11.1": "Honorat, Neven",
+					"12.1": "Arkadije, Živana, Ernest",
+					"13.1": "Hilarije, Veselko, Radovan",
+					"14.1": "Felik, Srećko",
+					"15.1": "Franjo",
+					"16.1": "Marcel, Oton, Mislav",
+					"17.1": "Antun, Lavoslav, Vojmil",
+					"18.1": "Margareta, Priska",
+					"19.1": "Mario, Ljiljana, Marta",
+					"20.1": "Fabijan, Sebastijan",
+					"21.1": "Agneza, Janja, Neža",
+					"22.1": "Vinko, Irena",
+					"23.1": "Emerencijana, Ema, Vjera, Milko",
+					"24.1": "Franjo, Bogoslav",
+					"25.1": "Ananija",
+					"26.1": "Timotej, Tit, Paula, Tonka",
+					"27.1": "Angela, Vitalijan, Pribislav",
+					"28.1": "Toma, Tomislav",
+					"29.1": "Vilana, Valerije, Konstancije",
+					"30.1": "Martina, Tina, Gordana",
+					"31.1": "Ivan, Marcela, Julije",
+					"1.2": "Brigita, Gita, Miroslav",
+					"2.2": "Marijan",
+					"3.2": "Blaž, Vlaho, Tripun",
+					"4.2": "Katarina, Andrija, Veronika",
+					"5.2": "Agata, Dobrila, Jagoda",
+					"6.2": "Pavao, Doroteja, Dora",
+					"7.2": "Pio, Rikard, Držislav",
+					"8.2": "Jeronim, Jerko",
+					"9.2": "Apolonija, Zora, Sunčica",
+					"10.2": "Alojzije, Skolastika, Rastija",
+					"11.2": "Lurdska",
+					"12.2": "Reginald, Damjan, Eulalija",
+					"13.2": "Jordan, Božidar, Božica",
+					"14.2": "Valentin, Valentina, Zdravko",
+					"15.2": "Klaudije",
+					"16.2": "Onezim, Julijana, Miljenko",
+					"17.2": "Donat",
+					"18.2": "Angelico, Šimun, Flavijan, Gizela",
+					"19.2": "Konrad, Ratko, Blago",
+					"20.2": "Lav, Lea",
+					"21.2": "Petar, Damir, Eleonora",
+					"22.2": "Grozdan",
+					"23.2": "Polikarp, Romana",
+					"24.2": "Montan, Goran, Modest, Ranko",
+					"25.2": "Aleksandar, Sandra, Branimir",
+					"26.2": "Gabriel, Donat",
+					"27.2": "Roman, Teofil, Bogoljub",
+					"28.2": "",
+					"1.3": "Čista, Albin, Zoran",
+					"2.3": "Ines, Čedomil, Iskra",
+					"3.3": "Anzelmo, Marin, Kamilo",
+					"4.3": "Kazimir, Eugen, Natko",
+					"5.3": "Euzebije, Vedran",
+					"6.3": "Koleta, Zvjezdana, Viktor",
+					"7.3": "Perpetua, Felicita, Ardo",
+					"8.3": "Pačista, Ivan",
+					"9.3": "Franciska, Franjka",
+					"10.3": "Emilijan, Emil, Krunoslav",
+					"11.3": "Firmil, Trvtko",
+					"12.3": "Bernard, Budislav, Maksimilijan",
+					"13.3": "Rozalija, Ratka, Kristina",
+					"14.3": "Matilda, Miljana, Borka",
+					"15.3": "Bezimena, Longin",
+					"16.3": "Hrvoje, Miljan",
+					"17.3": "Patrik, Domagoj, Hrvatin",
+					"18.3": "Ćiril, Cvjetan",
+					"19.3": "Joso, Joško",
+					"20.3": "Klaudija, Dionizije, Vladislav",
+					"21.3": "Kristijan, Vesna, Vlasta",
+					"22.3": "Sredoposna, Oktav",
+					"23.3": "Oton, Dražen",
+					"24.3": "Katarina, Simeon",
+					"25.3": "Blagovijest",
+					"26.3": "Montan, Maksima, Emanuel",
+					"27.3": "Ivan, Rupert, Lidija, Lada",
+					"28.3": "Priska, Sonja, Polion",
+					"29.3": "Gluha, Jona, Bertold",
+					"30.3": "Kvirin, Viktor, Krescent",
+					"31.3": "Benjamin, Amos, Ljubomir",
+					"1.4": "Hugo, Teodora",
+					"2.4": "Franjo, Dragoljub",
+					"3.4": "Rikard, Svevlad, Benedikt",
+					"4.4": "Izidor, Dora, Strahimir",
+					"5.4": "Krescencija, Vinko, Marija",
+					"6.4": "Vilim, Rajko",
+					"7.4": "Ivan, Herman, Epifan",
+					"8.4": "Dionizije, Alemka",
+					"9.4": "Marija, Demetrije",
+					"10.4": "Ezekijel",
+					"11.4": "Stanislav, Stana, Radmila",
+					"12.4": "Julije, Viktor, Davorka",
+					"13.4": "Martin, Ida",
+					"14.4": "Valerijan, Maksim",
+					"15.4": "Krescent, Bosiljka, Anastazija",
+					"16.4": "Josip, Bernardica",
+					"17.4": "Rudolf, Robert",
+					"18.4": "Eleuterija, Amadej",
+					"19.4": "Konrad, Ema, Rastislav",
+					"20.4": "Janja, Marcijan",
+					"21.4": "Anzelmo, Goran",
+					"22.4": "Soter, Kajo, Vojmil",
+					"23.4": "Juraj, Juro, Ðuro, Ðurdica",
+					"24.4": "Fidelis, Vjeran, Vjerko, Vjera",
+					"25.4": "Marko, Maroje",
+					"26.4": "Kleto, Marcelin, Višnja",
+					"27.4": "Ozana, Jakov",
+					"28.4": "Petar, Ljudevit, Grignon",
+					"29.4": "Katarina, Sijenska",
+					"30.4": "Pio, Josip, Cottolengo",
+					"1.5": "Josip",
+					"2.5": "Anastazije, Eugen, Boris",
+					"3.5": "Filip, Jakov, Jakica",
+					"4.5": "Florijan, Cvjetko, Cvijeta",
+					"5.5": "Vinko, Maksim, Andenlko",
+					"6.5": "Dominik, Nedjeljko, Benedikta",
+					"7.5": "Dujam, Duje, Duška, Gizela",
+					"8.5": "Marija, Marina, Ida",
+					"9.5": "Herman, Mirna, Beato, Kristofor",
+					"10.5": "Ivan, Gospa",
+					"11.5": "Mamerto",
+					"12.5": "Leopold, Mandic",
+					"13.5": "Gospa, Servacije, Ena",
+					"14.5": "Matija, Mate, Matko, Matea",
+					"15.5": "Sofija",
+					"16.5": "Ivan, Andrija, Nenad",
+					"17.5": "Paskal, Paško",
+					"18.5": "Ivan, Venancije, Srecko",
+					"19.5": "Celestin, Rajko, Teofil, Inka",
+					"20.5": "Bernardin",
+					"21.5": "Eugen, Mazenod",
+					"22.5": "Renata, Rita, Jelena, Jagoda",
+					"23.5": "Deziderije, Želimir, Vilim",
+					"24.5": "Marija, Suzana",
+					"25.5": "Beda, Grgur",
+					"26.5": "Filip, Zdenko, Eleuterij",
+					"27.5": "Augustin",
+					"28.5": "German",
+					"29.5": "Polion, Euzebije, Veceslav",
+					"30.5": "Ivana, Ferdinand",
+					"31.5": "Jakov, Salomon",
+					"1.6": "Marija, Justin, Malden",
+					"2.6": "Marcelin, Petar, Sadok, Eugen",
+					"3.6": "Karlo",
+					"4.6": "Kvirin, Petar, Predrag",
+					"5.6": "Bonifacije, Valerija, Darinka",
+					"6.6": "Nobert, Neda, Klaudije, Berto",
+					"7.6": "Robert",
+					"8.6": "Dijana, Cecilija, Medardo",
+					"9.6": "Efrem, Ranko",
+					"10.6": "Margareta, Dijana",
+					"11.6": "Barnaba, Borna",
+					"12.6": "Ivan, Bosiljko, Nino",
+					"13.6": "Antun, Ante, Tonci, Toni",
+					"14.6": "Rufin, Elizej, Zlatko",
+					"15.6": "Vid, Modest",
+					"16.6": "Franjo",
+					"17.6": "Laura, Nevenka, Adolf",
+					"18.6": "Marko, Marcelijan, Ljubomir",
+					"19.6": "Romualdo",
+					"20.6": "Silverije",
+					"21.6": "Alojzije",
+					"22.6": "Ivan, Toma",
+					"23.6": "Josip, Sidonija, Zdenka",
+					"24.6": "Ivan",
+					"25.6": "Vilim, Nora",
+					"26.6": "Ivan, Pavao, Vigilije, Zoran",
+					"27.6": "Ladislav, Ciril",
+					"28.6": "Irenej, Smiljan",
+					"29.6": "Petar, Pavao, Krešimir",
+					"30.6": "Kajo",
+					"1.7": "Estera",
+					"2.7": "Oton, Višnja, Ostoja",
+					"3.7": "Toma, Tomislav, Tomo, Miki",
+					"4.7": "Elizabeta, Elza, Berta",
+					"5.7": "Ciril, Metod, Slaven",
+					"6.7": "Marija",
+					"7.7": "Vilibald, Vilko, Klaudija",
+					"8.7": "Akvila, Priscila",
+					"9.7": "Marija, Ivan",
+					"10.7": "Amalija, Alma, Ljubica, Ljuba",
+					"11.7": "Benedikt, Olga, Oliver",
+					"12.7": "Mislav, Tanja, Suzana",
+					"13.7": "Euzebije",
+					"14.7": "Kamilo, Miroslav",
+					"15.7": "Bonaventura",
+					"16.7": "Karmela",
+					"17.7": "Ceslav, Branko, Dunja",
+					"18.7": "Fridrik, Dalibor, Arnold",
+					"19.7": "Justa, Rufina, Zlatka",
+					"20.7": "Ilija, Ilijana",
+					"21.7": "Danijel, Lovro, Danica",
+					"22.7": "Marija",
+					"23.7": "Brigita, Ivan, Slobodan",
+					"24.7": "Kristina, Mirjana",
+					"25.7": "Jakov, Kristofor, Kristo",
+					"26.7": "Joakim, Ana",
+					"27.7": "Klement, Natalija",
+					"28.7": "Inocent",
+					"29.7": "Marta, Blaženka",
+					"30.7": "Petar, Rufin, Anda",
+					"31.7": "Vatroslav, Ognjen",
+					"1.8": "Alfons, Vjera, Nada",
+					"2.8": "Euzebije",
+					"3.8": "Augustin, Lidija",
+					"4.8": "Ivan, Ivica, Tertulijan",
+					"5.8": "Snježana, Nives",
+					"6.8": "Stjepan",
+					"7.8": "Siksto, Kajetan, Albert",
+					"8.8": "Dominik, Nedjeljko, Dinko",
+					"9.8": "Edith, Tvrtko",
+					"10.8": "Lovro, Laura",
+					"11.8": "Klara, Asiška, Jasminka",
+					"12.8": "Anicet, Hilarija",
+					"13.8": "Poncijan, Hipolit, Ivan",
+					"14.8": "Maksimilijan, Alfred",
+					"15.8": "Marija, Velika",
+					"16.8": "Rok, Stjepan",
+					"17.8": "Hijacint, Slobodan",
+					"18.8": "Jelena, Manes",
+					"19.8": "Ivan",
+					"20.8": "Bernard, Branko, Dino",
+					"21.8": "Hermogen, Anastazij",
+					"22.8": "Regina, Vladislava",
+					"23.8": "Ruža, Filip",
+					"24.8": "Bariša, Zlata",
+					"25.8": "Ljudevit, Josip, Patricija",
+					"26.8": "Aleksandar",
+					"27.8": "Monika, Honorat, Caslav",
+					"28.8": "Augustin, Tin, Gustav",
+					"29.8": "Sabina",
+					"30.8": "Feliks, Radoslava",
+					"31.8": "Rajmund, Rajko, Paulin",
+					"1.9": "Egidije, Branimir, Branislav",
+					"2.9": "Kalista, Divna",
+					"3.9": "Grgur, Grga, Mansvet",
+					"4.9": "Dunja, Ida",
+					"5.9": "Roman, Lovro",
+					"6.9": "Davor",
+					"7.9": "Marko",
+					"8.9": "Marica, Maja, Alen",
+					"9.9": "Petar",
+					"10.9": "Nikola, Pulherija, Lijepa",
+					"11.9": "Hijacint, Cvjetko, Miljenko",
+					"12.9": "Ime, Marija",
+					"13.9": "Ivan, Ljubo",
+					"14.9": "Višeslav",
+					"15.9": "Dolores",
+					"16.9": "Kornelije, Cipirijan",
+					"17.9": "Robert, Franje",
+					"18.9": "Ivan, Irena",
+					"19.9": "Januarije, Emilija",
+					"20.9": "Andrija",
+					"21.9": "Matej, Mate, Matko",
+					"22.9": "Toma, Mauricije",
+					"23.9": "Lino, Tekla",
+					"24.9": "Mercedes",
+					"25.9": "Nikola, Aurelija, Kleofa",
+					"26.9": "Kuzma, Damjan, Damir",
+					"27.9": "Vinko, Gaj",
+					"28.9": "Dominik, Vjenceslav",
+					"29.9": "Mihovil, Rafael, Gabrijel",
+					"30.9": "Jeronim, Jerko",
+					"1.10": "Tereza, Terezija",
+					"2.10": "Andelko, Anda",
+					"3.10": "Kandid, Maksimilijan, Evald",
+					"4.10": "Franjo",
+					"5.10": "Rajmund, Flavijan, Miodrag",
+					"6.10": "Bruno, Fides, Verica, Vjera",
+					"7.10": "Justina",
+					"8.10": "Šimun, Zvonimir",
+					"9.10": "Ljudevit, Dionizije, Ivan",
+					"10.10": "Franjo, Danijel, Danko",
+					"11.10": "Emilijan, Bruno",
+					"12.10": "Serafin, Makso, Edvin",
+					"13.10": "Edvard, Edo, Teofil",
+					"14.10": "Kalist",
+					"15.10": "Terezija, Tereza, Zlata",
+					"16.10": "Margareta, Marija, Alacoque",
+					"17.10": "Ignacije, Vatroslav, Ognjen",
+					"18.10": "Luka, Trifonija",
+					"19.10": "Pavao",
+					"20.10": "Vendelin, Irena, Miroslava",
+					"21.10": "Uršula, Hilarija",
+					"22.10": "Marija, Dražen, Cedomil",
+					"23.10": "Ivan, Borislav, Severin",
+					"24.10": "Antun, Jaroslav",
+					"25.10": "Katarina",
+					"26.10": "Demetrije, Zvonimir",
+					"27.10": "Gordana, Cvitko",
+					"28.10": "Šimun, Juda",
+					"29.10": "Narcis, Stojko, Darko, Ida",
+					"30.10": "Marcel, Marojko, Lukan",
+					"31.10": "Alfonz, Vuk, Vukmir",
+					"1.11": "Svetislav, Sveto",
+					"2.11": "Dušica, Duško",
+					"3.11": "Martin, Hubert",
+					"4.11": "Karlo, Dragutin, Drago",
+					"5.11": "Emerik, Mirko",
+					"6.11": "Leonard, Vedran, Sever",
+					"7.11": "Engelbert, Andelko",
+					"8.11": "Milotislav, Bogdan",
+					"9.11": "Ivan",
+					"10.11": "Leon, Lavoslav, Lav",
+					"11.11": "Martin",
+					"12.11": "Jozafat, Milan, Renato",
+					"13.11": "Stanislav, Stanko",
+					"14.11": "Nikola, Ivan",
+					"15.11": "Albert, Leopold",
+					"16.11": "Margareta",
+					"17.11": "Elizabeta, Igor, Grgur",
+					"18.11": "",
+					"19.11": "Janja, Matilda, Krispin",
+					"20.11": "Feliks, Srecko, Edmund",
+					"21.11": "Mavro",
+					"22.11": "Cecilija, Filemon",
+					"23.11": "Klement, Milivoj",
+					"24.11": "Krizogon, Krševan",
+					"25.11": "Katarina",
+					"26.11": "Konrad, Leonardo, Dubravko",
+					"27.11": "Virgilije, Severin, Velimir",
+					"28.11": "Jakov, Markijski, Katarina",
+					"29.11": "Saturnin, Svjetlana",
+					"30.11": "Andrija, Andreja",
+					"1.12": "Eligije, Božena",
+					"2.12": "Bibijana, Blanka",
+					"3.12": "Franjo, Klaudije, Lucije",
+					"4.12": "Ivan, Barbara",
+					"5.12": "Saba, Krispina, Sabina",
+					"6.12": "Nikola, Nikša",
+					"7.12": "Ambrozije, Marin",
+					"8.12": "",
+					"9.12": "Valerija, Zdravka",
+					"10.12": "Julija, Judita",
+					"11.12": "Damaz, Barsaba, Damir",
+					"12.12": "Ivana",
+					"13.12": "Lucija, Jasna, Svjetlana",
+					"14.12": "Ivan, Krševan",
+					"15.12": "Irenej",
+					"16.12": "Adela, Albina, Zorka",
+					"17.12": "Lazar, Izak, Jolanda",
+					"18.12": "Gacijan, Bosiljko, Rufo",
+					"19.12": "Urban, Vladimir, Božica",
+					"20.12": "Eugen, Makarije, Amon",
+					"21.12": "Petar, Perica",
+					"22.12": "Honorat, Caslav, Zenon",
+					"23.12": "Ivan, Viktorija",
+					"24.12": "Adam, Eva",
+					"25.12": "Božidar, Božo, Natalija",
+					"26.12": "Stjepan, Krunoslav",
+					"27.12": "Ivan, Ivo, Janko",
+					"28.12": "Mladen, Nevenka",
+					"29.12": "Toma, David, Davor",
+					"30.12": "Feliks, Sabin",
+					"31.12": "Silvestar, Zahvalnica",
+				}';
+				$names_array = json_decode($ndjson);
+				return $names_array;
+			} 
+			public function get_spanish_namedays_array()
+			{
+				$ndjson = '{
+					"1.1": "Manuel, Emanuel, Jesús",
+					"2.1": "Gregorio, Astrid, Basilio, Emma",
+					"3.1": "Daniel, Genova, Genoveva, Jennifer",
+					"4.1": "Eugenio",
+					"5.1": "Amada, Simón, Simona, Emiliana",
+					"6.1": "Baltasar, Gaspar, Reyes, Adoración",
+					"7.1": "Amadeo, Raimundo, Aquiles, Luciano",
+					"8.1": "Maximino, Eladio",
+					"9.1": "Julián, Pedro Urseolo",
+					"10.1": "Gonzalo, Marciano, Alda, Aldo",
+					"11.1": "Alejandro, Guillermo, Hortensia",
+					"12.1": "Alfredo, Tatiana, Tania, Hilario",
+					"13.1": "Verónica, Gumersindo, Milagros",
+					"14.1": "Félix, Gil",
+					"15.1": "Mauro, Raquel, Marcelo",
+					"16.1": "Odette, Oto, Priscila",
+					"17.1": "Alba, Antonio, Mariana, Alfredo",
+					"18.1": "Florida, Beatriz, Mario, Pia",
+					"19.1": "Mario, Vicente, Sebastián",
+					"20.1": "Fabián",
+					"21.1": "Vicente",
+					"22.1": "Domingo, Imanol, Emma, Gaudencio",
+					"23.1": "Alberto, Ildefonso, Alberta",
+					"24.1": "Francisco, Tirso, Paz, Feliciano",
+					"25.1": "Elvira, Paula, Timoteo",
+					"26.1": "Paula, Tito, Gonzalo",
+					"27.1": "Ángela, Tomás, Valerio",
+					"28.1": "Tomas, Pedro Nolasco",
+					"29.1": "Valeria, Valerio, Martina",
+					"30.1": "Alejandro",
+					"31.1": "Juan Bosco",
+					"1.2": "Cecilio",
+					"2.2": "Catalina, Aída, Felipe, Ayuda",
+					"3.2": "Oscar, Blas, Adelina",
+					"4.2": "Gilberto, Isidro, Verónica, Juana",
+					"5.2": "Isaac, Ágata, Águeda",
+					"6.2": "Gonzalo, Amando, Amanda, Silvano",
+					"7.2": "Moisés, Ricardo",
+					"8.2": "Jerónimo, Lucio, Elisanda",
+					"9.2": "Donato, Sabino, Reinaldo, Apolonia",
+					"10.2": "Guillermo, Amancio, Arnaldo, Arnau",
+					"11.2": "Dante, Lourdes, Adolfo",
+					"12.2": "Modesto, Eulalia",
+					"13.2": "Cristian, Benigno",
+					"14.2": "Dionisio, Valentín, Valentina",
+					"15.2": "Georgia, Georgina, Faustino",
+					"16.2": "Elías, Samuel, Isaías, Jeremías",
+					"17.2": "Constanza, Rómulo, Alexis",
+					"18.2": "Lucio, Simeón",
+					"19.2": "Álvaro, Conrado, Almudina, Gabino",
+					"20.2": "Eleuterio",
+					"21.2": "Irene, Pedro Damián",
+					"22.2": "Margarita, Leonor",
+					"23.2": "Lázaro, Romance, Policarpo",
+					"24.2": "Modesto",
+					"25.2": "Cesáreo, Dióscoro",
+					"26.2": "Néstor",
+					"27.2": "Gabriel, Gabriela, Baldomero",
+					"28.2": "Román, Leandro, Romano",
+					"1.3": "Federico, Rosendo, Eudoxia",
+					"2.3": "Enrique, Pablo, Enriqueta",
+					"3.3": "Medín, Rosendo",
+					"4.3": "Francisca, Arcadio, Eugenio",
+					"5.3": "Juan José",
+					"6.3": "Humberto, Olegario, Judith, Nina",
+					"7.3": "Clotilde, Felicidad",
+					"8.3": "Juan",
+					"9.3": "Cándido, Francisca",
+					"10.3": "Andrés, Macario",
+					"11.3": "Ramiro, Oria",
+					"12.3": "Josefina, Maximiliano, Fina",
+					"13.3": "Patricia, Rodrigo, Ramiro",
+					"14.3": "Jacobo, Matilde, Florentina",
+					"15.3": "César, Luis, Raimundo, Madrona",
+					"16.3": "Abrahan, Clemente",
+					"17.3": "Patricio",
+					"18.3": "Narciso, Salvador",
+					"19.3": "José, Marcos, Josefa",
+					"20.3": "Alejandra, Claudia",
+					"21.3": "Clemencia, Fabiola, Nicolás",
+					"22.3": "Sergio, Octaviano",
+					"23.3": "Fidel, Oriol, Victoriano, Toribio",
+					"24.3": "Delmiro, Edelmira, Edelmiro, Timolao",
+					"25.3": "Abel, Gloria, Encarnación, Rebeca",
+					"26.3": "Braulio, Diego",
+					"27.3": "Ruperto, Lilia, Alejandro",
+					"28.3": "Esperanza, Gundelina",
+					"29.3": "Jonas, Segundo",
+					"30.3": "Quirino",
+					"31.3": "Amós, Benjamín",
+					"1.4": "Venancio",
+					"2.4": "Ofelia, Francisco",
+					"3.4": "Sixto",
+					"4.4": "Isidoro, Platón",
+					"5.4": "Emilia, Vicente Ferrer",
+					"6.4": "Celso, Diógenes",
+					"7.4": "Donato, Juan Bautista",
+					"8.4": "Dionisio, Amancio",
+					"9.4": "Hugo, Casilda, Eusequio",
+					"10.4": "Ezequiel",
+					"11.4": "Gema, Oria, Estanislao",
+					"12.4": "Andrés, Damián, Julio, Zenón",
+					"13.4": "Martín, Hermenegildo",
+					"14.4": "Lamberto",
+					"15.4": "Máximo, Aníbal",
+					"16.4": "Engracia, Bernadeta",
+					"17.4": "Rodolfo, Anicéto",
+					"18.4": "Perfecto",
+					"19.4": "León, Crescencio",
+					"20.4": "Inés, Víctor",
+					"21.4": "Anselmo",
+					"22.4": "Teodoro, Alexander, Apeles",
+					"23.4": "Adalberto, Jorge, Gorka",
+					"24.4": "Leoncio, Honorio, Honoria, Fidel",
+					"25.4": "Antonio, Antonieta, Marco, Marcia",
+					"26.4": "Basilio, Marcelino, Engracia, Isidoro",
+					"27.4": "Montserrat, Zita",
+					"28.4": "Amado, Pedro Chanel",
+					"29.4": "Teodora, Karen, Katia, Wilfredo",
+					"30.4": "Jaime, Amador, Pía, Pío",
+					"1.5": "Berta, Tamar, Tamara, Oroncio",
+					"2.5": "Germán, Araceli, Atanasio, Vindemial",
+					"3.5": "Juvenal, Violeta, Evencio, Felipe",
+					"4.5": "Florián, Froilán, Lidón, Silvano",
+					"5.5": "Adrián, Silvano, Niceto, Ángelica",
+					"6.5": "Domingo, Evodio, Protógenes, Judith",
+					"7.5": "Augusto, Flavio, Gisela",
+					"8.5": "Acacio",
+					"9.5": "Gregorio, Hermas, Geroncio",
+					"10.5": "Job, Solange, Gordiano",
+					"11.5": "Estela, Favio, Amparo, Poncio",
+					"12.5": "Domingo, Nerea, Nereo, Aquileo",
+					"13.5": "Imelda, Fátima",
+					"14.5": "Matías, Corona, Cora, Henedina",
+					"15.5": "Cecilio, Eufrasia, Isidro, Torcuato",
+					"16.5": "Brenda, Ubaldo, Honorato",
+					"17.5": "Eric, Erica, Pascual",
+					"18.5": "Alejandra, Félix, Próspero",
+					"19.5": "Celestina, Celestino, Crispín",
+					"20.5": "Orlando, Baudilio, Asterio",
+					"21.5": "Constantino, Virginia, Giselle",
+					"22.5": "Emilio, Rita, Rosana",
+					"23.5": "Miguel, Mercurial, Eufebio",
+					"24.5": "Rocío, Susana, Auxiliadora",
+					"25.5": "Valentín, Valentina, Sonia",
+					"26.5": "Felipe Neri, Zacarías",
+					"27.5": "Carolina",
+					"28.5": "Agustín, Bernardo, Emilio, Germán",
+					"29.5": "Alejandro, Justo, Teodosia",
+					"30.5": "Fernando, Estela, Fernanda, Hernán",
+					"31.5": "Visitación, Petronila, Amelia",
+					"1.6": "Alta, Graciano, Laura, Candelaria",
+					"2.6": "Erasmo, Marcelino, Blandina",
+					"3.6": "Oliva, Kevin, Cecilio, Davino",
+					"4.6": "Emma, Quirino, Ruth, Saturnina",
+					"5.6": "Eloisa, Marcia, Valeria, Nicanor",
+					"6.6": "Norberto, Artemio, Cándida, Ismael",
+					"7.6": "Roberto",
+					"8.6": "Giraldo",
+					"9.6": "Blanca, Primo, Feliciano, Diana",
+					"10.6": "Amalia, Amelia, Getulio, Críspulo",
+					"11.6": "Benito, Bernabé, Aléida",
+					"12.6": "Nazario, Olimpo, Cirilo",
+					"13.6": "Antonio, Joel, Andoni",
+					"14.6": "Félix, Eliseo, Digna",
+					"15.6": "Lidia, Vito, Landelino, Libia",
+					"16.6": "Ciro, Aquilino, Aureliano, Siro",
+					"17.6": "Ismael, Isauro, Montano",
+					"18.6": "Justo, Marceliano, Marina",
+					"19.6": "Aurora",
+					"20.6": "Elia, Silverio, Macario",
+					"21.6": "Luis, Demetria, Terencio, Raul, Gina",
+					"22.6": "Albano, Paulino",
+					"23.6": "Alicia, Apolo, Inmaculada, Agripina",
+					"24.6": "Juan, Juana, Ivana, Joan",
+					"25.6": "Salomón, Guillermo",
+					"26.6": "Virgilio, Pelayo, Antelmo, Alicia",
+					"27.6": "Socorro, Zoilo, Ladislao, Anecto",
+					"28.6": "Marcela",
+					"29.6": "Ciro, David, Pablo, Pedro",
+					"30.6": "Marcial, Leonila",
+					"1.7": "Aarón, Esther, Luz",
+					"2.7": "Visitación, Martiniano, Vidal",
+					"3.7": "Tomás, Heliodoro, Jacinto, Enrique",
+					"4.7": "Berta, Elizabeth, Laureano, Isabel",
+					"5.7": "Filomena, Filomeno, Zoa",
+					"6.7": "Isaías, Dominica, Rómulo",
+					"7.7": "Fermín, Roberto, Odón, Germano",
+					"8.7": "Adrián, Edgar, Marina, Priscila",
+					"9.7": "Milagros, Verónica",
+					"10.7": "Cristóbal, Silvano, Honorato",
+					"11.7": "Benito, Olga, Abundio, Sabino",
+					"12.7": "Paulina, Oliverio",
+					"13.7": "Eugenio, Sara, Joel",
+					"14.7": "Camila, Vladimiro, Camilo",
+					"15.7": "Carmelo, Hilario, Fausto",
+					"16.7": "Carmen, Marcelina, Generosa",
+					"17.7": "Elías",
+					"18.7": "Emiliano, Federico, Luz",
+					"19.7": "Aurea, Aureo",
+					"20.7": "Elías, Elisa",
+					"21.7": "Angelina, Lorenza, Daniel, Julia",
+					"22.7": "Teófila, Zoraida, Magdalena, Primitiva",
+					"23.7": "Brigida, Teresa, Boris",
+					"24.7": "Cristina",
+					"25.7": "Jaime, Santiago",
+					"26.7": "Ana, Joaquín",
+					"27.7": "Cucufate, Natalia",
+					"28.7": "Celso",
+					"29.7": "Marta, Olavo",
+					"30.7": "Abdón",
+					"31.7": "Ignacio",
+					"1.8": "Alfonso, Dalmau",
+					"2.8": "Angeles, Eusebio.",
+					"3.8": "Gustavo, Lídia",
+					"4.8": "Juan María Vianney",
+					"5.8": "Africa, Blanca, Nieves",
+					"6.8": "Salvador",
+					"7.8": "Cayetano",
+					"8.8": "Domingo",
+					"9.8": "-",
+					"10.8": "Lorenzo",
+					"11.8": "Clara, Filomena, Susana",
+					"12.8": "Herculano",
+					"13.8": "Aurora, Hipólito",
+					"14.8": "Atanasia",
+					"15.8": "Asunción, Estrella, María, Paloma",
+					"16.8": "Roque",
+					"17.8": "Isaac, Jacinto",
+					"18.8": "Elena",
+					"19.8": "Magín",
+					"20.8": "Bernardo Abad",
+					"21.8": "Sidonio",
+					"22.8": "Reina",
+					"23.8": "Rosa",
+					"24.8": "Bartolomé",
+					"25.8": "Ginés",
+					"26.8": "Ceferino",
+					"27.8": "Mónica",
+					"28.8": "Agustín",
+					"29.8": "Sabina",
+					"30.8": "Gaudencia",
+					"31.8": "Raimón, Ramón",
+					"1.9": "Arturo, Egidio, Gil",
+					"2.9": "Raquel, Antolín",
+					"3.9": "Dorotea",
+					"4.9": "Moisés, Rosalía",
+					"5.9": "Eudosio",
+					"6.9": "Eva, Fausto",
+					"7.9": "Regina",
+					"8.9": "Adela, Meritxell, Nuria",
+					"9.9": "Claustro, Felicia",
+					"10.9": "Nicolás",
+					"11.9": "Patiens",
+					"12.9": "Dulce, María",
+					"13.9": "Juan Crisóstomo",
+					"14.9": "Exaltación",
+					"15.9": "Aurora, Dolores, Mar",
+					"16.9": "Rogelio",
+					"17.9": "Ariadna, Columba, Roberto",
+					"18.9": "Sofía",
+					"19.9": "Nilo",
+					"20.9": "Eustaquio",
+					"21.9": "Mateo, Mauricio",
+					"22.9": "Digna, Inocencio",
+					"23.9": "Tecla, Lina, Lino",
+					"24.9": "Gerardo, Mercedes",
+					"25.9": "Dalmacio",
+					"26.9": "Cosme, Damián",
+					"27.9": "Florentino, Vicente",
+					"28.9": "Wenceslao",
+					"29.9": "Gabriel, Miguel, Rafael",
+					"30.9": "Jerónimo",
+					"1.10": "Teresa",
+					"2.10": "Angeles Custodios",
+					"3.10": "Francisco, Cándido",
+					"4.10": "Francisco",
+					"5.10": "Gala, Plácido",
+					"6.10": "Bruno",
+					"7.10": "Rosario",
+					"8.10": "Salud, Thaís",
+					"9.10": "Abrahan, Dionisio",
+					"10.10": "Tomás",
+					"11.10": "Begona",
+					"12.10": "Pilar, Serafín",
+					"13.10": "Eduardo",
+					"14.10": "Calixto",
+					"15.10": "Teresa",
+					"16.10": "Margarita, María Alacoque",
+					"17.10": "Ignacio",
+					"18.10": "Lucas",
+					"19.10": "Laura",
+					"20.10": "Academia, Irene",
+					"21.10": "Griselda, Ursula",
+					"22.10": "Salomé",
+					"23.10": "Servando",
+					"24.10": "Antonio María Claret",
+					"25.10": "Bernardo Calvó",
+					"26.10": "Evaristo",
+					"27.10": "Capitolina",
+					"28.10": "Judas, Simón, Tadeo",
+					"29.10": "Narciso",
+					"30.10": "Bienvenida, Claudio",
+					"31.10": "Quintin",
+					"1.11": "Benigno, Penélope",
+					"2.11": "Jorge, Gorka",
+					"3.11": "Ermengol, Silvia",
+					"4.11": "Carlos, Carlota, Carolina",
+					"5.11": "Zacarías, Elisabet, Isabel",
+					"6.11": "Leonardo",
+					"7.11": "Carina, Ernesto",
+					"8.11": "Severiano",
+					"9.11": "Teodoro",
+					"10.11": "Almudena, León",
+					"11.11": "Martín",
+					"12.11": "Aurelio",
+					"13.11": "Leandro, Diego",
+					"14.11": "Teodoto, Clemente",
+					"15.11": "Alberto, Leopoldo",
+					"16.11": "Edmundo, Margarita",
+					"17.11": "Gertrudis, Hilda, Isabel, Victoria",
+					"18.11": "Aurelio",
+					"19.11": "Crispino, Fausto",
+					"20.11": "Félix, Lucrecia, Ocatavio",
+					"21.11": "Demetrio, Fructuoso, Piedad",
+					"22.11": "Cecilia",
+					"23.11": "Clemente",
+					"24.11": "Flora",
+					"25.11": "Erasmo",
+					"26.11": "Juan",
+					"27.11": "Auxilio",
+					"28.11": "Rufo",
+					"29.11": "Saturnino",
+					"30.11": "Andrés",
+					"1.12": "Adelaida, Eloy, Hugo",
+					"2.12": "Elisa, Elsa",
+					"3.12": "Francisco Javier, María",
+					"4.12": "Bárbara",
+					"5.12": "Crispina",
+					"6.12": "Nicolás",
+					"7.12": "Ambrosio",
+					"8.12": "Concepción, Inmaculada, Pura",
+					"9.12": "Juan Diego",
+					"10.12": "Eulalia",
+					"11.12": "Dámaso",
+					"12.12": "Chantal, Guadalupe",
+					"13.12": "Lucía",
+					"14.12": "Juan, Nicasio, Pompeyo",
+					"15.12": "Fortunato, Cristina",
+					"16.12": "Albina",
+					"17.12": "Lázaro, Yolanda",
+					"18.12": "Esperanza, Macarena",
+					"19.12": "Darío",
+					"20.12": "Ptolomeo",
+					"21.12": "Pedro Canisio",
+					"22.12": "Floro",
+					"23.12": "Juan",
+					"24.12": "Delfín, Társila",
+					"25.12": "Belén, Eugenia, Natividad",
+					"26.12": "Esteban",
+					"27.12": "Teófanos",
+					"28.12": "Abel",
+					"29.12": "Davíd",
+					"30.12": "Raúl",
+					"31.12": "Silvestre",
+				}';
+				$names_array = json_decode($ndjson);
+				return $names_array;
+			} 	
+			public function get_polish_namedays_array()
+			{
+				$ndjson = '{
+					"1.1": "Mieszko, Mieczysław",
+					"2.1": "Izydor, Grzegorz",
+					"3.1": "Danuta, Zdzisław",
+					"4.1": "Elżbieta, Aniela",
+					"5.1": "Hanna, Edward, Szymon",
+					"6.1": "Kacper, Melchior",
+					"7.1": "Lucjan, Julian",
+					"8.1": "Seweryn, Juliusz",
+					"9.1": "Adrian, Marcelina",
+					"10.1": "Danuta, Wilhelm",
+					"11.1": "Honorata, Matylda",
+					"12.1": "Ada, Benedykt",
+					"13.1": "Bogumiła, Weronika",
+					"14.1": "Feliks, Nina",
+					"15.1": "Paweł, Arnold, Izydor",
+					"16.1": "Marcela, Włodzimierz",
+					"17.1": "Antoni, Jan",
+					"18.1": "Małgorzata, Piotr",
+					"19.1": "Henryk, Marta",
+					"20.1": "Fabian, Sebastian",
+					"21.1": "Agnieszka, Jarosław",
+					"22.1": "Anastazy, Wincenty",
+					"23.1": "Ildefons, Rajmund",
+					"24.1": "Rafał, Felicja, Franciszka",
+					"25.1": "Paweł, Miłosz",
+					"26.1": "Tymoteusz, Michał",
+					"27.1": "Aniela, Jerzy",
+					"28.1": "Walery, Karol",
+					"29.1": "Franciszek, Józef",
+					"30.1": "Maciej, Martyna",
+					"31.1": "Jan, Marcela, Ludwika",
+					"1.2": "Brygida, Ignacy",
+					"2.2": "Maria, Mirosław",
+					"3.2": "Błażej, Oskar",
+					"4.2": "Andrzej, Józef, Tytus",
+					"5.2": "Agata, Adelajda",
+					"6.2": "Dorota, Bogdan, Paweł",
+					"7.2": "Ryszard, Teodor",
+					"8.2": "Hieronim, Sebastian",
+					"9.2": "Apolina, Eryka, Cyryl",
+					"10.2": "Elwira, Jacek",
+					"11.2": "Grzegorz, Lucjan",
+					"12.2": "Radosław, Damian",
+					"13.2": "Grzegorz, Katarzyna",
+					"14.2": "Cyryl, Metody",
+					"15.2": "Jowita, Faustyn",
+					"16.2": "Danuta, Julian",
+					"17.2": "Aleksy, Łukasz",
+					"18.2": "Szymon, Konstancja",
+					"19.2": "Arnold, Józef, Konrad",
+					"20.2": "Leon, Ludomir",
+					"21.2": "Robert, Eleonora",
+					"22.2": "Marta, Małgorzata",
+					"23.2": "Romana, Damian",
+					"24.2": "Maciej, Marek",
+					"25.2": "Cezary, Donat",
+					"26.2": "Mirosław, Aleksander",
+					"27.2": "Gabriel, Anastazja",
+					"28.2": "Roman, Ludomir",
+					"1.3": "Albin, Antoni",
+					"2.3": "Helena, Halszka",
+					"3.3": "Maryna, Kunegunda",
+					"4.3": "Eugeniusz, Kazimierz",
+					"5.3": "Adrian, Fryderyk",
+					"6.3": "Róża, Wiktor",
+					"7.3": "Tomasz, Felicyta",
+					"8.3": "Beata, Wincenty",
+					"9.3": "Franciszka, Dominika",
+					"10.3": "Cyprian, Aleksander",
+					"11.3": "Benedykt, Konstantyn",
+					"12.3": "Alojzy, Bernard",
+					"13.3": "Bożena, Krystyna",
+					"14.3": "Leon, Martyna",
+					"15.3": "Longin, Klemens",
+					"16.3": "Izabela, Oktawia",
+					"17.3": "Patryk, Zbigniew",
+					"18.3": "Cyryl, Edward",
+					"19.3": "Józef, Bogdan",
+					"20.3": "Klaudia, Eufemia",
+					"21.3": "Ludomir, Benedykt",
+					"22.3": "Katarzyna, Bogusław",
+					"23.3": "Pelagia, Feliks",
+					"24.3": "Marek, Gabriel",
+					"25.3": "Mariola, Wienczysław",
+					"26.3": "Emanuel, Teodor",
+					"27.3": "Lidia, Ernest",
+					"28.3": "Aniela, Jan",
+					"29.3": "Wiktoryn, Helmut",
+					"30.3": "Aniela, Leonard",
+					"31.3": "Beniamin, Balbina",
+					"1.4": "Grażyna, Irena",
+					"2.4": "Wladysław, Franciszka",
+					"3.4": "Ryszard, Irena",
+					"4.4": "Benedykt, Izydor",
+					"5.4": "Katarzyna, Wincenty",
+					"6.4": "Izolda, Ireneusz",
+					"7.4": "Rufin, Donat",
+					"8.4": "Dionizy, Julia",
+					"9.4": "Maria, Dymitr",
+					"10.4": "Michał, Makary",
+					"11.4": "Filip, Leon",
+					"12.4": "Damian, Juliusz",
+					"13.4": "Przemysław, Ida",
+					"14.4": "Berenika, Walerian",
+					"15.4": "Ludwina, Wacława",
+					"16.4": "Cecylian, Bernadeta",
+					"17.4": "Robert, Rudolf",
+					"18.4": "Alicja, Bogusław",
+					"19.4": "Adolf, Tymon",
+					"20.4": "Czesław, Agnieszka",
+					"21.4": "Bartosz, Feliks",
+					"22.4": "Kazimierz, Łukasz",
+					"23.4": "Jerzy, Wojciech, Idzi",
+					"24.4": "Aleksy, Horacy",
+					"25.4": "Marek, Jarosław",
+					"26.4": "Maria, Klaudiusz",
+					"27.4": "Ludwik, Piotr",
+					"28.4": "Paweł, Waleria",
+					"29.4": "Rita, Donata",
+					"30.4": "Marian, Katarzyna",
+					"1.5": "Józef, Jeremiasz",
+					"2.5": "Zygmunt, Atanazy",
+					"3.5": "Maria, Mariola",
+					"4.5": "Monika, Florian",
+					"5.5": "Irena, Waldemar",
+					"6.5": "Filip, Judyta",
+					"7.5": "Benedykt, Gizela",
+					"8.5": "Ilza, Stanisław, Wiktor",
+					"9.5": "Bożydar, Grzegorz",
+					"10.5": "Izydor, Antoniny",
+					"11.5": "Iga, Ignacy",
+					"12.5": "Joanna, Achilles",
+					"13.5": "Gloria, Gerwazy",
+					"14.5": "Bonifacy, Dobiesław",
+					"15.5": "Zofia, Nadzieja",
+					"16.5": "Andrzej, Jędrzej",
+					"17.5": "Brunon, Paschalis",
+					"18.5": "Eryk, Feliks",
+					"19.5": "Piotr, Iwa",
+					"20.5": "Aleksandr, Bazyli",
+					"21.5": "Jan, Wiktor",
+					"22.5": "Helena, Wiesław",
+					"23.5": "Emilia, Iwona",
+					"24.5": "Joanna, Zuzanna",
+					"25.5": "Borysław, Grzegorz",
+					"26.5": "Filip, Paulina",
+					"27.5": "Augustyn, Julian",
+					"28.5": "Jaromir, Justyna",
+					"29.5": "Magdalena, Bogumiła",
+					"30.5": "Karol, Ferdynand",
+					"31.5": "Aniela, Petronela",
+					"1.6": "Jakub, Justyn",
+					"2.6": "Erazm, Marianna",
+					"3.6": "Leszek, Tamara",
+					"4.6": "Franciszka, Karol",
+					"5.6": "Bonifacy, Walter",
+					"6.6": "Norbert, Laurenty",
+					"7.6": "Robert, Wiesław",
+					"8.6": "Maksym, Medard",
+					"9.6": "Anna, Felicjan",
+					"10.6": "Bogumił, Malgorzata",
+					"11.6": "Barnaba, Radomił",
+					"12.6": "Janina, Jan",
+					"13.6": "Lucjan, Antoni",
+					"14.6": "Bazyli, Eliza",
+					"15.6": "Wit, Jolanta",
+					"16.6": "Alina, Benon",
+					"17.6": "Albert, Ignacy",
+					"18.6": "Mark, Elzbieta",
+					"19.6": "Gerwazy, Protazy",
+					"20.6": "Dina, Bogna",
+					"21.6": "Alicja, Alojzy",
+					"22.6": "Paulina, Tomasz",
+					"23.6": "Wanda, Zenon",
+					"24.6": "Jan, Danuta",
+					"25.6": "Lucja, Wilhelm",
+					"26.6": "Jan, Paula",
+					"27.6": "Maryla, Wladysław",
+					"28.6": "Leon, Ireneusz",
+					"29.6": "Piotr, Paweł",
+					"30.6": "Emilia, Lucyca",
+					"1.7": "Halina, Marian",
+					"2.7": "Jagoda, Urban",
+					"3.7": "Jack, Anatol",
+					"4.7": "Malwina, Odon",
+					"5.7": "Marii, Antoni",
+					"6.7": "Dominika, Gotard",
+					"7.7": "Benedykt, Cyryl",
+					"8.7": "Adriana, Eugeniusz",
+					"9.7": "Lukrecja, Weronika",
+					"10.7": "Olaf, Witalis",
+					"11.7": "Olga, Kalina",
+					"12.7": "Jan, Brunon",
+					"13.7": "Ernest, Malgorzata",
+					"14.7": "Bonawentura, Stelia",
+					"15.7": "Dawid, Henryk",
+					"16.7": "Eustachy, Maria",
+					"17.7": "Aneta, Bogdan",
+					"18.7": "Emil, Erwin",
+					"19.7": "Wincenty, Wodzisław",
+					"20.7": "Czesław, Fryderyk",
+					"21.7": "Daniel, Dalida",
+					"22.7": "Maria, Magdalena",
+					"23.7": "Bogna, Apolinary",
+					"24.7": "Kinga, Krystyna",
+					"25.7": "Walentyna, Krzysztof",
+					"26.7": "Anna, Mirosława",
+					"27.7": "Celestyn, Lilia",
+					"28.7": "Aida, Innocenty",
+					"29.7": "Olaf, Marta",
+					"30.7": "Julita, Piotr",
+					"31.7": "Ignacy, Lubomir",
+					"1.8": "Alfons, Nadia",
+					"2.8": "Karina, Gustaw",
+					"3.8": "Lidia, August",
+					"4.8": "Dominik, Jan",
+					"5.8": "Maria, Oswald",
+					"6.8": "Sława, Jakub",
+					"7.8": "Klaudia, Kajetan",
+					"8.8": "Cyprian, Dominik",
+					"9.8": "Roman, Ryszard",
+					"10.8": "Bogdan, Borys",
+					"11.8": "Klara, Lidia",
+					"12.8": "Lech, Euzebia",
+					"13.8": "Diana, Hipolit",
+					"14.8": "Alfred, Euzebiusz",
+					"15.8": "Maria, Napoleon",
+					"16.8": "Stefan, Roch",
+					"17.8": "Anita, Eliza",
+					"18.8": "Ilona, Klara",
+					"19.8": "Jan, Bolesław",
+					"20.8": "Bernard, Samuel",
+					"21.8": "Franciszka, Joanna",
+					"22.8": "Maria, Cezary",
+					"23.8": "Róża, Apolinary",
+					"24.8": "Emilia, Jerzy",
+					"25.8": "Luiza, Ludwik",
+					"26.8": "Maria, Zefiryna",
+					"27.8": "Monika, Cezary",
+					"28.8": "Patrycja, Wyszomir",
+					"29.8": "Beata, Jan",
+					"30.8": "Rebeka, Szczęsna",
+					"31.8": "Izabela, Ramona",
+					"1.9": "Bronisława, Idzi",
+					"2.9": "Julian, Stefan",
+					"3.9": "Izabela, Szymon",
+					"4.9": "Ida, Lilianna",
+					"5.9": "Dorota, Wawrzyniec",
+					"6.9": "Beata, Eugeniusz",
+					"7.9": "Regina, Melchior",
+					"8.9": "Maria, Adriana",
+					"9.9": "Piotr, Sergiusz",
+					"10.9": "Łukasz, Mikołaj",
+					"11.9": "Jacek, Dagna",
+					"12.9": "Radzimir, Gwidon",
+					"13.9": "Eugenia, Aureliusz",
+					"14.9": "Roksana, Bernard",
+					"15.9": "Albin, Nikodem",
+					"16.9": "Edyta, Kornel",
+					"17.9": "Franciszka, Hildegarda",
+					"18.9": "Irma, Józef",
+					"19.9": "January, Konstancja",
+					"20.9": "Filipina, Eustachy",
+					"21.9": "Jonasz, Mateusz",
+					"22.9": "Tomasz, Maurycy",
+					"23.9": "Bogusław, Tekla",
+					"24.9": "Gerard, Teodor",
+					"25.9": "Aurelia, Ladysław",
+					"26.9": "Justyna, Cyprian",
+					"27.9": "Damian, Amadeusz",
+					"28.9": "Luba, Wacław",
+					"29.9": "Michał, Michalina",
+					"30.9": "Wera, Honoriusz",
+					"1.10": "Danuta, Remigiusz",
+					"2.10": "Teofil, Dionizja",
+					"3.10": "Teresa, Heliodor",
+					"4.10": "Rozalia, Edwin",
+					"5.10": "Igor, Flawia",
+					"6.10": "Artur, Brunon",
+					"7.10": "Maria, Marek",
+					"8.10": "Pelagia, Brygida",
+					"9.10": "Arnold, Dionizy",
+					"10.10": "Paulina, Franciszka",
+					"11.10": "Emil, Aldona",
+					"12.10": "Eustachy, Maksymilian",
+					"13.10": "Gerard, Edward",
+					"14.10": "Alan, Kalikst",
+					"15.10": "Teresa, Jadwiga",
+					"16.10": "Gaweł, Florentyna",
+					"17.10": "Małgorzata, Wiktor",
+					"18.10": "Juliusz, Łukasz",
+					"19.10": "Pelagia, Piotr",
+					"20.10": "Irena, Jan",
+					"21.10": "Urszula, Hilaria",
+					"22.10": "Filip, Kordula",
+					"23.10": "Marlena, Seweryn",
+					"24.10": "Rafał, Marcin",
+					"25.10": "Daria, Wilhelmina",
+					"26.10": "Lucjan, Ewaryst",
+					"27.10": "Iwona, Sabina",
+					"28.10": "Szymon, Tadeusz",
+					"29.10": "Euzebia, Wioletta",
+					"30.10": "Zenobia, Przemysław",
+					"31.10": "Urban, Saturnin",
+					"1.11": "Julian, Łukasz",
+					"2.11": "Bohdana, Tobiasz",
+					"3.11": "Sylwia, Hubert",
+					"4.11": "Karol, Olgierd",
+					"5.11": "Elżbieta, Sławomir",
+					"6.11": "Feliks, Leonard",
+					"7.11": "Antoni, Zytomir",
+					"8.11": "Sewer, Hadriana",
+					"9.11": "Ursyn, Todor",
+					"10.11": "Lena, Ludomir",
+					"11.11": "Marcin, Bartłomiej",
+					"12.11": "Renata, Witold",
+					"13.11": "Mikołaj, Stanisław",
+					"14.11": "Roger, Serafina",
+					"15.11": "Albert, Leopold",
+					"16.11": "Gertruda, Edmund",
+					"17.11": "Grzegorz, Salomea",
+					"18.11": "Roman, Klaudyna",
+					"19.11": "Elżbieta, Seweryn",
+					"20.11": "Anatol, Sędzimir",
+					"21.11": "Janusz, Konrad",
+					"22.11": "Marek, Cecylia",
+					"23.11": "Adela, Klemens",
+					"24.11": "Flora, Emma",
+					"25.11": "Katarzyna, Erazm",
+					"26.11": "Delfina, Sylwester",
+					"27.11": "Walery, Wilgiusz",
+					"28.11": "Lesław, Zdzisław",
+					"29.11": "Błażej, Saturnin",
+					"30.11": "Maura, Andrzej",
+					"1.12": "Natalia, Eligiusz",
+					"2.12": "Balbina, Bibiana",
+					"3.12": "Franciszka, Ksawery",
+					"4.12": "Barbara, Krystian",
+					"5.12": "Saba, Kryspin",
+					"6.12": "Mikołaj, Jarema",
+					"7.12": "Marcin, Ambroża",
+					"8.12": "Maria, Świątożar",
+					"9.12": "Wiesław, Leokadia",
+					"10.12": "Julia, Daniela",
+					"11.12": "Damazy, Waldemar",
+					"12.12": "Dagmara, Aleksandra",
+					"13.12": "Lucja, Otylia",
+					"14.12": "Alfred, Izydor",
+					"15.12": "Nina, Celina",
+					"16.12": "Albina, Zdzisław",
+					"17.12": "Olimpia, Łazarz",
+					"18.12": "Gracjan, Bogusław",
+					"19.12": "Gabriela, Dariusz",
+					"20.12": "Bogumiła, Dominika",
+					"21.12": "Tomasz, Tomisław",
+					"22.12": "Zenon, Honorata",
+					"23.12": "Wiktoria, Sławomira",
+					"24.12": "Adam, Ewa",
+					"25.12": "Anastazja, Eulalia",
+					"26.12": "Jana, Żaneta",
+					"27.12": "Teofila, Godzisław",
+					"28.12": "Jana, Maksym",
+					"29.12": "Dawid, Tomasz",
+					"30.12": "Irmina, Eugeniusz",
+					"31.12": "Melania, Sylwester",
+				}';
+				$names_array = json_decode($ndjson);
+				return $names_array;
+			} 					
+			public function get_csv_string(){
+				$str = "01-01;Manuel, Emanuel, Jesús
+01-02;Gregorio, Astrid, Basilio, Emma
+01-03;Daniel, Genova, Genoveva, Jennifer
+01-04;Eugenio
+01-05;Amada, Simón, Simona, Emiliana
+01-06;Baltasar, Gaspar, Reyes, Adoración
+01-07;Amadeo, Raimundo, Aquiles, Luciano
+01-08;Maximino, Eladio
+01-09;Julián, Pedro Urseolo
+01-10;Gonzalo, Marciano, Alda, Aldo
+01-11;Alejandro, Guillermo, Hortensia
+01-12;Alfredo, Tatiana, Tania, Hilario
+01-13;Verónica, Gumersindo, Milagros
+01-14;Félix, Gil
+01-15;Mauro, Raquel, Marcelo
+01-16;Odette, Oto, Priscila
+01-17;Alba, Antonio, Mariana, Alfredo
+01-18;Florida, Beatriz, Mario, Pia
+01-19;Mario, Vicente, Sebastián
+01-20;Fabián
+01-21;Vicente
+01-22;Domingo, Imanol, Emma, Gaudencio
+01-23;Alberto, Ildefonso, Alberta
+01-24;Francisco, Tirso, Paz, Feliciano
+01-25;Elvira, Paula, Timoteo
+01-26;Paula, Tito, Gonzalo
+01-27;Ángela, Tomás, Valerio
+01-28;Tomas, Pedro Nolasco
+01-29;Valeria, Valerio, Martina
+01-30;Alejandro
+01-31;Juan Bosco
+02-01;Cecilio
+02-02;Catalina, Aída, Felipe, Ayuda
+02-03;Oscar, Blas, Adelina
+02-04;Gilberto, Isidro, Verónica, Juana
+02-05;Isaac, Ágata, Águeda
+02-06;Gonzalo, Amando, Amanda, Silvano
+02-07;Moisés, Ricardo
+02-08;Jerónimo, Lucio, Elisanda
+02-09;Donato, Sabino, Reinaldo, Apolonia
+02-10;Guillermo, Amancio, Arnaldo, Arnau
+02-11;Dante, Lourdes, Adolfo
+02-12;Modesto, Eulalia
+02-13;Cristian, Benigno
+02-14;Dionisio, Valentín, Valentina
+02-15;Georgia, Georgina, Faustino
+02-16;Elías, Samuel, Isaías, Jeremías
+02-17;Constanza, Rómulo, Alexis
+02-18;Lucio, Simeón
+02-19;Álvaro, Conrado, Almudina, Gabino
+02-20;Eleuterio
+02-21;Irene, Pedro Damián
+02-22;Margarita, Leonor
+02-23;Lázaro, Romance, Policarpo
+02-24;Modesto
+02-25;Cesáreo, Dióscoro
+02-26;Néstor
+02-27;Gabriel, Gabriela, Baldomero
+02-28;Román, Leandro, Romano
+02-29;
+03-01;Federico, Rosendo, Eudoxia
+03-02;Enrique, Pablo, Enriqueta
+03-03;Medín, Rosendo
+03-04;Francisca, Arcadio, Eugenio
+03-05;Juan José
+03-06;Humberto, Olegario, Judith, Nina
+03-07;Clotilde, Felicidad
+03-08;Juan
+03-09;Cándido, Francisca
+03-10;Andrés, Macario
+03-11;Ramiro, Oria
+03-12;Josefina, Maximiliano, Fina
+03-13;Patricia, Rodrigo, Ramiro
+03-14;Jacobo, Matilde, Florentina
+03-15;César, Luis, Raimundo, Madrona
+03-16;Abrahan, Clemente
+03-17;Patricio
+03-18;Narciso, Salvador
+03-19;José, Marcos, Josefa
+03-20;Alejandra, Claudia
+03-21;Clemencia, Fabiola, Nicolás
+03-22;Sergio, Octaviano
+03-23;Fidel, Oriol, Victoriano, Toribio
+03-24;Delmiro, Edelmira, Edelmiro, Timolao
+03-25;Abel, Gloria, Encarnación, Rebeca
+03-26;Braulio, Diego
+03-27;Ruperto, Lilia, Alejandro
+03-28;Esperanza, Gundelina
+03-29;Jonas, Segundo
+03-30;Quirino
+03-31;Amós, Benjamín
+04-01;Venancio
+04-02;Ofelia, Francisco
+04-03;Sixto
+04-04;Isidoro, Platón
+04-05;Emilia, Vicente Ferrer
+04-06;Celso, Diógenes
+04-07;Donato, Juan Bautista
+04-08;Dionisio, Amancio
+04-09;Hugo, Casilda, Eusequio
+04-10;Ezequiel
+04-11;Gema, Oria, Estanislao
+04-12;Andrés, Damián, Julio, Zenón
+04-13;Martín, Hermenegildo
+04-14;Lamberto
+04-15;Máximo, Aníbal
+04-16;Engracia, Bernadeta
+04-17;Rodolfo, Anicéto
+04-18;Perfecto
+04-19;León, Crescencio
+04-20;Inés, Víctor
+04-21;Anselmo
+04-22;Teodoro, Alexander, Apeles
+04-23;Adalberto, Jorge, Gorka
+04-24;Leoncio, Honorio, Honoria, Fidel
+04-25;Antonio, Antonieta, Marco, Marcia
+04-26;Basilio, Marcelino, Engracia, Isidoro
+04-27;Montserrat, Zita
+04-28;Amado, Pedro Chanel
+04-29;Teodora, Karen, Katia, Wilfredo
+04-30;Jaime, Amador, Pía, Pío
+05-01;Berta, Tamar, Tamara, Oroncio
+05-02;Germán, Araceli, Atanasio, Vindemial
+05-03;Juvenal, Violeta, Evencio, Felipe
+05-04;Florián, Froilán, Lidón, Silvano
+05-05;Adrián, Silvano, Niceto, Ángelica
+05-06;Domingo, Evodio, Protógenes, Judith
+05-07;Augusto, Flavio, Gisela
+05-08;Acacio
+05-09;Gregorio, Hermas, Geroncio
+05-10;Job, Solange, Gordiano
+05-11;Estela, Favio, Amparo, Poncio
+05-12;Domingo, Nerea, Nereo, Aquileo
+05-13;Imelda, Fátima
+05-14;Matías, Corona, Cora, Henedina
+05-15;Cecilio, Eufrasia, Isidro, Torcuato
+05-16;Brenda, Ubaldo, Honorato
+05-17;Eric, Erica, Pascual
+05-18;Alejandra, Félix, Próspero
+05-19;Celestina, Celestino, Crispín
+05-20;Orlando, Baudilio, Asterio
+05-21;Constantino, Virginia, Giselle
+05-22;Emilio, Rita, Rosana
+05-23;Miguel, Mercurial, Eufebio
+05-24;Rocío, Susana, Auxiliadora
+05-25;Valentín, Valentina, Sonia
+05-26;Felipe Neri, Zacarías
+05-27;Carolina
+05-28;Agustín, Bernardo, Emilio, Germán
+05-29;Alejandro, Justo, Teodosia
+05-30;Fernando, Estela, Fernanda, Hernán
+05-31;Visitación, Petronila, Amelia
+06-01;Alta, Graciano, Laura, Candelaria
+06-02;Erasmo, Marcelino, Blandina
+06-03;Oliva, Kevin, Cecilio, Davino
+06-04;Emma, Quirino, Ruth, Saturnina
+06-05;Eloisa, Marcia, Valeria, Nicanor
+06-06;Norberto, Artemio, Cándida, Ismael
+06-07;Roberto
+06-08;Giraldo
+06-09;Blanca, Primo, Feliciano, Diana
+06-10;Amalia, Amelia, Getulio, Críspulo
+06-11;Benito, Bernabé, Aléida
+06-12;Nazario, Olimpo, Cirilo
+06-13;Antonio, Joel, Andoni
+06-14;Félix, Eliseo, Digna
+06-15;Lidia, Vito, Landelino, Libia
+06-16;Ciro, Aquilino, Aureliano, Siro
+06-17;Ismael, Isauro, Montano
+06-18;Justo, Marceliano, Marina
+06-19;Aurora
+06-20;Elia, Silverio, Macario
+06-21;Luis, Demetria, Terencio, Raul, Gina
+06-22;Albano, Paulino
+06-23;Alicia, Apolo, Inmaculada, Agripina
+06-24;Juan, Juana, Ivana, Joan
+06-25;Salomón, Guillermo
+06-26;Virgilio, Pelayo, Antelmo, Alicia
+06-27;Socorro, Zoilo, Ladislao, Anecto
+06-28;Marcela
+06-29;Ciro, David, Pablo, Pedro
+06-30;Marcial, Leonila
+07-01;Aarón, Esther, Luz
+07-02;Visitación, Martiniano, Vidal
+07-03;Tomás, Heliodoro, Jacinto, Enrique
+07-04;Berta, Elizabeth, Laureano, Isabel
+07-05;Filomena, Filomeno, Zoa
+07-06;Isaías, Dominica, Rómulo
+07-07;Fermín, Roberto, Odón, Germano
+07-08;Adrián, Edgar, Marina, Priscila
+07-09;Milagros, Verónica
+07-10;Cristóbal, Silvano, Honorato
+07-11;Benito, Olga, Abundio, Sabino
+07-12;Paulina, Oliverio
+07-13;Eugenio, Sara, Joel
+07-14;Camila, Vladimiro, Camilo
+07-15;Carmelo, Hilario, Fausto
+07-16;Carmen, Marcelina, Generosa
+07-17;Elías
+07-18;Emiliano, Federico, Luz
+07-19;Aurea, Aureo
+07-20;Elías, Elisa
+07-21;Angelina, Lorenza, Daniel, Julia
+07-22;Teófila, Zoraida, Magdalena, Primitiva
+07-23;Brigida, Teresa, Boris
+07-24;Cristina
+07-25;Jaime, Santiago
+07-26;Ana, Joaquín
+07-27;Cucufate, Natalia
+07-28;Celso
+07-29;Marta, Olavo
+07-30;Abdón
+07-31;Ignacio
+08-01;Alfonso, Dalmau
+08-02;Angeles, Eusebio.
+08-03;Gustavo, Lídia
+08-04;Juan María Vianney
+08-05;Africa, Blanca, Nieves
+08-06;Salvador
+08-07;Cayetano
+08-08;Domingo
+08-09;-
+08-10;Lorenzo
+08-11;Clara, Filomena, Susana
+08-12;Herculano
+08-13;Aurora, Hipólito
+08-14;Atanasia
+08-15;Asunción, Estrella, María, Paloma
+08-16;Roque
+08-17;Isaac, Jacinto
+08-18;Elena
+08-19;Magín
+08-20;Bernardo Abad
+08-21;Sidonio
+08-22;Reina
+08-23;Rosa
+08-24;Bartolomé
+08-25;Ginés
+08-26;Ceferino
+08-27;Mónica
+08-28;Agustín
+08-29;Sabina
+08-30;Gaudencia
+08-31;Raimón, Ramón
+09-01;Arturo, Egidio, Gil
+09-02;Raquel, Antolín
+09-03;Dorotea
+09-04;Moisés, Rosalía
+09-05;Eudosio
+09-06;Eva, Fausto
+09-07;Regina
+09-08;Adela, Meritxell, Nuria
+09-09;Claustro, Felicia
+09-10;Nicolás
+09-11;Patiens
+09-12;Dulce, María
+09-13;Juan Crisóstomo
+09-14;Exaltación
+09-15;Aurora, Dolores, Mar
+09-16;Rogelio
+09-17;Ariadna, Columba, Roberto
+09-18;Sofía
+09-19;Nilo
+09-20;Eustaquio
+09-21;Mateo, Mauricio
+09-22;Digna, Inocencio
+09-23;Tecla, Lina, Lino
+09-24;Gerardo, Mercedes
+09-25;Dalmacio
+09-26;Cosme, Damián
+09-27;Florentino, Vicente
+09-28;Wenceslao
+09-29;Gabriel, Miguel, Rafael
+09-30;Jerónimo
+10-01;Teresa
+10-02;Angeles Custodios
+10-03;Francisco, Cándido
+10-04;Francisco
+10-05;Gala, Plácido
+10-06;Bruno
+10-07;Rosario
+10-08;Salud, Thaís
+10-09;Abrahan, Dionisio
+10-10;Tomás
+10-11;Begona
+10-12;Pilar, Serafín
+10-13;Eduardo
+10-14;Calixto
+10-15;Teresa
+10-16;Margarita, María Alacoque
+10-17;Ignacio
+10-18;Lucas
+10-19;Laura
+10-20;Academia, Irene
+10-21;Griselda, Ursula
+10-22;Salomé
+10-23;Servando
+10-24;Antonio María Claret
+10-25;Bernardo Calvó
+10-26;Evaristo
+10-27;Capitolina
+10-28;Judas, Simón, Tadeo
+10-29;Narciso
+10-30;Bienvenida, Claudio
+10-31;Quintin
+11-01;Benigno, Penélope
+11-02;Jorge, Gorka
+11-03;Ermengol, Silvia
+11-04;Carlos, Carlota, Carolina
+11-05;Zacarías, Elisabet, Isabel
+11-06;Leonardo
+11-07;Carina, Ernesto
+11-08;Severiano
+11-09;Teodoro
+11-10;Almudena, León
+11-11;Martín
+11-12;Aurelio
+11-13;Leandro, Diego
+11-14;Teodoto, Clemente
+11-15;Alberto, Leopoldo
+11-16;Edmundo, Margarita
+11-17;Gertrudis, Hilda, Isabel, Victoria
+11-18;Aurelio
+11-19;Crispino, Fausto
+11-20;Félix, Lucrecia, Ocatavio
+11-21;Demetrio, Fructuoso, Piedad
+11-22;Cecilia
+11-23;Clemente
+11-24;Flora
+11-25;Erasmo
+11-26;Juan
+11-27;Auxilio
+11-28;Rufo
+11-29;Saturnino
+11-30;Andrés
+12-01;Adelaida, Eloy, Hugo
+12-02;Elisa, Elsa
+12-03;Francisco Javier, María
+12-04;Bárbara
+12-05;Crispina
+12-06;Nicolás
+12-07;Ambrosio
+12-08;Concepción, Inmaculada, Pura
+12-09;Juan Diego
+12-10;Eulalia
+12-11;Dámaso
+12-12;Chantal, Guadalupe
+12-13;Lucía
+12-14;Juan, Nicasio, Pompeyo
+12-15;Fortunato, Cristina
+12-16;Albina
+12-17;Lázaro, Yolanda
+12-18;Esperanza, Macarena
+12-19;Darío
+12-20;Ptolomeo
+12-21;Pedro Canisio
+12-22;Floro
+12-23;Juan
+12-24;Delfín, Társila
+12-25;Belén, Eugenia, Natividad
+12-26;Esteban
+12-27;Teófanos
+12-28;Abel
+12-29;Davíd
+12-30;Raúl
+12-31;Silvestre
+";
 
+return $str;
+			}
 }
+
+
 ?>

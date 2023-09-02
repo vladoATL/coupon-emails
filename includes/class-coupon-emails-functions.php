@@ -276,7 +276,6 @@ class EmailFunctions
 		'post_type'     => 'shop_coupon',
 		'post_excerpt' => $description, // __( 'Name day', 'coupon-emails' ) . ' ' . $user->user_firstname  . ' ' . $user->user_email,
 		);
-		//$this->couponemails_add_log("wp_insert_post" . ': '  . $user->ID  . ' ' . implode($coupon) ) ;
 		$new_coupon_id = wp_insert_post( $coupon );
 
 		// Add meta
@@ -469,7 +468,7 @@ class EmailFunctions
 		$wpdb->get_results($sql_p);
 		$wpdb->get_results($sql_tr);
 
-		$this->couponemails_add_log(sprintf(_n(  '%s expired unused coupons were deleted.', $count,  'coupon-emails'), $count));
+		$this->couponemails_add_log(sprintf( _n( 'One expired unused coupon was deleted.', '%s expired unused coupons were deleted.', $count,  'coupon-emails'), $count));
 	}
 
 	function namedayemail_get_next_names()
@@ -486,7 +485,7 @@ class EmailFunctions
 
 		$nd = new Namedays();
 		
-		$names = $nd->get_names_for_day($d + $prior_days, $m , false );
+		$names = $nd->get_names_for_day($d, $m , false );
 		if (empty($names))
 			return;
 		$names = implode(',',array_unique(explode(',', $names)));
@@ -496,6 +495,82 @@ class EmailFunctions
 		} else {
 			return  $d . "." . $m . ". - " . sprintf( _n( 'Tomorrow is Name Day celebrated by', 'In %s days is Name Day celebrated by', $prior_days, 'coupon-emails' ), $prior_days )  . " " . $names;
 		}
+	}	
+	
+	function csvstring_to_json($string, $separatorChar = ',', $enclosureChar = '"', $newlineChar = "\n")
+	{
+		// @author: Klemen Nagode
+		$array = array();
+		$size = strlen($string);
+		$columnIndex = 0;
+		$rowIndex = 0;
+		$fieldValue="";
+		$isEnclosured = false;
+		for ($i=0; $i<$size;$i++) {
+
+			$char = $string[$i];
+			$addChar = "";
+
+			if ($isEnclosured) {
+				if ($char==$enclosureChar) {
+
+					if ($i+1<$size && $string[$i+1]==$enclosureChar) {
+						// escaped char
+						$addChar=$char;
+						$i++; // dont check next char
+					} else {
+						$isEnclosured = false;
+					}
+				} else {
+					$addChar=$char;
+				}
+			} else {
+				if ($char==$enclosureChar) {
+					$isEnclosured = true;
+				} else {
+
+					if ($char==$separatorChar) {
+
+						$array[$rowIndex][$columnIndex] = $fieldValue;
+						$fieldValue="";
+
+						$columnIndex++;
+					} elseif ($char==$newlineChar) {
+						echo $char;
+						$array[$rowIndex][$columnIndex] = $fieldValue;
+						$fieldValue="";
+						$columnIndex=0;
+						$rowIndex++;
+					} else {
+						$addChar=$char;
+					}
+				}
+			}
+			if ($addChar!="") {
+				$fieldValue.=$addChar;
+			}
+		}
+
+		if ($fieldValue) {
+			// save last field
+			$array[$rowIndex][$columnIndex] = $fieldValue;
+		}
+		
+		$b_array = array();
+		
+		foreach ($array as $b) {
+			$c = strtotime('2023-' . $b[0]);
+			$d = date('j.n', $c);
+			$b_array[$d] = $b[1];
+		}
+		//return $b_array;
+		
+		$str = "";
+		foreach ($b_array as $key => $value ) {
+			$str .= '"' . $key . '": "' . $value . '",' . PHP_EOL; 
+		}
+		
+		return $str;
 	}	
 }
 ?>

@@ -30,11 +30,20 @@ if ( isset( $_GET['namesexport'] ) ) {
 			$table_body = $namedays->get_czech_namedays_array();
 			break;
 		case 3:
-			$table_body = $namedays->get_hungarian_namedays_array();
+			$table_body = $namedays->get_polish_namedays_array();
 			break;
 		case 4:
+			$table_body = $namedays->get_croatian_namedays_array();
+			break;								
+		case 5:
+			$table_body = $namedays->get_hungarian_namedays_array();
+			break;
+		case 6:
 			$table_body = $namedays->get_austrian_namedays_array();
 			break;
+		case 7:
+			$table_body = $namedays->get_spanish_namedays_array();
+			break;			
 	}
 	ob_end_clean();
 	$table_head = array( 'Date', 'Name' );
@@ -60,9 +69,7 @@ if ( isset( $_GET['namesexport'] ) ) {
 	echo $csv;
 	exit();	
 }
-
 ?>
-
 <div class="wrap woocommerce">
 <div id="namedaysemail-setting"  class="myday-setting">
 <div class="loader_cover">
@@ -99,8 +106,11 @@ namedayemail_run_cron();
 			<select name='namedayemail_options[language]' style="width: 200px;">
 				<option value='1' <?php selected( $options['language'] ?? '', 1 ); ?>><?php echo __( 'Slovak calendar', 'coupon-emails' ); ?>&nbsp;</option>
 				<option value='2' <?php selected( $options['language'] ?? '', 2 ); ?>><?php echo __( 'Czech calendar', 'coupon-emails' ); ?>&nbsp;</option>
-				<option value='3' <?php selected( $options['language'] ?? '', 3 ); ?>><?php echo __( 'Hungarian calendar', 'coupon-emails' ); ?>&nbsp;</option>
-				<option value='4' <?php selected( $options['language'] ?? '', 4 ); ?>><?php echo __( 'Austrian calendar', 'coupon-emails' ); ?>&nbsp;</option>
+				<option value='3' <?php selected( $options['language'] ?? '', 3 ); ?>><?php echo __( 'Polish calendar', 'coupon-emails' ); ?>&nbsp;</option>
+				<option value='4' <?php selected( $options['language'] ?? '', 4 ); ?>><?php echo __( 'Croatian calendar', 'coupon-emails' ); ?>&nbsp;</option>	
+				<option value='5' <?php selected( $options['language'] ?? '', 5 ); ?>><?php echo __( 'Hungarian calendar', 'coupon-emails' ); ?>&nbsp;</option>
+				<option value='6' <?php selected( $options['language'] ?? '', 6 ); ?>><?php echo __( 'Austrian calendar', 'coupon-emails' ); ?>&nbsp;</option>
+				<option value='7' <?php selected( $options['language'] ?? '', 7 ); ?>><?php echo __( 'Spanish calendar', 'coupon-emails' ); ?>&nbsp;</option>						
 			</select>
 			<?php  echo wc_help_tip(__( 'Choose the calendar country to be used', 'coupon-emails' ), false); ?>
 			<a class="button button-primary" href="admin.php?page=couponemails&tab=name-day&namesexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
@@ -302,7 +312,7 @@ namedayemail_run_cron();
 			?>
 			<input type="text" id="namedayemail_options[coupon_cat]" name="namedayemail_options[coupon_cat]"  style="width: 200px;" value="<?php echo $options['coupon_cat'] ?? ''; ?>"
 			<?php echo $acfw; ?>>
-			<?php  echo wc_help_tip(__( 'This can only be used if the Advanced Coupons for WooCommerce (free) plugin is installed. Enter the name of the coupon category that will be created if it does not exist.', 'coupon-emails' ), false); ?>
+			<?php  echo wc_help_tip(__( 'This feature can be best used if the Advanced Coupons for WooCommerce plugin (free) is installed. Enter the name of the coupon category that will be created if it does not exist.', 'coupon-emails' ), false); ?>
 		</td>
 	</tr>
 

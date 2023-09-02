@@ -265,7 +265,7 @@ id="restore_bd_values_btn" />
 				<input type="text" id="birthdayemail_options[coupon_cat]" name="birthdayemail_options[coupon_cat]"  style="width: 200px;" 
 				value="<?php echo $options['coupon_cat'] ?? ''; ?>"
 				<?php echo $acfw; ?>>
-				<?php  echo wc_help_tip(__( 'This can only be used if the Advanced Coupons for WooCommerce (free) plugin is installed. Enter the name of the coupon category that will be created if it does not exist.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(__( 'This feature can be best used if the Advanced Coupons for WooCommerce plugin (free) is installed. Enter the name of the coupon category that will be created if it does not exist.', 'coupon-emails' ), false); ?>
 			</td>
 		</tr>
 

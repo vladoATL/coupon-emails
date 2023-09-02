@@ -1,6 +1,6 @@
 === Coupon Emails ===
 Contributors: vlado8444
-Tags: coupon, Name Day, meniny, Slovak, Czech, email
+Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, email
 Requires at least: 5.8
 Tested up to: 6.3.1
 Stable tag: 5.8
@@ -42,6 +42,14 @@ Coupon Emails plugin is officially compatible with the following plugins:
 * [Advanced Coupons](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/)
 
 == Changelog ==
+= 0.3.2 =
+- Add Polish calendar
+- Add Croatian calendar
+- Add Spanish calendar
+
+= 0.3.1 =
+- Add statistics
+- Czech translation file
 
 = 0.3.0 =
 * Add after order  email with coupon
