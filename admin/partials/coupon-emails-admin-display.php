@@ -29,6 +29,10 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
 			if ($tab==='reorder') : ?>nav-tab-active<?php
 	endif; ?>"><?php echo  __( 'Reorder', 'coupon-emails' ); ?></a>
 		
+	<a href="?page=couponemails&tab=reviewed" class="nav-tab <?php
+		if ($tab==='reviewed') : ?>nav-tab-active<?php
+		endif; ?>"><?php echo  __( 'After Reviewed', 'coupon-emails' ); ?></a>
+				
 	<a href="?page=couponemails&tab=one-time" class="nav-tab
 		<?php
 		if ($tab==='one-time') : ?>nav-tab-active<?php
@@ -81,6 +85,13 @@ default:
 	</div>
 	<?php
 	break;
+case 'reviewed':
+	?>
+	<div class="metabox-holder">
+		<?php include('reviewed-email-admin-display.php'); ?>
+	</div>
+	<?php
+	break;	
 endswitch; ?>
 	</div>
 

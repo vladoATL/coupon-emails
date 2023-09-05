@@ -39,8 +39,14 @@
   .myday-setting input,  .myday-setting .select2-container {
 	vertical-align: middle  !important;
 }
- 
- #restore_values_btn, #restore_reorder_values_btn, #restore_bd_values_btn, #restore_one_values_btn, #restore_afterorder_values_btn {
+
+.coupon_setting {
+	background: #ebe9eb;
+	padding: 1px 10px 10px 10px;
+	margin-top: 5px;
+}
+
+#restore_namedayemail_values_btn, #restore_reorder_values_btn, #restore_birthdayemail_values_btn, #restore_onetimeemail_values_btn, #restore_afterorder_values_btn, #restore_reviewed_values_btn {
     float: right;
     margin-right: 5%;
 }

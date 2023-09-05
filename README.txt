@@ -1,6 +1,6 @@
 === Coupon Emails ===
 Contributors: vlado8444
-Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, email
+Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, email, review
 Requires at least: 5.8
 Tested up to: 6.3.1
 Stable tag: 5.8
@@ -8,10 +8,10 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin automatically generates emails with unique coupons for customers' birthdays, their name days and after makeing an order with many customization options.
+This plugin automatically generates emails with unique coupons for customers' birthdays, their name days, after makeing an order and after reviewed a poriduct with many customization options.
 
 == Description ==
-This plugin is an excellent tool when marketing with discount coupons. It generates unique coupons for each customer according to configurable filters. The coupon email can be sent on the customer's birthday, their name day, a certain number of days after the order, to customers who haven't ordered anything for a long time or to one-time filtered customers.
+This plugin is an excellent tool when marketing with discount coupons. It generates unique coupons for each customer according to configurable filters. The coupon email can be sent on the customer's birthday, their name day, a certain number of days after the order, to customers who haven't ordered anything for a long time or to one-time filtered customers. You can set up a review thank you email with coupon as well.
 
 The date of birth field is automatically added to the checkout and user profile page. Name days are currently available for Slovakia, Czech Republic, Austria and Hungary. For Czech names, it is possible to set a Czech salutation.
 
@@ -30,7 +30,7 @@ The reload page can be found in the menu Marketing -> Coupon Emails
 
 = How to prevent sending unwanted emails?
 
-Keep the 'Run in test mode' checkbox checked when setting filters and email body text. Then all email messages will be sent to the admin or to the email address set in BCC.
+Keep the 'Run in test mode' checkbox checked when setting the filters and the email body text. All email messages will be then sent to the admin or to the email address set in BCC.
 
 
 == Screenshots ==
@@ -42,6 +42,9 @@ Coupon Emails plugin is officially compatible with the following plugins:
 * [Advanced Coupons](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/)
 
 == Changelog ==
+= 0.3.3 =
+- Add after reviewed email with coupon
+
 = 0.3.2 =
 - Add Polish calendar
 - Add Croatian calendar

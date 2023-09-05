@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @since             0.3.1
+ * @since             0.3.3
  * @package           Coupon_Emails
  *
  * @wordpress-plugin
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '0.3.1.2' );
+define( 'COUPON_EMAILS_VERSION', '0.3.3.1' );
 
 /**
  * The code that runs during plugin activation.
@@ -127,7 +127,7 @@ function birthdayemail_save_defaults($add_new = false)
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Have a nice birthday, {fname}!</p>
 <p style='font-size: 18px;'>Take advantage of this birthday discount code:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
-<p style='font-size: 18px;'>During the next {expires_in_days} days you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
+<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
@@ -163,7 +163,7 @@ function reorderemail_save_defaults($add_new = false)
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We have a special discount for you, {fname}!</p>
 	<p style='font-size: 18px;'>Last time you ordered with us {last_order_date}. Take advantage of this  discount code and order again:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
-<p style='font-size: 18px;'>During the next {expires_in_days} days you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
+<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
@@ -201,7 +201,7 @@ function afterorderemail_save_defaults($add_new = false)
 	<p style='font-size: 18px;'>Thank you
 	for your order dated  {last_order_date}. If you like our products, take advantage of this offer and order again. Here is the discount code:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
-	<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
+	<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
@@ -237,7 +237,7 @@ function onetimeemail_save_defaults($add_new = false)
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We have a special discount for you, {fname}!</p>
 <p style='font-size: 18px;'>Take advantage of this discount code:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
-<p style='font-size: 18px;'>During the next {expires_in_days} days you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
+<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
 <p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
@@ -249,6 +249,8 @@ function onetimeemail_save_defaults($add_new = false)
 		update_option( 'onetimeemail_options', $option_array );
 	}
 }
+
+
 
 function namedayemail_save_defaults($add_new = false){
 			$current_user = wp_get_current_user();
@@ -284,7 +286,43 @@ function namedayemail_save_defaults($add_new = false){
 				update_option( 'namedayemail_options', $option_array );	
 			}	
 	}
+
+function reviewedemail_save_defaults($add_new = false)
+{
+	$current_user = wp_get_current_user();
+
+	$option_array = array(
+	'subject'	=>	_x('{fname}, thank you for your review','Email Subject','coupon-emails') ,
+	'header'  =>	_x('Here is your gift','Email Header','coupon-emails') ,
+	'characters' =>	7,
+	'wc_template' =>	1,
+	'test' =>	1,
+	'send_time'  =>	'06:30',
+	'expires'	=>	31,
+	'from_name'	=>	get_bloginfo('name'),
+	'from_address'	=>	get_bloginfo('admin_email'),
+	'bcc_address' => $current_user->user_email,
+	'email_footer' => '{site_name_url}',
+	'disc_type' => 1,
+	'description' => _x('After review {fname} {lname}: {email}','Coupon description','coupon-emails') ,
+	'coupon_amount'	=>	10,
+	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>{fname}, thank you for your review of our product<br><strong>{reviewed_prod}</strong> !</p>
+<p style='font-size: 18px;'>Take advantage of this thank you discount code for your next purchase:</p>
+<p style='font-size: 24px;font-weight:800;'>{coupon}</p>
+<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
+<p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>
+<p style='font-size: 18px;'>The Team of {site_name}</p>
+<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+	'coupon_cat' =>	_x('After Review','Coupon category', 'coupon-emails'	) ,
+	);
+	if ($add_new == true) {
+		add_option( 'reviewedemail_options', $option_array );
+	} else {
+		update_option( 'reviewedemail_options', $option_array );
+	}
+}
 	
+
 function couponemails_plugin_deactivation() {
     wp_clear_scheduled_hook( 'namedayemail_cron' );
 	wp_clear_scheduled_hook( 'birthdayemail_cron' );

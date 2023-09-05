@@ -37,3 +37,4 @@ delete_option('reorderemail_options');
 delete_option('birthdayemail_options');
 delete_option('afterorderemail_options');
 delete_option('couponemails_options');
+delete_option('reviewedemails_options');

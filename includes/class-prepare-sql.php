@@ -192,6 +192,43 @@ class PrepareSQL
 		return $sql;
 	}
 
+	function get_comment_sql($comment_id, $min_rating = 0, $in_roles = "", $not_in_roles = "",  $in_cats = "", $prod_id  = "")
+	{
+		global $wpdb;
+		$sql = "SELECT COUNT(c.comment_ID)
+				FROM {$wpdb->prefix}comments AS c
+				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS cm ON c.comment_ID = cm.comment_id AND cm.meta_key = 'rating'
+				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS ct ON c.comment_ID = ct.comment_id AND ct.meta_key = '_wp_trash_meta_status' 
+				LEFT OUTER JOIN wp7r_commentmeta AS cs ON c.comment_ID = cs.comment_id AND cs.meta_key = 'reviewedemail_sent' "
+				. $this->get_join_capabilities_sql($in_roles, $not_in_roles,"c.user_id");
+
+		if (! empty($in_cats)) {
+
+			$sql .= "
+			JOIN {$wpdb->prefix}term_relationships AS tr ON tr.object_id = c.comment_post_ID
+			JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_id = tr.term_taxonomy_id AND tt.taxonomy ='product_cat' 
+				AND tt.term_taxonomy_id IN ($in_cats) ";
+			}		
+	
+			$sql .="	
+			WHERE 1=1 
+			AND ct.meta_value IS NULL -- not trashed
+			AND cs.meta_value IS NULL -- not previously sent
+			AND cm.meta_value IS NOT NULL  -- must have rating ";
+			if ($min_rating > 0) $sql .= "AND cm.meta_value BETWEEN $min_rating AND 5 ";
+/*			if (!empty($approved))
+			$sql .=" 		    
+			AND c.comment_approved = $approved " ;*/
+			if (! empty($prod_id))
+				$sql .="
+				AND c.comment_post_ID IN ($prod_id) ";
+			$sql .="				
+				AND c.comment_ID = $comment_id 
+				GROUP BY c.comment_ID ";
+			EmailFunctions::test_add_log('-- ' . $sql . PHP_EOL  );				
+		return $sql;
+	
+	}
 	function get_join_orders_sql($minimum_orders, $days_since_last_order = "", $total_spent = "")
 	{
 		global $wpdb;
@@ -253,13 +290,13 @@ class PrepareSQL
 
 		return $sql;
 	}
-	function get_join_capabilities_sql($roles, $exclude_roles)
+	function get_join_capabilities_sql($roles, $exclude_roles, $id_str = "u.ID")
 	{
 		global $wpdb;
 		if (empty($roles) && empty($exclude_roles))
 			return '';
 		$sql = "
-				JOIN $wpdb->usermeta AS um ON u.ID = um.user_id AND um.meta_key = '{$wpdb->prefix}capabilities' ";
+			JOIN $wpdb->usermeta AS um ON $id_str = um.user_id AND um.meta_key = '{$wpdb->prefix}capabilities' ";
 		$sql .=	$this->get_capabilities_sql($roles);
 		$sql .=	$this->get_capabilities_sql($exclude_roles, true);
 		return $sql;
@@ -269,7 +306,7 @@ class PrepareSQL
 	{
 		global $wpdb;
 		if (empty($roles) )
-			return '';
+			return '';	
 		if ( ! is_array( $roles ) )
 			$roles_array = array_map('trim',explode( ",", $roles ));
 		else

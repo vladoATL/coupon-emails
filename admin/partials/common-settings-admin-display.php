@@ -21,7 +21,7 @@ $used = 0;
 ?>
 
 <div class="wrap woocommerce">
-	<div id="namedaysemail-setting"  class="myday-setting">
+	<div id="namedayemail-setting"  class="myday-setting">
 
 <div class="icon32" id="icon-options-general"><br></div>
 <h2><?php echo _x('Common Settings','Setting', 'coupon-emails'); ?> </h2>

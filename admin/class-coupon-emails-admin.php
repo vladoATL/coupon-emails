@@ -95,7 +95,14 @@ class Coupon_Email_Admin {
 		 register_setting( 'afterorderemail_plugin_options', 'afterorderemail_options',
 		 array('sanitize_callback' => array( $this, 'afterorderemail_validate_options' ),)
 		 );	
+		 register_setting( 'reviewedemail_plugin_options', 'reviewedemail_options',
+		 array('sanitize_callback' => array( $this, 'reviewedemail_validate_options' ),)
+		 );			 
 	}
+	function reviewedemail_validate_options($input)
+	{
+		return $input;
+	}	
 	function afterorderemail_validate_options($input)
 	{
 		return $input;
@@ -130,101 +137,87 @@ class Coupon_Email_Admin {
 		}
 	}
 	
- 	public function namedayemail_make_test() {		 
- 		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_namedayemail_nonce_test' ) ) 
-		{
-			$user = wp_get_current_user();
-			$funcs = new \COUPONEMAILS\EmailFunctions("namedayemail");
-			$funcs->	couponemails_create($user, true);
-	 		die();
-		}
-	}
-		
-	public function birthdayemail_make_test()
+	public function review_approve_comment_callback($new_status, $old_status, $comment)
 	{
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_birthdayemail_nonce_test' ) ) {
-			$user = wp_get_current_user();
-			$funcs = new \COUPONEMAILS\EmailFunctions("birthdayemail");
-			$funcs->	couponemails_create($user, true);
-			die();
-		}
-	}		
-		
-	public function reorderemail_make_test()
-	{
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_reorder_nonce_test' ) ) {
-			$user = wp_get_current_user();
-			$funcs = new \COUPONEMAILS\EmailFunctions("reorderemail");
-			$funcs->	couponemails_create($user, true);
-			die();
-		}
-	}
-
-	public function onetimeemail_make_test()
-	{
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_onetime_nonce_test' ) ) {
-			$user = wp_get_current_user();
-			$funcs = new \COUPONEMAILS\EmailFunctions("onetimeemail");
-			$funcs->	couponemails_create($user, true);
-			die();
-		}
-	}		
-
-	public function afterorderemail_make_test()
-	{			
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_afterorder_nonce_test' ) ) {
-			$user = wp_get_current_user();
-			$funcs = new \COUPONEMAILS\EmailFunctions("afterorderemail");
-			$funcs->	couponemails_create($user, true);
-			die();
-		}
-	}			
-	
-		
- 	public function namedayemail_restore_settings($add_new = false) {
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_namedayemail_nonce' ) || $add_new == true) 
-		{
-			namedayemail_save_defaults($add_new);			
-			die();
-		}
-	}		
-	
-	public function reorderemail_restore_settings($add_new = false)
-	{
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_reorderemail_nonce' ) || $add_new == true) {
-			reorderemail_save_defaults($add_new);
-			die();
-		}
+		if ($old_status != $new_status) {
+			if ($new_status == 'approved') {
+				$comment_ID = $comment->comment_ID ;
+				$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $product_name);
+				$meta = get_comment_meta($comment_ID,"reviewedemail_sent", true);
+				if (! empty($meta)) {
+					$funcs->couponemails_add_log("User " . $comment->comment_author_email . " has already received coupon $meta	for this review." . PHP_EOL );
+					return 0;
+				}
+				$user_id = $comment->user_id;
+				$comment_main_prod_ID = $comment->comment_post_ID;
+				$comment_author_email = $comment->comment_author_email;
+				$product = wc_get_product( $comment_main_prod_ID );
+				$product_name = $product->get_title();
+				
+				$isOK =  $funcs->reviews_filtered($user_id, $comment_main_prod_ID, $comment_ID);
+				
+				if ($isOK) {
+					$user = get_user_by( 'id', $user_id );
+					$coupon = $funcs->	couponemails_create($user);
+					$meta_id = update_comment_meta($comment_ID,"reviewedemail_sent",$coupon);
+					// \COUPONEMAILS\EmailFunctions::test_add_log('-- ' . $meta_id . PHP_EOL  );	
+				}				
+			}
+		}		
 	}
 	
-	public function afterorderemail_restore_settings($add_new = false)
+	public function email_make_test()
 	{
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_afterorderemail_nonce' ) || $add_new == true) {
-			afterorderemail_save_defaults($add_new);
-			die();
+		if ( isset( $_POST['option_name'] )) {
+			$option_name = $_POST['option_name'];
+		} else {
+			wp_die();
 		}
-	}
-		
-	public function onetimeemail_restore_settings($add_new = false)
-	{
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_onetimeemail_nonce' ) || $add_new == true) {
-			onetimeemail_save_defaults($add_new);
-			die();
-		}
-	}
 			
-	public function birthdayemail_restore_settings($add_new = false)
-	{
-		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_birthdayemail_nonce' ) || $add_new == true) {
-			birthdayemail_save_defaults($add_new);
-			die();
+		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] 
+			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_' .$option_name . '_nonce_test' ) ) 
+		{
+			$user = wp_get_current_user();
+			$funcs = new \COUPONEMAILS\EmailFunctions($option_name);
+			$funcs->	couponemails_create($user, true);
+			wp_die();
 		}
-	}	
+	}		
 		
-
-/*	function updated_option_function(){
-	birthdayemail_run_cron();
-	}	*/
+	public function email_restore_settings($add_new = false)
+	{
+		if ( isset( $_POST['option_name'] )) {
+			$option_name = $_POST['option_name'];
+		} else {
+			wp_die();
+		}
+				
+		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce']
+			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_' .$option_name . '_nonce' ) || $add_new == true) 
+		{				
+			switch ($option_name) {
+				case "namedayemail":
+					namedayemail_save_defaults($add_new);
+					break;
+				case "reviewedemail":
+					reviewedemail_save_defaults($add_new);
+					break;
+				case "reorderemail":
+					reorderemail_save_defaults($add_new);
+					break;
+				case "afterorderemail":
+					afterorderemail_save_defaults($add_new);
+					break;
+				case "onetimeemail":
+					onetimeemail_save_defaults($add_new);
+					break;
+				case "birthdayemail":
+					birthdayemail_save_defaults($add_new);
+					break;
+				}						
+			wp_die();
+		}
+	}
 			
 	/**
 	 * Register the JavaScript for the admin area.

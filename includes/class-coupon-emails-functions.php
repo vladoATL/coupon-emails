@@ -11,13 +11,15 @@ class EmailFunctions
 	protected $options_name;
 	protected $options_array;
 	protected $emails_cnt;
+	protected $product_name;
 	
-	public function __construct($type = "")
+	public function __construct($type = "", $product_name = "")
 	{
 		$this->type = $type;
 		$this->options_name = $type . '_options';
 		$this->options_array = get_option($this->options_name);
 		$this->emails_cnt = 0;
+		$this->product_name = $product_name;
 	}
 		
 	function couponemails_create($user, $istest = false)
@@ -29,8 +31,7 @@ class EmailFunctions
 		$from_name = $options['from_name'];
 		$from_address = $options['from_address'];
 		$header  = $options['header'];	
-		$coupon = "";
-	
+		$coupon = "";		
 		if ($istest == true) {
 			$headers_user   = $this->couponemails_headers($from_name, $from_address,"", "", true);
 			$email = $options['bcc_address'];
@@ -101,7 +102,7 @@ class EmailFunctions
 			$this->emails_cnt +=1;
 			$success = false;
 		}
-		return $success;
+		return $coupon; // $success;
 	}
 
 	function couponemails_replace_placeholders($content, $user, $options)
@@ -127,6 +128,7 @@ class EmailFunctions
 		'{lname}',
 		'{products_cnt}',
 		'{email}',
+		'{reviewed_prod}', 
 		'{last_order_date}',
 		),
 		array(
@@ -142,7 +144,8 @@ class EmailFunctions
 		ucfirst(strtolower($user->user_lastname)),
 		isset($options['max_products'] ) ? $options['max_products'] : '' ,
 		strtolower($user-> user_email),
-		$this->get_last_order_date($user-> user_email),
+		$this->product_name,
+		$this->get_last_order_date($user-> user_email),		
 		),
 		$content
 		);
@@ -345,8 +348,8 @@ class EmailFunctions
 		return $term_taxonomy_id;	
 	}
 	
-	function couponemails_get_cat_names(){
-		$names_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail"];
+	function couponemails_get_coupons_cat_names(){
+		$names_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail"];
 		$cats_array = array();
 		
 		foreach ($names_array as $name) {
@@ -363,7 +366,7 @@ class EmailFunctions
 	function couponemails_get_stats()
 	{
 		global $wpdb;
-		$cat_names = $this->couponemails_get_cat_names();
+		$cat_names = $this->couponemails_get_coupons_cat_names();
 		$sql = "SELECT t.name, COUNT(p.ID) as total_count, notexpired.notexpired_count, expired.expired_count, used.used_count
 				FROM {$wpdb->prefix}posts AS p
 				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id AND tr.term_taxonomy_id IN (
@@ -572,5 +575,31 @@ class EmailFunctions
 		
 		return $str;
 	}	
+	
+	function reviews_filtered($user_id, $comment_main_prod_ID, $comment_ID)
+	{
+		global $wpdb;
+		$options = $this->options_array;
+			
+		$sql = new PrepareSQL('reviewedemail');
+		$categories = isset( $options['bought_cats']) ? $options['bought_cats'] : "";
+		$cat_str = !empty($categories) ? implode(',', $categories) : "";
+		$products =  isset( $options['bought_products']) ? $options['bought_products'] : "";
+		$prod_str = !empty($products) ? implode(',', $products) : "";
+		$roles = isset( $options['roles']) ? $options['roles'] : "";
+		$exclude_roles = isset( $options['exclude-roles']) ? $options['exclude-roles'] : "";
+		$stars = isset( $options['stars']) ? $options['stars'] : 0;
+	
+		$sql_str = $sql->get_comment_sql($comment_ID, $stars, $roles, $exclude_roles,  $cat_str,  $prod_str)	;
+						
+		$id = $wpdb->get_var($sql_str);
+		
+		if (isset($id)) {
+			$isOK = true;
+		} else {
+			$isOK = false;
+		}
+		return $isOK;
+	}
 }
 ?>

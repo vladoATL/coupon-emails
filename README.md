@@ -38,6 +38,5 @@
 3. Uistite sa, že ste zvolili správny kalendár pre vašu stránku
 4. Po kontrole správnosti odškrtnite **Testovací mód**
 5. Buďte si istý, že je zaškrtnuté **Zapnúť automatické zasielanie správ**
-6. Ak používate plugin [Advanced Coupons Free](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/), vytvorte v ňom novú kategóriu kupónov (napr. Meniny) a vložte do časti **Slug kategórie kupónu** slovo **meniny**.
 
 ### Akékoľvek pripomienky, návrhy a pomoc sú vítané

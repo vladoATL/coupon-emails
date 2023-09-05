@@ -23,13 +23,14 @@
 	 
 	 	jQuery( document ).on(
 		"click",
-		"#namedaysemail-setting #restore_values_btn",
+		"#namedayemail-setting #restore_namedayemail_values_btn",
 		function(){
 			event.preventDefault();
 			var nonce = jQuery( this ).attr( 'attr-nonce' );
 			var data  = {
-				action: 'namedayemail_restore_settings',
+				action: 'email_restore_settings',
 				nonce: nonce,
+				option_name: 'namedayemail',
 			};
 			jQuery.ajax(
 				{
@@ -37,12 +38,12 @@
 					url: ajaxurl,
 					data: data,
 					beforeSend: function(response){
-						jQuery( "#namedaysemail-setting .loader_cover" ).addClass( 'active' );
-						jQuery( "#namedaysemail-setting .namedays_loader" ).addClass( 'loader' );
+						jQuery( "#namedayemail-setting .loader_cover" ).addClass( 'active' );
+						jQuery( "#namedayemail-setting .namedays_loader" ).addClass( 'loader' );
 					},
 					complete: function(response){
-						jQuery( "#namedaysemail-setting .loader_cover" ).removeClass( 'active' );
-						jQuery( "#namedaysemail-setting .namedays_loader" ).removeClass( 'loader' );
+						jQuery( "#namedayemail-setting .loader_cover" ).removeClass( 'active' );
+						jQuery( "#namedayemail-setting .namedays_loader" ).removeClass( 'loader' );
 					},
 					success: function(response) {
 						location.reload();
@@ -53,15 +54,49 @@
 		}
 	);
 	 
-	jQuery( document ).on(
+	 	jQuery( document ).on(
 	"click",
-	"#onetimeemail-setting #restore_one_values_btn",
+	"#reviewedemail-setting #restore_reviewed_values_btn",
 	function() {
 		event.preventDefault();
 		var nonce = jQuery( this ).attr( 'attr-nonce' );
 		var data  = {
-			action: 'onetimeemail_restore_settings',
+			action: 'email_restore_settings',
 			nonce: nonce,
+			option_name: 'reviewedemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#reviewedemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#reviewedemail-setting .reviewed_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#reviewedemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#reviewedemail-setting .reviewed_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);
+		 
+	jQuery( document ).on(
+	"click",
+	"#onetimeemail-setting #restore_onetimeemail_values_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_restore_settings',
+			nonce: nonce,
+			option_name: 'onetimeemail',
 		};
 		jQuery.ajax(
 		{
@@ -92,8 +127,9 @@
 		event.preventDefault();
 		var nonce = jQuery( this ).attr( 'attr-nonce' );
 		var data  = {
-			action: 'reorderemail_restore_settings',
+			action: 'email_restore_settings',
 			nonce: nonce,
+			option_name: 'reorderemail',
 		};
 		jQuery.ajax(
 		{
@@ -124,8 +160,9 @@
 		event.preventDefault();
 		var nonce = jQuery( this ).attr( 'attr-nonce' );
 		var data  = {
-			action: 'afterorderemail_restore_settings',
+			action: 'email_restore_settings',
 			nonce: nonce,
+			option_name: 'afterorderemail',
 		};
 		jQuery.ajax(
 		{
@@ -152,13 +189,14 @@
 	
 	 	jQuery( document ).on(
 	"click",
-	"#birthdaysemail-setting #restore_bd_values_btn",
+	"#birthdayemail-setting #restore_birthdayemail_values_btn",
 	function() {
 		event.preventDefault();
 		var nonce = jQuery( this ).attr( 'attr-nonce' );
 		var data  = {
-			action: 'birthdayemail_restore_settings',
+			action: 'email_restore_settings',
 			nonce: nonce,
+			option_name: 'birthdayemail',
 		};
 		jQuery.ajax(
 		{
@@ -166,12 +204,12 @@
 			url: ajaxurl,
 			data: data,
 			beforeSend: function(response) {
-				jQuery( "#birthdaysemail-setting .loader_cover" ).addClass( 'active' );
-				jQuery( "#birthdaysemail-setting .birthdays_loader" ).addClass( 'loader' );
+				jQuery( "#birthdayemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#birthdayemail-setting .birthdays_loader" ).addClass( 'loader' );
 			},
 			complete: function(response) {
-				jQuery( "#birthdaysemail-setting .loader_cover" ).removeClass( 'active' );
-				jQuery( "#birthdaysemail-setting .birthdays_loader" ).removeClass( 'loader' );
+				jQuery( "#birthdayemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#birthdayemail-setting .birthdays_loader" ).removeClass( 'loader' );
 			},
 			success: function(response) {
 				location.reload();
@@ -184,7 +222,7 @@
 		 
 	 	jQuery( document ).on(
 	"click",
-	"#namedaysemail-setting #download_btn",
+	"#namedayemail-setting #download_btn",
 	function() {
 		event.preventDefault();
 		var nonce = jQuery( this ).attr( 'attr-nonce' );
@@ -198,12 +236,12 @@
 			url: ajaxurl,
 			data: data,
 			beforeSend: function(response) {
-				jQuery( "#namedaysemail-setting .loader_cover" ).addClass( 'active' );
-				jQuery( "#namedaysemail-setting .namedays_loader" ).addClass( 'loader' );
+				jQuery( "#namedayemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#namedayemail-setting .namedays_loader" ).addClass( 'loader' );
 			},
 			complete: function(response) {
-				jQuery( "#namedaysemail-setting .loader_cover" ).removeClass( 'active' );
-				jQuery( "#namedaysemail-setting .namedays_loader" ).removeClass( 'loader' );
+				jQuery( "#namedayemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#namedayemail-setting .namedays_loader" ).removeClass( 'loader' );
 			},
 			success: function(response) {
 				location.reload();
@@ -230,12 +268,12 @@
 					url: ajaxurl,
 					data: data,
 					beforeSend: function(response){
-						jQuery( "#namedaysemail-setting .loader_cover" ).addClass( 'active' );
-						jQuery( "#namedaysemail-setting .namedays_loader" ).addClass( 'loader' );
+						jQuery( "#namedayemail-setting .loader_cover" ).addClass( 'active' );
+						jQuery( "#namedayemail-setting .namedays_loader" ).addClass( 'loader' );
 					},
 					complete: function(response){
-						jQuery( "#namedaysemail-setting .loader_cover" ).removeClass( 'active' );
-						jQuery( "#namedaysemail-setting .namedays_loader" ).removeClass( 'loader' );
+						jQuery( "#namedayemail-setting .loader_cover" ).removeClass( 'active' );
+						jQuery( "#namedayemail-setting .namedays_loader" ).removeClass( 'loader' );
 					},
 					success: function(response) {
 						location.reload();
@@ -248,13 +286,14 @@
 
 	 	jQuery( document ).on(
 		"click",
-		"#namedaysemail-setting #test_namedayemail_btn",
+		"#namedayemail-setting #test_namedayemail_btn",
 		function(){
 			event.preventDefault();
 			var nonce = jQuery( this ).attr( 'attr-nonce' );
 			var data  = {
-				action: 'namedayemail_make_test',
+				action: 'email_make_test',
 				nonce: nonce,
+				option_name: 'namedayemail',
 			};
 			jQuery.ajax(
 				{
@@ -262,12 +301,12 @@
 					url: ajaxurl,
 					data: data,
 					beforeSend: function(response){
-						jQuery( "#namedaysemail-setting .loader_cover" ).addClass( 'active' );
-						jQuery( "#namedaysemail-setting .namedays_loader" ).addClass( 'loader' );
+						jQuery( "#namedayemail-setting .loader_cover" ).addClass( 'active' );
+						jQuery( "#namedayemail-setting .namedays_loader" ).addClass( 'loader' );
 					},
 					complete: function(response){
-						jQuery( "#namedaysemail-setting .loader_cover" ).removeClass( 'active' );
-						jQuery( "#namedaysemail-setting .namedays_loader" ).removeClass( 'loader' );
+						jQuery( "#namedayemail-setting .loader_cover" ).removeClass( 'active' );
+						jQuery( "#namedayemail-setting .namedays_loader" ).removeClass( 'loader' );
 					},
 					success: function(response) {
 						location.reload();
@@ -278,16 +317,49 @@
 		}
 	);	
 
-
+	 	jQuery( document ).on(
+	"click",
+	"#reviewedemail-setting #test_reviewedemail_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_make_test',
+			nonce: nonce,
+			option_name: 'reviewedemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#reviewedemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#reviewedemail-setting .reviewedemail_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#reviewedemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#reviewedemail-setting .reviewedemail_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);
+	
 jQuery( document ).on(
 "click",
-"#birthdaysemail-setting #test_bd_btn",
+"#birthdayemail-setting #test_birthdayemail_btn",
 function() {
 	event.preventDefault();
 	var nonce = jQuery( this ).attr( 'attr-nonce' );
 	var data  = {
-		action: 'birthdayemail_make_test',
+		action: 'email_make_test',
 		nonce: nonce,
+		option_name: 'birthdayemail',
 	};
 	jQuery.ajax(
 	{
@@ -295,12 +367,12 @@ function() {
 		url: ajaxurl,
 		data: data,
 		beforeSend: function(response) {
-			jQuery( "#birthdaysemail-setting .loader_cover" ).addClass( 'active' );
-			jQuery( "#birthdaysemail-setting .birthdays_loader" ).addClass( 'loader' );
+			jQuery( "#birthdayemail-setting .loader_cover" ).addClass( 'active' );
+			jQuery( "#birthdayemail-setting .birthdays_loader" ).addClass( 'loader' );
 		},
 		complete: function(response) {
-			jQuery( "#birthdaysemail-setting .loader_cover" ).removeClass( 'active' );
-			jQuery( "#birthdaysemail-setting .birthdays_loader" ).removeClass( 'loader' );
+			jQuery( "#birthdayemail-setting .loader_cover" ).removeClass( 'active' );
+			jQuery( "#birthdayemail-setting .birthdays_loader" ).removeClass( 'loader' );
 		},
 		success: function(response) {
 			location.reload();
@@ -318,8 +390,9 @@ function() {
 	event.preventDefault();
 	var nonce = jQuery( this ).attr( 'attr-nonce' );
 	var data  = {
-		action: 'reorderemail_make_test',
+		action: 'email_make_test',
 		nonce: nonce,
+		option_name: 'reorderemail',
 	};
 	jQuery.ajax(
 	{
@@ -350,8 +423,9 @@ function() {
 	event.preventDefault();
 	var nonce = jQuery( this ).attr( 'attr-nonce' );
 	var data  = {
-		action: 'onetimeemail_make_test',
+		action: 'email_make_test',
 		nonce: nonce,
+		option_name: 'onetimeemail',
 	};
 	jQuery.ajax(
 	{
@@ -382,8 +456,9 @@ function() {
 	event.preventDefault();
 	var nonce = jQuery( this ).attr( 'attr-nonce' );
 	var data  = {
-		action: 'afterorderemail_make_test',
+		action: 'email_make_test',
 		nonce: nonce,
+		option_name: 'afterorderemail',
 	};
 	jQuery.ajax(
 	{

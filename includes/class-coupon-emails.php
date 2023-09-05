@@ -158,23 +158,16 @@ class Coupon_Emails {
 		
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'coupon_emails_menu' );
 		$this->loader->add_action('admin_init',  $plugin_admin, 'coupon_emails_init'  );
-		
-		$this->loader->add_action( 'wp_ajax_namedayemail_restore_settings', $plugin_admin, 'namedayemail_restore_settings' );
-		$this->loader->add_action( 'wp_ajax_onetimeemail_restore_settings', $plugin_admin, 'onetimeemail_restore_settings' );
-		$this->loader->add_action( 'wp_ajax_reorderemail_restore_settings', $plugin_admin, 'reorderemail_restore_settings' );				
-		$this->loader->add_action( 'wp_ajax_birthdayemail_restore_settings', $plugin_admin, 'birthdayemail_restore_settings' );
-		$this->loader->add_action( 'wp_ajax_afterorderemail_restore_settings', $plugin_admin, 'afterorderemail_restore_settings' );
-		
+		$this->loader->add_action('transition_comment_status',  $plugin_admin, 'review_approve_comment_callback', 10 ,3  );
+			
+		$this->loader->add_action( 'wp_ajax_email_restore_settings', $plugin_admin, 'email_restore_settings' );		
 		$this->loader->add_action( 'wp_ajax_couponemails_clear_log', $plugin_admin, 'couponemails_clear_log' );
-		$this->loader->add_action( 'wp_ajax_namedayemail_make_test', $plugin_admin, 'namedayemail_make_test' );	
-		$this->loader->add_action( 'wp_ajax_birthdayemail_make_test', $plugin_admin, 'birthdayemail_make_test' );	
-		$this->loader->add_action( 'wp_ajax_reorderemail_make_test', $plugin_admin, 'reorderemail_make_test' );	
-		$this->loader->add_action( 'wp_ajax_onetimeemail_make_test', $plugin_admin, 'onetimeemail_make_test' );	
-		$this->loader->add_action( 'wp_ajax_afterorderemail_make_test', $plugin_admin, 'afterorderemail_make_test' );			
+		$this->loader->add_action( 'wp_ajax_email_make_test', $plugin_admin, 'email_make_test' );		
 		
 		
 //		$this->loader->add_action('updated_option_birthdayemail_options',  $plugin_admin, 'updated_option_function');
 	}
+	
 	
 	/**
 	 * Register all of the hooks related to the public-facing functionality
