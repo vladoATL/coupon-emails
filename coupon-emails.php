@@ -8,13 +8,13 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @since             0.3.3
+ * @since             0.3.0
  * @package           Coupon_Emails
  *
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Automatically generates emails with unique coupons for customers' birthdays, their name days and after makeing an order with many customization options.
- * Version:           0.3.1
+ * Version:           0.3.3
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
