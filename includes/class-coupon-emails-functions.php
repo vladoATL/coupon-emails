@@ -580,24 +580,24 @@ class EmailFunctions
 	{
 		global $wpdb;
 		$options = $this->options_array;
-			
-		$sql = new PrepareSQL('reviewedemail');
-		$categories = isset( $options['bought_cats']) ? $options['bought_cats'] : "";
-		$cat_str = !empty($categories) ? implode(',', $categories) : "";
-		$products =  isset( $options['bought_products']) ? $options['bought_products'] : "";
-		$prod_str = !empty($products) ? implode(',', $products) : "";
-		$roles = isset( $options['roles']) ? $options['roles'] : "";
-		$exclude_roles = isset( $options['exclude-roles']) ? $options['exclude-roles'] : "";
-		$stars = isset( $options['stars']) ? $options['stars'] : 0;
-	
-		$sql_str = $sql->get_comment_sql($comment_ID, $stars, $roles, $exclude_roles,  $cat_str,  $prod_str)	;
-						
-		$id = $wpdb->get_var($sql_str);
+		$isOK = false;
+		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {		
+			$sql = new PrepareSQL('reviewedemail');
+			$categories = isset( $options['bought_cats']) ? $options['bought_cats'] : "";
+			$cat_str = !empty($categories) ? implode(',', $categories) : "";
+			$products =  isset( $options['bought_products']) ? $options['bought_products'] : "";
+			$prod_str = !empty($products) ? implode(',', $products) : "";
+			$roles = isset( $options['roles']) ? $options['roles'] : "";
+			$exclude_roles = isset( $options['exclude-roles']) ? $options['exclude-roles'] : "";
+			$stars = isset( $options['stars']) ? $options['stars'] : 0;
 		
-		if (isset($id)) {
-			$isOK = true;
-		} else {
-			$isOK = false;
+			$sql_str = $sql->get_comment_sql($comment_ID, $stars, $roles, $exclude_roles,  $cat_str,  $prod_str)	;
+							
+			$id = $wpdb->get_var($sql_str);
+			
+			if (isset($id)) {
+				$isOK = true;
+			} 
 		}
 		return $isOK;
 	}
