@@ -19,7 +19,7 @@
 </treenode>
 <treenode node="common-settings-admin-display.php;PHP:PHP Include;2789621384;f17;79;50;79;;406845169;f17;91;50;91;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="coupon-form.php;PHP:PHP Include;2484810019;f16;205;31;205;;2308901532;f15;129;30;129;;1664627528;f15;170;30;170;;1281266515;f16;168;31;168;;1678060142;f15;90;30;90;;1291851985;f15;161;30;161;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="coupon-form.php;PHP:PHP Include;1678060142;f15;90;30;90;;2484810019;f16;205;31;205;;2308901532;f15;129;30;129;;1664627528;f15;170;30;170;;1281266515;f16;168;31;168;;1291851985;f15;161;30;161;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="critical-products.php;PHP:PHP Include;2682912466;f76;25;97;25;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -59,7 +59,7 @@
 </treenode>
 <treenode node="stock-value.php;PHP:PHP Include;2682912466;f19;51;34;51;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="COUPONEMAILS;PHP:NameSpace Name;3356829601;f9;2;23;2;;237619680;f9;1;0;2985;;1639069801;f9;1;0;92;;2484810019;f9;1;1;29;;2308901532;f9;1;1;58;;1664627528;f9;1;1;29;;2996272779;f9;1;0;27;;1281266515;f9;1;1;30;;2297512819;f9;1;0;100;;3522998931;f9;1;0;12;;2517963379;f9;1;0;27;;1678060142;f9;1;1;29;;2914115095;f9;1;0;629;;1746092610;f9;1;0;151;;3096207147;f9;2;0;351;;1291851985;f9;1;1;29;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="COUPONEMAILS;PHP:NameSpace Name;3356829601;f9;2;23;2;;237619680;f9;1;0;2985;;1639069801;f9;1;0;92;;1678060142;f9;1;1;29;;2484810019;f9;1;1;29;;2308901532;f9;1;1;58;;1664627528;f9;1;1;29;;2996272779;f9;1;0;27;;1281266515;f9;1;1;30;;2297512819;f9;1;0;100;;3522998931;f9;1;0;12;;1291851985;f9;1;1;29;;2914115095;f9;1;0;629;;1746092610;f9;1;0;151;;3096207147;f9;2;0;351;;2517963379;f9;1;0;29;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 <treenode node="AfterOrder;PHP:Class Name;2996272779;f0;3;2;26;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 <treenode node="afterorderemail_event_setup;PHP:Function Name;2996272779;f1;12;2;25;;;;vpos;;v;;a;;r;;d1,13;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -218,10 +218,10 @@
 <treenode node="$where;PHP:Var Name;3096207147;f11;6;17;6;;;;vpos;;v;;a;;r;;d-1,-1;;b2,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
-<treenode node="Reorders;PHP:Class Name;2517963379;f0;3;1;26;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="Reorders;PHP:Class Name;2517963379;f0;3;1;28;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 <treenode node="get_users_reorders;PHP:Function Name;2517963379;f8;6;2;10;;;;vpos;;v;;a;;r;;d1,7;;b1,0;;m0;;e0;;i0;;o;;k;;las_objects;;p;;x;;n">
 </treenode>
-<treenode node="reorderemail_event_setup;PHP:Function Name;2517963379;f1;12;2;25;;;;vpos;;v;;a;;r;;d1,13;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="reorderemail_event_setup;PHP:Function Name;2517963379;f1;12;2;27;;;;vpos;;v;;a;;r;;d1,13;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
 <treenode node="Reviewed;PHP:Class Name;1746092610;f0;3;1;150;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
@@ -256,19 +256,19 @@
 <treenode node="$user_id;PHP:Var Name;1746092610;f8;6;16;6;;;;vpos;;v;;a;;r;;d-1,-1;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
-<treenode node="$_GET;PHP:Var Name;2484810019;f12;4;17;4;;2308901532;f12;6;17;6;;1664627528;f12;4;17;4;;1281266515;f12;5;17;5;;1678060142;f12;4;17;4;;1291851985;f12;4;17;4;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$_GET;PHP:Var Name;1678060142;f12;4;17;4;;2484810019;f12;4;17;4;;2308901532;f12;6;17;6;;1664627528;f12;4;17;4;;1281266515;f12;5;17;5;;1291851985;f12;4;17;4;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$afterorders;PHP:Var Name;1664627528;f1;11;13;11;;;;vposAfterOrder;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$arr;PHP:Var Name;2308901532;f2;40;6;40;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$csv;PHP:Var Name;2484810019;f1;8;5;8;;2308901532;f1;37;5;37;;1664627528;f1;8;5;8;;1281266515;f1;9;5;9;;1678060142;f1;8;5;8;;1291851985;f1;8;5;8;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$csv;PHP:Var Name;1678060142;f1;8;5;8;;2484810019;f1;8;5;8;;2308901532;f1;37;5;37;;1664627528;f1;8;5;8;;1281266515;f1;9;5;9;;1291851985;f1;8;5;8;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$dobs;PHP:Var Name;1678060142;f1;11;6;11;;;;vpos\COUPONEMAILS\Birthdays;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$filename;PHP:Var Name;2484810019;f1;19;10;19;;2308901532;f1;48;10;48;;1664627528;f1;19;10;19;;1281266515;f1;20;10;20;;1678060142;f1;19;10;19;;1291851985;f1;19;10;19;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$filename;PHP:Var Name;1678060142;f1;19;10;19;;2484810019;f1;19;10;19;;2308901532;f1;48;10;48;;1664627528;f1;19;10;19;;1281266515;f1;20;10;20;;1291851985;f1;19;10;19;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$key;PHP:Var Name;2484810019;f22;14;26;14;;2308901532;f26;39;30;39;;1664627528;f22;14;26;14;;1281266515;f22;15;26;15;;1678060142;f22;14;26;14;;1291851985;f22;14;26;14;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$key;PHP:Var Name;1678060142;f22;14;26;14;;2484810019;f22;14;26;14;;2308901532;f26;39;30;39;;1664627528;f22;14;26;14;;1281266515;f22;15;26;15;;1291851985;f22;14;26;14;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$language;PHP:Var Name;2308901532;f1;8;10;8;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -284,21 +284,21 @@
 </treenode>
 <treenode node="$reorders;PHP:Var Name;1281266515;f1;12;10;12;;;;vposReorders;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$result;PHP:Var Name;2484810019;f1;12;8;12;;1664627528;f1;12;8;12;;1281266515;f1;13;8;13;;1678060142;f1;12;8;12;;1291851985;f1;12;8;12;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$result;PHP:Var Name;1678060142;f1;12;8;12;;2484810019;f1;12;8;12;;1664627528;f1;12;8;12;;1281266515;f1;13;8;13;;1291851985;f1;12;8;12;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$table_body;PHP:Var Name;2308901532;f3;14;14;14;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$table_head;PHP:Var Name;2484810019;f1;7;12;7;;2308901532;f1;36;12;36;;1664627528;f1;7;12;7;;1281266515;f1;8;12;8;;1678060142;f1;7;12;7;;1291851985;f1;7;12;7;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$table_head;PHP:Var Name;1678060142;f1;7;12;7;;2484810019;f1;7;12;7;;2308901532;f1;36;12;36;;1664627528;f1;7;12;7;;1281266515;f1;8;12;8;;1291851985;f1;7;12;7;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$trimmed_array;PHP:Var Name;2308901532;f2;41;16;41;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$value;PHP:Var Name;2484810019;f30;14;36;14;;2308901532;f34;39;40;39;;1664627528;f30;14;36;14;;1281266515;f30;15;36;15;;1678060142;f30;14;36;14;;1291851985;f30;14;36;14;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$value;PHP:Var Name;1678060142;f30;14;36;14;;2484810019;f30;14;36;14;;2308901532;f34;39;40;39;;1664627528;f30;14;36;14;;1281266515;f30;15;36;15;;1291851985;f30;14;36;14;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$woocommerce;PHP:Var Name;2308901532;f7;2;19;2;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$wp_roles;PHP:Var Name;2484810019;f7;2;16;2;;1291851985;f7;2;16;2;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$wpdb;PHP:Var Name;2484810019;f8;5;13;5;;1664627528;f8;5;13;5;;1281266515;f8;6;13;6;;1678060142;f8;5;13;5;;1291851985;f8;5;13;5;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$wpdb;PHP:Var Name;1678060142;f8;5;13;5;;2484810019;f8;5;13;5;;1664627528;f8;5;13;5;;1281266515;f8;6;13;6;;1291851985;f8;5;13;5;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
 <treenode node="Coupon_Email_Admin;PHP:Class Name;822623065;f0;22;1;300;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    class Coupon_Email_Admin&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The admin-specific functionality of the plugin.&#10;Defines the plugin name, version, and two examples hooks for how to&#10;enqueue the admin-specific stylesheet and JavaScript.&#10;&lt;b&gt;package&lt;/b&gt;: Coupon_Emails&#10;&lt;b&gt;subpackage&lt;/b&gt;: Coupon_Emails/admin&#10;&lt;b&gt;author&lt;/b&gt;: Vlado Laco &lt;vlado&#10;&lt;b&gt;perties&lt;/b&gt;: .sk&gt;;;d25,22;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">

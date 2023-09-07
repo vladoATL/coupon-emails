@@ -8,7 +8,7 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin automatically generates emails with unique coupons for customers' birthdays, their name days, after makeing an order and after reviewed a poriduct with many customization options.
+This plugin automatically generates emails with unique coupons for customers' birthdays, their name days, after making an order and after reviewed a poriduct with many customization options.
 
 == Description ==
 This plugin is an excellent tool when marketing with discount coupons. It generates unique coupons for each customer according to configurable filters. The coupon email can be sent on the customer's birthday, their name day, a certain number of days after the order, to customers who haven't ordered anything for a long time or to one-time filtered customers. You can set up a review thank you email with coupon as well.
@@ -19,7 +19,7 @@ The date of birth field is automatically added to the checkout and user profile 
 
 1. Upload `coupon-email` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to plugin setting page and configure plugin : Marketing -> Coupon Emails
+3. Go to plugin setting page and configure plugin: Marketing -> Coupon Emails
 4. Always make sure the Run in test mode checkbox is checked first. Cancel test mode only after you have thoroughly tested the setup.
 
 == Frequently Asked Questions ==
@@ -35,6 +35,14 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 
 == Screenshots ==
 
+1. Comment setting
+
+2. Example of coupon email setting
+
+== Upgrade Notice ==
+
+= 1.0.1 =
+* Plugin released.
 
 = Third Party Plugin Support =
 Coupon Emails plugin is officially compatible with the following plugins:
@@ -44,28 +52,28 @@ Coupon Emails plugin is officially compatible with the following plugins:
 
 == Changelog ==
 = 1.0.1 =
-- Release version
+* Plugin released.
 
 = 0.3.4 =
-- Compatibility with Site Reviews plugin
+* Compatibility with Site Reviews plugin
 
 = 0.3.3 =
-- Add after reviewed email with coupon
+* Add after reviewed email with coupon
 
 = 0.3.2 =
-- Add Polish calendar
-- Add Croatian calendar
-- Add Spanish calendar
+* Add Polish names calendar
+* Add Croatian names calendar
+* Add Spanish names calendar
 
 = 0.3.1 =
-- Add statistics
-- Czech translation file
+* Add statistics
+* Czech translation file
 
 = 0.3.0 =
-* Add after order  email with coupon
+* Add after order email with coupon
 * Generate SQL refactoring
 * Enable SQL log
-* Plugin name change
+* Plugin name changed from My Day
 
 = 0.2.7 =
 * Add one time email with coupon
