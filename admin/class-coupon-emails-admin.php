@@ -137,32 +137,89 @@ class Coupon_Email_Admin {
 		}
 	}
 	
+	public function review_comment_posted_callback($comment_id, $comment_approved, $comment)
+	{
+		$comment_data = (Object) $comment;		
+		if ($comment_data->comment_approved == 1)
+		{
+			$this->	reviewedemail_create_coupon($comment_data, $comment_id);
+		}
+	}
+	
+	public function site_reviews_comment_posted_callback($review, $command)
+	{	
+		$reviewed_obj = new COUPONEMAILS\Reviewed($review->ID ,"site-review");
+		$reviewed = $reviewed_obj->get_review();
+		$reviewed->inserted = 1;
+		if (get_post_status($review->ID) == 'publish') {
+			$reviewed->approved = 1;
+		}
+		$this->site_reviews_create_coupon($reviewed);
+	}		
+	
+	function site_reviews_create_coupon($reviewed)
+	{
+		//\COUPONEMAILS\EmailFunctions::test_add_log('---reviewed--- ' . print_r($reviewed, true));
+		$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $reviewed->product);
+		$meta = get_post_meta($reviewed->comment_ID,"reviewedemail_sent", true);
+		if (! empty($meta)) {
+			$funcs->couponemails_add_log("User " . $reviewed->author_email . " has already received coupon $meta	for this review." . PHP_EOL );
+			return 0;
+		}
+		$isOK =  $reviewed->filter_site_review($reviewed->user_id, $reviewed->main_prod_ID, $reviewed->comment_ID);
+		if ($isOK) {
+			$user = get_user_by( 'id', $reviewed->user_id );
+			$coupon = $funcs->	couponemails_create($user);
+			$meta_id = update_post_meta($reviewed->comment_ID, "reviewedemail_sent", $coupon);
+		}			
+	}	
 	public function review_approve_comment_callback($new_status, $old_status, $comment)
 	{
 		if ($old_status != $new_status) {
 			if ($new_status == 'approved') {
-				$comment_ID = $comment->comment_ID ;
-				$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $product_name);
-				$meta = get_comment_meta($comment_ID,"reviewedemail_sent", true);
-				if (! empty($meta)) {
-					$funcs->couponemails_add_log("User " . $comment->comment_author_email . " has already received coupon $meta	for this review." . PHP_EOL );
-					return 0;
-				}
-				$user_id = $comment->user_id;
-				$comment_main_prod_ID = $comment->comment_post_ID;
-				$comment_author_email = $comment->comment_author_email;
-				$product = wc_get_product( $comment_main_prod_ID );
-				$product_name = $product->get_title();
-				
-				$isOK =  $funcs->reviews_filtered($user_id, $comment_main_prod_ID, $comment_ID);
-				
-				if ($isOK) {
-					$user = get_user_by( 'id', $user_id );
-					$coupon = $funcs->	couponemails_create($user);
-					$meta_id = update_comment_meta($comment_ID,"reviewedemail_sent",$coupon);
-					// \COUPONEMAILS\EmailFunctions::test_add_log('-- ' . $meta_id . PHP_EOL  );	
-				}				
+				$this->	reviewedemail_create_coupon($comment);
 			}
+		}		
+	}
+	
+	public function site_reviews_approve_comment_callback($post_ID, $post_after, $post_before)
+	{
+		$post_type = get_post_type($post_ID);
+		if ($post_type != "site-review") return;
+		if (get_post_status($post_before) != get_post_status($post_after)) {
+			if (get_post_status($post_after) == 'publish') {
+				$reviewed_obj = new COUPONEMAILS\Reviewed($post_ID ,"site-review");
+				$reviewed = $reviewed_obj->get_review();
+				$reviewed->approved = 1;
+				$reviewed->inserted = 0;
+				$this->site_reviews_create_coupon($reviewed);
+			}
+		}			
+		
+	}
+		
+	function reviewedemail_create_coupon($comment, $comment_ID = 0)
+	{				
+		if ($comment_ID == 0) $comment_ID = $comment->comment_ID ;
+		$user_id = $comment->user_id;
+		$comment_main_prod_ID = $comment->comment_post_ID;
+		$comment_author_email = $comment->comment_author_email;
+		$product = wc_get_product( $comment_main_prod_ID );
+		$product_name = $product->get_title();			
+		$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $product_name);
+		$meta = get_comment_meta($comment_ID,"reviewedemail_sent", true);
+		if (! empty($meta)) {
+			$funcs->couponemails_add_log("User " . $comment->comment_author_email . " has already received coupon $meta	for this review." . PHP_EOL );
+			return 0;
+		}
+
+		$isOK =  $funcs->reviews_filtered($user_id, $comment_main_prod_ID, $comment_ID);
+
+		if ($isOK) {
+			$user = get_user_by( 'id', $user_id );
+			$coupon = $funcs->	couponemails_create($user);
+			$meta_id = update_comment_meta($comment_ID,"reviewedemail_sent",$coupon);
+			// \COUPONEMAILS\EmailFunctions::test_add_log('-- ' . $meta_id . PHP_EOL  );
 		}		
 	}
 	

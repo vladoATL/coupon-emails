@@ -22,6 +22,7 @@
 - bezpečný testovací mód
 - záznamy aktivity (log)
 - možnosť vytvoriť kategóriu kupónov ak je nainštalovaný plugin [Advanced Coupons Free](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/)
+- kompatibilita s pluginom [Site Reviews](https://wordpress.org/plugins/site-reviews/)
 - meninový kalendár pre rôzne krajiny
 - plugin je momentálne preložený do slovnčiny. Ďalšie preklady sú vítané
 

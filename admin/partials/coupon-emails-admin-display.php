@@ -4,6 +4,12 @@ if ( ! current_user_can( 'read' ) ) {
 	return;
 }
 wp_enqueue_script( 'jquery-tiptip' );
+$birthday_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('birthdayemail');
+$nameday_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('namedayemail');
+$afterorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('afterorderemail');
+$reviewed_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reviewedemail');
+$reorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reorderemail');
+$onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimeemail');
 
 //Get the active tab from the $_GET param
 $default_tab = null;
@@ -14,29 +20,31 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
 <nav class="nav-tab-wrapper">
 	<a href="?page=couponemails" class="nav-tab <?php
 	if ($tab===null) : ?>nav-tab-active<?php
-	endif; ?>"><?php echo  __( 'Common', 'coupon-emails' ); ?></a>
+	endif; ?> top-gray"><?php echo  __( 'Common', 'coupon-emails' ); ?></a>
 	<a href="?page=couponemails&tab=birth-day" class="nav-tab
 		<?php
 	if ($tab==='birth-day') : ?>nav-tab-active<?php
-	endif; ?>"> <?php echo  __( 'Birthday', 'coupon-emails' ); ?></a>	
+	endif; echo(' ' . $birthday_top); ?>"> <?php echo  __( 'Birthday', 'coupon-emails' ); ?></a>	
 	<a href="?page=couponemails&tab=name-day" class="nav-tab 
-		<?php if ($tab==='name-day') : ?>nav-tab-active<?php endif; ?>"> <?php echo  __( 'Name Day', 'coupon-emails' ); ?></a>
+		<?php
+		if ($tab==='name-day') : ?>nav-tab-active<?php
+		endif; echo(' ' . $nameday_top); ?>"> <?php echo  __( 'Name Day', 'coupon-emails' ); ?></a>
 	<a href="?page=couponemails&tab=after-order" class="nav-tab
 		<?php
 		if ($tab==='after-order') : ?>nav-tab-active<?php
-		endif; ?>"> <?php echo  __( 'After Order', 'coupon-emails' ); ?></a>			
+		endif; echo(' ' . $afterorder_top); ?>"> <?php echo  __( 'After Order', 'coupon-emails' ); ?></a>			
 	<a href="?page=couponemails&tab=reorder" class="nav-tab <?php
 			if ($tab==='reorder') : ?>nav-tab-active<?php
-	endif; ?>"><?php echo  __( 'Reorder', 'coupon-emails' ); ?></a>
+			endif; echo(' ' . $reorder_top); ?>"><?php echo  __( 'Reorder', 'coupon-emails' ); ?></a>
 		
 	<a href="?page=couponemails&tab=reviewed" class="nav-tab <?php
 		if ($tab==='reviewed') : ?>nav-tab-active<?php
-		endif; ?>"><?php echo  __( 'After Reviewed', 'coupon-emails' ); ?></a>
+		endif; echo(' ' . $reviewed_top); ?>"><?php echo  __( 'After Reviewed', 'coupon-emails' ); ?></a>
 				
 	<a href="?page=couponemails&tab=one-time" class="nav-tab
 		<?php
 		if ($tab==='one-time') : ?>nav-tab-active<?php
-	endif; ?>"> <?php echo  __( 'One Time', 'coupon-emails' ); ?></a>
+		endif; echo(' ' . $onetime_top); ?>"> <?php echo  __( 'One Time', 'coupon-emails' ); ?></a>
 
 </nav>
 	

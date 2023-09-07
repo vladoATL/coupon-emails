@@ -9,10 +9,10 @@ class EmailFunctions
 {
 	protected $type;
 	protected $options_name;
-	protected $options_array;
+	public $options_array;
 	protected $emails_cnt;
 	protected $product_name;
-	
+
 	public function __construct($type = "", $product_name = "")
 	{
 		$this->type = $type;
@@ -21,7 +21,7 @@ class EmailFunctions
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
 	}
-		
+
 	function couponemails_create($user, $istest = false)
 	{
 		$success = true;
@@ -30,16 +30,16 @@ class EmailFunctions
 		$html_body = $options['email_body'];
 		$from_name = $options['from_name'];
 		$from_address = $options['from_address'];
-		$header  = $options['header'];	
-		$coupon = "";		
+		$header  = $options['header'];
+		$coupon = "";
 		if ($istest == true) {
 			$headers_user   = $this->couponemails_headers($from_name, $from_address,"", "", true);
 			$email = $options['bcc_address'];
 		} else {
 			$headers_user   = $this->couponemails_headers($from_name, $from_address,"", "", false);
 			$email = $user->user_email;
-		}		
-		
+		}
+
 		$char_length = $options['characters'];
 		if ($char_length != 0) {
 			if ((array)$user) {
@@ -55,11 +55,11 @@ class EmailFunctions
 		} else {
 			$html_body = str_replace('{coupon}','',$html_body);
 		}
-	
-	
+
+
 		$html_body = $this->couponemails_replace_placeholders($html_body, $user, $options);
 		$subject_user = $this->couponemails_replace_placeholders($subject_user, $user, $options);
-		
+
 		if ((!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') && $options['test'] != 1) || $istest == true) {
 			if (is_email($email)) {
 
@@ -80,14 +80,14 @@ class EmailFunctions
 				$success = false;
 			}
 		} else {
-			
+
 			if (isset($options['bcc_address'])) {
 				$admin_email = $options['bcc_address'];
 			} else {
 				$admin_email = get_bloginfo('admin_email');
 			}
 			$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(__( "This is a test email sent to %s instead of to", 'coupon-emails' ), $admin_email)  . ': ' . $email . "</p>";
-			
+
 			if ($this->emails_cnt < 10 ) {
 				if ($options['wc_template'] == 1) {
 					$this->couponemails_send_wc_email_html($subject_user, $admin_email, $html_body, $header);
@@ -95,10 +95,10 @@ class EmailFunctions
 					$sendmail_user = wp_mail( $admin_email, $subject_user, $html_body, $headers_user );
 				}
 				$this->couponemails_add_log("Email has been sent as Test to"  . ' ' . $admin_email . " instead of to " . $email) ;
-			} else{
+			} else {
 				$this->couponemails_add_log("Email has been created but not sent to " . $email . " because of Test.") ;
 			}
-			
+
 			$this->emails_cnt +=1;
 			$success = false;
 		}
@@ -128,14 +128,14 @@ class EmailFunctions
 		'{lname}',
 		'{products_cnt}',
 		'{email}',
-		'{reviewed_prod}', 
+		'{reviewed_prod}',
 		'{last_order_date}',
 		),
 		array(
 		get_option( 'blogname' ),
 		home_url(),
 		'<a href=' . home_url() . '>' . get_option( 'blogname' ) . '</a>',
-		$options['expires'],		
+		$options['expires'],
 		date($date_format, strtotime('+' . $options['expires'] . ' days')),
 		date($date_format, strtotime('+' . $days_before . ' days')),
 		$options['coupon_amount'],
@@ -145,7 +145,7 @@ class EmailFunctions
 		isset($options['max_products'] ) ? $options['max_products'] : '' ,
 		strtolower($user-> user_email),
 		$this->product_name,
-		$this->get_last_order_date($user-> user_email),		
+		$this->get_last_order_date($user-> user_email),
 		),
 		$content
 		);
@@ -165,7 +165,7 @@ class EmailFunctions
 		$date_format = get_option( 'date_format' );
 		return date($date_format, strtotime($order_date));
 	}
-	
+
 	function couponemails_add_log($entry)
 	{
 		$options = get_option('couponemails_options');
@@ -176,7 +176,7 @@ class EmailFunctions
 			}
 			$entry =$this->type . ": " . current_time( 'mysql' ) . " " .  $entry  ;
 			$options = get_option('couponemails_logs');
-			
+
 			if (empty($options)) {
 				add_option( 'couponemails_logs', array('logs'	=>	$entry) );
 			} else {
@@ -186,7 +186,7 @@ class EmailFunctions
 		}
 	}
 
-	static function test_add_log($entry) 
+	static function test_add_log($entry)
 	{
 		$options = get_option('couponemails_options');
 		if ($options['enable_sql_logs'] == "1") {
@@ -201,9 +201,9 @@ class EmailFunctions
 				$log = $options['logs'];
 				update_option( 'couponemails_logs',array('logs'	=>	$log . PHP_EOL .  $entry . PHP_EOL . PHP_EOL ) );
 			}
-		}	
+		}
 	}
-	
+
 	function couponemails_headers($from_name, $from_address, $email_cc, $email_bcc, $istest = false)
 	{
 		$headers_user   = array();
@@ -223,11 +223,12 @@ class EmailFunctions
 	function couponemails_get_unique_coupon($user)
 	{
 		global $wpdb;
-		$options = $this->options_array;			
-		$coupon_codes = $wpdb->get_col("SELECT post_name FROM $wpdb->posts WHERE post_type = 'shop_coupon'");		
+		$options = $this->options_array;
+		$coupon_codes = $wpdb->get_col("SELECT post_name FROM $wpdb->posts WHERE post_type = 'shop_coupon'");
 		$characters = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 		$char_length = $options['characters'];
-		if ($char_length == 0) 	return "";
+		if ($char_length == 0)
+			return "";
 		$stp = 0;
 		$max_stp = 10000;
 		for ( $i = 0; $i < 1; $i++ ) {
@@ -305,9 +306,8 @@ class EmailFunctions
 		update_post_meta( $new_coupon_id, 'free_shipping', $free_shipping );
 		update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
 
-			update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
-			update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->id );
-			update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
+		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
+		update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
 
 		$cat_id = 0;
 		if (isset($options['coupon_cat']))
@@ -343,15 +343,16 @@ class EmailFunctions
 		$wpdb->query($sql);
 		$term_id = $wpdb->insert_id;
 		$sql = "INSERT INTO {$wpdb->prefix}term_taxonomy SET term_id = $term_id, taxonomy = 'shop_coupon_cat' ";
-		$wpdb->query($sql);	
+		$wpdb->query($sql);
 		$term_taxonomy_id = $wpdb->insert_id;
-		return $term_taxonomy_id;	
+		return $term_taxonomy_id;
 	}
-	
-	function couponemails_get_coupons_cat_names(){
+
+	function couponemails_get_coupons_cat_names()
+	{
 		$names_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail"];
 		$cats_array = array();
-		
+
 		foreach ($names_array as $name) {
 			$options = get_option($name . '_options');
 			$cat_name = isset($options["coupon_cat"]) ? $options["coupon_cat"] : "";
@@ -361,8 +362,8 @@ class EmailFunctions
 		$names = sprintf("'%s'", implode("','", $cats_array ) );
 		return $names;
 	}
-	
-	
+
+
 	function couponemails_get_stats()
 	{
 		global $wpdb;
@@ -393,7 +394,7 @@ class EmailFunctions
 				WHERE post_type = 'shop_coupon' AND pm.meta_value >= UNIX_TIMESTAMP()
 				GROUP BY tr.term_taxonomy_id
 				) AS notexpired ON tr.term_taxonomy_id = notexpired.term_taxonomy_id
-				
+
 				LEFT OUTER JOIN (
 				SELECT COUNT(ID) AS used_count, tr.term_taxonomy_id AS term_taxonomy_id
 				FROM {$wpdb->prefix}posts AS p
@@ -401,13 +402,12 @@ class EmailFunctions
 				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
 				WHERE post_type = 'shop_coupon' AND pmu.meta_value > 0
 				GROUP BY tr.term_taxonomy_id
-				) AS used ON tr.term_taxonomy_id = used.term_taxonomy_id				
+				) AS used ON tr.term_taxonomy_id = used.term_taxonomy_id
 
 				WHERE p.post_type = 'shop_coupon'
 				GROUP BY tr.term_taxonomy_id";
 		$result = $wpdb->get_results($sql, OBJECT);
 		return $result;
-				
 	}
 	function couponemails_get_cat_slug_id($cat_slug)
 	{
@@ -425,11 +425,11 @@ class EmailFunctions
 		$mailer = WC()->mailer();
 		$options = $this->options_array;
 		$headers = $this->couponemails_headers(
-					isset($options['from_name']) ? $options['from_name'] : '', 
-					isset($options['from_address']) ? $options['from_address'] : '', 
-					isset($options['cc_address']) ? $options['cc_address'] : '', 	
-					isset($options['bcc_address']) ? $options['bcc_address'] : ''
-					);
+		isset($options['from_name']) ? $options['from_name'] : '',
+		isset($options['from_address']) ? $options['from_address'] : '',
+		isset($options['cc_address']) ? $options['cc_address'] : '',
+		isset($options['bcc_address']) ? $options['bcc_address'] : ''
+		);
 		$content = wc_get_template_html( $template, array(
 		'email_heading' => $heading,
 		'sent_to_admin' => false,
@@ -480,14 +480,14 @@ class EmailFunctions
 		$prior_days =$options['days_before'];
 		if (! isset($prior_days)) {
 			$prior_days = 0;
-		}		
+		}
 		$str_nameday =  date('Y-m-d',strtotime('+' . $prior_days . ' day'));
 		$dateValue = strtotime($str_nameday);
 		$m = intval(date("m", $dateValue));
-		$d = intval(date("d", $dateValue));		
+		$d = intval(date("d", $dateValue));
 
 		$nd = new Namedays();
-		
+
 		$names = $nd->get_names_for_day($d, $m , false );
 		if (empty($names))
 			return;
@@ -498,8 +498,8 @@ class EmailFunctions
 		} else {
 			return  $d . "." . $m . ". - " . sprintf( _n( 'Tomorrow is Name Day celebrated by', 'In %s days is Name Day celebrated by', $prior_days, 'coupon-emails' ), $prior_days )  . " " . $names;
 		}
-	}	
-	
+	}
+
 	function csvstring_to_json($string, $separatorChar = ',', $enclosureChar = '"', $newlineChar = "\n")
 	{
 		// @author: Klemen Nagode
@@ -558,30 +558,30 @@ class EmailFunctions
 			// save last field
 			$array[$rowIndex][$columnIndex] = $fieldValue;
 		}
-		
+
 		$b_array = array();
-		
+
 		foreach ($array as $b) {
 			$c = strtotime('2023-' . $b[0]);
 			$d = date('j.n', $c);
 			$b_array[$d] = $b[1];
 		}
 		//return $b_array;
-		
+
 		$str = "";
 		foreach ($b_array as $key => $value ) {
-			$str .= '"' . $key . '": "' . $value . '",' . PHP_EOL; 
+			$str .= '"' . $key . '": "' . $value . '",' . PHP_EOL;
 		}
-		
+
 		return $str;
-	}	
-	
+	}
+
 	function reviews_filtered($user_id, $comment_main_prod_ID, $comment_ID)
 	{
 		global $wpdb;
 		$options = $this->options_array;
 		$isOK = false;
-		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {		
+		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
 			$sql = new PrepareSQL('reviewedemail');
 			$categories = isset( $options['bought_cats']) ? $options['bought_cats'] : "";
 			$cat_str = !empty($categories) ? implode(',', $categories) : "";
@@ -590,16 +590,41 @@ class EmailFunctions
 			$roles = isset( $options['roles']) ? $options['roles'] : "";
 			$exclude_roles = isset( $options['exclude-roles']) ? $options['exclude-roles'] : "";
 			$stars = isset( $options['stars']) ? $options['stars'] : 0;
-		
+
 			$sql_str = $sql->get_comment_sql($comment_ID, $stars, $roles, $exclude_roles,  $cat_str,  $prod_str)	;
-							
+
 			$id = $wpdb->get_var($sql_str);
-			
+
 			if (isset($id)) {
 				$isOK = true;
-			} 
+			}
 		}
 		return $isOK;
+	}
+
+	static function get_tab_top_color($type)
+	{
+		$type_option = $type . '_options';
+		$options = get_option($type_option);
+		if ($type == 'onetimeemail') {
+			if ($options['test']) {
+				return "top-orange";
+			} else {
+				return "top-gray";
+			}			
+		} else {			
+			if ($options['enabled']) {
+				if ($options['test']) {
+					return "top-orange-green";
+				} else {
+					return "top-green";
+				}
+			} else {
+				return "top-red";
+			}			
+		}
+		
+
 	}
 }
 ?>

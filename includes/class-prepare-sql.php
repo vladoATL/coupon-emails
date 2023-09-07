@@ -213,8 +213,8 @@ class PrepareSQL
 			$sql .="	
 			WHERE 1=1 
 			AND ct.meta_value IS NULL -- not trashed
-			AND cs.meta_value IS NULL -- not previously sent
-			AND cm.meta_value IS NOT NULL  -- must have rating ";
+			AND cs.meta_value IS NULL -- not previously sent ";
+			if ($min_rating == 0) $sql .= "AND cm.meta_value IS NOT NULL  -- must have rating ";
 			if ($min_rating > 0) $sql .= "AND cm.meta_value BETWEEN $min_rating AND 5 ";
 /*			if (!empty($approved))
 			$sql .=" 		    

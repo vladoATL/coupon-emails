@@ -159,13 +159,17 @@ class Coupon_Emails {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'coupon_emails_menu' );
 		$this->loader->add_action('admin_init',  $plugin_admin, 'coupon_emails_init'  );
 		$this->loader->add_action('transition_comment_status',  $plugin_admin, 'review_approve_comment_callback', 10 ,3  );
-			
+		$this->loader->add_action('comment_post',  $plugin_admin, 'review_comment_posted_callback' , 10, 3);
+		
 		$this->loader->add_action( 'wp_ajax_email_restore_settings', $plugin_admin, 'email_restore_settings' );		
 		$this->loader->add_action( 'wp_ajax_couponemails_clear_log', $plugin_admin, 'couponemails_clear_log' );
 		$this->loader->add_action( 'wp_ajax_email_make_test', $plugin_admin, 'email_make_test' );		
 		
 		
-//		$this->loader->add_action('updated_option_birthdayemail_options',  $plugin_admin, 'updated_option_function');
+		if ( is_plugin_active( 'site-reviews/site-reviews.php' ) ) {
+			$this->loader->add_action('site-reviews/review/created',  $plugin_admin, 'site_reviews_comment_posted_callback' , 11, 2);
+			$this->loader->add_action( 'post_updated', $plugin_admin, 'site_reviews_approve_comment_callback', 10, 3 );
+		}		
 	}
 	
 	

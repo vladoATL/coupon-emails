@@ -1,5 +1,5 @@
 === Coupon Emails ===
-Contributors: vlado8444
+Contributors: perties2
 Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, email, review
 Requires at least: 5.8
 Tested up to: 6.3.1
@@ -40,8 +40,15 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 Coupon Emails plugin is officially compatible with the following plugins:
 * [WooCommerce]
 * [Advanced Coupons](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/)
+* [Site Reviews](https://wordpress.org/plugins/site-reviews/)
 
 == Changelog ==
+= 1.0.1 =
+- Release version
+
+= 0.3.4 =
+- Compatibility with Site Reviews plugin
+
 = 0.3.3 =
 - Add after reviewed email with coupon
 

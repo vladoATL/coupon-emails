@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Automatically generates emails with unique coupons for customers' birthdays, their name days and after makeing an order with many customization options.
- * Version:           0.3.3
+ * Version:           1.0.1
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '0.3.3.1' );
+define( 'COUPON_EMAILS_VERSION', '1.0.1.1' );
 
 /**
  * The code that runs during plugin activation.
@@ -76,6 +76,8 @@ require_once plugin_dir_path( __FILE__ ) .  'includes/class-reorders.php';
 require_once plugin_dir_path( __FILE__ ) .  'includes/class-onetimes.php';
 require_once plugin_dir_path( __FILE__ ) .  'includes/class-calendars.php';
 require_once plugin_dir_path( __FILE__ ) . 	'includes/class-prepare-sql.php';
+require_once plugin_dir_path( __FILE__ ) . 	'includes/class-reviewed.php';
+
 
 \COUPONEMAILS\BirthdayField::register();
 
@@ -122,6 +124,7 @@ function birthdayemail_save_defaults($add_new = false)
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
 	'disc_type' => 1,
+	'individual_use' => 1,
 	'description' => _x('Birthday {fname} {lname}: {email}','Coupon description','coupon-emails') ,
 	'coupon_amount'	=>	25,
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Have a nice birthday, {fname}!</p>
@@ -158,6 +161,7 @@ function reorderemail_save_defaults($add_new = false)
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
 	'disc_type' => 1,
+	'individual_use' => 1,
 	'description' => _x('Reorder {fname} {lname}: {email}','Coupon description','coupon-emails') ,
 	'coupon_amount'	=>	10,
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We have a special discount for you, {fname}!</p>
@@ -195,6 +199,7 @@ function afterorderemail_save_defaults($add_new = false)
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
 	'disc_type' => 1,
+	'individual_use' => 1,
 	'description' => _x('After order {fname} {lname}: {email}','Coupon description','coupon-emails') ,
 	'coupon_amount'	=>	15,
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We have a special discount for you, {fname}!</p>
@@ -232,6 +237,7 @@ function onetimeemail_save_defaults($add_new = false)
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
 	'disc_type' => 1,
+	'individual_use' => 1,
 	'description' => _x('One time {fname} {lname}: {email}','Coupon description','coupon-emails') ,
 	'coupon_amount'	=>	15,
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We have a special discount for you, {fname}!</p>
@@ -269,6 +275,7 @@ function namedayemail_save_defaults($add_new = false){
 				'bcc_address' => $current_user->user_email,
 				'email_footer' => '{site_name_url}',
 				'disc_type' => 1,
+				'individual_use' => 1,
 				'description' => _x('Name Day {fname}: {email}','Coupon description','coupon-emails') ,
 				'coupon_amount'	=>	10,
 				'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Have a nice name day, {fname}!</p>
@@ -304,9 +311,11 @@ function reviewedemail_save_defaults($add_new = false)
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
 	'disc_type' => 1,
+	'individual_use' => 1,
 	'description' => _x('After review {fname} {lname}: {email}','Coupon description','coupon-emails') ,
 	'coupon_amount'	=>	10,
-	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>{fname}, thank you for your review of our product<br><strong>{reviewed_prod}</strong> !</p>
+	'email_body'	=> _x("<p style='font-size: 18px;'>{fname}, thank you for your review of our product</p>
+<p style='font-size: 20px;font-weight:600;'>{reviewed_prod}</p>
 <p style='font-size: 18px;'>Take advantage of this thank you discount code for your next purchase:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>

@@ -3,7 +3,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Plural-Forms: nplurals=3; plural=( n == 1 ) ? 0 : ( n >= 2 && n <= 4 ) ? 1 : "
 "2;\n"
-"PO-Revision-Date: 2023-09-05 08:26+0000\n"
+"PO-Revision-Date: 2023-09-05 12:40+0000\n"
 "POT-Creation-Date: 2023-08-17 17:31+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
 "Project-Id-Version: Coupon Emails\n"
@@ -32,16 +32,16 @@ msgstr "Po objednávke"
 msgid "After Reviewed"
 msgstr "Po hodnotení"
 
-#: admin/partials/reviewed-email-admin-display.php:73
+#: admin/partials/reviewed-email-admin-display.php:79
 msgid "All reviews"
 msgstr "Všetky hodnotenia"
 
 #: admin/partials/onetime-email-admin-display.php:61
-#: admin/partials/reviewed-email-admin-display.php:86
+#: admin/partials/reviewed-email-admin-display.php:92
 msgid "All roles"
 msgstr "Všetky roly"
 
-#: admin/partials/reviewed-email-admin-display.php:63
+#: admin/partials/reviewed-email-admin-display.php:69
 msgid "Approved"
 msgstr "Odsúhlasené"
 
@@ -104,7 +104,7 @@ msgctxt "Coupon category"
 msgid "After order email"
 msgstr "Email po objednávke"
 
-#: coupon-emails.php:316
+#: coupon-emails.php:317
 msgctxt "Coupon category"
 msgid "After Review"
 msgstr "Po hodnotení"
@@ -187,7 +187,7 @@ msgstr "Kategória kupónov"
 #: admin/partials/name-day-email-admin-display.php:133
 #: admin/partials/onetime-email-admin-display.php:210
 #: admin/partials/afterorder-email-admin-display.php:175
-#: admin/partials/reviewed-email-admin-display.php:159
+#: admin/partials/reviewed-email-admin-display.php:165
 msgid "Create a test"
 msgstr "Testovať"
 
@@ -259,6 +259,56 @@ msgstr "Stiahnuť súbor s používateľmi, ktorý dnes dostanú email"
 #: admin/partials/coupon-form.php:239
 msgid "Email body"
 msgstr "Text emailu"
+
+#: coupon-emails.php:309
+#| msgid ""
+#| "<p style='font-size: 18px;'>{fname}, thank you for your review of our "
+#| "product</p>\n"
+#| "\t<p style='font-size: 20px;font-weight:600;'>{reviewed_prod}</p>\n"
+#| "<p style='font-size: 18px;'>Take advantage of this thank you discount "
+#| "code for your next purchase:</p>\n"
+#| "<p style='font-size: 24px;font-weight:800;'>{coupon}</p>\n"
+#| "<p style='font-size: 18px;'>During the next {expires_in_days} days (until "
+#| "{expires}) you can use it in our online store {site_name_url} and get a "
+#| "special discount of <strong>{percent}%</strong> on {products_cnt} non-"
+#| "discounted products.</p>\n"
+#| "<p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>\n"
+#| "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
+#| "<p style='font-size: 14px;'>The coupon can only be used after logging "
+#| "into your account and cannot be used with other discounts. Some products "
+#| "are exluded from the discount.</p>"
+msgctxt "Email Body"
+msgid ""
+"<p style='font-size: 18px;'>{fname}, thank you for your review of our "
+"product</p>\n"
+"<p style='font-size: 20px;font-weight:600;'>{reviewed_prod}</p>\n"
+"<p style='font-size: 18px;'>Take advantage of this thank you discount code "
+"for your next purchase:</p>\n"
+"<p style='font-size: 24px;font-weight:800;'>{coupon}</p>\n"
+"<p style='font-size: 18px;'>During the next {expires_in_days} days (until "
+"{expires}) you can use it in our online store {site_name_url} and get a "
+"special discount of <strong>{percent}%</strong> on {products_cnt} non-"
+"discounted products.</p>\n"
+"<p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>\n"
+"<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
+"<p style='font-size: 14px;'>The coupon can only be used after logging into "
+"your account and cannot be used with other discounts. Some products are "
+"exluded from the discount.</p>"
+msgstr ""
+"<p style='font-size: 18px;'>{fname}, ďakujeme za hodnotenie nášho "
+"produktu</p>\n"
+"<p style='font-size: 20px;font-weight:600;'>{reviewed_prod}</p>\n"
+"<p style='font-size: 18px;'>Využi tento kód na zľavu pri ďalšom nákupe:</p>\n"
+"<p style='font-size: 24px;font-weight:800;'>{coupon}</p>\n"
+"<p style='font-size: 18px;'>Behom nasledujúcich {expires_in_days} dní  (do "
+"{expires}) ho môžeš použiť v našej online predajni {site_name_url} a získať "
+"mimoriadnu zľavu <strong>{percent}%</strong> na {products_cnt} nezľavnené "
+"produkty.</p>\n"
+"<p style='font-size: 18px;font-weight:600;'>UŽI SI TO!</p>\n"
+"<p style='font-size: 18px;'>Tím {site_name}</p>\n"
+"<p style='font-size: 14px;'>Kupón sa dá použiť len po prihlásení sa do "
+"Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
+"sa zľava nevzťahuje.</p>"
 
 #: coupon-emails.php:127
 #| msgid ""
@@ -498,53 +548,6 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:309
-#| msgid ""
-#| "<p style='font-size: 20px;font-weight:600;'>Thank you for your review of "
-#| "our product <strong>{reviewed_prod}</strong>, {fname}!</p>\n"
-#| "<p style='font-size: 18px;'>Take advantage of this thank you discount "
-#| "code for your next purchase:</p>\n"
-#| "<p style='font-size: 24px;font-weight:800;'>{coupon}</p>\n"
-#| "<p style='font-size: 18px;'>During the next {expires_in_days} days (until "
-#| "{expires}) you can use it in our online store {site_name_url} and get a "
-#| "special discount of <strong>{percent}%</strong> on {products_cnt} non-"
-#| "discounted products.</p>\n"
-#| "<p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>\n"
-#| "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
-#| "<p style='font-size: 14px;'>The coupon can only be used after logging "
-#| "into your account and cannot be used with other discounts. Some products "
-#| "are exluded from the discount.</p>"
-msgctxt "Email Body"
-msgid ""
-"<p style='font-size: 20px;font-weight:600;'>{fname}, thank you for your "
-"review of our product<br><strong>{reviewed_prod}</strong> !</p>\n"
-"<p style='font-size: 18px;'>Take advantage of this thank you discount code "
-"for your next purchase:</p>\n"
-"<p style='font-size: 24px;font-weight:800;'>{coupon}</p>\n"
-"<p style='font-size: 18px;'>During the next {expires_in_days} days (until "
-"{expires}) you can use it in our online store {site_name_url} and get a "
-"special discount of <strong>{percent}%</strong> on {products_cnt} non-"
-"discounted products.</p>\n"
-"<p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>\n"
-"<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
-"<p style='font-size: 14px;'>The coupon can only be used after logging into "
-"your account and cannot be used with other discounts. Some products are "
-"exluded from the discount.</p>"
-msgstr ""
-"<p style='font-size: 20px;font-weight:600;'>{fname}, ďakujeme za hodnotenie "
-"nášho produktu<br><strong>{reviewed_prod}</strong>!</p>\n"
-"<p style='font-size: 18px;'>Využi tento kód na zľavu pri ďalšom nákupe:</p>\n"
-"<p style='font-size: 24px;font-weight:800;'>{coupon}</p>\n"
-"<p style='font-size: 18px;'>Behom nasledujúcich {expires_in_days} dní  (do "
-"{expires}) ho môžeš použiť v našej online predajni {site_name_url} a získať "
-"mimoriadnu zľavu <strong>{percent}%</strong> na {products_cnt} nezľavnené "
-"produkty.</p>\n"
-"<p style='font-size: 18px;font-weight:600;'>UŽI SI TO!</p>\n"
-"<p style='font-size: 18px;'>Tím {site_name}</p>\n"
-"<p style='font-size: 14px;'>Kupón sa dá použiť len po prihlásení sa do "
-"Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
-"sa zľava nevzťahuje.</p>"
-
 #: admin/partials/coupon-form.php:205
 msgid "Email CC"
 msgstr "Email CC"
@@ -615,6 +618,7 @@ msgstr "{fname}, ďakujeme za hodnotenie"
 #: admin/partials/reorder-email-admin-display.php:53
 #: admin/partials/name-day-email-admin-display.php:83
 #: admin/partials/afterorder-email-admin-display.php:55
+#: admin/partials/reviewed-email-admin-display.php:54
 msgid "Enable auto sending emails"
 msgstr "Zapnúť automatické zasielanie správ"
 
@@ -720,7 +724,7 @@ msgid "Name days calendar"
 msgstr "Kalendár s meninami"
 
 #: admin/partials/onetime-email-admin-display.php:78
-#: admin/partials/reviewed-email-admin-display.php:103
+#: admin/partials/reviewed-email-admin-display.php:109
 msgid "No roles"
 msgstr "Žiadne roly"
 
@@ -767,7 +771,7 @@ msgstr "Preobjednanie"
 msgid "Restore Defaults"
 msgstr "Obnoviť prednastavené"
 
-#: admin/partials/reviewed-email-admin-display.php:70
+#: admin/partials/reviewed-email-admin-display.php:76
 msgid "Reviews only with minimum stars"
 msgstr "Iba hodnotenia s hviezdičkami minimálne"
 
@@ -776,7 +780,7 @@ msgstr "Iba hodnotenia s hviezdičkami minimálne"
 #: admin/partials/name-day-email-admin-display.php:89
 #: admin/partials/onetime-email-admin-display.php:53
 #: admin/partials/afterorder-email-admin-display.php:61
-#: admin/partials/reviewed-email-admin-display.php:54
+#: admin/partials/reviewed-email-admin-display.php:60
 msgid "Run in test mode"
 msgstr "Testovací mód"
 
@@ -785,12 +789,12 @@ msgid "Select how many characters the generated coupons should consist of."
 msgstr "Vyberte, z koľkých znakov sa majú generované kupóny skladať."
 
 #: admin/partials/onetime-email-admin-display.php:89
-#: admin/partials/reviewed-email-admin-display.php:114
+#: admin/partials/reviewed-email-admin-display.php:120
 msgid "Select user roles to exclude from sending the emails."
 msgstr "Vyberte roly používateľov, ktoré chcete vylúčiť z odosielania emailov."
 
 #: admin/partials/onetime-email-admin-display.php:72
-#: admin/partials/reviewed-email-admin-display.php:97
+#: admin/partials/reviewed-email-admin-display.php:103
 msgid "Select user roles to send the emails to."
 msgstr "Vyberte roly používateľov, ktorým sa majú emaily odosielať."
 
@@ -823,7 +827,7 @@ msgstr "Poslať emaily"
 msgid "Send it onle one time in a year"
 msgstr "Poslať iba raz do roka"
 
-#: admin/partials/reviewed-email-admin-display.php:60
+#: admin/partials/reviewed-email-admin-display.php:66
 msgid "Send the email when review status is"
 msgstr "Poslať email len ak status je"
 
@@ -839,14 +843,14 @@ msgstr ""
 msgid "Set the discount type."
 msgstr "Vyberte typ zľavy"
 
-#: admin/partials/reviewed-email-admin-display.php:80
+#: admin/partials/reviewed-email-admin-display.php:86
 msgid ""
 "Set the minimum stars number of the review when the emails should be sent."
 msgstr ""
 "Tu sa nastavuje minimálny počet hviezdičiek, ktoré musí mať hodnotenie aby "
 "som email odoslaný."
 
-#: admin/partials/reviewed-email-admin-display.php:66
+#: admin/partials/reviewed-email-admin-display.php:72
 msgid "Set the review status when emails should be sent."
 msgstr ""
 "Tu sa nastavuje status, ktorý musí mať hodnotenie aby som email odoslaný."
@@ -916,7 +920,7 @@ msgstr "Slovenský kalendár"
 msgid "Spanish calendar"
 msgstr "Španielsky kalendár"
 
-#: admin/partials/reviewed-email-admin-display.php:64
+#: admin/partials/reviewed-email-admin-display.php:70
 msgid "Submitted"
 msgstr "Zaslané"
 
@@ -962,7 +966,7 @@ msgstr ""
 "Email bude odoslaný používateľom, ktorí si predtým zakúpili produkty vo "
 "vybraných kategóriách."
 
-#: admin/partials/reviewed-email-admin-display.php:150
+#: admin/partials/reviewed-email-admin-display.php:156
 msgid ""
 "The email will be sent to users who have reviewed any product in the "
 "selected categories."
@@ -970,7 +974,7 @@ msgstr ""
 "Email bude odoslaný používateľom, ktorí hodnotili jeden z produktov vo "
 "vybraných kategóriách."
 
-#: admin/partials/reviewed-email-admin-display.php:133
+#: admin/partials/reviewed-email-admin-display.php:139
 msgid ""
 "The email will be sent to users who have reviewed at least one of the "
 "selected products. Select the main product if you want it to include all "
@@ -1074,11 +1078,12 @@ msgstr "Spolu kupónov"
 #: admin/partials/reorder-email-admin-display.php:55
 #: admin/partials/name-day-email-admin-display.php:85
 #: admin/partials/afterorder-email-admin-display.php:57
+#: admin/partials/reviewed-email-admin-display.php:56
 msgid "Turn on and off the automatic functionality of email sending"
 msgstr "Zapnutie a vypnutie automatického zasielania emailov."
 
 #: admin/partials/onetime-email-admin-display.php:55
-#: admin/partials/reviewed-email-admin-display.php:56
+#: admin/partials/reviewed-email-admin-display.php:62
 msgid ""
 "Turn on when testing. The actual users will not get emails. All emails will "
 "be sent to BCC/Test address."
@@ -1113,7 +1118,7 @@ msgstr "Nepoužité kupóny"
 msgid "Use WooCommerce email template"
 msgstr "Použiť šablónu WooCommerce"
 
-#: admin/partials/coupon-form.php:255
+#: admin/partials/coupon-form.php:258
 msgid "Use {fname5} for Czech salutation."
 msgstr "Pre české oslovenia použite reťazec {fname5}"
 
@@ -1122,12 +1127,12 @@ msgid "Used coupons"
 msgstr "Použité kupóny"
 
 #: admin/partials/onetime-email-admin-display.php:76
-#: admin/partials/reviewed-email-admin-display.php:101
+#: admin/partials/reviewed-email-admin-display.php:107
 msgid "User Roles to exclude from sending"
 msgstr "Používateľské roly, ktoré budú vylúčené z odosielania"
 
 #: admin/partials/onetime-email-admin-display.php:59
-#: admin/partials/reviewed-email-admin-display.php:84
+#: admin/partials/reviewed-email-admin-display.php:90
 msgid "User Roles to include"
 msgstr "Používateľské roly, ktoré budú zahrnuté"
 
@@ -1155,11 +1160,11 @@ msgstr "Používatelia, ktorí si nikdy nekúpili produkty v týchto kategóriá
 msgid "Users who never bought these products"
 msgstr "Používatelia, ktorí si tieto produkty nikdy nekúpili"
 
-#: admin/partials/reviewed-email-admin-display.php:118
+#: admin/partials/reviewed-email-admin-display.php:124
 msgid "Users who reviewed one of these products"
 msgstr "Používatelia, ktorí hodnotili jeden z týchto produkt"
 
-#: admin/partials/reviewed-email-admin-display.php:137
+#: admin/partials/reviewed-email-admin-display.php:143
 msgid "Users who reviewed products in these categories"
 msgstr "Používatelia, ktorí hodnotili produkty v týchto kategóriách"
 
