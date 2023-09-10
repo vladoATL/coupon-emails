@@ -169,8 +169,11 @@ class Coupon_Emails {
 		if ( is_plugin_active( 'site-reviews/site-reviews.php' ) ) {
 			$this->loader->add_action('site-reviews/review/created',  $plugin_admin, 'site_reviews_comment_posted_callback' , 11, 2);
 			$this->loader->add_action( 'post_updated', $plugin_admin, 'site_reviews_approve_comment_callback', 10, 3 );
-		}		
+		}			
+		
+		$this->loader->add_action('admin_init',  $plugin_admin, 'register_shop_coupon_cat_taxonomy' , 0 );	
 	}
+	
 	
 	
 	/**

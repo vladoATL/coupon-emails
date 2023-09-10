@@ -97,7 +97,13 @@ class Coupon_Email_Admin {
 		 );	
 		 register_setting( 'reviewedemail_plugin_options', 'reviewedemail_options',
 		 array('sanitize_callback' => array( $this, 'reviewedemail_validate_options' ),)
-		 );			 
+		 );	
+		 register_setting( 'reviewreminderemail_plugin_options', 'reviewreminderemail_options',
+		 array('sanitize_callback' => array( $this, 'reviewreminderemail_validate_options' ),)
+		 );
+		 register_setting( 'expirationreminderemail_plugin_options', 'expirationreminderemail_options',
+		 array('sanitize_callback' => array( $this, 'expirationreminderemail_validate_options' ),)
+		 );		 
 	}
 	function reviewedemail_validate_options($input)
 	{
@@ -129,6 +135,14 @@ class Coupon_Email_Admin {
 	{
 		return $input;
 	}
+	function reviewreminderemail_validate_options($input)
+	{
+		return $input;
+	}	
+	function expirationreminderemail_validate_options($input)
+	{
+		return $input;
+	}	
  	public function couponemails_clear_log() {
  		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_couponemails_nonce_log' ) ) 
 		{
@@ -224,19 +238,23 @@ class Coupon_Email_Admin {
 	}
 	
 	public function email_make_test()
-	{
+	{		
 		if ( isset( $_POST['option_name'] )) {
 			$option_name = $_POST['option_name'];
 		} else {
 			wp_die();
 		}
-			
+
 		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] 
 			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_' .$option_name . '_nonce_test' ) ) 
 		{
 			$user = wp_get_current_user();
 			$funcs = new \COUPONEMAILS\EmailFunctions($option_name);
-			$funcs->	couponemails_create($user, true);
+			if ($option_name == 'expirationreminderemail') {
+				$funcs->	couponemails_create($user, true, "TESTCOUPON");
+			} else {
+				$funcs->	couponemails_create($user, true);	
+			}
 			wp_die();
 		}
 	}		
@@ -271,11 +289,33 @@ class Coupon_Email_Admin {
 				case "birthdayemail":
 					birthdayemail_save_defaults($add_new);
 					break;
+				case "reviewreminderemail":
+					reviewreminderemail_save_defaults($add_new);
+					break;		
+				case "expirationreminderemail":
+					expirationreminderemail_save_defaults($add_new);
+					break;	
 				}						
 			wp_die();
 		}
 	}
-			
+		
+	function register_shop_coupon_cat_taxonomy()
+	{
+		register_taxonomy( 'shop_coupon_cat', 'post', array(
+		"hierarchical" => true,
+		"label" => "Shop Coupon Category",
+		"singular_label" => "Shop Coupon Category",
+		'query_var' => true,
+		'rewrite' => array( 'slug' => 'shop_coupon_cat', 'with_front' => false ),
+		'public' => true,
+		'show_ui' => true,
+		'show_tagcloud' => true,
+		'_builtin' => false,
+		'show_in_nav_menus' => false
+		));
+	}
+	
 	/**
 	 * Register the JavaScript for the admin area.
 	 *

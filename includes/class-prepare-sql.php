@@ -57,6 +57,52 @@ class PrepareSQL
 
 		return $result;
 	}
+	
+	public function get_expired_coupons( $as_objects = false)
+	{
+		global $wpdb;
+		$options = get_option($this->type . '_options');
+		$day_before =  (isset( $options['days_before'])) ? $options['days_before'] : 0;
+		$cat_str = '';
+		$expired_cats_array = isset( $options['expiration_cats']) ? $options['expiration_cats'] : "";
+		if (!empty($expired_cats_array)) $cat_str = implode(',', $expired_cats_array);
+		
+		$sql = "SELECT t.name AS coupon_cat, p.post_title AS coupon, pme.meta_value as user_email, 
+		NULL as user_firstname, NULL as user_lastname, FROM_UNIXTIME(pm.meta_value , '%e.%c.%Y') AS expires, NULL as ID
+				FROM {$wpdb->prefix}posts AS p
+				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id 
+				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tr.term_taxonomy_id ";
+				
+		if ($cat_str != "")
+			$sql .= "AND tr.term_taxonomy_id IN ($cat_str) ";
+				
+		$sql .="
+				JOIN {$wpdb->prefix}postmeta AS pme ON p.ID = pme.post_id AND pme.meta_key = 'customer_email'
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
+				WHERE post_type = 'shop_coupon'  
+				AND DATE(FROM_UNIXTIME(pm.meta_value - $day_before * 86400 )) = CURDATE()
+				AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
+				";
+				
+		EmailFunctions::test_add_log('-- ' . $this->type . PHP_EOL  . $sql);
+		$result = $wpdb->get_results($sql, OBJECT);
+		foreach ($result as  $value) {
+			$value->user_email = maybe_unserialize($value->user_email)[0];
+			$user = get_user_by( 'email', $value->user_email );
+			$value->ID = $user->ID;
+			$value->user_firstname = $user->first_name;
+			$value->user_lastname = $user->last_name;
+		}	
+		if ( $as_objects) {
+			return $result;
+		} else
+		{
+			return (array) $result;
+		}	
+			
+	}	
+	
 	public function get_users_filtered( $as_objects = false)
 	{
 		global $wpdb;
@@ -199,7 +245,7 @@ class PrepareSQL
 				FROM {$wpdb->prefix}comments AS c
 				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS cm ON c.comment_ID = cm.comment_id AND cm.meta_key = 'rating'
 				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS ct ON c.comment_ID = ct.comment_id AND ct.meta_key = '_wp_trash_meta_status' 
-				LEFT OUTER JOIN wp7r_commentmeta AS cs ON c.comment_ID = cs.comment_id AND cs.meta_key = 'reviewedemail_sent' "
+				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS cs ON c.comment_ID = cs.comment_id AND cs.meta_key = 'reviewedemail_sent' "
 				. $this->get_join_capabilities_sql($in_roles, $not_in_roles,"c.user_id");
 
 		if (! empty($in_cats)) {

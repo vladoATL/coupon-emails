@@ -32,10 +32,10 @@ $option_name = "onetimeemail";
 ?>
 
 <div class="wrap woocommerce">
-	<div id="onetimeemail-setting"  class="myday-setting">
+	<div id="onetimeemail-setting"  class="coupon-emails-setting">
 <div class="loader_cover">
 	<div class="onetime_loader"></div> </div>
-<input type="button" value="<?php echo  __( 'Restore Defaults', 'coupon-emails' ); ?>" class="button button-primary"
+	<input type="button" value="<?php echo  __( 'Restore Defaults', 'coupon-emails' ); ?>" class="button button-primary btn-restore"
 attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce' ) ); ?>"
 id="restore_onetimeemail_values_btn" />
 

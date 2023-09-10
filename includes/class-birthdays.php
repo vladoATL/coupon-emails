@@ -17,7 +17,7 @@ class Birthdays
 		JOIN {$wpdb->prefix}usermeta AS lmu ON u.ID = lmu.user_id AND lmu.meta_key = 'billing_last_name'
 		LEFT JOIN {$wpdb->prefix}usermeta AS dmu ON u.ID = dmu.user_id AND dmu.meta_key = 'dob-coupon-sent'
 		WHERE m.meta_value LIKE '%-{$date_str}'";		
-					
+		EmailFunctions::test_add_log('-get_celebrating_users- ' . $this->type . PHP_EOL  . $sql);			
 		$result = $wpdb->get_results($sql, OBJECT);
 
 		return $result;

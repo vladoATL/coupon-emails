@@ -12,8 +12,6 @@
  <removed value=";"/>
  <added value=""/>
  <lastopfiles>
-  <file name="C:\PHP Code\coupon-emails\README.txt"/>
-  <file name="C:\PHP Code\coupon-emails\coupon-emails.php"/>
   <lastactivefile name=""/>
  </lastopfiles>
  <errors version="1.12.0">
@@ -54,5 +52,5 @@
  <yiidata/>
  <todoblock/>
  <dbgurls/>
- <lasttime value="1694104144"/>
+ <lasttime value="1694117479"/>
 </project>

@@ -34,10 +34,10 @@ $option_name = "afterorderemail";
 ?>
 
 <div class="wrap woocommerce">
-<div id="afterorderemail-setting"  class="myday-setting">
+<div id="afterorderemail-setting"  class="coupon-emails-setting">
 <div class="loader_cover">
 	<div class="afterorder_loader"></div> </div>
-<input type="button" value="<?php echo  __( 'Restore Defaults', 'coupon-emails' ); ?>" class="button button-primary"
+	<input type="button" value="<?php echo  __( 'Restore Defaults', 'coupon-emails' ); ?>" class="button button-primary btn-restore"
 attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce' ) ); ?>"
 id="restore_afterorder_values_btn" />
 
@@ -67,7 +67,7 @@ id="restore_afterorder_values_btn" />
 			<th class="titledesc"><?php echo __( 'Days after last order', 'coupon-emails' ); ?>:</th>
 			<td>
 				<input type="number" id="afterorderemail_options[days_after_order]" name="afterorderemail_options[days_after_order]"  style="width: 100px;" value="<?php echo $options['days_after_order'] ?? ''; ?>"</input>
-				<?php  echo wc_help_tip(__( 'Enter number of days after last order when to send this email with coupon.', 'coupon-emails'), false); ?>
+				<?php  echo wc_help_tip(__( 'Enter the number of days after last order when to send this email with coupon.', 'coupon-emails'), false); ?>
 			</td>
 		</tr>		
 		<tr>
@@ -160,7 +160,7 @@ id="restore_afterorder_values_btn" />
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Download file with users to send email today', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo __( 'Download list of users who will receive the email', 'coupon-emails' ); ?>:</th>
 			<td>
 				<a class="button button-primary" href="admin.php?page=couponemails&tab=after-order&afterorderexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
 				<?php  echo wc_help_tip(__( 'Download csv file with filtered users.', 'coupon-emails' ), false); ?>

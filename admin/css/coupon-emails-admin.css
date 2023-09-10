@@ -23,39 +23,39 @@
 .nav-tab.top-gray {
 	border-top: 3px solid #c3c4c7;
 }
-.myday-setting .form-table {
+.coupon-emails-setting .form-table {
  	font-size: 12px;
  }
- .myday-setting .form-table th  {
+ .coupon-emails-setting .form-table th  {
  	padding: 5px;
  	width: 350px;
  }
-  .myday-setting .form-table tr td {
+  .coupon-emails-setting .form-table tr td {
  	padding: 5px;
  }
-  .myday-setting .form-table {
+  .coupon-emails-setting .form-table {
  	margin: 20px;
  }
  
-  .myday-setting input[type=checkbox] {
+  .coupon-emails-setting input[type=checkbox] {
 	   transform : scale(1.4);
 	   margin: 8px 4px;
 }
  
-  .myday-setting select {
+  .coupon-emails-setting select {
   	line-height: normal;
   	vertical-align: initial;
   }
   
- .myday-setting .textarea_,  #log-table .textarea_ {
+ .coupon-emails-setting .textarea_,  #log-table .textarea_ {
  	width: 100% !important;
  }
  
- .myday-setting input,  .myday-setting select  {
+ .coupon-emails-setting input,  .coupon-emails-setting select  {
 	 vertical-align: initial  !important;
  }
  
-  .myday-setting input,  .myday-setting .select2-container {
+  .coupon-emails-setting input,  .coupon-emails-setting .select2-container {
 	vertical-align: middle  !important;
 }
 
@@ -65,7 +65,7 @@
 	margin-top: 5px;
 }
 
-#restore_namedayemail_values_btn, #restore_reorder_values_btn, #restore_birthdayemail_values_btn, #restore_onetimeemail_values_btn, #restore_afterorder_values_btn, #restore_reviewed_values_btn {
+.btn-restore {
     float: right;
     margin-right: 5%;
 }
@@ -78,7 +78,7 @@
 	}
 	.couponemails_left  {
 		float: left;
-		width: 600px;
+		width: 700px;
 	}
 	.couponemails_right {
 		overflow: hidden;

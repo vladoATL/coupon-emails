@@ -22,7 +22,7 @@ class EmailFunctions
 		$this->product_name = $product_name;
 	}
 
-	function couponemails_create($user, $istest = false)
+	function couponemails_create($user, $istest = false, $coupon = "")
 	{
 		$success = true;
 		$options = $this->options_array;
@@ -31,7 +31,7 @@ class EmailFunctions
 		$from_name = $options['from_name'];
 		$from_address = $options['from_address'];
 		$header  = $options['header'];
-		$coupon = "";
+
 		if ($istest == true) {
 			$headers_user   = $this->couponemails_headers($from_name, $from_address,"", "", true);
 			$email = $options['bcc_address'];
@@ -40,10 +40,11 @@ class EmailFunctions
 			$email = $user->user_email;
 		}
 
-		$char_length = $options['characters'];
-		if ($char_length != 0) {
+		$char_length = isset($options['characters']) ? $options['characters'] : "";
+		if ($char_length != 0 || ! empty($coupon)) {
 			if ((array)$user) {
-				$coupon = $this->couponemails_get_unique_coupon($user);
+				if (empty($coupon) != "") 
+					$coupon = $this->couponemails_get_unique_coupon($user);
 
 				if (empty($coupon)) {
 					$this->couponemails_add_log("No available coupons to create.");
@@ -121,7 +122,7 @@ class EmailFunctions
 		'{site_name_url}',
 		'{expires_in_days}',
 		'{expires}',
-		'{my_day_date}',
+		'{for_date}',
 		'{percent}',
 		'{fname}',
 		'{fname5}',
@@ -135,10 +136,10 @@ class EmailFunctions
 		get_option( 'blogname' ),
 		home_url(),
 		'<a href=' . home_url() . '>' . get_option( 'blogname' ) . '</a>',
-		$options['expires'],
-		date($date_format, strtotime('+' . $options['expires'] . ' days')),
+		isset($options['expires'] ) ? $options['expires'] : '' ,
+		isset($options['expires'] ) ? date($date_format, strtotime('+' . $options['expires'] . ' days')) : '' ,
 		date($date_format, strtotime('+' . $days_before . ' days')),
-		$options['coupon_amount'],
+		isset($options['coupon_amount'] ) ? $options['coupon_amount'] : '' ,
 		ucfirst(strtolower($user->user_firstname)),
 		$inflection->inflect(ucfirst(strtolower($user->user_firstname)))[5],
 		ucfirst(strtolower($user->user_lastname)),
@@ -186,10 +187,9 @@ class EmailFunctions
 		}
 	}
 
-	static function test_add_log($entry)
+	static function test_add_log($entry, $enable_sql_logs = 1)
 	{
-		$options = get_option('couponemails_options');
-		if ($options['enable_sql_logs'] == "1") {
+		if ($enable_sql_logs == 1) {
 			if ( is_array( $entry ) ) {
 				$entry = json_encode( $entry );
 			}
@@ -302,12 +302,14 @@ class EmailFunctions
 		update_post_meta( $new_coupon_id, 'usage_limit_per_user', '1' );
 		$expiry_date_unix = strtotime($expiry_date);
 		update_post_meta( $new_coupon_id, 'date_expires', $expiry_date_unix );
-		//update_post_meta( $new_coupon_id, 'date_expires', $expiry_date );
+		//update_post_meta( $new_coupon_id, 'date_expires_local', $expiry_date );
 		update_post_meta( $new_coupon_id, 'free_shipping', $free_shipping );
 		update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
-
+		update_post_meta( $new_coupon_id, 'customer_id', $user->id );
+		
 		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
 		update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
+		// update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->id );
 
 		$cat_id = 0;
 		if (isset($options['coupon_cat']))
@@ -368,6 +370,33 @@ class EmailFunctions
 	{
 		global $wpdb;
 		$cat_names = $this->couponemails_get_coupons_cat_names();
+		$sql = "SELECT t.name, COUNT(p.ID) as total_count, used.used_count
+				FROM {$wpdb->prefix}posts AS p
+				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id AND tr.term_taxonomy_id IN (
+				SELECT term_id FROM {$wpdb->prefix}terms AS t WHERE t.name IN ($cat_names) )
+				JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tt.term_id
+
+				LEFT OUTER JOIN (
+				SELECT COUNT(ID) AS used_count, tr.term_taxonomy_id AS term_taxonomy_id
+				FROM {$wpdb->prefix}posts AS p
+				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
+				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
+				WHERE post_type = 'shop_coupon' AND pmu.meta_value > 0
+				GROUP BY tr.term_taxonomy_id
+				) AS used ON tr.term_taxonomy_id = used.term_taxonomy_id
+
+				WHERE p.post_type = 'shop_coupon'
+				GROUP BY tr.term_taxonomy_id";
+		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);					
+		$result = $wpdb->get_results($sql, OBJECT);
+		return $result;
+	}
+	
+/*	function couponemails_get_full_stats()
+	{
+		global $wpdb;
+		$cat_names = $this->couponemails_get_coupons_cat_names();
 		$sql = "SELECT t.name, COUNT(p.ID) as total_count, notexpired.notexpired_count, expired.expired_count, used.used_count
 				FROM {$wpdb->prefix}posts AS p
 				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id AND tr.term_taxonomy_id IN (
@@ -406,9 +435,11 @@ class EmailFunctions
 
 				WHERE p.post_type = 'shop_coupon'
 				GROUP BY tr.term_taxonomy_id";
+		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
 		return $result;
-	}
+	}*/
+		
 	function couponemails_get_cat_slug_id($cat_slug)
 	{
 		global $wpdb;
@@ -449,12 +480,14 @@ class EmailFunctions
 			return;
 		$sql = "SELECT ID FROM $wpdb->posts AS p
 				JOIN $wpdb->postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
-				JOIN $wpdb->postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
+				LEFT JOIN $wpdb->postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
 				WHERE post_type = 'shop_coupon'
 				AND pm.meta_value > 0
-				AND pmu.meta_value = 0
+				AND ( pmu.meta_value = 0 OR pmu.meta_value IS NULL )
 				AND pm.meta_value + (" . $days_delete . "*86400) < UNIX_TIMESTAMP()
 				ORDER BY pm.meta_value desc";
+		
+		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);				
 		$coupon_ids = $wpdb->get_col($sql);
 		$count = count($coupon_ids);
 
@@ -464,9 +497,12 @@ class EmailFunctions
 		$where_in = implode(",", $coupon_ids );
 
 		$sql_pm = "DELETE FROM $wpdb->postmeta WHERE post_id IN (" . $where_in . ")";
+		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql_pm);	
 		$sql_p = "DELETE FROM $wpdb->posts WHERE ID IN (" . $where_in . ")";
+		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql_p);	
 		$sql_tr = "DELETE FROM $wpdb->term_relationships WHERE object_id IN (" . $where_in . ")";
-
+		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql_tr);	
+		
 		$wpdb->get_results($sql_pm);
 		$wpdb->get_results($sql_p);
 		$wpdb->get_results($sql_tr);
@@ -606,24 +642,54 @@ class EmailFunctions
 	{
 		$type_option = $type . '_options';
 		$options = get_option($type_option);
-		if ($type == 'onetimeemail') {
-			if ($options['test']) {
+		
+		switch ($type) :
+			case 'onetimeemail':
+			if (isset($options['test']) && $options['test']) {
 				return "top-orange";
 			} else {
 				return "top-gray";
 			}			
-		} else {			
-			if ($options['enabled']) {
-				if ($options['test']) {
+			break;
+		case 'reminderemail':
+			$options_array = array( 'reviewreminderemail','expirationreminderemail');
+			$isenabled = 0;
+			$istest = 0;
+			foreach ($options_array as $option) {
+				$options = get_option($option . '_options');
+				if (isset($options['enabled']) && $options['enabled']) {
+					$isenabled = 1;
+				} 				
+				if (isset($options['test']) && $options['test']) {
+					$istest = 1;
+				}			
+			}
+			if ($isenabled == 1  && $istest == 1) {
+				return "top-green";				
+			}
+			if ($isenabled == 1) {
+				return "top-green";
+			}
+			if ($isenabled == 0 && $istest == 1) {
+				return "top-orange";
+			}	
+			if ($isenabled == 0 && $istest == 0) {
+				return "top-red";
+			}				
+			return;	
+			break;			
+		default:			
+			if (isset($options['enabled']) && $options['enabled']) {
+				if (isset($options['test']) && $options['test']) {
 					return "top-orange-green";
 				} else {
 					return "top-green";
 				}
-			} else {
+			}  else {
 				return "top-red";
-			}			
-		}
-		
+			}	
+			break;
+		endswitch;		
 
 	}
 }

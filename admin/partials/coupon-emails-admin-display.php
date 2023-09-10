@@ -10,10 +10,12 @@ $afterorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('afterorderema
 $reviewed_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reviewedemail');
 $reorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reorderemail');
 $onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimeemail');
+$reviewreminder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reminderemail');
 
 //Get the active tab from the $_GET param
 $default_tab = null;
 $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
+$section = isset($_GET['section']) ? $_GET['section'] : $default_tab;
 ?>
 <div class="wrap">
 	<h1><?php _e( 'Coupon Emails Settings','coupon-emails' ); ?></h1>
@@ -46,6 +48,11 @@ $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
 		if ($tab==='one-time') : ?>nav-tab-active<?php
 		endif; echo(' ' . $onetime_top); ?>"> <?php echo  __( 'One Time', 'coupon-emails' ); ?></a>
 
+	<a href="?page=couponemails&tab=reminder" class="nav-tab
+		<?php
+		if ($tab==='reminder') : ?>nav-tab-active<?php
+	endif; echo(' ' . $reviewreminder_top); ?>"> <?php echo  __( 'Reminders', 'coupon-emails' ); ?></a>
+	
 </nav>
 	
 <div class="tab-content">
@@ -86,17 +93,33 @@ case 'after-order':
 	</div>
 	<?php
 	break;	
-default:	
-	?>
-	<div class="metabox-holder">
-		<?php include('common-settings-admin-display.php'); ?>
-	</div>
-	<?php
-	break;
 case 'reviewed':
 	?>
 	<div class="metabox-holder">
-		<?php include('reviewed-email-admin-display.php'); ?>
+		<?php include('reviewed-email-admin-display.php');	?>
+	</div>
+	<?php
+	break;	
+case 'reminder':
+	?>
+	<div class="metabox-holder">
+		<?php 
+		switch ($section) :
+		case 'expiration':
+			include('expiration-reminder-email-admin-display.php'); 
+			break;
+		default:
+		include('review-reminder-email-admin-display.php');
+			break;		
+		endswitch;	
+		?>
+	</div>
+	<?php
+	break;	
+default:
+	?>
+	<div class="metabox-holder">
+		<?php include('common-settings-admin-display.php'); ?>
 	</div>
 	<?php
 	break;	

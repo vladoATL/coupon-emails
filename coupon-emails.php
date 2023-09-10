@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Automatically generates emails with unique coupons for customers' birthdays, their name days and after makeing an order with many customization options.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.0.1.1' );
+define( 'COUPON_EMAILS_VERSION', '1.0.2.1' );
 
 /**
  * The code that runs during plugin activation.
@@ -91,6 +91,8 @@ function couponemails_plugin_save_defaults() {
 		afterorderemail_save_defaults(true);
 		onetimeemail_save_defaults(true);
 		couponemails_save_defaults(true);
+		reviewreminderemail_save_defaults(true);
+		expirationreminderemail_save_defaults(true);
 }
 
 function couponemails_save_defaults($add_new = false)
@@ -133,7 +135,7 @@ function birthdayemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('Birth day email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
@@ -170,7 +172,7 @@ function reorderemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('Reorder email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
@@ -209,13 +211,73 @@ function afterorderemail_save_defaults($add_new = false)
 	<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('After order email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
 		add_option( 'afterorderemail_options', $option_array );
 	} else {
 		update_option( 'afterorderemail_options', $option_array );
+	}
+}
+
+function reviewreminderemail_save_defaults($add_new = false)
+{
+	$current_user = wp_get_current_user();
+
+	$option_array = array(
+	'subject'	=>	_x('{fname}, share your thoughts!','Email Subject','coupon-emails') ,
+	'header'  =>	_x('Your discount','Email Header','coupon-emails') ,
+	'characters' =>	7,
+	'wc_template' =>	1,
+	'test' =>	1,
+	'days_after_order' =>	4,
+	'send_time'  =>	'02:30',
+	'from_name'	=>	get_bloginfo('name'),
+	'from_address'	=>	get_bloginfo('admin_email'),
+	'bcc_address' => $current_user->user_email,
+	'email_footer' => '{site_name_url}',
+	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Thanks for shopping with us, {fname}!</p>
+<p style='font-size: 18px;'>If you like our products, take advantage of this special offer. Login back into our store {site_name_url} and let others know what do you think of your purchase.</p>
+<p style='font-size: 19px;font-weight:600;'>As a thank you, we'll send you a discount code that you can use the next time you buy our products from us.</p>
+<p style='font-size: 18px;'>We'd love to hear your feedback.</p>
+<p style='font-size: 18px;'>The Team of {site_name}</p>
+<p style='font-size: 14px;'>Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+	);
+	if ($add_new == true) {
+		add_option( 'reviewreminderemail_options', $option_array );
+	} else {
+		update_option( 'reviewreminderemail_options', $option_array );
+	}
+}
+
+function expirationreminderemail_save_defaults($add_new = false)
+{
+	$current_user = wp_get_current_user();
+
+	$option_array = array(
+	'subject'	=>	_x('{fname}, your coupon expires soon!','Email Subject','coupon-emails') ,
+	'header'  =>	_x('Hurry up!','Email Header','coupon-emails') ,
+	'characters' =>	7,
+	'wc_template' =>	1,
+	'test' =>	1,
+	'days_before' =>	1,
+	'send_time'  =>	'01:30',
+	'from_name'	=>	get_bloginfo('name'),
+	'from_address'	=>	get_bloginfo('admin_email'),
+	'bcc_address' => $current_user->user_email,
+	'email_footer' => '{site_name_url}',
+	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Don't throw away an excellent opportunity to save, {fname}!</p>
+	<p style='font-size: 18px;'>We've recently sent you a rare discount coupon for your next purchase, which expires on {for_date}:</p>
+<p style='font-size: 24px;font-weight:800;'>{coupon}</p>
+<p style='font-size: 18px;'>Come back to our website {site_name_url} and save!</p>
+<p style='font-size: 18px;'>The Team of {site_name}</p>
+<p style='font-size: 14px;'>The validity of the voucher cannot be extended and can only be redeemed from the account of {email}.</p>" ,'Email Body', 'coupon-emails'	) ,
+	);
+	if ($add_new == true) {
+		add_option( 'expirationreminderemail_options', $option_array );
+	} else {
+		update_option( 'expirationreminderemail_options', $option_array );
 	}
 }
 
@@ -246,7 +308,7 @@ function onetimeemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('One-time email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
@@ -255,8 +317,6 @@ function onetimeemail_save_defaults($add_new = false)
 		update_option( 'onetimeemail_options', $option_array );
 	}
 }
-
-
 
 function namedayemail_save_defaults($add_new = false){
 			$current_user = wp_get_current_user();
@@ -284,7 +344,7 @@ function namedayemail_save_defaults($add_new = false){
 <p style='font-size: 18px;'>During the next {expires_in_days} days you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 				'coupon_cat' =>	_x('Name day email','Coupon category', 'coupon-emails'	) ,
 			);
 			if ($add_new == true) {
@@ -321,7 +381,7 @@ function reviewedemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are exluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('After Review','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {

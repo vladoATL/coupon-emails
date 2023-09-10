@@ -155,6 +155,72 @@
 	
 	jQuery( document ).on(
 	"click",
+	"#reviewreminderemail-setting #restore_reviewreminderemail_values_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_restore_settings',
+			nonce: nonce,
+			option_name: 'reviewreminderemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#reviewreminderemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#reviewreminderemail-setting .reviewreminderemail_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#reviewreminderemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#reviewreminderemail-setting .reviewreminderemail_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);
+		
+	jQuery( document ).on(
+	"click",
+	"#expirationreminderemail-setting #restore_expirationreminderemail_values_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_restore_settings',
+			nonce: nonce,
+			option_name: 'expirationreminderemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#expirationreminderemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#expirationreminderemail-setting .expirationreminderemail_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#expirationreminderemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#expirationreminderemail-setting .expirationreminderemail_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);
+			
+	jQuery( document ).on(
+	"click",
 	"#afterorderemail-setting #restore_afterorder_values_btn",
 	function() {
 		event.preventDefault();
@@ -317,7 +383,7 @@
 		}
 	);	
 
-	 	jQuery( document ).on(
+jQuery( document ).on(
 	"click",
 	"#reviewedemail-setting #test_reviewedemail_btn",
 	function() {
@@ -348,7 +414,73 @@
 		);
 		return false;
 	}
+);
+	
+jQuery( document ).on(
+"click",
+"#reviewreminderemail-setting #test_reviewreminderemail_btn",
+function() {
+	event.preventDefault();
+	var nonce = jQuery( this ).attr( 'attr-nonce' );
+	var data  = {
+		action: 'email_make_test',
+		nonce: nonce,
+		option_name: 'reviewreminderemail',
+	};
+	jQuery.ajax(
+	{
+		type: "post",
+		url: ajaxurl,
+		data: data,
+		beforeSend: function(response) {
+			jQuery( "#reviewreminderemail-setting .loader_cover" ).addClass( 'active' );
+			jQuery( "#reviewreminderemail-setting .reviewreminderemail_loader" ).addClass( 'loader' );
+		},
+		complete: function(response) {
+			jQuery( "#reviewreminderemail-setting .loader_cover" ).removeClass( 'active' );
+			jQuery( "#reviewreminderemail-setting .reviewreminderemail_loader" ).removeClass( 'loader' );
+		},
+		success: function(response) {
+			location.reload();
+		}
+	}
 	);
+	return false;
+}
+);
+	
+jQuery( document ).on(
+"click",
+"#expirationreminderemail-setting #test_expirationreminderemail_btn",
+function() {
+	event.preventDefault();
+	var nonce = jQuery( this ).attr( 'attr-nonce' );
+	var data  = {
+		action: 'email_make_test',
+		nonce: nonce,
+		option_name: 'expirationreminderemail',
+	};
+	jQuery.ajax(
+	{
+		type: "post",
+		url: ajaxurl,
+		data: data,
+		beforeSend: function(response) {
+			jQuery( "#expirationreminderemail-setting .loader_cover" ).addClass( 'active' );
+			jQuery( "#expirationreminderemail-setting .reviewreminderemail_loader" ).addClass( 'loader' );
+		},
+		complete: function(response) {
+			jQuery( "#expirationreminderemail-setting .loader_cover" ).removeClass( 'active' );
+			jQuery( "#expirationreminderemail-setting .expirationreminderemail_loader" ).removeClass( 'loader' );
+		},
+		success: function(response) {
+			location.reload();
+		}
+	}
+	);
+	return false;
+}
+);
 	
 jQuery( document ).on(
 "click",

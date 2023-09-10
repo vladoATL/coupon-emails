@@ -1,6 +1,6 @@
 === Coupon Emails ===
 Contributors: perties2
-Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, email, review
+Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, Polish, email, review
 Requires at least: 5.8
 Tested up to: 6.3.1
 Stable tag: 5.8
@@ -40,6 +40,9 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+* Cosmetic changes and fixes.
 
 = 1.0.1 =
 * Plugin released.
@@ -116,7 +119,7 @@ Coupon Emails plugin is officially compatible with the following plugins:
 * Length of coupon can by set
 * Delete unused expired coupons can by set
 * No need to enter cron time in UTC time anymore
-* Added Austrian and Hungarian calendar
+* Added Austrian and Hungarian name calendar
 * Fix sending to CC email
 
 = 0.1.1 =

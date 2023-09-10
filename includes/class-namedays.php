@@ -65,7 +65,10 @@ class Namedays
 		$sql = "SELECT u.id, umfn.meta_value  AS user_firstname, u.user_email AS user_email FROM {$wpdb->prefix}users AS u
 				INNER JOIN {$wpdb->prefix}usermeta AS umfn ON
 					umfn.user_id = u.id AND umfn.meta_key = 'first_name'
-					WHERE umfn.meta_value IN ($names)";
+					WHERE umfn.meta_value IN ($names)
+					AND umfn.meta_value <> '' 
+					AND umfn.meta_value IS NOT NULL";
+		EmailFunctions::test_add_log('-get_celebrating_users- ' . $this->type . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
 
 		return $result;
@@ -84,7 +87,8 @@ class Namedays
 			
 			$users = $this->get_celebrating_users($d,$m);
 			foreach ($users as $user) {
-				$funcs->couponemails_create($user);
+				if (!empty($user->user_firstname))
+					$funcs->couponemails_create($user);
 			}
 			$funcs->couponemails_delete_expired();
 		}
