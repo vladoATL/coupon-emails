@@ -31,14 +31,16 @@ $section = isset($_GET['section']) ? $_GET['section'] : $default_tab;
 		<?php
 		if ($tab==='name-day') : ?>nav-tab-active<?php
 		endif; echo(' ' . $nameday_top); ?>"> <?php echo  __( 'Name Day', 'coupon-emails' ); ?></a>
-	<a href="?page=couponemails&tab=after-order" class="nav-tab
-		<?php
-		if ($tab==='after-order') : ?>nav-tab-active<?php
-		endif; echo(' ' . $afterorder_top); ?>"> <?php echo  __( 'After Order', 'coupon-emails' ); ?></a>			
+				
 	<a href="?page=couponemails&tab=reorder" class="nav-tab <?php
 			if ($tab==='reorder') : ?>nav-tab-active<?php
 			endif; echo(' ' . $reorder_top); ?>"><?php echo  __( 'Reorder', 'coupon-emails' ); ?></a>
-		
+
+	<a href="?page=couponemails&tab=after-order" class="nav-tab
+		<?php
+			if ($tab==='after-order') : ?>nav-tab-active<?php
+			endif; echo(' ' . $afterorder_top); ?>"> <?php echo  __( 'After Order', 'coupon-emails' ); ?></a>
+						
 	<a href="?page=couponemails&tab=reviewed" class="nav-tab <?php
 		if ($tab==='reviewed') : ?>nav-tab-active<?php
 		endif; echo(' ' . $reviewed_top); ?>"><?php echo  __( 'After Reviewed', 'coupon-emails' ); ?></a>

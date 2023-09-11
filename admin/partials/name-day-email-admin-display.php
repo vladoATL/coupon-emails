@@ -1,10 +1,57 @@
 <?php
 namespace COUPONEMAILS;
 global $woocommerce, $post;
+$option_name = "namedayemail";
 
+if ( isset( $_GET['runtest'] ) ) {
+	$nd = new \COUPONEMAILS\Namedays();
+	$nd -> namedayemail_event_setup();
+}
+
+// Process export
+if ( isset( $_GET['namedayexport'] ) ) {
+	global $wpdb;
+	$options = get_option($option_name . '_options');
+	$nameday = new Namedays();
+	ob_end_clean();
+	$table_head = array('User ID', 'First Name', 'Last Name', 'Email', 'Date' );
+	$csv = implode( ';' , $table_head );
+	$csv .= "\n";
+
+	$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] . ' day'));
+	$dateValue = strtotime($str_nameday);
+	$m = intval(date("m", $dateValue));
+	$d = intval(date("d", $dateValue));
+	$result =  (array) $nameday ->get_celebrating_users($d,$m);
+
+	$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] + 1 . ' day'));
+	$dateValue = strtotime($str_nameday);
+	$m = intval(date("m", $dateValue));
+	$d = intval(date("d", $dateValue));
+	$result2 =  (array) $nameday ->get_celebrating_users($d,$m);
+	
+	$result_merge = array_merge($result,$result2);
+	
+	foreach ( $result_merge as $key => $value ) {
+		$csv .=   implode(';', (array) $value);
+		$csv .= "\n";
+	}
+	$csv .= "\n";
+	$filename = 'nameday.csv';
+	header('Content-Type: application/csv');
+	header('Content-Disposition: attachment; filename="' . $filename .'"');
+	header('Content-Transfer-Encoding: binary');
+	header('Expires: 0');
+	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+	header('Pragma: public');
+	echo "\xEF\xBB\xBF"; // UTF-8 BOM
+	echo $csv;
+	exit();
+}
 
 // Process export
 if ( isset( $_GET['namesexport'] ) ) {
+	
 	$options = get_option('namedayemail_options');
 	$language = $options['language'];
 
@@ -57,9 +104,7 @@ if ( isset( $_GET['namesexport'] ) ) {
 	echo $csv;
 	exit();	
 }
-
-$option_name = "namedayemail";
-
+namedayemail_run_cron();
 ?>
 <div class="wrap woocommerce">
 <div id="namedayemail-setting"  class="coupon-emails-setting">
@@ -69,6 +114,7 @@ $option_name = "namedayemail";
 attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce' ) ); ?>"
 id="restore_namedayemail_values_btn" />
 
+
 <div class="icon32" id="icon-options-general"><br></div>
 <h2><?php echo _x('Name Day Emails Settings','Setting', 'coupon-emails'); ?> </h2>
 
@@ -76,7 +122,6 @@ id="restore_namedayemail_values_btn" />
 <?php
 settings_fields('namedayemail_plugin_options');
 $options = get_option('namedayemail_options');
-namedayemail_run_cron();
 ?>
 <table class="form-table">
 	<tr valign="top">
@@ -87,8 +132,10 @@ namedayemail_run_cron();
 	</tr>
 	<tr valign="top">
 		<th class="titledesc"><?php echo __( 'Run in test mode', 'coupon-emails' ); ?>:</th>
-		<td><input type="checkbox" name="namedayemail_options[test]" id="namedayemail_options[test]"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>
+		<td><input type="checkbox" class="test_enabled" name="namedayemail_options[test]" id="namedayemail_options[test]"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>
 			<?php  echo wc_help_tip(__( 'Turn on when testing. The user will not get emails. All emails will be sent to BCC/Test address.', 'coupon-emails' ), false); ?>
+			<button type="button" class="button button-primary" id="run_button" onClick="window.location.search += '&runtest=1'"><?php echo __( 'Run now', 'coupon-emails' ); ?></button>	
+			<input type="checkbox" style="display: none;" name="test_enabled" id="test_enabled"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>	<?php  echo wc_help_tip(sprintf(_n( 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupon will be created and emails sent to administrator.', 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupons will be created and test emails sent to administrator.', MAX_TEST_EMAILS, 'coupon-emails' ), MAX_TEST_EMAILS), false); ?>			
 		</td>
 	</tr>
 	<tr valign="top">
@@ -125,6 +172,13 @@ namedayemail_run_cron();
 			<?php  echo wc_help_tip(__( 'This is time when cron sends the email messages.', 'coupon-emails' ), false); ?>
 		</td>
 	</tr>
+	<tr>
+		<th class="titledesc"><?php echo __( 'List of users who receive the email today and tomorrow', 'coupon-emails' ); ?>:</th>
+		<td>
+			<a class="button button-primary" href="admin.php?page=couponemails&tab=name-day&namedayexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
+			<?php  echo wc_help_tip(__( "Download csv file with filtered users for today's and tomorrow's email.", 'coupon-emails' ), false); ?>
+		</td>
+	</tr>	
 </table>
 
 <?php include('coupon-form.php'); ?>
@@ -135,3 +189,17 @@ namedayemail_run_cron();
 			
 	</div>
 	</div>
+	
+
+ <script>
+	 const enabled_hidden = document.querySelector('input[id="test_enabled"]');
+	 const runNowButton = document.getElementById('run_button');
+	 enabled_hidden.addEventListener('change', checkButtonStatus);
+
+	 function checkButtonStatus()
+	 {
+		 const allChecked = enabled_hidden.checked ;
+		 runNowButton.disabled = !allChecked;
+	 }
+	 checkButtonStatus();
+ </script>

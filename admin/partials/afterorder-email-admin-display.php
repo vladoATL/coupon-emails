@@ -1,5 +1,11 @@
 <?php
 namespace COUPONEMAILS;
+$option_name = "afterorderemail";
+
+if ( isset( $_GET['runtest'] ) ) {
+	$nd = new \COUPONEMAILS\AfterOrder($option_name);
+	$nd -> afterorderemail_event_setup();
+}
 
 // Process export
 if ( isset( $_GET['afterorderexport'] ) ) {
@@ -9,7 +15,7 @@ if ( isset( $_GET['afterorderexport'] ) ) {
 	$csv = implode( ';' , $table_head );
 	$csv .= "\n";
 
-	$afterorders = new AfterOrder();
+	$afterorders = new \COUPONEMAILS\AfterOrder($option_name);
 	$result = $afterorders->get_users_afterorder();
 
 	foreach ( $result as $key => $value ) {
@@ -28,9 +34,6 @@ if ( isset( $_GET['afterorderexport'] ) ) {
 	echo $csv;
 	exit();
 }
-
-$option_name = "afterorderemail";
-
 ?>
 
 <div class="wrap woocommerce">
@@ -61,6 +64,8 @@ id="restore_afterorder_values_btn" />
 			<th class="titledesc"><?php echo __( 'Run in test mode', 'coupon-emails' ); ?>:</th>
 			<td><input type="checkbox" name="afterorderemail_options[test]" id="afterorderemail_options[test]"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>
 				<?php  echo wc_help_tip(__( 'Turn on when testing. The user will not get emails. All emails will be sent to BCC/Test address.', 'coupon-emails' ), false); ?>
+				<button type="button" class="button button-primary" id="run_button" onClick="window.location.search += '&runtest=1'"><?php echo __( 'Run now', 'coupon-emails' ); ?></button>
+				<input type="checkbox" style="display: none;" name="test_enabled" id="test_enabled"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>	<?php  echo wc_help_tip(sprintf(_n( 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupon will be created and emails sent to administrator.', 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupons will be created and test emails sent to administrator.', MAX_TEST_EMAILS, 'coupon-emails' ), MAX_TEST_EMAILS), false); ?>			
 			</td>
 		</tr>
 		<tr>
@@ -160,10 +165,10 @@ id="restore_afterorder_values_btn" />
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Download list of users who will receive the email', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo __( 'List of users who receive the email today', 'coupon-emails' ); ?>:</th>
 			<td>
 				<a class="button button-primary" href="admin.php?page=couponemails&tab=after-order&afterorderexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
-				<?php  echo wc_help_tip(__( 'Download csv file with filtered users.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(__( "Download csv file with filtered users for today's email.", 'coupon-emails' ), false); ?>
 			</td>
 		</tr>		
 	</table>	
@@ -177,3 +182,16 @@ attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce_
 </p>
 </div>
 </div>
+
+ <script>
+	 const enabled_hidden = document.querySelector('input[id="test_enabled"]');
+	 const runNowButton = document.getElementById('run_button');
+	 enabled_hidden.addEventListener('change', checkButtonStatus);
+
+	 function checkButtonStatus()
+	 {
+		 const allChecked = enabled_hidden.checked ;
+		 runNowButton.disabled = !allChecked;
+	 }
+	 checkButtonStatus();
+ </script>

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: My Day Email\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-10 09:09+0000\n"
+"POT-Creation-Date: 2023-09-11 11:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -21,35 +21,29 @@ msgstr ""
 msgid "Add multiple emails separated by comma ( , )."
 msgstr ""
 
-#: admin/partials/coupon-emails-admin-display.php:37
+#: admin/partials/coupon-emails-admin-display.php:42
 msgid "After Order"
 msgstr ""
 
-#: admin/partials/coupon-emails-admin-display.php:44
+#: admin/partials/coupon-emails-admin-display.php:46
 msgid "After Reviewed"
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:69
+#: admin/partials/reviewed-email-admin-display.php:41
 msgid "All reviews"
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:61
-#: admin/partials/reviewed-email-admin-display.php:82
+#: admin/partials/reviewed-email-admin-display.php:54
 msgid "All roles"
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:178
+#: admin/partials/review-reminder-email-admin-display.php:185
 msgid "All users"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:103
+#: admin/partials/name-day-email-admin-display.php:150
 msgid "Austrian calendar"
-msgstr ""
-
-#. Description of the plugin
-msgid ""
-"Automatically generates emails with unique coupons for customers' birthdays, "
-"their name days and after makeing an order with many customization options."
 msgstr ""
 
 #: admin/partials/email-table.php:29
@@ -60,7 +54,7 @@ msgstr ""
 msgid "Birthday"
 msgstr ""
 
-#: admin/partials/expiration-reminder-email-admin-display.php:94
+#: admin/partials/expiration-reminder-email-admin-display.php:102
 msgid "Categories of coupons to be validated"
 msgstr ""
 
@@ -75,11 +69,11 @@ msgctxt "Check out"
 msgid "Date of birth - Year is not important but helps"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:106
+#: admin/partials/name-day-email-admin-display.php:153
 msgid "Choose the calendar country to be used"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:113
+#: admin/partials/common-settings-admin-display.php:110
 msgid "Clear Log"
 msgstr ""
 
@@ -95,62 +89,62 @@ msgstr ""
 msgid "Coupon category"
 msgstr ""
 
-#: coupon-emails.php:215
+#: coupon-emails.php:218
 msgctxt "Coupon category"
 msgid "After order email"
 msgstr ""
 
-#: coupon-emails.php:385
+#: coupon-emails.php:388
 msgctxt "Coupon category"
 msgid "After Review"
 msgstr ""
 
-#: coupon-emails.php:139
+#: coupon-emails.php:142
 msgctxt "Coupon category"
 msgid "Birth day email"
 msgstr ""
 
-#: coupon-emails.php:348
+#: coupon-emails.php:351
 msgctxt "Coupon category"
 msgid "Name day email"
 msgstr ""
 
-#: coupon-emails.php:312
+#: coupon-emails.php:315
 msgctxt "Coupon category"
 msgid "One-time email"
 msgstr ""
 
-#: coupon-emails.php:176
+#: coupon-emails.php:179
 msgctxt "Coupon category"
 msgid "Reorder email"
 msgstr ""
 
-#: coupon-emails.php:205
+#: coupon-emails.php:208
 msgctxt "Coupon description"
 msgid "After order {fname} {lname}: {email}"
 msgstr ""
 
-#: coupon-emails.php:375
+#: coupon-emails.php:378
 msgctxt "Coupon description"
 msgid "After review {fname} {lname}: {email}"
 msgstr ""
 
-#: coupon-emails.php:130
+#: coupon-emails.php:133
 msgctxt "Coupon description"
 msgid "Birthday {fname} {lname}: {email}"
 msgstr ""
 
-#: coupon-emails.php:339
+#: coupon-emails.php:342
 msgctxt "Coupon description"
 msgid "Name Day {fname}: {email}"
 msgstr ""
 
-#: coupon-emails.php:303
+#: coupon-emails.php:306
 msgctxt "Coupon description"
 msgid "One time {fname} {lname}: {email}"
 msgstr ""
 
-#: coupon-emails.php:167
+#: coupon-emails.php:170
 msgctxt "Coupon description"
 msgid "Reorder {fname} {lname}: {email}"
 msgstr ""
@@ -171,44 +165,44 @@ msgstr ""
 msgid "Coupon settings"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:71
+#: admin/partials/common-settings-admin-display.php:68
 msgid "Coupons category"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:94
-#: admin/partials/reorder-email-admin-display.php:174
-#: admin/partials/name-day-email-admin-display.php:133
-#: admin/partials/review-reminder-email-admin-display.php:198
+#: admin/partials/birth-day-email-admin-display.php:152
+#: admin/partials/reorder-email-admin-display.php:175
+#: admin/partials/name-day-email-admin-display.php:187
+#: admin/partials/review-reminder-email-admin-display.php:205
 #: admin/partials/onetime-email-admin-display.php:210
-#: admin/partials/afterorder-email-admin-display.php:175
-#: admin/partials/expiration-reminder-email-admin-display.php:123
-#: admin/partials/reviewed-email-admin-display.php:155
+#: admin/partials/afterorder-email-admin-display.php:180
+#: admin/partials/expiration-reminder-email-admin-display.php:131
+#: admin/partials/reviewed-email-admin-display.php:127
 msgid "Create a test"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:101
+#: admin/partials/name-day-email-admin-display.php:148
 msgid "Croatian calendar"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:99
+#: admin/partials/name-day-email-admin-display.php:146
 msgid "Czech calendar"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:65
-#: admin/partials/review-reminder-email-admin-display.php:79
-#: admin/partials/afterorder-email-admin-display.php:67
+#: admin/partials/reorder-email-admin-display.php:66
+#: admin/partials/review-reminder-email-admin-display.php:86
+#: admin/partials/afterorder-email-admin-display.php:72
 msgid "Days after last order"
 msgstr ""
 
-#: admin/partials/expiration-reminder-email-admin-display.php:80
+#: admin/partials/expiration-reminder-email-admin-display.php:88
 msgid "Days before coupon expiration"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:49
+#: admin/partials/common-settings-admin-display.php:46
 msgid "Delete now"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:45
+#: admin/partials/common-settings-admin-display.php:42
 msgid "Delete unused coupons in days after expiration"
 msgstr ""
 
@@ -225,24 +219,34 @@ msgstr ""
 msgid "Don't generate coupon"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:85
-#: admin/partials/reorder-email-admin-display.php:163
-#: admin/partials/name-day-email-admin-display.php:107
-#: admin/partials/review-reminder-email-admin-display.php:188
+#: admin/partials/birth-day-email-admin-display.php:136
+#: admin/partials/birth-day-email-admin-display.php:143
+#: admin/partials/reorder-email-admin-display.php:164
+#: admin/partials/name-day-email-admin-display.php:154
+#: admin/partials/name-day-email-admin-display.php:178
+#: admin/partials/review-reminder-email-admin-display.php:195
 #: admin/partials/onetime-email-admin-display.php:200
-#: admin/partials/afterorder-email-admin-display.php:165
-#: admin/partials/expiration-reminder-email-admin-display.php:113
+#: admin/partials/afterorder-email-admin-display.php:170
+#: admin/partials/expiration-reminder-email-admin-display.php:121
 msgid "Download csv"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:86
-msgid "Download csv file with brith days of users."
+#: admin/partials/birth-day-email-admin-display.php:137
+msgid "Download csv file with brithdays of users."
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:164
-#: admin/partials/review-reminder-email-admin-display.php:189
-#: admin/partials/afterorder-email-admin-display.php:166
-#: admin/partials/expiration-reminder-email-admin-display.php:114
+#: admin/partials/birth-day-email-admin-display.php:144
+#: admin/partials/name-day-email-admin-display.php:179
+msgid "Download csv file with filtered users for today's and tomorrow's email."
+msgstr ""
+
+#: admin/partials/review-reminder-email-admin-display.php:196
+#: admin/partials/afterorder-email-admin-display.php:171
+#: admin/partials/expiration-reminder-email-admin-display.php:122
+msgid "Download csv file with filtered users for today's email."
+msgstr ""
+
+#: admin/partials/reorder-email-admin-display.php:165
 msgid "Download csv file with filtered users."
 msgstr ""
 
@@ -250,18 +254,15 @@ msgstr ""
 msgid "Download csv file with selected users."
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:83
-msgid "Download file with all users"
+#: admin/partials/birth-day-email-admin-display.php:134
+msgid "Download file with birthdays"
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:198
 msgid "Download file with users to send email"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:161
-#: admin/partials/review-reminder-email-admin-display.php:186
-#: admin/partials/afterorder-email-admin-display.php:163
-#: admin/partials/expiration-reminder-email-admin-display.php:111
+#: admin/partials/reorder-email-admin-display.php:162
 msgid "Download list of users who will receive the email"
 msgstr ""
 
@@ -269,7 +270,7 @@ msgstr ""
 msgid "Email body"
 msgstr ""
 
-#: coupon-emails.php:377
+#: coupon-emails.php:380
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 18px;'>{fname}, thank you for your review of our "
@@ -286,10 +287,10 @@ msgid ""
 "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
 "<p style='font-size: 14px;'>The coupon can only be used after logging into "
 "your account and cannot be used with other discounts. Some products are "
-"exluded from the discount.</p>"
+"excluded  from the discount.</p>"
 msgstr ""
 
-#: coupon-emails.php:270
+#: coupon-emails.php:273
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>Don't throw away an excellent "
@@ -304,7 +305,7 @@ msgid ""
 "and can only be redeemed from the account of {email}.</p>"
 msgstr ""
 
-#: coupon-emails.php:132
+#: coupon-emails.php:135
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>Have a nice birthday, {fname}!"
@@ -320,10 +321,10 @@ msgid ""
 "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
 "<p style='font-size: 14px;'>The coupon can only be used after logging into "
 "your account and cannot be used with other discounts. Some products are "
-"exluded from the discount.</p>"
+"excluded  from the discount.</p>"
 msgstr ""
 
-#: coupon-emails.php:341
+#: coupon-emails.php:344
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>Have a nice name day, {fname}!"
@@ -338,14 +339,14 @@ msgid ""
 "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
 "<p style='font-size: 14px;'>The coupon can only be used after logging into "
 "your account and cannot be used with other discounts. Some products are "
-"exluded from the discount.</p>"
+"excluded  from the discount.</p>"
 msgstr ""
 
-#: coupon-emails.php:240
+#: coupon-emails.php:243
 msgctxt "Email Body"
 msgid ""
-"<p style='font-size: 20px;font-weight:600;'>Thanks for shopping with us, "
-"{fname}!</p>\n"
+"<p style='font-size: 20px;font-weight:600;'>Thanks for shopping with us "
+"{last_order_date}, {fname}!</p>\n"
 "<p style='font-size: 18px;'>If you like our products, take advantage of this "
 "special offer. Login back into our store {site_name_url} and let others know "
 "what do you think of your purchase.</p>\n"
@@ -354,10 +355,11 @@ msgid ""
 "</p>\n"
 "<p style='font-size: 18px;'>We'd love to hear your feedback.</p>\n"
 "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
-"<p style='font-size: 14px;'>Some products are exluded from the discount.</p>"
+"<p style='font-size: 14px;'>Some products are excluded  from the discount."
+"</p>"
 msgstr ""
 
-#: coupon-emails.php:169
+#: coupon-emails.php:172
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>We have a special discount for "
@@ -373,10 +375,10 @@ msgid ""
 "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
 "<p style='font-size: 14px;'>The coupon can only be used after logging into "
 "your account and cannot be used with other discounts. Some products are "
-"exluded from the discount.</p>"
+"excluded  from the discount.</p>"
 msgstr ""
 
-#: coupon-emails.php:207
+#: coupon-emails.php:210
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>We have a special discount for "
@@ -393,10 +395,10 @@ msgid ""
 "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
 "<p style='font-size: 14px;'>The coupon can only be used after logging into "
 "your account and cannot be used with other discounts. Some products are "
-"exluded from the discount.</p>"
+"excluded  from the discount.</p>"
 msgstr ""
 
-#: coupon-emails.php:305
+#: coupon-emails.php:308
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>We have a special discount for "
@@ -411,7 +413,7 @@ msgid ""
 "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
 "<p style='font-size: 14px;'>The coupon can only be used after logging into "
 "your account and cannot be used with other discounts. Some products are "
-"exluded from the discount.</p>"
+"excluded  from the discount.</p>"
 msgstr ""
 
 #: admin/partials/email-table.php:21
@@ -430,23 +432,23 @@ msgstr ""
 msgid "Email header"
 msgstr ""
 
-#: coupon-emails.php:116 coupon-emails.php:326
+#: coupon-emails.php:119 coupon-emails.php:329
 msgctxt "Email Header"
 msgid "Congratulations"
 msgstr ""
 
-#: coupon-emails.php:363
+#: coupon-emails.php:366
 msgctxt "Email Header"
 msgid "Here is your gift"
 msgstr ""
 
-#: coupon-emails.php:260
+#: coupon-emails.php:263
 msgctxt "Email Header"
 msgid "Hurry up!"
 msgstr ""
 
-#: coupon-emails.php:154 coupon-emails.php:191 coupon-emails.php:230
-#: coupon-emails.php:290
+#: coupon-emails.php:157 coupon-emails.php:194 coupon-emails.php:233
+#: coupon-emails.php:293
 msgctxt "Email Header"
 msgid "Your discount"
 msgstr ""
@@ -455,64 +457,58 @@ msgstr ""
 msgid "Email subject"
 msgstr ""
 
-#: coupon-emails.php:115
+#: coupon-emails.php:118
 msgctxt "Email Subject"
 msgid "{fname}, here is your birthday gift"
 msgstr ""
 
-#: coupon-emails.php:289
+#: coupon-emails.php:292
 msgctxt "Email Subject"
 msgid "{fname}, here is your discount coupon"
 msgstr ""
 
-#: coupon-emails.php:325
+#: coupon-emails.php:328
 msgctxt "Email Subject"
 msgid "{fname}, here is your name day gift"
 msgstr ""
 
-#: coupon-emails.php:153
+#: coupon-emails.php:156
 msgctxt "Email Subject"
 msgid "{fname}, it's time to order with discount"
 msgstr ""
 
-#: coupon-emails.php:229
+#: coupon-emails.php:232
 msgctxt "Email Subject"
 msgid "{fname}, share your thoughts!"
 msgstr ""
 
-#: coupon-emails.php:190
+#: coupon-emails.php:193
 msgctxt "Email Subject"
 msgid "{fname}, thank you for your order"
 msgstr ""
 
-#: coupon-emails.php:362
+#: coupon-emails.php:365
 msgctxt "Email Subject"
 msgid "{fname}, thank you for your review"
 msgstr ""
 
-#: coupon-emails.php:259
+#: coupon-emails.php:262
 msgctxt "Email Subject"
 msgid "{fname}, your coupon expires soon!"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:52
-#: admin/partials/reorder-email-admin-display.php:53
-#: admin/partials/name-day-email-admin-display.php:83
-#: admin/partials/review-reminder-email-admin-display.php:67
-#: admin/partials/afterorder-email-admin-display.php:55
-#: admin/partials/expiration-reminder-email-admin-display.php:68
-#: admin/partials/reviewed-email-admin-display.php:54
+#: admin/partials/birth-day-email-admin-display.php:101
+#: admin/partials/reorder-email-admin-display.php:54
+#: admin/partials/name-day-email-admin-display.php:128
+#: admin/partials/review-reminder-email-admin-display.php:72
+#: admin/partials/afterorder-email-admin-display.php:58
+#: admin/partials/expiration-reminder-email-admin-display.php:74
+#: admin/partials/reviewed-email-admin-display.php:26
 msgid "Enable auto sending emails"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:53
+#: admin/partials/common-settings-admin-display.php:50
 msgid "Enable logs"
-msgstr ""
-
-#: admin/partials/reorder-email-admin-display.php:68
-#: admin/partials/afterorder-email-admin-display.php:70
-msgid ""
-"Enter number of days after last order when to send this email with coupon."
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:186
@@ -521,13 +517,15 @@ msgid ""
 "this coupon email should be sent."
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:82
+#: admin/partials/reorder-email-admin-display.php:69
+#: admin/partials/review-reminder-email-admin-display.php:89
+#: admin/partials/afterorder-email-admin-display.php:75
 msgid ""
 "Enter the number of days after last order when to send this email with "
 "coupon."
 msgstr ""
 
-#: admin/partials/expiration-reminder-email-admin-display.php:83
+#: admin/partials/expiration-reminder-email-admin-display.php:91
 msgid ""
 "Enter the number of days before coupon of the customer's coupon expires. "
 "Empty or 0 means that the coupon will expire today"
@@ -537,32 +535,54 @@ msgstr ""
 msgid "Exclude discounted products"
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:47
+#: admin/partials/review-reminder-email-admin-display.php:52
 msgid "Expiration Reminders"
 msgstr ""
 
-#: admin/partials/expiration-reminder-email-admin-display.php:48
+#: admin/partials/expiration-reminder-email-admin-display.php:54
 msgid "Expiration reminders"
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:175
+#: admin/partials/review-reminder-email-admin-display.php:182
 msgid "Filter by previous reviews"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Generate emails with unique coupons for birthdays, name days, after placing "
+"an order, send reminders and more with many customization options."
 msgstr ""
 
 #: admin/partials/coupon-form.php:77
 msgid "Good only for products"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:102
+#: admin/partials/name-day-email-admin-display.php:149
 msgid "Hungarian calendar"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:48
+#: admin/partials/common-settings-admin-display.php:45
 msgid ""
 "If you leave this blank, the coupons will not be deleted. To automatically "
 "delete coupons, enter the number of days after the expiration date and "
 "unused coupons will be deleted."
 msgstr ""
+
+#: admin/partials/birth-day-email-admin-display.php:111
+#: admin/partials/name-day-email-admin-display.php:138
+#: admin/partials/review-reminder-email-admin-display.php:82
+#: admin/partials/afterorder-email-admin-display.php:68
+#: admin/partials/expiration-reminder-email-admin-display.php:84
+#, php-format
+msgid ""
+"If you want to run a test, check the chekbox and save. After pushing this "
+"button maximum %s coupon will be created and emails sent to administrator."
+msgid_plural ""
+"If you want to run a test, check the chekbox and save. After pushing this "
+"button maximum %s coupons will be created and test emails sent to "
+"administrator."
+msgstr[0] ""
+msgstr[1] ""
 
 #: includes/class-birthdayfield.php:68 includes/class-birthdayfield.php:102
 #: includes/class-birthdayfield.php:113
@@ -577,14 +597,25 @@ msgstr ""
 msgid "Leave this field blank if unexpired coupons are to be created."
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:108
+#: admin/partials/review-reminder-email-admin-display.php:193
+#: admin/partials/afterorder-email-admin-display.php:168
+#: admin/partials/expiration-reminder-email-admin-display.php:119
+msgid "List of users who receive the email today"
+msgstr ""
+
+#: admin/partials/birth-day-email-admin-display.php:141
+#: admin/partials/name-day-email-admin-display.php:176
+msgid "List of users who receive the email today and tomorrow"
+msgstr ""
+
+#: admin/partials/name-day-email-admin-display.php:155
 msgid "Make sure the selection is saved before download."
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:155
-#: admin/partials/review-reminder-email-admin-display.php:169
+#: admin/partials/reorder-email-admin-display.php:156
+#: admin/partials/review-reminder-email-admin-display.php:176
 #: admin/partials/onetime-email-admin-display.php:177
-#: admin/partials/afterorder-email-admin-display.php:157
+#: admin/partials/afterorder-email-admin-display.php:162
 msgid "Maximum"
 msgstr ""
 
@@ -593,10 +624,10 @@ msgctxt "menu"
 msgid "Coupon Emails"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:153
-#: admin/partials/review-reminder-email-admin-display.php:167
+#: admin/partials/reorder-email-admin-display.php:154
+#: admin/partials/review-reminder-email-admin-display.php:174
 #: admin/partials/onetime-email-admin-display.php:175
-#: admin/partials/afterorder-email-admin-display.php:155
+#: admin/partials/afterorder-email-admin-display.php:160
 msgid "Minimum"
 msgstr ""
 
@@ -613,31 +644,31 @@ msgstr ""
 msgid "Name Day"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:95
+#: admin/partials/name-day-email-admin-display.php:142
 msgid "Name days calendar"
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:78
-#: admin/partials/reviewed-email-admin-display.php:99
+#: admin/partials/reviewed-email-admin-display.php:71
 msgid "No roles"
 msgstr ""
 
-#: includes/class-coupon-emails-functions.php:510
+#: includes/class-coupon-emails-functions.php:525
 #, php-format
 msgid "One expired unused coupon was deleted."
 msgid_plural "%s expired unused coupons were deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/partials/coupon-emails-admin-display.php:49
+#: admin/partials/coupon-emails-admin-display.php:51
 msgid "One Time"
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:180
+#: admin/partials/review-reminder-email-admin-display.php:187
 msgid "Only those who have already rated"
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:179
+#: admin/partials/review-reminder-email-admin-display.php:186
 msgid "Only those who have not rated yet"
 msgstr ""
 
@@ -645,7 +676,7 @@ msgstr ""
 msgid "Placeholders"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:100
+#: admin/partials/name-day-email-admin-display.php:147
 msgid "Polish calendar"
 msgstr ""
 
@@ -659,46 +690,54 @@ msgctxt "Registration"
 msgid "Date of birth"
 msgstr ""
 
-#: admin/partials/coupon-emails-admin-display.php:54
+#: admin/partials/coupon-emails-admin-display.php:56
 msgid "Reminders"
 msgstr ""
 
-#: admin/partials/coupon-emails-admin-display.php:40
+#: admin/partials/coupon-emails-admin-display.php:37
 msgid "Reorder"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:40
-#: admin/partials/reorder-email-admin-display.php:39
-#: admin/partials/name-day-email-admin-display.php:68
-#: admin/partials/review-reminder-email-admin-display.php:50
+#: admin/partials/birth-day-email-admin-display.php:89
+#: admin/partials/reorder-email-admin-display.php:40
+#: admin/partials/name-day-email-admin-display.php:113
+#: admin/partials/review-reminder-email-admin-display.php:55
 #: admin/partials/onetime-email-admin-display.php:38
-#: admin/partials/afterorder-email-admin-display.php:40
-#: admin/partials/expiration-reminder-email-admin-display.php:51
-#: admin/partials/reviewed-email-admin-display.php:39
+#: admin/partials/afterorder-email-admin-display.php:43
+#: admin/partials/expiration-reminder-email-admin-display.php:57
+#: admin/partials/reviewed-email-admin-display.php:11
 msgid "Restore Defaults"
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:43
+#: admin/partials/review-reminder-email-admin-display.php:48
 msgid "Review Reminders"
 msgstr ""
 
-#: admin/partials/expiration-reminder-email-admin-display.php:44
+#: admin/partials/expiration-reminder-email-admin-display.php:50
 msgid "Review reminders"
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:66
+#: admin/partials/reviewed-email-admin-display.php:38
 msgid "Reviews only with minimum stars"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:58
-#: admin/partials/reorder-email-admin-display.php:59
-#: admin/partials/name-day-email-admin-display.php:89
-#: admin/partials/review-reminder-email-admin-display.php:73
+#: admin/partials/birth-day-email-admin-display.php:107
+#: admin/partials/reorder-email-admin-display.php:60
+#: admin/partials/name-day-email-admin-display.php:134
+#: admin/partials/review-reminder-email-admin-display.php:78
 #: admin/partials/onetime-email-admin-display.php:53
-#: admin/partials/afterorder-email-admin-display.php:61
-#: admin/partials/expiration-reminder-email-admin-display.php:74
-#: admin/partials/reviewed-email-admin-display.php:60
+#: admin/partials/afterorder-email-admin-display.php:64
+#: admin/partials/expiration-reminder-email-admin-display.php:80
+#: admin/partials/reviewed-email-admin-display.php:32
 msgid "Run in test mode"
+msgstr ""
+
+#: admin/partials/birth-day-email-admin-display.php:110
+#: admin/partials/name-day-email-admin-display.php:137
+#: admin/partials/review-reminder-email-admin-display.php:81
+#: admin/partials/afterorder-email-admin-display.php:67
+#: admin/partials/expiration-reminder-email-admin-display.php:83
+msgid "Run now"
 msgstr ""
 
 #: admin/partials/coupon-form.php:26
@@ -706,21 +745,21 @@ msgid "Select how many characters the generated coupons should consist of."
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:89
-#: admin/partials/reviewed-email-admin-display.php:110
+#: admin/partials/reviewed-email-admin-display.php:82
 msgid "Select user roles to exclude from sending the emails."
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:72
-#: admin/partials/reviewed-email-admin-display.php:93
+#: admin/partials/reviewed-email-admin-display.php:65
 msgid "Select user roles to send the emails to."
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:70
-#: admin/partials/reorder-email-admin-display.php:72
-#: admin/partials/name-day-email-admin-display.php:122
-#: admin/partials/review-reminder-email-admin-display.php:86
-#: admin/partials/afterorder-email-admin-display.php:74
-#: admin/partials/expiration-reminder-email-admin-display.php:87
+#: admin/partials/birth-day-email-admin-display.php:121
+#: admin/partials/reorder-email-admin-display.php:73
+#: admin/partials/name-day-email-admin-display.php:169
+#: admin/partials/review-reminder-email-admin-display.php:93
+#: admin/partials/afterorder-email-admin-display.php:79
+#: admin/partials/expiration-reminder-email-admin-display.php:95
 msgid "Send email every day at"
 msgstr ""
 
@@ -728,11 +767,11 @@ msgstr ""
 msgid "Send email only to these addresses"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:64
+#: admin/partials/birth-day-email-admin-display.php:115
 msgid "Send email X days before birthday"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:112
+#: admin/partials/name-day-email-admin-display.php:159
 msgid "Send email X days before name day"
 msgstr ""
 
@@ -740,11 +779,11 @@ msgstr ""
 msgid "Send emails"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:77
+#: admin/partials/birth-day-email-admin-display.php:128
 msgid "Send it onle one time in a year"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:79
+#: admin/partials/birth-day-email-admin-display.php:130
 msgid ""
 "Send the email with coupon only once in a year to customer even though the "
 "DOB was changed."
@@ -754,37 +793,37 @@ msgstr ""
 msgid "Set the discount type."
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:76
+#: admin/partials/reviewed-email-admin-display.php:48
 msgid ""
 "Set the minimum stars number of the review when the emails should be sent."
 msgstr ""
 
-#: admin/partials/afterorder-email-admin-display.php:45
+#: admin/partials/afterorder-email-admin-display.php:48
 msgctxt "Setting"
 msgid "After Order Emails Settings"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:44
+#: admin/partials/birth-day-email-admin-display.php:93
 msgctxt "Setting"
 msgid "Birthday Emails Settings"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:34
+#: admin/partials/common-settings-admin-display.php:31
 msgctxt "Setting"
 msgid "Common Settings"
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:44
+#: admin/partials/reviewed-email-admin-display.php:16
 msgctxt "Setting"
 msgid "Emails after Reviewed Settings"
 msgstr ""
 
-#: admin/partials/expiration-reminder-email-admin-display.php:58
+#: admin/partials/expiration-reminder-email-admin-display.php:64
 msgctxt "Setting"
 msgid "Expiration Reminder Emails Settings"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:73
+#: admin/partials/name-day-email-admin-display.php:119
 msgctxt "Setting"
 msgid "Name Day Emails Settings"
 msgstr ""
@@ -794,17 +833,17 @@ msgctxt "Setting"
 msgid "One Time Emails Settings"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:44
+#: admin/partials/reorder-email-admin-display.php:45
 msgctxt "Setting"
 msgid "Order Reorder Emails Settings"
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:57
+#: admin/partials/review-reminder-email-admin-display.php:62
 msgctxt "Setting"
 msgid "Review Reminder Emails Settings"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:67
+#: admin/partials/common-settings-admin-display.php:64
 msgctxt "Setting"
 msgid "Statistics"
 msgstr ""
@@ -814,7 +853,7 @@ msgctxt "Setting section"
 msgid "Email message setting"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:104
+#: admin/partials/common-settings-admin-display.php:101
 msgctxt "Setting section"
 msgid "Logs"
 msgstr ""
@@ -823,65 +862,65 @@ msgstr ""
 msgid "Settings of other filters will be ignored if not empty."
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:98
+#: admin/partials/name-day-email-admin-display.php:145
 msgid "Slovak calendar"
 msgstr ""
 
-#: admin/partials/name-day-email-admin-display.php:104
+#: admin/partials/name-day-email-admin-display.php:151
 msgid "Spanish calendar"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:113
-#: admin/partials/review-reminder-email-admin-display.php:127
+#: admin/partials/reorder-email-admin-display.php:114
+#: admin/partials/review-reminder-email-admin-display.php:134
 #: admin/partials/onetime-email-admin-display.php:127
-#: admin/partials/afterorder-email-admin-display.php:115
+#: admin/partials/afterorder-email-admin-display.php:120
 msgid ""
 "The email will be sent to users who have never purchased any of the selected "
 "products."
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:147
-#: admin/partials/review-reminder-email-admin-display.php:161
+#: admin/partials/reorder-email-admin-display.php:148
+#: admin/partials/review-reminder-email-admin-display.php:168
 #: admin/partials/onetime-email-admin-display.php:161
-#: admin/partials/afterorder-email-admin-display.php:149
+#: admin/partials/afterorder-email-admin-display.php:154
 msgid ""
 "The email will be sent to users who have never purchased products in the "
 "selected categories."
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:94
-#: admin/partials/review-reminder-email-admin-display.php:108
+#: admin/partials/reorder-email-admin-display.php:95
+#: admin/partials/review-reminder-email-admin-display.php:115
 #: admin/partials/onetime-email-admin-display.php:108
-#: admin/partials/afterorder-email-admin-display.php:96
+#: admin/partials/afterorder-email-admin-display.php:101
 msgid ""
 "The email will be sent to users who have previously purchased at least one "
 "of the selected products. Select the main product if you want it to include "
 "all variants."
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:130
-#: admin/partials/review-reminder-email-admin-display.php:144
+#: admin/partials/reorder-email-admin-display.php:131
+#: admin/partials/review-reminder-email-admin-display.php:151
 #: admin/partials/onetime-email-admin-display.php:144
-#: admin/partials/afterorder-email-admin-display.php:132
+#: admin/partials/afterorder-email-admin-display.php:137
 msgid ""
 "The email will be sent to users who have previously purchased products in "
 "the selected categories."
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:146
+#: admin/partials/reviewed-email-admin-display.php:118
 msgid ""
 "The email will be sent to users who have reviewed any product in the "
 "selected categories."
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:129
+#: admin/partials/reviewed-email-admin-display.php:101
 msgid ""
 "The email will be sent to users who have reviewed at least one of the "
 "selected products. Select the main product if you want it to include all "
 "variants."
 msgstr ""
 
-#: admin/partials/expiration-reminder-email-admin-display.php:107
+#: admin/partials/expiration-reminder-email-admin-display.php:115
 msgid ""
 "The email will be sent to users who recieved coupons in the selected "
 "categories and have not use them."
@@ -893,10 +932,10 @@ msgid ""
 "unlimited use, leave blank."
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:157
-#: admin/partials/review-reminder-email-admin-display.php:171
+#: admin/partials/reorder-email-admin-display.php:158
+#: admin/partials/review-reminder-email-admin-display.php:178
 #: admin/partials/onetime-email-admin-display.php:179
-#: admin/partials/afterorder-email-admin-display.php:159
+#: admin/partials/afterorder-email-admin-display.php:164
 msgid ""
 "These fields allow you to filter users by the minimum and maximum amount of "
 "their total spending."
@@ -924,73 +963,74 @@ msgid ""
 "filters."
 msgstr ""
 
-#: includes/class-coupon-emails-functions.php:90
+#: includes/class-coupon-emails-functions.php:79
+#: includes/class-coupon-emails-functions.php:104
 #, php-format
-msgid "This is a test email sent to %s instead of to"
+msgid "This is a test email sent to %s instead of to "
 msgstr ""
 
 #: admin/partials/email-table.php:52
 msgid "This is short text on the top of the email."
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:73
-#: admin/partials/reorder-email-admin-display.php:75
-#: admin/partials/name-day-email-admin-display.php:125
-#: admin/partials/review-reminder-email-admin-display.php:89
-#: admin/partials/afterorder-email-admin-display.php:77
-#: admin/partials/expiration-reminder-email-admin-display.php:90
+#: admin/partials/birth-day-email-admin-display.php:124
+#: admin/partials/reorder-email-admin-display.php:76
+#: admin/partials/name-day-email-admin-display.php:172
+#: admin/partials/review-reminder-email-admin-display.php:96
+#: admin/partials/afterorder-email-admin-display.php:82
+#: admin/partials/expiration-reminder-email-admin-display.php:98
 msgid "This is time when cron sends the email messages."
 msgstr ""
 
-#: admin/partials/review-reminder-email-admin-display.php:182
+#: admin/partials/review-reminder-email-admin-display.php:189
 msgid ""
 "This setting allows you to filter the sending of emails according to whether "
 "the user has previously created a review."
 msgstr ""
 
-#: includes/class-coupon-emails-functions.php:533
+#: includes/class-coupon-emails-functions.php:548
 #, php-format
 msgid "Today %s is Name Day celebrated by"
 msgstr ""
 
-#: includes/class-coupon-emails-functions.php:535
+#: includes/class-coupon-emails-functions.php:550
 #, php-format
 msgid "Tomorrow is Name Day celebrated by"
 msgid_plural "In %s days is Name Day celebrated by"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/partials/common-settings-admin-display.php:89
+#: admin/partials/common-settings-admin-display.php:86
 msgid "Total"
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:72
+#: admin/partials/common-settings-admin-display.php:69
 msgid "Total coupons"
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:54
-#: admin/partials/reorder-email-admin-display.php:55
-#: admin/partials/name-day-email-admin-display.php:85
-#: admin/partials/review-reminder-email-admin-display.php:69
-#: admin/partials/afterorder-email-admin-display.php:57
-#: admin/partials/expiration-reminder-email-admin-display.php:70
-#: admin/partials/reviewed-email-admin-display.php:56
+#: admin/partials/birth-day-email-admin-display.php:103
+#: admin/partials/reorder-email-admin-display.php:56
+#: admin/partials/name-day-email-admin-display.php:130
+#: admin/partials/review-reminder-email-admin-display.php:74
+#: admin/partials/afterorder-email-admin-display.php:60
+#: admin/partials/expiration-reminder-email-admin-display.php:76
+#: admin/partials/reviewed-email-admin-display.php:28
 msgid "Turn on and off the automatic functionality of email sending"
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:55
-#: admin/partials/reviewed-email-admin-display.php:62
+#: admin/partials/reviewed-email-admin-display.php:34
 msgid ""
 "Turn on when testing. The actual users will not get emails. All emails will "
 "be sent to BCC/Test address."
 msgstr ""
 
-#: admin/partials/birth-day-email-admin-display.php:60
-#: admin/partials/reorder-email-admin-display.php:61
-#: admin/partials/name-day-email-admin-display.php:91
-#: admin/partials/review-reminder-email-admin-display.php:75
-#: admin/partials/afterorder-email-admin-display.php:63
-#: admin/partials/expiration-reminder-email-admin-display.php:76
+#: admin/partials/birth-day-email-admin-display.php:109
+#: admin/partials/reorder-email-admin-display.php:62
+#: admin/partials/name-day-email-admin-display.php:136
+#: admin/partials/review-reminder-email-admin-display.php:80
+#: admin/partials/afterorder-email-admin-display.php:66
+#: admin/partials/expiration-reminder-email-admin-display.php:82
 msgid ""
 "Turn on when testing. The user will not get emails. All emails will be sent "
 "to BCC/Test address."
@@ -1010,60 +1050,60 @@ msgstr ""
 msgid "Use {fname5} for Czech salutation."
 msgstr ""
 
-#: admin/partials/common-settings-admin-display.php:73
+#: admin/partials/common-settings-admin-display.php:70
 msgid "Used coupons"
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:76
-#: admin/partials/reviewed-email-admin-display.php:97
+#: admin/partials/reviewed-email-admin-display.php:69
 msgid "User Roles to exclude from sending"
 msgstr ""
 
 #: admin/partials/onetime-email-admin-display.php:59
-#: admin/partials/reviewed-email-admin-display.php:80
+#: admin/partials/reviewed-email-admin-display.php:52
 msgid "User Roles to include"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:79
-#: admin/partials/review-reminder-email-admin-display.php:93
+#: admin/partials/reorder-email-admin-display.php:80
+#: admin/partials/review-reminder-email-admin-display.php:100
 #: admin/partials/onetime-email-admin-display.php:93
-#: admin/partials/afterorder-email-admin-display.php:81
+#: admin/partials/afterorder-email-admin-display.php:86
 msgid "Users who bought one of these products"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:117
-#: admin/partials/review-reminder-email-admin-display.php:131
+#: admin/partials/reorder-email-admin-display.php:118
+#: admin/partials/review-reminder-email-admin-display.php:138
 #: admin/partials/onetime-email-admin-display.php:131
-#: admin/partials/afterorder-email-admin-display.php:119
+#: admin/partials/afterorder-email-admin-display.php:124
 msgid "Users who bought products in these categories"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:134
-#: admin/partials/review-reminder-email-admin-display.php:148
+#: admin/partials/reorder-email-admin-display.php:135
+#: admin/partials/review-reminder-email-admin-display.php:155
 #: admin/partials/onetime-email-admin-display.php:148
-#: admin/partials/afterorder-email-admin-display.php:136
+#: admin/partials/afterorder-email-admin-display.php:141
 msgid "Users who never bought products in these categories"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:98
-#: admin/partials/review-reminder-email-admin-display.php:112
+#: admin/partials/reorder-email-admin-display.php:99
+#: admin/partials/review-reminder-email-admin-display.php:119
 #: admin/partials/onetime-email-admin-display.php:112
-#: admin/partials/afterorder-email-admin-display.php:100
+#: admin/partials/afterorder-email-admin-display.php:105
 msgid "Users who never bought these products"
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:114
+#: admin/partials/reviewed-email-admin-display.php:86
 msgid "Users who reviewed one of these products"
 msgstr ""
 
-#: admin/partials/reviewed-email-admin-display.php:133
+#: admin/partials/reviewed-email-admin-display.php:105
 msgid "Users who reviewed products in these categories"
 msgstr ""
 
-#: admin/partials/reorder-email-admin-display.php:151
-#: admin/partials/review-reminder-email-admin-display.php:165
+#: admin/partials/reorder-email-admin-display.php:152
+#: admin/partials/review-reminder-email-admin-display.php:172
 #: admin/partials/onetime-email-admin-display.php:173
-#: admin/partials/afterorder-email-admin-display.php:153
+#: admin/partials/afterorder-email-admin-display.php:158
 msgid "Users who total spent"
 msgstr ""
 

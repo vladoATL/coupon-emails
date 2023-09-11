@@ -9,7 +9,7 @@ class Birthdays
 
 		$date_str = sprintf("%02d", $m) . "-" . sprintf("%02d", $d);
 		$sql = "	
-		SELECT m.user_id AS user_id, m.meta_value as dob, u.user_email AS user_email, fmu.meta_value AS user_firstname, lmu.meta_value AS user_lastname,
+		SELECT m.user_id AS user_id, fmu.meta_value AS user_firstname, lmu.meta_value AS user_lastname, u.user_email AS user_email, m.meta_value as dob,
 		TIMESTAMPDIFF(YEAR, m.meta_value, CURDATE()) AS age, dmu.meta_value AS sent
 		FROM {$wpdb->prefix}users  AS u
 		JOIN {$wpdb->prefix}usermeta AS m ON u.ID = m.user_id AND m.meta_key = 'billing_birth_date'
@@ -17,7 +17,7 @@ class Birthdays
 		JOIN {$wpdb->prefix}usermeta AS lmu ON u.ID = lmu.user_id AND lmu.meta_key = 'billing_last_name'
 		LEFT JOIN {$wpdb->prefix}usermeta AS dmu ON u.ID = dmu.user_id AND dmu.meta_key = 'dob-coupon-sent'
 		WHERE m.meta_value LIKE '%-{$date_str}'";		
-		EmailFunctions::test_add_log('-get_celebrating_users- ' . $this->type . PHP_EOL  . $sql);			
+		EmailFunctions::test_add_log('-get_celebrating_users- ' . PHP_EOL  . $sql);			
 		$result = $wpdb->get_results($sql, OBJECT);
 
 		return $result;
@@ -45,15 +45,20 @@ class Birthdays
 	function birthdayemail_event_setup()
 	{
 		$options = get_option('birthdayemail_options');
+		$istest = isset($options['test']) ? $options['test'] : 0;
 		$success = false;
-		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
+		if (( !empty($options['enabled']) && '1' == $options['enabled']) || $istest ) {
 			$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] . ' day'));
-			$once_year = $options['once_year'];
+			if ($istest) {
+				$once_year = 0;
+			} else {
+				$once_year = $options['once_year'];
+			}
 			$dateValue = strtotime($str_nameday);
 			$m = intval(date("m", $dateValue));
 			$d = intval(date("d", $dateValue));
 			$funcs = new EmailFunctions('birthdayemail');
-			
+			$i = 0;
 			$users = $this->get_celebrating_users($d,$m);
 			foreach ($users as $user) {
 				$runit = false;
@@ -65,17 +70,22 @@ class Birthdays
 					$runit = true;
 				}
 				if ( $runit) {
-					$success = $funcs->couponemails_create($user);
+					$success = $funcs->couponemails_create($user, $istest);
+					$i = $i + 1;
+					if ( $istest && $i >= MAX_TEST_EMAILS) {
+						break;
+					}
 					if ( $success) {
 						$this->couponemails_set_sent($user);
 					} else {
 						$funcs->couponemails_add_log("Birth day coupon flag has not been updated for" . " " . $user->user_email);
 					}
 				} else {
-					$funcs->couponemails_add_log("User has already received birth day coupon this year" . " " . $user->user_email);
+					$funcs->couponemails_add_log("User has already received birthday coupon this year" . " " . $user->user_email);
 				}
 			}
-			$funcs->couponemails_delete_expired();
+			if (! $istest) 
+				$funcs->couponemails_delete_expired();
 		}
 	}	
 	

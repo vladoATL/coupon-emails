@@ -1,6 +1,55 @@
 <?php
 namespace COUPONEMAILS;
 // Process export
+$option_name = "birthdayemail";
+
+if ( isset( $_GET['runtest'] ) ) {
+	$bd = new \COUPONEMAILS\Birthdays();
+	$bd -> birthdayemail_event_setup();
+}
+
+// Process export
+if ( isset( $_GET['birthdayexport'] ) ) {
+	global $wpdb;
+	$options = get_option($option_name . '_options');
+	$birthday = new \COUPONEMAILS\Birthdays();
+	ob_end_clean();
+	$table_head = array('User ID','First Name', 'Last Name', 'Email',  'DOB',  'Age', 'Last time sent' );
+	$csv = implode( ';' , $table_head );
+	$csv .= "\n";
+
+	$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before']  . ' day'));
+	$dateValue = strtotime($str_nameday);
+	$m = intval(date("m", $dateValue));
+	$d = intval(date("d", $dateValue));
+	$result =  (array) $birthday ->get_celebrating_users($d,$m);
+
+	$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] + 1 . ' day'));
+	$dateValue = strtotime($str_nameday);
+	$m = intval(date("m", $dateValue));
+	$d = intval(date("d", $dateValue));
+	$result2 =  (array) $birthday ->get_celebrating_users($d,$m);
+	
+	$result_merge = array_merge($result,$result2);
+	
+	foreach ( $result_merge as $key => $value ) {
+		$csv .=   implode(';', (array) $value);
+		$csv .= "\n";
+	}
+	
+	
+	$csv .= "\n";
+	$filename = 'birthday.csv';
+	header('Content-Type: application/csv');
+	header('Content-Disposition: attachment; filename="' . $filename .'"');
+	header('Content-Transfer-Encoding: binary');
+	header('Expires: 0');
+	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+	header('Pragma: public');
+	echo "\xEF\xBB\xBF"; // UTF-8 BOM
+	echo $csv;
+	exit();
+}
 
 if ( isset( $_GET['dobexport'] ) ) {
 	global $wpdb;
@@ -30,7 +79,7 @@ if ( isset( $_GET['dobexport'] ) ) {
 }
 
 birthdayemail_run_cron();
-$option_name = "birthdayemail";
+
 ?>
 
 <div class="wrap woocommerce">
@@ -58,6 +107,8 @@ id="restore_birthdayemail_values_btn" />
 			<th class="titledesc"><?php echo __( 'Run in test mode', 'coupon-emails' ); ?>:</th>
 			<td><input type="checkbox" name="birthdayemail_options[test]" id="birthdayemail_options[test]"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>
 				<?php  echo wc_help_tip(__( 'Turn on when testing. The user will not get emails. All emails will be sent to BCC/Test address.', 'coupon-emails' ), false); ?>
+				<button type="button" class="button button-primary" id="run_button" onClick="window.location.search += '&runtest=1'"><?php echo __( 'Run now', 'coupon-emails' ); ?></button>
+				<input type="checkbox" style="display: none;" name="test_enabled" id="test_enabled"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>	<?php  echo wc_help_tip(sprintf(_n( 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupon will be created and emails sent to administrator.', 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupons will be created and test emails sent to administrator.', MAX_TEST_EMAILS, 'coupon-emails' ), MAX_TEST_EMAILS), false); ?>			
 			</td>
 		</tr>
 		<tr>
@@ -80,12 +131,19 @@ id="restore_birthdayemail_values_btn" />
 			</td>
 		</tr>		
 		<tr>
-			<th class="titledesc"><?php echo __( 'Download file with all users', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo __( 'Download file with birthdays', 'coupon-emails' ); ?>:</th>
 			<td>
 				<a class="button button-primary" href="admin.php?page=couponemails&tab=birth-day&dobexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
-				<?php  echo wc_help_tip(__( 'Download csv file with brith days of users.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(__( 'Download csv file with brithdays of users.', 'coupon-emails' ), false); ?>
 			</td>
-		</tr>		
+		</tr>
+		<tr>
+			<th class="titledesc"><?php echo __( 'List of users who receive the email today and tomorrow', 'coupon-emails' ); ?>:</th>
+			<td>
+				<a class="button button-primary" href="admin.php?page=couponemails&tab=birth-day&birthdayexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
+				<?php  echo wc_help_tip(__( "Download csv file with filtered users for today's and tomorrow's email.", 'coupon-emails' ), false); ?>
+			</td>
+		</tr>	
 	</table>
 
 <?php include('coupon-form.php'); ?>
@@ -95,3 +153,16 @@ id="restore_birthdayemail_values_btn" />
 
 </div>
 </div>
+
+ <script>
+	 const enabled_hidden = document.querySelector('input[id="test_enabled"]');
+	 const runNowButton = document.getElementById('run_button');
+	 enabled_hidden.addEventListener('change', checkButtonStatus);
+
+	 function checkButtonStatus()
+	 {
+		 const allChecked = enabled_hidden.checked ;
+		 runNowButton.disabled = !allChecked;
+	 }
+	 checkButtonStatus();
+ </script>

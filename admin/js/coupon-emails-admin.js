@@ -20,7 +20,8 @@
 	 *
 	 * });
 	 */
-	 
+
+	 	 
 	 	jQuery( document ).on(
 		"click",
 		"#namedayemail-setting #restore_namedayemail_values_btn",
@@ -623,4 +624,10 @@ jQuery( function( $ ) {
         'fadeOut':   50,
         'delay':     200
     });
+    
+
+	
 });
+
+	
+	

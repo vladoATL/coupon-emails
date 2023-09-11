@@ -32,14 +32,21 @@ class EmailFunctions
 		$from_address = $options['from_address'];
 		$header  = $options['header'];
 
+		if (empty($coupon)) {
+			if (isset($user->coupon)) {
+				$coupon = $user->coupon;
+			}
+		}
+		
 		if ($istest == true) {
 			$headers_user   = $this->couponemails_headers($from_name, $from_address,"", "", true);
 			$email = $options['bcc_address'];
+			$user_email = $user->user_email;
 		} else {
 			$headers_user   = $this->couponemails_headers($from_name, $from_address,"", "", false);
 			$email = $user->user_email;
 		}
-
+		
 		$char_length = isset($options['characters']) ? $options['characters'] : "";
 		if ($char_length != 0 || ! empty($coupon)) {
 			if ((array)$user) {
@@ -57,39 +64,46 @@ class EmailFunctions
 			$html_body = str_replace('{coupon}','',$html_body);
 		}
 
-
+		if (isset($options['bcc_address'])) {
+			$admin_email = $options['bcc_address'];
+		} else {
+			$admin_email = get_bloginfo('admin_email');
+		}
+		
 		$html_body = $this->couponemails_replace_placeholders($html_body, $user, $options);
 		$subject_user = $this->couponemails_replace_placeholders($subject_user, $user, $options);
 
 		if ((!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') && $options['test'] != 1) || $istest == true) {
 			if (is_email($email)) {
-
+				if ($istest == true) {
+					$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(__( "This is a test email sent to %s instead of to ", 'coupon-emails' ), $email)
+					. ': ' . $user_email . "</p>";
+				}
 				if (isset($options['wc_template']) && $options['wc_template'] == 1) {
 					$this->couponemails_send_wc_email_html($subject_user, $email, $html_body, $header);
 				} else {
 					$sendmail_user = wp_mail( $email, $subject_user, $html_body, $headers_user );
 				}
-
+				if (empty($coupon)) {
+					$coupon_str = "";
+				} else {
+					$coupon_str =  ', coupon: ' . $coupon ;
+				}
+					
 				if ($istest == true) {
-					$this->couponemails_add_log("Test email sent to" . ': ' . $email . ' coupon: ' . $coupon ) ;
+					$this->couponemails_add_log("Test email sent to" . ': ' . $email  . " instead of to " . $user_email . $coupon_str ) ;
 					$success = false;
 				} else {
-					$this->couponemails_add_log("Email sent to" . ': ' . $email . ' coupon: ' . $coupon  ) ;
+					$this->couponemails_add_log("Email sent to" . ': ' . $email . $coupon_str  ) ;
 				}
 			} else {
 				$this->couponemails_add_log("Trying to send to incorrect or missing email address"  . ': ' . $email ) ;
 				$success = false;
 			}
 		} else {
+			$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(__( "This is a test email sent to %s instead of to ", 'coupon-emails' ), $admin_email)  . ': ' . $email . "</p>";
 
-			if (isset($options['bcc_address'])) {
-				$admin_email = $options['bcc_address'];
-			} else {
-				$admin_email = get_bloginfo('admin_email');
-			}
-			$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(__( "This is a test email sent to %s instead of to", 'coupon-emails' ), $admin_email)  . ': ' . $email . "</p>";
-
-			if ($this->emails_cnt < 10 ) {
+			if ($this->emails_cnt <= MAX_TEST_EMAILS ) {
 				if ($options['wc_template'] == 1) {
 					$this->couponemails_send_wc_email_html($subject_user, $admin_email, $html_body, $header);
 				} else {
@@ -109,12 +123,15 @@ class EmailFunctions
 	function couponemails_replace_placeholders($content, $user, $options)
 	{
 		$date_format = get_option( 'date_format' );
+
 		if (isset($options['days_before'])) {
 			$days_before = is_numeric($options['days_before']) ? $options['days_before'] : 0;
 		} else {
 			$days_before =0;
 		}
 		$inflection = new Inflection();
+		$first_name = isset($user->user_firstname) ? $user->user_firstname : "";
+		$last_name = isset($user->user_lastname) ? $user->user_lastname : "";
 		$replaced_text = str_replace(
 		array(
 		'{site_name}',
@@ -137,12 +154,12 @@ class EmailFunctions
 		home_url(),
 		'<a href=' . home_url() . '>' . get_option( 'blogname' ) . '</a>',
 		isset($options['expires'] ) ? $options['expires'] : '' ,
-		isset($options['expires'] ) ? date($date_format, strtotime('+' . $options['expires'] . ' days')) : '' ,
-		date($date_format, strtotime('+' . $days_before . ' days')),
+		isset($options['expires'] ) ? date_i18n('j. F Y', strtotime('+' . $options['expires'] . ' days')) : '' ,
+		date_i18n('j. F Y', strtotime('+' . $days_before . ' days')),
 		isset($options['coupon_amount'] ) ? $options['coupon_amount'] : '' ,
-		ucfirst(strtolower($user->user_firstname)),
-		$inflection->inflect(ucfirst(strtolower($user->user_firstname)))[5],
-		ucfirst(strtolower($user->user_lastname)),
+		ucfirst(strtolower($first_name)),
+		$inflection->inflect(ucfirst(strtolower($first_name)))[5],
+		ucfirst(strtolower($last_name)),
 		isset($options['max_products'] ) ? $options['max_products'] : '' ,
 		strtolower($user-> user_email),
 		$this->product_name,
@@ -163,8 +180,8 @@ class EmailFunctions
 		WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'
 		GROUP BY upm.meta_value" ;
 		$order_date = $wpdb->get_var($sql);
-		$date_format = get_option( 'date_format' );
-		return date($date_format, strtotime($order_date));
+
+		return date_i18n('j. F Y', strtotime($order_date));
 	}
 
 	function couponemails_add_log($entry)
@@ -187,9 +204,9 @@ class EmailFunctions
 		}
 	}
 
-	static function test_add_log($entry, $enable_sql_logs = 1)
+	static function test_add_log($entry)
 	{
-		if ($enable_sql_logs == 1) {
+		if (ENABLE_SQL_LOGS == 1) {
 			if ( is_array( $entry ) ) {
 				$entry = json_encode( $entry );
 			}
@@ -388,7 +405,7 @@ class EmailFunctions
 
 				WHERE p.post_type = 'shop_coupon'
 				GROUP BY tr.term_taxonomy_id";
-		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);					
+		//$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);					
 		$result = $wpdb->get_results($sql, OBJECT);
 		return $result;
 	}
@@ -495,13 +512,11 @@ class EmailFunctions
 			return;
 
 		$where_in = implode(",", $coupon_ids );
-
-		$sql_pm = "DELETE FROM $wpdb->postmeta WHERE post_id IN (" . $where_in . ")";
-		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql_pm);	
+		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $where_in);
+		
+		$sql_pm = "DELETE FROM $wpdb->postmeta WHERE post_id IN (" . $where_in . ")";	
 		$sql_p = "DELETE FROM $wpdb->posts WHERE ID IN (" . $where_in . ")";
-		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql_p);	
-		$sql_tr = "DELETE FROM $wpdb->term_relationships WHERE object_id IN (" . $where_in . ")";
-		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql_tr);	
+		$sql_tr = "DELETE FROM $wpdb->term_relationships WHERE object_id IN (" . $where_in . ")";	
 		
 		$wpdb->get_results($sql_pm);
 		$wpdb->get_results($sql_p);

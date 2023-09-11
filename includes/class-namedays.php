@@ -61,11 +61,15 @@ class Namedays
 		if (empty($names_str))
 			return;
 		$names_array = explode(",", $names_str);
+		$date = $d . '.' . $m  ;
 		$names = sprintf("'%s'", implode("','", $names_array ) );
-		$sql = "SELECT u.id, umfn.meta_value  AS user_firstname, u.user_email AS user_email FROM {$wpdb->prefix}users AS u
+		$sql = "SELECT u.id, umfn.meta_value AS user_firstname, umln.meta_value  AS user_lastname, u.user_email AS user_email, $date as date
+				FROM {$wpdb->prefix}users AS u
 				INNER JOIN {$wpdb->prefix}usermeta AS umfn ON
 					umfn.user_id = u.id AND umfn.meta_key = 'first_name'
-					WHERE umfn.meta_value IN ($names)
+				INNER JOIN {$wpdb->prefix}usermeta AS umln ON
+					umln.user_id = u.id AND umln.meta_key = 'last_name'					
+				WHERE umfn.meta_value IN ($names)
 					AND umfn.meta_value <> '' 
 					AND umfn.meta_value IS NOT NULL";
 		EmailFunctions::test_add_log('-get_celebrating_users- ' . $this->type . PHP_EOL  . $sql);
@@ -77,20 +81,24 @@ class Namedays
 	function namedayemail_event_setup()
 	{
 		$options = get_option('namedayemail_options');
-		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
-			$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] . ' day'));
-			
+		$istest = isset($options['test']) ? $options['test'] : 0;
+		if ( (!empty($options['enabled']) && '1' == $options['enabled']) || $istest ) {
+			$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] . ' day'));			
 			$dateValue = strtotime($str_nameday);
 			$m = intval(date("m", $dateValue));
 			$d = intval(date("d", $dateValue));
 			$funcs = new EmailFunctions('namedayemail');
-			
+			$i = 0;
 			$users = $this->get_celebrating_users($d,$m);
 			foreach ($users as $user) {
-				if (!empty($user->user_firstname))
-					$funcs->couponemails_create($user);
+				if (!empty($user->user_firstname)) {
+					$funcs->couponemails_create($user, $istest);
+					$i = $i + 1;
+					if ( $istest && $i >= MAX_TEST_EMAILS) {
+						break;}
+				}
 			}
-			$funcs->couponemails_delete_expired();
+			if (! $istest) $funcs->couponemails_delete_expired();
 		}
 	}	
 }

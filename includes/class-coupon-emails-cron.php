@@ -3,6 +3,31 @@
 add_action( 'namedayemail_cron', 'namedayemail_event' );
 add_action( 'birthdayemail_cron', 'birthdayemail_event' );
 add_action( 'reorderemail_cron', 'reorderemail_event' );
+add_action( 'expirationreminderemail_cron', 'expirationreminderemail_event' );
+add_action( 'reviewreminderemail_cron', 'reviewreminderemail_event' );
+
+function reviewreminderemail_event()
+{
+	$reminders =  new \COUPONEMAILS\AfterOrder('reviewreminderemail');
+	$reminders->afterorderemail_event_setup();
+}
+
+function reviewreminderemail_run_cron()
+{
+	couponemails_run_cron_setup("reviewreminderemail");
+}
+
+function expirationreminderemail_event()
+{
+	$reminders =  new \COUPONEMAILS\ExpirationReminder();
+	$reminders->expirationreminderemail_event_setup();
+}
+
+function expirationreminderemail_run_cron()
+{
+	couponemails_run_cron_setup("expirationreminderemail");
+}
+
 
 function namedayemail_event(){
 	$celebrating =  new \COUPONEMAILS\Namedays();
@@ -49,7 +74,7 @@ function couponemails_run_cron_setup($type)
 
 		$res = wp_reschedule_event( $tm, 'daily', $type . '_cron' );
 		if ($res == 1 )
-			$logs->couponemails_add_log("Cron scheduled " . date("T H:i", $tm));
+			$logs->couponemails_add_log($type . "_cron scheduled " . date("T H:i", $tm));
 			else
 				$logs->couponemails_add_log("Cron scheduling error" );
 			

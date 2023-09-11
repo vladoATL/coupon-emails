@@ -16,15 +16,12 @@ $fun = new COUPONEMAILS\EmailFunctions();
 if ( isset( $_GET['deleteexpired'] ) ) {
 	$fun->couponemails_delete_expired();	
 }
-
 	$stats = $fun->couponemails_get_stats();
 	$display_stats = true;
 	$total = 0;
 	$active = 0;
 	$expired = 0;
 	$used = 0;	
-
-
 ?>
 
 <div class="wrap woocommerce">

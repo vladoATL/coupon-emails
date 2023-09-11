@@ -29,12 +29,13 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
-
-delete_option('namedayemail_options');
+delete_option('couponemails_options');
 delete_option('couponemails_logs');
+delete_option('namedayemail_options');
 delete_option('onetimeemail_options');
 delete_option('reorderemail_options');
 delete_option('birthdayemail_options');
 delete_option('afterorderemail_options');
-delete_option('couponemails_options');
-delete_option('reviewedemails_options');
+delete_option('reviewedemail_options')
+delete_option('reviewreminderemail_options');
+delete_option('expirationreminderemail_options');

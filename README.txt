@@ -8,19 +8,43 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin automatically generates emails with unique coupons for customers' birthdays, their name days, after making an order and after reviewed a poriduct with many customization options.
+This plugin automatically generates emails with unique coupons for customers' birthdays, their name day, after they place an order and after they review a product with many customization options. Sends various reminders.
 
 == Description ==
-This plugin is an excellent tool when marketing with discount coupons. It generates unique coupons for each customer according to configurable filters. The coupon email can be sent on the customer's birthday, their name day, a certain number of days after the order, to customers who haven't ordered anything for a long time or to one-time filtered customers. You can set up a review thank you email with coupon as well.
+This plugin is an excellent tool when marketing with discount coupons. It generates unique coupons for each customer according to configurable filters. The coupon email can be sent on the customer's birthday, their name day, a certain number of days after the order, to customers who haven't ordered anything for a long time, or to one-time filtered customers. You can also set up a thank you review email with a coupon. It sends reminders before coupons are about to expire and after a product has been purchased to hoidnote it.
 
-The date of birth field is automatically added to the checkout and user profile page. Name days are currently available for Slovakia, Czech Republic, Austria and Hungary. For Czech names, it is possible to set a Czech salutation.
+The date of birth field is automatically added to the checkout and user profile page. Name badges are currently available for Slovakia, Czech Republic, Austria and Hungary, Poland, Croatia and Spain. It is possible to set a Czech greeting for Czech names.
+
+== Features ==
+- Birthday field added for customer account 
+- freely configurable email text
+- one-time emails with generated coupons
+- email text is either embedded in **WooCommerce template** or simply in HTML
+- generation of **unique coupons** with any value and expiration date
+- setting different conditions for sending emails
+- configuration of coupons: valid for max number of products, invalid for discounted products, number of characters...
+- automatic sending of coupon emails on a specified day before the birthday, name day, after ordering or anniversary of the customer's order
+- automatic sending of coupon expiry reminder emails
+- automatic sending of emails with the invitation to create a review of the purchased product
+- automatic deletion of unused coupons after specified days
+- setting the time of sending
+- prevention of sending two birthday coupons per year for one customer if they change their date of birth
+- placeholders in the email text
+- Czech customer salutation (5th fall) - use the wildcard **{fname5}**
+- secure test mode
+- activity logs
+- possibility to create categories of coupons used by plugin [Advanced Coupons Free](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/)
+- compatibility with [Site Reviews](https://wordpress.org/plugins/site-reviews/) plugin
+- name calendar for countries Slovakia, Czech Republic, Hungary, Poland, Croatia, Austria, Spain 
+- plugin is currently translated into Slovak and Czech. Further translations are welcome
+* (Got more ideas? Tell me!)
 
 ### Installation 
 
-1. Upload `coupon-email` folder to the `/wp-content/plugins/` directory
+1. Upload 'coupon-email' folder to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to plugin setting page and configure plugin: Marketing -> Coupon Emails
-4. Always make sure the Run in test mode checkbox is checked first. Cancel test mode only after you have thoroughly tested the setup.
+4. Always make sure the 'Run in test mode' checkbox is checked first. In this mode, all emails are only sent to the administrator. Only cancel test mode after you have thoroughly tested the settings.
 
 == Frequently Asked Questions ==
 
@@ -40,6 +64,8 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.1.1 =
+* Add reminders
 
 = 1.0.2 =
 * Cosmetic changes and fixes.

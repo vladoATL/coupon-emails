@@ -56,6 +56,7 @@ class Coupon_Emails {
 	 * @var      string    $version    The current version of the plugin.
 	 */
 	protected $version;
+	protected $max_test_emails;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -78,7 +79,9 @@ class Coupon_Emails {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
+		if ( defined( 'MAX_TEST_EMAILS' ) ) {
+			$this->max_test_emails = MAX_TEST_EMAILS;
+		}
 	}
 
 	/**

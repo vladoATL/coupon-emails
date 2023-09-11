@@ -13,7 +13,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
- * Description:       Automatically generates emails with unique coupons for customers' birthdays, their name days and after makeing an order with many customization options.
+ * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders and more with many customization options.
  * Version:           1.0.2
  * Author:            Vlado Laco
  * License:           GPL-2.0+
@@ -33,7 +33,9 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.0.2.1' );
+define( 'COUPON_EMAILS_VERSION', '1.0.2.2' );
+define( 'MAX_TEST_EMAILS', '10' );
+define( 'ENABLE_SQL_LOGS', '1' );
 
 /**
  * The code that runs during plugin activation.
@@ -77,7 +79,8 @@ require_once plugin_dir_path( __FILE__ ) .  'includes/class-onetimes.php';
 require_once plugin_dir_path( __FILE__ ) .  'includes/class-calendars.php';
 require_once plugin_dir_path( __FILE__ ) . 	'includes/class-prepare-sql.php';
 require_once plugin_dir_path( __FILE__ ) . 	'includes/class-reviewed.php';
-
+require_once plugin_dir_path( __FILE__ ) . 	'includes/class-expiration-reminder.php';
+require_once plugin_dir_path( __FILE__ ) . 	'includes/class-review-reminder.php';
 
 \COUPONEMAILS\BirthdayField::register();
 
@@ -237,7 +240,7 @@ function reviewreminderemail_save_defaults($add_new = false)
 	'from_address'	=>	get_bloginfo('admin_email'),
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
-	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Thanks for shopping with us, {fname}!</p>
+	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Thanks for shopping with us {last_order_date}, {fname}!</p>
 <p style='font-size: 18px;'>If you like our products, take advantage of this special offer. Login back into our store {site_name_url} and let others know what do you think of your purchase.</p>
 <p style='font-size: 19px;font-weight:600;'>As a thank you, we'll send you a discount code that you can use the next time you buy our products from us.</p>
 <p style='font-size: 18px;'>We'd love to hear your feedback.</p>
@@ -262,7 +265,7 @@ function expirationreminderemail_save_defaults($add_new = false)
 	'wc_template' =>	1,
 	'test' =>	1,
 	'days_before' =>	1,
-	'send_time'  =>	'01:30',
+	'send_time'  =>	'02:45',
 	'from_name'	=>	get_bloginfo('name'),
 	'from_address'	=>	get_bloginfo('admin_email'),
 	'bcc_address' => $current_user->user_email,

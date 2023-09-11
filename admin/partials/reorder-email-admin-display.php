@@ -1,12 +1,13 @@
 <?php
 namespace COUPONEMAILS;
+$option_name = "reorderemail";
 reorderemail_run_cron();
 
 // Process export
 if ( isset( $_GET['reorderexport'] ) ) {
 	global $wpdb;
 	ob_end_clean();
-	$table_head = array('First Name', 'Last Name', 'Email', 'User ID', 'Orders count', 'Order total', 'Last order' );
+	$table_head = array('Email', 'First Name', 'Last Name', 'User ID', 'Orders count', 'Order total', 'Last order' );
 	$csv = implode( ';' , $table_head );
 	$csv .= "\n";
 	
@@ -29,7 +30,7 @@ if ( isset( $_GET['reorderexport'] ) ) {
 	echo $csv;
 	exit();
 }
-$option_name = "reorderemail";
+
 ?>
 
 <div class="wrap woocommerce">
@@ -158,10 +159,10 @@ id="restore_reorder_values_btn" />
 			</td>
 		</tr>			
 		<tr>
-			<th class="titledesc"><?php echo __( 'Download list of users who will receive the email', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo __( 'List of users who receive the email today', 'coupon-emails' ); ?>:</th>
 			<td>
 				<a class="button button-primary" href="admin.php?page=couponemails&tab=reorder&reorderexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
-				<?php  echo wc_help_tip(__( 'Download csv file with filtered users.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(__( "Download csv file with filtered users for today's email.", 'coupon-emails' ), false); ?>
 			</td>
 		</tr>		
 	</table>	

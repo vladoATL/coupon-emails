@@ -58,7 +58,7 @@ class PrepareSQL
 		return $result;
 	}
 	
-	public function get_expired_coupons( $as_objects = false)
+	public function get_users_with_expired_coupons( $as_objects = false)
 	{
 		global $wpdb;
 		$options = get_option($this->type . '_options');
@@ -96,11 +96,9 @@ class PrepareSQL
 		}	
 		if ( $as_objects) {
 			return $result;
-		} else
-		{
+		} else {
 			return (array) $result;
-		}	
-			
+		}				
 	}	
 	
 	public function get_users_filtered( $as_objects = false)
@@ -110,6 +108,7 @@ class PrepareSQL
 		$options = get_option($this->type . '_options');
 		$emails =  isset( $options['email_address']) ? $options['email_address'] : "";
 		$days_after_order =  isset( $options['days_after_order']) ? $options['days_after_order'] : "";
+		$already_rated = isset( $options['already_rated']) ? $options['already_rated'] : "";
 		if (! empty( $emails))
 			return $this->get_users_from_emails ($emails, $as_objects);
 		$minimum_orders = isset( $options['minimum_orders']) ? $options['minimum_orders'] : "";
@@ -143,7 +142,7 @@ class PrepareSQL
 			$sql .= $this->get_join_categories($not_bought_cats, true) ;
 		}
 
-		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent) 	;
+		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent, $already_rated) 	;
 
 
 		EmailFunctions::test_add_log('-- ' . $this->type . PHP_EOL  . $sql);
@@ -316,7 +315,7 @@ class PrepareSQL
 		return $sql;
 	}
 
-	function get_orders_sql($minimum_orders, $days_after_order = "", $total_spent = "")
+	function get_orders_sql($minimum_orders, $days_after_order = "", $total_spent = "", $already_rated = "")
 	{
 		global $wpdb;
 		if (! isset($minimum_orders) || $minimum_orders == '')
@@ -329,6 +328,15 @@ class PrepareSQL
 		} else {
 			$sql .= $this->get_join_orders_sql($minimum_orders, $days_after_order, $total_spent);
 			$sql .= $this->get_where();
+			if ($already_rated != '' && $already_rated > 0)
+			{
+				$rev = new \COUPONEMAILS\Reviewed('reviewreminderemail');
+				$users_rated =  $rev->get_reviewer_ids();
+				if ($already_rated == 1) {
+					$not = 'NOT';
+				}
+				$sql .= 'AND u.ID ' . $not . ' IN (' . $users_rated . ')';
+			}
 			$sql .="
 			GROUP BY u.ID
 			ORDER BY orders.orders_total DESC  ";

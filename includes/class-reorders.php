@@ -17,7 +17,7 @@ class Reorders
 		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
 			$funcs = new EmailFunctions('reorderemail');
 			$users = $this->get_users_reorders(true);
-$i = 0;
+			$i = 0;
 			foreach ($users as $user) {
 				$i = $i +1 ;
 				if ($i>100) break;
