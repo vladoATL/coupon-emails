@@ -81,7 +81,7 @@ class Birthdays
 						$funcs->couponemails_add_log(_x("Birth day coupon flag has not been updated for", "Log file", "coupon-emails")  . " " . $user->user_email);
 					}
 				} else {
-					$funcs->couponemails_add_log(_x("This user has already received birthday coupon this year" "Log file", "coupon-emails")  . " " . $user->user_email);
+					$funcs->couponemails_add_log(_x("This user has already received birthday coupon this year", "Log file", "coupon-emails")  . " " . $user->user_email);
 				}
 			}
 			if (! $istest) 

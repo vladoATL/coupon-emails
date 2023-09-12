@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Coupon Emails\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-17 17:31+0000\n"
-"PO-Revision-Date: 2023-09-11 11:30+0000\n"
+"PO-Revision-Date: 2023-09-12 09:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -37,7 +37,7 @@ msgstr "Všechny recenze"
 msgid "All roles"
 msgstr "Všechny role"
 
-#: admin/partials/review-reminder-email-admin-display.php:185
+#: admin/partials/review-reminder-email-admin-display.php:186
 msgid "All users"
 msgstr "Všichni uživatelé"
 
@@ -54,7 +54,7 @@ msgstr "BCC a e-mail pro testy"
 msgid "Birthday"
 msgstr "Narozeniny"
 
-#: admin/partials/expiration-reminder-email-admin-display.php:102
+#: admin/partials/expiration-reminder-email-admin-display.php:103
 msgid "Categories of coupons to be validated"
 msgstr "Kategorie kupónů, které mají být ověřeny"
 
@@ -177,10 +177,10 @@ msgstr "Kategorie kupónů"
 #: admin/partials/birth-day-email-admin-display.php:152
 #: admin/partials/reorder-email-admin-display.php:175
 #: admin/partials/name-day-email-admin-display.php:187
-#: admin/partials/review-reminder-email-admin-display.php:205
+#: admin/partials/review-reminder-email-admin-display.php:206
 #: admin/partials/onetime-email-admin-display.php:210
 #: admin/partials/afterorder-email-admin-display.php:180
-#: admin/partials/expiration-reminder-email-admin-display.php:131
+#: admin/partials/expiration-reminder-email-admin-display.php:132
 #: admin/partials/reviewed-email-admin-display.php:127
 msgid "Create a test"
 msgstr "Test"
@@ -194,12 +194,12 @@ msgid "Czech calendar"
 msgstr "Český kalendář"
 
 #: admin/partials/reorder-email-admin-display.php:66
-#: admin/partials/review-reminder-email-admin-display.php:86
+#: admin/partials/review-reminder-email-admin-display.php:87
 #: admin/partials/afterorder-email-admin-display.php:72
 msgid "Days after last order"
 msgstr "Počet dnů po poslední objednávce"
 
-#: admin/partials/expiration-reminder-email-admin-display.php:88
+#: admin/partials/expiration-reminder-email-admin-display.php:89
 msgid "Days before coupon expiration"
 msgstr "Počet dní před vypršením platnosti kupónu"
 
@@ -230,10 +230,10 @@ msgstr "Nevytvářet kupón"
 #: admin/partials/reorder-email-admin-display.php:164
 #: admin/partials/name-day-email-admin-display.php:154
 #: admin/partials/name-day-email-admin-display.php:178
-#: admin/partials/review-reminder-email-admin-display.php:195
+#: admin/partials/review-reminder-email-admin-display.php:196
 #: admin/partials/onetime-email-admin-display.php:200
 #: admin/partials/afterorder-email-admin-display.php:170
-#: admin/partials/expiration-reminder-email-admin-display.php:121
+#: admin/partials/expiration-reminder-email-admin-display.php:122
 msgid "Download csv"
 msgstr "Stáhnout csv"
 
@@ -248,9 +248,9 @@ msgid "Download csv file with filtered users for today's and tomorrow's email."
 msgstr ""
 "Stáhněte si soubor csv s filtrovanými uživateli pro dnešní a zítřejší e-mail."
 
-#: admin/partials/review-reminder-email-admin-display.php:196
+#: admin/partials/review-reminder-email-admin-display.php:197
 #: admin/partials/afterorder-email-admin-display.php:171
-#: admin/partials/expiration-reminder-email-admin-display.php:122
+#: admin/partials/expiration-reminder-email-admin-display.php:123
 msgid "Download csv file with filtered users for today's email."
 msgstr "Stáhněte si soubor csv s filtrovanými uživateli pro dnešní e-mail."
 
@@ -654,7 +654,7 @@ msgstr "Pospěšte si!"
 #: coupon-emails.php:293
 msgctxt "Email Header"
 msgid "Your discount"
-msgstr "Tvoje sleva"
+msgstr "Vaše sleva"
 
 #: admin/partials/email-table.php:43
 msgid "Email subject"
@@ -704,9 +704,9 @@ msgstr "{fname5}, platnost Vašeho kuponu brzy vyprší!"
 #: admin/partials/birth-day-email-admin-display.php:101
 #: admin/partials/reorder-email-admin-display.php:54
 #: admin/partials/name-day-email-admin-display.php:128
-#: admin/partials/review-reminder-email-admin-display.php:72
+#: admin/partials/review-reminder-email-admin-display.php:73
 #: admin/partials/afterorder-email-admin-display.php:58
-#: admin/partials/expiration-reminder-email-admin-display.php:74
+#: admin/partials/expiration-reminder-email-admin-display.php:75
 #: admin/partials/reviewed-email-admin-display.php:26
 msgid "Enable auto sending emails"
 msgstr "Zapnutí automatického zasílání zpráv"
@@ -724,7 +724,7 @@ msgstr ""
 "být odeslán e-mail s kupónem."
 
 #: admin/partials/reorder-email-admin-display.php:69
-#: admin/partials/review-reminder-email-admin-display.php:89
+#: admin/partials/review-reminder-email-admin-display.php:90
 #: admin/partials/afterorder-email-admin-display.php:75
 msgid ""
 "Enter the number of days after last order when to send this email with "
@@ -733,7 +733,7 @@ msgstr ""
 "Zadejte počet dní po poslední objednávce, kdy má být zaslán tento e-mail s "
 "kupónem."
 
-#: admin/partials/expiration-reminder-email-admin-display.php:91
+#: admin/partials/expiration-reminder-email-admin-display.php:92
 msgid ""
 "Enter the number of days before coupon of the customer's coupon expires. "
 "Empty or 0 means that the coupon will expire today"
@@ -745,7 +745,7 @@ msgstr ""
 msgid "Exclude discounted products"
 msgstr "Neplatné pro zlevněné produkty"
 
-#: admin/partials/review-reminder-email-admin-display.php:52
+#: admin/partials/review-reminder-email-admin-display.php:53
 msgid "Expiration Reminders"
 msgstr "Připomenutí expirace"
 
@@ -753,7 +753,7 @@ msgstr "Připomenutí expirace"
 msgid "Expiration reminders"
 msgstr "Připomenutí expirace"
 
-#: admin/partials/review-reminder-email-admin-display.php:182
+#: admin/partials/review-reminder-email-admin-display.php:183
 msgid "Filter by previous reviews"
 msgstr "Filtrovat podle předchozích hodnocení"
 
@@ -785,9 +785,9 @@ msgstr ""
 
 #: admin/partials/birth-day-email-admin-display.php:111
 #: admin/partials/name-day-email-admin-display.php:138
-#: admin/partials/review-reminder-email-admin-display.php:82
+#: admin/partials/review-reminder-email-admin-display.php:83
 #: admin/partials/afterorder-email-admin-display.php:68
-#: admin/partials/expiration-reminder-email-admin-display.php:84
+#: admin/partials/expiration-reminder-email-admin-display.php:85
 #, php-format
 msgid ""
 "If you want to run a test, check the chekbox and save. After pushing this "
@@ -821,9 +821,9 @@ msgstr ""
 "Pokud mají být vytvořeny kupóny bez data platnosti, ponechte toto pole "
 "prázdné."
 
-#: admin/partials/review-reminder-email-admin-display.php:193
+#: admin/partials/review-reminder-email-admin-display.php:194
 #: admin/partials/afterorder-email-admin-display.php:168
-#: admin/partials/expiration-reminder-email-admin-display.php:119
+#: admin/partials/expiration-reminder-email-admin-display.php:120
 msgid "List of users who receive the email today"
 msgstr "Seznam uživatelů, kteří dnes obdrží e-mail"
 
@@ -832,12 +832,76 @@ msgstr "Seznam uživatelů, kteří dnes obdrží e-mail"
 msgid "List of users who receive the email today and tomorrow"
 msgstr "Seznam uživatelů, kteří obdrží e-mail dnes a zítra"
 
+#: admin/class-coupon-emails-admin.php:179
+#: admin/class-coupon-emails-admin.php:225
+#, php-format
+msgctxt "Log file"
+msgid "%s has already received coupon for this review"
+msgstr "%s již obdržel kupón pro tuto recenzi"
+
+#: includes/class-coupon-emails-cron.php:77
+msgctxt "Log file"
+msgid "_cron scheduled"
+msgstr "_cron naplánováno"
+
+#: includes/class-coupon-emails-functions.php:114
+#, php-format
+msgctxt "Log file"
+msgid ""
+"An email was created but not sent to %s because the number of test emails "
+"exceeded"
+msgstr ""
+"E-mail byl vytvořen, ale nebyl odeslán na adresu %s, protože počet "
+"testovacích e-mailů přesáhl počet"
+
+#: includes/class-birthdays.php:81
+msgctxt "Log file"
+msgid "Birth day coupon flag has not been updated for"
+msgstr "Příznak kupónu pro narozeniny nebyl aktualizován pro"
+
+#: includes/class-coupon-emails-functions.php:100
+msgctxt "Log file"
+msgid "Cannot send email to incorrect or missing address"
+msgstr "Nelze odeslat e-mail na nesprávnou nebo chybějící adresu"
+
+#: includes/class-coupon-emails-functions.php:90
+msgctxt "Log file"
+msgid "coupon"
+msgstr "kupón"
+
+#: includes/class-coupon-emails-cron.php:79
+msgctxt "Log file"
+msgid "Cron scheduling error"
+msgstr "Chyba plánování Cronu"
+
+#: includes/class-coupon-emails-functions.php:97
+msgctxt "Log file"
+msgid "Email sent to"
+msgstr "E-mail odeslán na adresu"
+
+#: includes/class-coupon-emails-functions.php:57
+msgctxt "Log file"
+msgid "No available coupons to create."
+msgstr "Nejsou k dispozici žádné kupony, které by bylo možné vytvořit."
+
+#: includes/class-coupon-emails-functions.php:94
+#: includes/class-coupon-emails-functions.php:112
+#, php-format
+msgctxt "Log file"
+msgid "Test email sent to %s instead of to"
+msgstr "Testovací e-mail odeslán na adresu %s místo na"
+
+#: includes/class-birthdays.php:84
+msgctxt "Log file"
+msgid "This user has already received birthday coupon this year"
+msgstr "Tento uživatel již obdržel narozeninový kupón v tomto roce"
+
 #: admin/partials/name-day-email-admin-display.php:155
 msgid "Make sure the selection is saved before download."
 msgstr "Před stažením souboru csv se ujistěte, že nastavení bylo uloženo."
 
 #: admin/partials/reorder-email-admin-display.php:156
-#: admin/partials/review-reminder-email-admin-display.php:176
+#: admin/partials/review-reminder-email-admin-display.php:177
 #: admin/partials/onetime-email-admin-display.php:177
 #: admin/partials/afterorder-email-admin-display.php:162
 msgid "Maximum"
@@ -849,7 +913,7 @@ msgid "Coupon Emails"
 msgstr "Kupónové e-maily"
 
 #: admin/partials/reorder-email-admin-display.php:154
-#: admin/partials/review-reminder-email-admin-display.php:174
+#: admin/partials/review-reminder-email-admin-display.php:175
 #: admin/partials/onetime-email-admin-display.php:175
 #: admin/partials/afterorder-email-admin-display.php:160
 msgid "Minimum"
@@ -877,7 +941,7 @@ msgstr "Kalendář s jmény"
 msgid "No roles"
 msgstr "Žádné role"
 
-#: includes/class-coupon-emails-functions.php:525
+#: includes/class-coupon-emails-functions.php:534
 #, php-format
 msgid "One expired unused coupon was deleted."
 msgid_plural "%s expired unused coupons were deleted."
@@ -889,11 +953,11 @@ msgstr[2] "%s nepoužitých kupónů, jejichž platnost vypršela, bylo smazáno
 msgid "One Time"
 msgstr "Jednorázově"
 
-#: admin/partials/review-reminder-email-admin-display.php:187
+#: admin/partials/review-reminder-email-admin-display.php:188
 msgid "Only those who have already rated"
 msgstr "Pouze ti, kteří již hodnotili"
 
-#: admin/partials/review-reminder-email-admin-display.php:186
+#: admin/partials/review-reminder-email-admin-display.php:187
 msgid "Only those who have not rated yet"
 msgstr "Pouze ti, kteří dosud nehodnotili"
 
@@ -926,7 +990,7 @@ msgstr "Přeobjednat"
 #: admin/partials/birth-day-email-admin-display.php:89
 #: admin/partials/reorder-email-admin-display.php:40
 #: admin/partials/name-day-email-admin-display.php:113
-#: admin/partials/review-reminder-email-admin-display.php:55
+#: admin/partials/review-reminder-email-admin-display.php:56
 #: admin/partials/onetime-email-admin-display.php:38
 #: admin/partials/afterorder-email-admin-display.php:43
 #: admin/partials/expiration-reminder-email-admin-display.php:57
@@ -934,7 +998,7 @@ msgstr "Přeobjednat"
 msgid "Restore Defaults"
 msgstr "Reset"
 
-#: admin/partials/review-reminder-email-admin-display.php:48
+#: admin/partials/review-reminder-email-admin-display.php:49
 msgid "Review Reminders"
 msgstr "Připomenutí recenze"
 
@@ -949,19 +1013,19 @@ msgstr "Recenze pouze s minimálním počtem hvězdiček"
 #: admin/partials/birth-day-email-admin-display.php:107
 #: admin/partials/reorder-email-admin-display.php:60
 #: admin/partials/name-day-email-admin-display.php:134
-#: admin/partials/review-reminder-email-admin-display.php:78
+#: admin/partials/review-reminder-email-admin-display.php:79
 #: admin/partials/onetime-email-admin-display.php:53
 #: admin/partials/afterorder-email-admin-display.php:64
-#: admin/partials/expiration-reminder-email-admin-display.php:80
+#: admin/partials/expiration-reminder-email-admin-display.php:81
 #: admin/partials/reviewed-email-admin-display.php:32
 msgid "Run in test mode"
 msgstr "Testovací režim"
 
 #: admin/partials/birth-day-email-admin-display.php:110
 #: admin/partials/name-day-email-admin-display.php:137
-#: admin/partials/review-reminder-email-admin-display.php:81
+#: admin/partials/review-reminder-email-admin-display.php:82
 #: admin/partials/afterorder-email-admin-display.php:67
-#: admin/partials/expiration-reminder-email-admin-display.php:83
+#: admin/partials/expiration-reminder-email-admin-display.php:84
 msgid "Run now"
 msgstr "Spustit nyní"
 
@@ -982,9 +1046,9 @@ msgstr "Vyberte role uživatelů, kterým mají být e-maily zasílány."
 #: admin/partials/birth-day-email-admin-display.php:121
 #: admin/partials/reorder-email-admin-display.php:73
 #: admin/partials/name-day-email-admin-display.php:169
-#: admin/partials/review-reminder-email-admin-display.php:93
+#: admin/partials/review-reminder-email-admin-display.php:94
 #: admin/partials/afterorder-email-admin-display.php:79
-#: admin/partials/expiration-reminder-email-admin-display.php:95
+#: admin/partials/expiration-reminder-email-admin-display.php:96
 #| msgid "Send email every day at (UTC)"
 msgid "Send email every day at"
 msgstr "Odesílání e-mailů každý den v tomto čase"
@@ -1070,7 +1134,7 @@ msgctxt "Setting"
 msgid "Order Reorder Emails Settings"
 msgstr "E-mail pro přeobjednání - nastavení"
 
-#: admin/partials/review-reminder-email-admin-display.php:62
+#: admin/partials/review-reminder-email-admin-display.php:63
 msgctxt "Setting"
 msgid "Review Reminder Emails Settings"
 msgstr "Připomenutí recenze - nastavení"
@@ -1079,6 +1143,15 @@ msgstr "Připomenutí recenze - nastavení"
 msgctxt "Setting"
 msgid "Statistics"
 msgstr "Statistiky"
+
+#: admin/partials/review-reminder-email-admin-display.php:64
+#: admin/partials/expiration-reminder-email-admin-display.php:65
+#| msgid ""
+#| "This will not cereate coupons. Only emails with a reminder will be sent."
+msgctxt "Setting"
+msgid "This will not create coupons. Only emails with a reminder will be sent."
+msgstr ""
+"V této sekci se kupóny nevytvářejí. Budou zasílány pouze e-maily s upomínkou."
 
 #: admin/partials/email-table.php:5
 msgctxt "Setting section"
@@ -1104,7 +1177,7 @@ msgid "Spanish calendar"
 msgstr "Španělský kalendář"
 
 #: admin/partials/reorder-email-admin-display.php:114
-#: admin/partials/review-reminder-email-admin-display.php:134
+#: admin/partials/review-reminder-email-admin-display.php:135
 #: admin/partials/onetime-email-admin-display.php:127
 #: admin/partials/afterorder-email-admin-display.php:120
 msgid ""
@@ -1115,7 +1188,7 @@ msgstr ""
 "produktů."
 
 #: admin/partials/reorder-email-admin-display.php:148
-#: admin/partials/review-reminder-email-admin-display.php:168
+#: admin/partials/review-reminder-email-admin-display.php:169
 #: admin/partials/onetime-email-admin-display.php:161
 #: admin/partials/afterorder-email-admin-display.php:154
 msgid ""
@@ -1126,7 +1199,7 @@ msgstr ""
 "kategoriích."
 
 #: admin/partials/reorder-email-admin-display.php:95
-#: admin/partials/review-reminder-email-admin-display.php:115
+#: admin/partials/review-reminder-email-admin-display.php:116
 #: admin/partials/onetime-email-admin-display.php:108
 #: admin/partials/afterorder-email-admin-display.php:101
 msgid ""
@@ -1139,7 +1212,7 @@ msgstr ""
 "hlavní produkt."
 
 #: admin/partials/reorder-email-admin-display.php:131
-#: admin/partials/review-reminder-email-admin-display.php:151
+#: admin/partials/review-reminder-email-admin-display.php:152
 #: admin/partials/onetime-email-admin-display.php:144
 #: admin/partials/afterorder-email-admin-display.php:137
 msgid ""
@@ -1167,7 +1240,7 @@ msgstr ""
 "produktů. Pokud chcete, aby obsahoval všechny varianty, vyberte hlavní "
 "produkt."
 
-#: admin/partials/expiration-reminder-email-admin-display.php:115
+#: admin/partials/expiration-reminder-email-admin-display.php:116
 msgid ""
 "The email will be sent to users who recieved coupons in the selected "
 "categories and have not use them."
@@ -1184,7 +1257,7 @@ msgstr ""
 "použití ponechte prázdné pole."
 
 #: admin/partials/reorder-email-admin-display.php:158
-#: admin/partials/review-reminder-email-admin-display.php:178
+#: admin/partials/review-reminder-email-admin-display.php:179
 #: admin/partials/onetime-email-admin-display.php:179
 #: admin/partials/afterorder-email-admin-display.php:164
 msgid ""
@@ -1243,14 +1316,14 @@ msgstr "Je to krátký text v horní části e-mailu."
 #: admin/partials/birth-day-email-admin-display.php:124
 #: admin/partials/reorder-email-admin-display.php:76
 #: admin/partials/name-day-email-admin-display.php:172
-#: admin/partials/review-reminder-email-admin-display.php:96
+#: admin/partials/review-reminder-email-admin-display.php:97
 #: admin/partials/afterorder-email-admin-display.php:82
-#: admin/partials/expiration-reminder-email-admin-display.php:98
+#: admin/partials/expiration-reminder-email-admin-display.php:99
 #| msgid "This is UTC time when cron send the email messages."
 msgid "This is time when cron sends the email messages."
 msgstr "To je čas, kdy cron odešle e-mailové zprávy."
 
-#: admin/partials/review-reminder-email-admin-display.php:189
+#: admin/partials/review-reminder-email-admin-display.php:190
 msgid ""
 "This setting allows you to filter the sending of emails according to whether "
 "the user has previously created a review."
@@ -1258,12 +1331,12 @@ msgstr ""
 "Toto nastavení umožňuje filtrovat odesílání e-mailů podle toho, zda uživatel "
 "již dříve vytvořil recenzi."
 
-#: includes/class-coupon-emails-functions.php:548
+#: includes/class-coupon-emails-functions.php:557
 #, php-format
 msgid "Today %s is Name Day celebrated by"
 msgstr "Dnes %s se slaví jmeniny "
 
-#: includes/class-coupon-emails-functions.php:550
+#: includes/class-coupon-emails-functions.php:559
 #, php-format
 msgid "Tomorrow is Name Day celebrated by"
 msgid_plural "In %s days is Name Day celebrated by"
@@ -1282,9 +1355,9 @@ msgstr "Celkem kupónů"
 #: admin/partials/birth-day-email-admin-display.php:103
 #: admin/partials/reorder-email-admin-display.php:56
 #: admin/partials/name-day-email-admin-display.php:130
-#: admin/partials/review-reminder-email-admin-display.php:74
+#: admin/partials/review-reminder-email-admin-display.php:75
 #: admin/partials/afterorder-email-admin-display.php:60
-#: admin/partials/expiration-reminder-email-admin-display.php:76
+#: admin/partials/expiration-reminder-email-admin-display.php:77
 #: admin/partials/reviewed-email-admin-display.php:28
 msgid "Turn on and off the automatic functionality of email sending"
 msgstr "Povolení a zakázání automatického odesílání e-mailů."
@@ -1301,9 +1374,9 @@ msgstr ""
 #: admin/partials/birth-day-email-admin-display.php:109
 #: admin/partials/reorder-email-admin-display.php:62
 #: admin/partials/name-day-email-admin-display.php:136
-#: admin/partials/review-reminder-email-admin-display.php:80
+#: admin/partials/review-reminder-email-admin-display.php:81
 #: admin/partials/afterorder-email-admin-display.php:66
-#: admin/partials/expiration-reminder-email-admin-display.php:82
+#: admin/partials/expiration-reminder-email-admin-display.php:83
 msgid ""
 "Turn on when testing. The user will not get emails. All emails will be sent "
 "to BCC/Test address."
@@ -1342,28 +1415,28 @@ msgid "User Roles to include"
 msgstr "Uživatelské role, které budou zahrnuty"
 
 #: admin/partials/reorder-email-admin-display.php:80
-#: admin/partials/review-reminder-email-admin-display.php:100
+#: admin/partials/review-reminder-email-admin-display.php:101
 #: admin/partials/onetime-email-admin-display.php:93
 #: admin/partials/afterorder-email-admin-display.php:86
 msgid "Users who bought one of these products"
 msgstr "Uživatelé, kteří si zakoupili alespoň jeden z následujících produktů."
 
 #: admin/partials/reorder-email-admin-display.php:118
-#: admin/partials/review-reminder-email-admin-display.php:138
+#: admin/partials/review-reminder-email-admin-display.php:139
 #: admin/partials/onetime-email-admin-display.php:131
 #: admin/partials/afterorder-email-admin-display.php:124
 msgid "Users who bought products in these categories"
 msgstr "Uživatelé, kteří zakoupili produkty v těchto kategoriích"
 
 #: admin/partials/reorder-email-admin-display.php:135
-#: admin/partials/review-reminder-email-admin-display.php:155
+#: admin/partials/review-reminder-email-admin-display.php:156
 #: admin/partials/onetime-email-admin-display.php:148
 #: admin/partials/afterorder-email-admin-display.php:141
 msgid "Users who never bought products in these categories"
 msgstr "Uživatelé, kteří nikdy nekoupili produkty těchto kategorií."
 
 #: admin/partials/reorder-email-admin-display.php:99
-#: admin/partials/review-reminder-email-admin-display.php:119
+#: admin/partials/review-reminder-email-admin-display.php:120
 #: admin/partials/onetime-email-admin-display.php:112
 #: admin/partials/afterorder-email-admin-display.php:105
 msgid "Users who never bought these products"
@@ -1378,7 +1451,7 @@ msgid "Users who reviewed products in these categories"
 msgstr "Uživatelé, kteří hodnotili produkty v těchto kategoriích"
 
 #: admin/partials/reorder-email-admin-display.php:152
-#: admin/partials/review-reminder-email-admin-display.php:172
+#: admin/partials/review-reminder-email-admin-display.php:173
 #: admin/partials/onetime-email-admin-display.php:173
 #: admin/partials/afterorder-email-admin-display.php:158
 msgid "Users who total spent"
