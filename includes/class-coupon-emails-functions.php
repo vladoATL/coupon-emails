@@ -54,7 +54,7 @@ class EmailFunctions
 					$coupon = $this->couponemails_get_unique_coupon($user);
 
 				if (empty($coupon)) {
-					$this->couponemails_add_log("No available coupons to create.");
+					$this->couponemails_add_log(_x( 'No available coupons to create.', 'Log file', 'coupon-emails' ) );
 					$success = false;
 					return $success;
 				}
@@ -87,17 +87,17 @@ class EmailFunctions
 				if (empty($coupon)) {
 					$coupon_str = "";
 				} else {
-					$coupon_str =  ', coupon: ' . $coupon ;
+					$coupon_str = ", " . _x("coupon", "Log file", "coupon-emails") . ": " . $coupon ;
 				}
 					
 				if ($istest == true) {
-					$this->couponemails_add_log("Test email sent to" . ': ' . $email  . " instead of to " . $user_email . $coupon_str ) ;
+					$this->couponemails_add_log(sprintf( _x( "Test email sent to %s instead of to", "Log file", "coupon-emails" ), $email ) . " " . $user_email . $coupon_str);
 					$success = false;
 				} else {
-					$this->couponemails_add_log("Email sent to" . ': ' . $email . $coupon_str  ) ;
+					$this->couponemails_add_log( _x("Email sent to", "Log file", "coupon-emails")  . ': ' . $email . $coupon_str  ) ;
 				}
 			} else {
-				$this->couponemails_add_log("Trying to send to incorrect or missing email address"  . ': ' . $email ) ;
+				$this->couponemails_add_log( _x("Cannot send email to incorrect or missing address" , "Log file", "coupon-emails") . ': ' . $email ) ;
 				$success = false;
 			}
 		} else {
@@ -109,9 +109,9 @@ class EmailFunctions
 				} else {
 					$sendmail_user = wp_mail( $admin_email, $subject_user, $html_body, $headers_user );
 				}
-				$this->couponemails_add_log("Email has been sent as Test to"  . ' ' . $admin_email . " instead of to " . $email) ;
+				$this->couponemails_add_log(sprintf( _x( "Test email sent to %s instead of to", "Log file", "coupon-emails" ), $admin_email ) . " " . $email );
 			} else {
-				$this->couponemails_add_log("Email has been created but not sent to " . $email . " because of Test.") ;
+				$this->couponemails_add_log(sprintf( _x( "An email was created but not sent to %s because the number of test emails exceeded", "Log file", "coupon-emails" ), $email ) . " " . MAX_TEST_EMAILS);
 			}
 
 			$this->emails_cnt +=1;
@@ -188,11 +188,12 @@ class EmailFunctions
 	{
 		$options = get_option('couponemails_options');
 		if ($options['enable_logs'] == "1") {
+			$name = $this->couponemails_get_coupons_cat_name($this->type);
 
 			if ( is_array( $entry ) ) {
 				$entry = json_encode( $entry );
 			}
-			$entry =$this->type . ": " . current_time( 'mysql' ) . " " .  $entry  ;
+			$entry =$name . ": " . current_time( 'mysql' ) . " " .  $entry  ;
 			$options = get_option('couponemails_logs');
 
 			if (empty($options)) {
@@ -382,6 +383,15 @@ class EmailFunctions
 		return $names;
 	}
 
+	function couponemails_get_coupons_cat_name($name)
+	{
+		$options = get_option($name . '_options');
+		$cat_name = isset($options["coupon_cat"]) ? $options["coupon_cat"] : "";
+		if ( empty($cat_name)) {
+			$cat_name = $name;
+		}	
+		return $cat_name;
+	}
 
 	function couponemails_get_stats()
 	{
@@ -405,7 +415,7 @@ class EmailFunctions
 
 				WHERE p.post_type = 'shop_coupon'
 				GROUP BY tr.term_taxonomy_id";
-		//$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);					
+				//$this->test_add_log('-- couponemails_get_stats -- ' . $this->type . PHP_EOL  . $sql);					
 		$result = $wpdb->get_results($sql, OBJECT);
 		return $result;
 	}
@@ -503,8 +513,7 @@ class EmailFunctions
 				AND ( pmu.meta_value = 0 OR pmu.meta_value IS NULL )
 				AND pm.meta_value + (" . $days_delete . "*86400) < UNIX_TIMESTAMP()
 				ORDER BY pm.meta_value desc";
-		
-		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);				
+				
 		$coupon_ids = $wpdb->get_col($sql);
 		$count = count($coupon_ids);
 
@@ -512,7 +521,7 @@ class EmailFunctions
 			return;
 
 		$where_in = implode(",", $coupon_ids );
-		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $where_in);
+		$this->test_add_log('-- couponemails_delete_expired - ' . $this->type . PHP_EOL . $sql . $where_in);
 		
 		$sql_pm = "DELETE FROM $wpdb->postmeta WHERE post_id IN (" . $where_in . ")";	
 		$sql_p = "DELETE FROM $wpdb->posts WHERE ID IN (" . $where_in . ")";

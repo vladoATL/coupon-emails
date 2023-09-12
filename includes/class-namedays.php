@@ -72,7 +72,7 @@ class Namedays
 				WHERE umfn.meta_value IN ($names)
 					AND umfn.meta_value <> '' 
 					AND umfn.meta_value IS NOT NULL";
-		EmailFunctions::test_add_log('-get_celebrating_users- ' . $this->type . PHP_EOL  . $sql);
+					EmailFunctions::test_add_log('-- get_celebrating_users - Namedays --' . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
 
 		return $result;

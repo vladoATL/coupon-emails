@@ -74,13 +74,9 @@ function couponemails_run_cron_setup($type)
 
 		$res = wp_reschedule_event( $tm, 'daily', $type . '_cron' );
 		if ($res == 1 )
-			$logs->couponemails_add_log($type . "_cron scheduled " . date("T H:i", $tm));
+			$logs->couponemails_add_log($type . _x("_cron scheduled", "Log file", "coupon-emails") . " " . date("T H:i", $tm));
 			else
-				$logs->couponemails_add_log("Cron scheduling error" );
-			
-	} else {
-		//wp_clear_scheduled_hook( $type . '_cron' );
-		//$logs->couponemails_add_log("Cron removed" );
+				$logs->couponemails_add_log(_x("Cron scheduling error" , "Log file", "coupon-emails") );			
 	}	
 }
 

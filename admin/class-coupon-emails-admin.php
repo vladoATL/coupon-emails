@@ -173,11 +173,10 @@ class Coupon_Email_Admin {
 	
 	function site_reviews_create_coupon($reviewed)
 	{
-		//\COUPONEMAILS\EmailFunctions::test_add_log('---reviewed--- ' . print_r($reviewed, true));
 		$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $reviewed->product);
 		$meta = get_post_meta($reviewed->comment_ID,"reviewedemail_sent", true);
 		if (! empty($meta)) {
-			$funcs->couponemails_add_log("User " . $reviewed->author_email . " has already received coupon $meta	for this review." . PHP_EOL );
+			$funcs->couponemails_add_log(sprintf( _x( "%s has already received coupon for this review", "Log file", "coupon-emails" ), $reviewed->author_email ) . ": " . $meta);
 			return 0;
 		}
 		$isOK =  $reviewed->filter_site_review($reviewed->user_id, $reviewed->main_prod_ID, $reviewed->comment_ID);
@@ -223,7 +222,7 @@ class Coupon_Email_Admin {
 		$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $product_name);
 		$meta = get_comment_meta($comment_ID,"reviewedemail_sent", true);
 		if (! empty($meta)) {
-			$funcs->couponemails_add_log("User " . $comment->comment_author_email . " has already received coupon $meta	for this review." . PHP_EOL );
+			$funcs->couponemails_add_log(sprintf( _x( "%s has already received coupon for this review", "Log file", "coupon-emails" ), $reviewed->comment_author_email ) . ": " . $meta);
 			return 0;
 		}
 
@@ -233,7 +232,6 @@ class Coupon_Email_Admin {
 			$user = get_user_by( 'id', $user_id );
 			$coupon = $funcs->	couponemails_create($user);
 			$meta_id = update_comment_meta($comment_ID,"reviewedemail_sent",$coupon);
-			// \COUPONEMAILS\EmailFunctions::test_add_log('-- ' . $meta_id . PHP_EOL  );
 		}		
 	}
 	

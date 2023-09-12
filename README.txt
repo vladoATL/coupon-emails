@@ -66,6 +66,7 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 == Upgrade Notice ==
 = 1.1.1 =
 * Add reminders
+* Localization of log entries
 
 = 1.0.2 =
 * Cosmetic changes and fixes.

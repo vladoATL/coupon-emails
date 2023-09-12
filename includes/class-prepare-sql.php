@@ -48,7 +48,7 @@ class PrepareSQL
 			ON orders.user_id = u.ID
 			WHERE u.user_email IN ($addresses)
 			";
-			EmailFunctions::test_add_log('-- ' . $this->type . PHP_EOL  . $sql);
+			EmailFunctions::test_add_log('-- get_users_from_emails -- ' . $this->type . PHP_EOL  . $sql);
 		if ($as_objects) {
 			$result = $wpdb->get_results($sql, OBJECT);
 		} else {
@@ -85,7 +85,7 @@ class PrepareSQL
 				AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
 				";
 				
-		EmailFunctions::test_add_log('-- ' . $this->type . PHP_EOL  . $sql);
+				EmailFunctions::test_add_log('-- get_users_with_expired_coupons -- ' . $this->type . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
 		foreach ($result as  $value) {
 			$value->user_email = maybe_unserialize($value->user_email)[0];
@@ -145,7 +145,7 @@ class PrepareSQL
 		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent, $already_rated) 	;
 
 
-		EmailFunctions::test_add_log('-- ' . $this->type . PHP_EOL  . $sql);
+		EmailFunctions::test_add_log('-- get_users_filtered -- ' . $this->type . PHP_EOL  . $sql);
 		//return $sql;
 
 		if ($as_objects) {
@@ -270,7 +270,7 @@ class PrepareSQL
 			$sql .="				
 				AND c.comment_ID = $comment_id 
 				GROUP BY c.comment_ID ";
-			EmailFunctions::test_add_log('-- ' . $sql . PHP_EOL  );				
+				EmailFunctions::test_add_log('-- get_comment_sql -- ' . $sql . PHP_EOL  );				
 		return $sql;
 	
 	}

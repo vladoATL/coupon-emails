@@ -12,12 +12,16 @@
  <removed value=";"/>
  <added value=""/>
  <lastopfiles>
-  <file name="C:\PHP Code\coupon-emails\admin\partials\afterorder-email-admin-display.php"/>
   <file name="C:\PHP Code\coupon-emails\includes\class-afterorder.php"/>
   <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-functions.php"/>
   <file name="C:\PHP Code\coupon-emails\includes\class-reviewed.php"/>
   <file name="C:\PHP Code\coupon-emails\includes\class-prepare-sql.php"/>
   <file name="C:\PHP Code\coupon-emails\admin\partials\review-reminder-email-admin-display.php"/>
+  <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-cron.php"/>
+  <file name="C:\PHP Code\coupon-emails\admin\partials\name-day-email-admin-display.php"/>
+  <file name="C:\PHP Code\coupon-emails\README.txt"/>
+  <file name="C:\PHP Code\coupon-emails\coupon-emails.php"/>
+  <file name="C:\PHP Code\coupon-emails\admin\partials\expiration-reminder-email-admin-display.php"/>
   <lastactivefile name=""/>
  </lastopfiles>
  <errors version="1.12.0">
@@ -26,8 +30,8 @@
    <error val="0;127;95;127;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\review-reminder-email-admin-display.php">
-   <error val="0;55;89;55;2002;1;"/>
-   <error val="0;205;94;205;2002;1;"/>
+   <error val="0;56;89;56;2002;1;"/>
+   <error val="0;206;94;206;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\reorder-email-admin-display.php">
    <error val="0;40;89;40;2002;1;"/>
@@ -44,7 +48,7 @@
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\expiration-reminder-email-admin-display.php">
    <error val="0;57;89;57;2002;1;"/>
-   <error val="0;131;94;131;2002;1;"/>
+   <error val="0;132;94;132;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\common-settings-admin-display.php">
    <error val="0;110;87;110;2002;1;"/>
@@ -54,6 +58,8 @@
    <error val="113;151;200;151;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\afterorder-email-admin-display.php">
+   <error val="0;43;89;43;2002;1;"/>
+   <error val="0;180;94;180;2002;1;"/>
    <error val="0;43;89;43;2002;1;"/>
    <error val="0;180;94;180;2002;1;"/>
   </errfile>
@@ -66,5 +72,5 @@
  <yiidata/>
  <todoblock/>
  <dbgurls/>
- <lasttime value="1694444859"/>
+ <lasttime value="1694463994"/>
 </project>
