@@ -17,6 +17,7 @@ if ( isset( $_GET['deleteexpired'] ) ) {
 	$fun->couponemails_delete_expired();	
 }
 	$stats = $fun->couponemails_get_stats();
+	//$stats = $fun->couponemails_get_full_stats();
 	$display_stats = true;
 	$total = 0;
 	$active = 0;

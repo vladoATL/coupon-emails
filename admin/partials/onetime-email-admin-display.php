@@ -1,17 +1,25 @@
 <?php
 namespace COUPONEMAILS;
 global $wp_roles;
+$option_name = "onetimeemail";
+
+if ( isset( $_GET['runtest'] ) ) {
+	$onetimes = new Onetimes();
+	$result = $onetimes->send_to_users_filtered();	
+	header("location:admin.php?page=couponemails&tab=one-time"); 
+}
+
 
 if ( isset( $_GET['onetimeexport'] ) ) {
 	global $wpdb;
 	ob_end_clean();
-	$table_head = array('First Name', 'Last Name', 'Email', 'User ID', 'Orders count', 'Orders total', 'Last order' );
+	$table_head = array('Email', 'First Name', 'Last Name',  'Last activity', 'User ID', 'Orders count', 'Orders total', 'Last order' );
 	$csv = implode( ';' , $table_head );
 	$csv .= "\n";
 
-	$onetimes = new Onetimes();
+	$onetimes = new PrepareSQL($option_name, '=');
 	$result = $onetimes->get_users_filtered();
-
+		
 	foreach ( $result as $key => $value ) {
 		$csv .=   implode(';', $value);
 		$csv .= "\n";
@@ -28,7 +36,7 @@ if ( isset( $_GET['onetimeexport'] ) ) {
 	echo $csv;
 	exit();
 }
-$option_name = "onetimeemail";
+
 ?>
 
 <div class="wrap woocommerce">
@@ -48,13 +56,20 @@ id="restore_onetimeemail_values_btn" />
 	$options = get_option('onetimeemail_options');
 	?>
 	<table class="form-table">
-
 		<tr valign="top">
 			<th class="titledesc"><?php echo __( 'Run in test mode', 'coupon-emails' ); ?>:</th>
 			<td><input type="checkbox" name="onetimeemail_options[test]" id="onetimeemail_options[test]"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>
 				<?php  echo wc_help_tip(__( 'Turn on when testing. The actual users will not get emails. All emails will be sent to BCC/Test address.', 'coupon-emails' ), false); ?>
+				<button type="button" class="button button-primary" id="run_button" onClick="window.location.search += '&runtest=1'"><?php echo __( 'Run now', 'coupon-emails' ); ?></button>
+				<input type="checkbox" style="display: none;" name="test_enabled" id="test_enabled"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>	<?php  echo wc_help_tip(sprintf(_n( 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupon will be created and emails sent to administrator.', 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupons will be created and test emails sent to administrator.', MAX_TEST_EMAILS, 'coupon-emails' ), MAX_TEST_EMAILS), false); ?>			
 			</td>
 		</tr>
+		<tr valign="top">
+			<th class="titledesc"><?php echo __( 'Send even if there is no user name in the database', 'coupon-emails' ); ?>:</th>
+			<td><input type="checkbox" name="onetimeemail_options[with_no_name]" id="onetimeemail_options[with_no_name]"  value="1" <?php echo checked( 1, $options['with_no_name'] ?? '', false ) ?? '' ; ?>>
+				<?php  echo wc_help_tip(__( 'If this box is unchecked, only users who have fully completed registration and whose name is in the database will receive the email.', 'coupon-emails' ), false); ?>
+			</td>
+		</tr>		
 		<tr>
 			<th class="titledesc"><?php echo __( 'User Roles to include', 'coupon-emails' ); ?>:</th>
 		<td>
@@ -77,7 +92,7 @@ id="restore_onetimeemail_values_btn" />
 			<td>
 				<select id="onetimeemail_options[exclude-roles]" name="onetimeemail_options[exclude-roles][]" style="width: 50%;"  class="wc-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'No roles', 'coupon-emails' ); ?>">
 					<?php
-		$role_ids = $options['exclude-roles'];
+		$role_ids = isset( $options['exclude-roles']) ? $options['exclude-roles'] : "";
 		$roles    = $wp_roles->get_names();
 		if ( $roles  ) {
 			foreach ( $roles  as $key => $value ) {
@@ -187,6 +202,13 @@ id="restore_onetimeemail_values_btn" />
 			</td>
 		</tr>	
 		<tr>
+			<th class="titledesc"><?php echo __( 'Last user activity made more than X days before today', 'coupon-emails' ); ?>:</th>
+			<td>
+				<input type="number" id="onetimeemail_options[days_after_active]" name="onetimeemail_options[days_after_active]"  style="width: 80px;" value="<?php echo $options['days_after_active'] ?? ''; ?>"</input>
+				<?php  echo wc_help_tip(__( "Enter the minimum number of days since customer's last activity after which this coupon email should be sent.", 'coupon-emails'), false); ?>
+			</td>
+		</tr>			
+		<tr>
 			<th class="titledesc"><?php echo __( 'Send email only to these addresses', 'coupon-emails' ); ?>:</th>
 			<td>
 
@@ -214,3 +236,18 @@ attr-nonce="<?php echo esc_attr( wp_create_nonce( '_onetime_nonce_send' ) ); ?>"
 </p>
 </div>
 </div>
+
+ <script>
+	 const enabled_hidden = document.querySelector('input[id="test_enabled"]');
+	 const runNowButton = document.getElementById('run_button');
+	 const sendButton = document.getElementById('send_onetime_btn');
+	 enabled_hidden.addEventListener('change', checkButtonStatus);
+
+	 function checkButtonStatus()
+	 {
+		 const allChecked = enabled_hidden.checked ;
+		 runNowButton.disabled = !allChecked;
+		 sendButton.disabled = allChecked;
+	 }
+	 checkButtonStatus();
+ </script>

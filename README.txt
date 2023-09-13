@@ -64,6 +64,9 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.1.2 =
+* Add a new coupon category for expiration reminders
+
 = 1.1.1 =
 * Add reminders
 * Localization of log entries

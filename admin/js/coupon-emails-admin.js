@@ -584,6 +584,38 @@ function() {
 
 jQuery( document ).on(
 "click",
+"#onetimeemail-setting #send_onetime_btn",
+function() {
+	event.preventDefault();
+	var nonce = jQuery( this ).attr( 'attr-nonce' );
+	var data  = {
+		action: 'onetimeemails_send',
+		nonce: nonce,
+	};
+	jQuery.ajax(
+	{
+		type: "post",
+		url: ajaxurl,
+		data: data,
+		beforeSend: function(response) {
+			jQuery( "#onetimeemail-setting .loader_cover" ).addClass( 'active' );
+			jQuery( "#onetimeemail-setting .onetime_loader" ).addClass( 'loader' );
+		},
+		complete: function(response) {
+			jQuery( "#onetimeemail-setting .loader_cover" ).removeClass( 'active' );
+			jQuery( "#onetimeemail-setting .onetime_loader" ).removeClass( 'loader' );
+		},
+		success: function(response) {
+			location.reload();
+		}
+	}
+	);
+	return false;
+}
+);
+
+jQuery( document ).on(
+"click",
 "#afterorderemail-setting #test_afterorder_btn",
 function() {
 	event.preventDefault();

@@ -167,6 +167,8 @@ class Coupon_Emails {
 		$this->loader->add_action( 'wp_ajax_email_restore_settings', $plugin_admin, 'email_restore_settings' );		
 		$this->loader->add_action( 'wp_ajax_couponemails_clear_log', $plugin_admin, 'couponemails_clear_log' );
 		$this->loader->add_action( 'wp_ajax_email_make_test', $plugin_admin, 'email_make_test' );		
+		$this->loader->add_action( 'wp_ajax_onetimeemails_send', $plugin_admin, 'onetimeemails_send' );		
+		
 		
 		
 		if ( is_plugin_active( 'site-reviews/site-reviews.php' ) ) {

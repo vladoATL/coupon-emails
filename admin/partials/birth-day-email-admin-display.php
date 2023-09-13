@@ -6,6 +6,7 @@ $option_name = "birthdayemail";
 if ( isset( $_GET['runtest'] ) ) {
 	$bd = new \COUPONEMAILS\Birthdays();
 	$bd -> birthdayemail_event_setup();
+	header("location:admin.php?page=couponemails&tab=birth-day"); 
 }
 
 // Process export

@@ -68,7 +68,7 @@ class PrepareSQL
 		if (!empty($expired_cats_array)) $cat_str = implode(',', $expired_cats_array);
 		
 		$sql = "SELECT t.name AS coupon_cat, p.post_title AS coupon, pme.meta_value as user_email, 
-		NULL as user_firstname, NULL as user_lastname, FROM_UNIXTIME(pm.meta_value , '%e.%c.%Y') AS expires, NULL as ID
+		NULL as user_firstname, NULL as user_lastname, FROM_UNIXTIME(pm.meta_value , '%e.%c.%Y') AS expires, NULL as ID, p.ID as coupon_ID
 				FROM {$wpdb->prefix}posts AS p
 				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id 
 				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tr.term_taxonomy_id ";
@@ -107,7 +107,8 @@ class PrepareSQL
 
 		$options = get_option($this->type . '_options');
 		$emails =  isset( $options['email_address']) ? $options['email_address'] : "";
-		$days_after_order =  isset( $options['days_after_order']) ? $options['days_after_order'] : "";
+		$days_after_order =  isset( $options['days_after_order']) && is_numeric($options['days_after_order']) ? $options['days_after_order'] : "";
+		$days_after_active =  isset( $options['days_after_active']) && is_numeric($options['days_after_active']) ? $options['days_after_active'] : "";
 		$already_rated = isset( $options['already_rated']) ? $options['already_rated'] : "";
 		if (! empty( $emails))
 			return $this->get_users_from_emails ($emails, $as_objects);
@@ -117,7 +118,7 @@ class PrepareSQL
 		$minimum_spent = isset( $options['minimum_spent']) ? $options['minimum_spent'] : "";
 		$maximum_spent = isset( $options['maximum_spent']) ? $options['maximum_spent'] : "";
 		$total_spent = $this->get_spent_string($minimum_spent, $maximum_spent);
-
+		$with_no_name =  isset( $options['with_no_name']) ? $options['with_no_name'] : 0;
 		$roles = isset( $options['roles']) ? $options['roles'] : "";
 		$exclude_roles = isset( $options['exclude-roles']) ? $options['exclude-roles'] : "";
 		$bought_products = isset( $options['bought_products']) ? $options['bought_products'] : "";
@@ -127,14 +128,23 @@ class PrepareSQL
 		if (!empty($minimum_orders) && is_numeric($minimum_orders) && $minimum_orders >0) {
 			$select_orders_str = ", orders.orders_count, orders.orders_total, orders.last_order";
 		} else {
-			$select_orders_str = "";
-		}
+			$select_orders_str = ", '' AS orders_count, '' AS orders_total, '' AS last_order";
+		}		
+		if ($with_no_name == 1) {
+			$no_fname = "";
+			$no_lname = "";				
 
-		$sql = "SELECT u.user_email, umfn.meta_value AS user_firstname, umln.meta_value AS user_lastname, u.ID $select_orders_str
+		} else {
+			$no_fname = " AND umfn.meta_value <> '' ";
+			$no_lname = " AND umln.meta_value <> '' ";		
+		}
+		$sql = "SELECT u.user_email, umfn.meta_value AS user_firstname, umln.meta_value AS user_lastname, 
+				FROM_UNIXTIME(uma.meta_value, '%e.%c.%Y') AS activity, u.ID $select_orders_str 
 				FROM $wpdb->users AS u
-				JOIN $wpdb->usermeta AS umfn ON u.ID =  umfn.user_id AND umfn.meta_key = 'first_name'
-				JOIN $wpdb->usermeta AS umln ON u.ID =  umln.user_id AND umln.meta_key = 'last_name'  " .
-		$this->get_join_capabilities_sql($roles, $exclude_roles) ;
+				JOIN $wpdb->usermeta AS umfn ON u.ID =  umfn.user_id AND umfn.meta_key = 'first_name' $no_fname
+				JOIN $wpdb->usermeta AS umln ON u.ID =  umln.user_id AND umln.meta_key = 'last_name' $no_lname " .
+				$this->get_join_capabilities_sql($roles, $exclude_roles) . 
+				$this->get_join_last_activity_sql($days_after_active);
 		if ($minimum_orders != 0) {
 			$sql .= $this->get_join_products($bought_products) ;
 			$sql .= $this->get_join_products($not_bought_products, true) ;
@@ -142,7 +152,7 @@ class PrepareSQL
 			$sql .= $this->get_join_categories($not_bought_cats, true) ;
 		}
 
-		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent, $already_rated) 	;
+		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent, $already_rated, $days_after_active) 	;
 
 
 		EmailFunctions::test_add_log('-- get_users_filtered -- ' . $this->type . PHP_EOL  . $sql);
@@ -277,20 +287,27 @@ class PrepareSQL
 	function get_join_orders_sql($minimum_orders, $days_since_last_order = "", $total_spent = "")
 	{
 		global $wpdb;
+		$min_orders_join = "";
 		if (! empty($days_since_last_order)) {
 			$since_last_order_date = date('Y-m-d', strtotime('-' . $days_since_last_order . ' days'));
-		}
-		if ($minimum_orders > 0)
+		}		
+		if ($minimum_orders > 0) {
 			$minimum_orders_str = ", COUNT(p.ID) AS orders_count, ROUND(SUM(upmt.meta_value),2) AS orders_total, DATE(max(p.post_date)) AS last_order";
-		else if ($minimum_orders == 0)
+			$min_orders_join = "JOIN $wpdb->postmeta AS upmt ON upmt.post_id = p.ID AND upmt.meta_key = '_order_total'";
+		}
+		else if ($minimum_orders == 0) {
 			$minimum_orders_str = ", COUNT(p.ID) AS orders_count ";
-		else
+			$min_orders_join = "";
+		}
+		else {
 			$minimum_orders_str = "";
+			$min_orders_join = "";
+		}
 		$sql = " JOIN (";
 		$sql .="SELECT upm.meta_value AS user_id $minimum_orders_str
 			FROM $wpdb->posts AS p
 				JOIN $wpdb->postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
-				JOIN $wpdb->postmeta AS upmt ON upmt.post_id = p.ID AND upmt.meta_key = '_order_total'
+				$min_orders_join
 				WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'";
 				if ( $this->type != 'onetimeemail') {
 					if (! empty($days_since_last_order))
@@ -312,14 +329,14 @@ class PrepareSQL
 		$sql .= ") AS orders
 		ON orders.user_id = u.ID ";
 
-		return $sql;
+		return $sql ;
 	}
 
 	function get_orders_sql($minimum_orders, $days_after_order = "", $total_spent = "", $already_rated = "")
 	{
 		global $wpdb;
-		if (! isset($minimum_orders) || $minimum_orders == '')
-			return '';
+/*		if (! isset($minimum_orders) || $minimum_orders == '')
+			return '';*/
 		$sql = "";
 
 		if ($minimum_orders == 0) {
@@ -344,6 +361,18 @@ class PrepareSQL
 
 		return $sql;
 	}
+	
+	function get_join_last_activity_sql($days_after_active)
+	{
+		global $wpdb;
+
+		$sql = "JOIN {$wpdb->prefix}usermeta AS uma ON u.ID = uma.user_id AND uma.meta_key = 'wc_last_active' ";
+		
+		if (empty(! $days_after_active))
+			$sql .= "AND DATE(FROM_UNIXTIME(uma.meta_value + $days_after_active * 86400 )) < CURDATE() ";
+		return $sql;
+	}
+	
 	function get_join_capabilities_sql($roles, $exclude_roles, $id_str = "u.ID")
 	{
 		global $wpdb;

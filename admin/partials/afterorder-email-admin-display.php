@@ -5,6 +5,7 @@ $option_name = "afterorderemail";
 if ( isset( $_GET['runtest'] ) ) {
 	$nd = new \COUPONEMAILS\AfterOrder($option_name);
 	$nd -> afterorderemail_event_setup();
+	header("location:admin.php?page=couponemails&tab=after-order"); 
 }
 
 // Process export

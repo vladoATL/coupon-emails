@@ -6,6 +6,7 @@ $option_name = "namedayemail";
 if ( isset( $_GET['runtest'] ) ) {
 	$nd = new \COUPONEMAILS\Namedays();
 	$nd -> namedayemail_event_setup();
+	header("location:admin.php?page=couponemails&tab=name-day"); 
 }
 
 // Process export

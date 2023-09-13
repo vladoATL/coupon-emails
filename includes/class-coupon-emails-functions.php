@@ -24,6 +24,7 @@ class EmailFunctions
 
 	function couponemails_create($user, $istest = false, $coupon = "")
 	{
+				
 		$success = true;
 		$options = $this->options_array;
 		$subject_user = $options['subject'];
@@ -47,12 +48,16 @@ class EmailFunctions
 			$email = $user->user_email;
 		}
 		
+		
 		$char_length = isset($options['characters']) ? $options['characters'] : "";
 		if ($char_length != 0 || ! empty($coupon)) {
 			if ((array)$user) {
-				if (empty($coupon) != "") 
+				if (empty($coupon)) {
 					$coupon = $this->couponemails_get_unique_coupon($user);
-
+				} else {
+					if (isset($options['coupon_cat']))
+						$cat_id = $this->couponemails_coupon_category($user->coupon_ID, $options['coupon_cat']);
+				}
 				if (empty($coupon)) {
 					$this->couponemails_add_log(_x( 'No available coupons to create.', 'Log file', 'coupon-emails' ) );
 					$success = false;
@@ -123,15 +128,15 @@ class EmailFunctions
 	function couponemails_replace_placeholders($content, $user, $options)
 	{
 		$date_format = get_option( 'date_format' );
-
+		// $this->couponemails_add_log(print_r($user, true));
 		if (isset($options['days_before'])) {
 			$days_before = is_numeric($options['days_before']) ? $options['days_before'] : 0;
 		} else {
 			$days_before =0;
 		}
 		$inflection = new Inflection();
-		$first_name = isset($user->user_firstname) ? $user->user_firstname : "";
-		$last_name = isset($user->user_lastname) ? $user->user_lastname : "";
+		$first_name =  isset($user->user_firstname) &&  ! empty($user->user_firstname)  ?  $user->user_firstname : $user->user_email ;
+		$last_name = isset($user->user_lastname) &&  ! empty($user->user_lastname)  ? $user->user_lastname : "";
 		$replaced_text = str_replace(
 		array(
 		'{site_name}',
@@ -370,7 +375,7 @@ class EmailFunctions
 
 	function couponemails_get_coupons_cat_names()
 	{
-		$names_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail"];
+		$names_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail"];
 		$cats_array = array();
 
 		foreach ($names_array as $name) {
@@ -415,12 +420,12 @@ class EmailFunctions
 
 				WHERE p.post_type = 'shop_coupon'
 				GROUP BY tr.term_taxonomy_id";
-				//$this->test_add_log('-- couponemails_get_stats -- ' . $this->type . PHP_EOL  . $sql);					
+				// $this->test_add_log('-- couponemails_get_stats -- ' . $this->type . PHP_EOL  . $sql);					
 		$result = $wpdb->get_results($sql, OBJECT);
 		return $result;
 	}
 	
-/*	function couponemails_get_full_stats()
+	function couponemails_get_full_stats()
 	{
 		global $wpdb;
 		$cat_names = $this->couponemails_get_coupons_cat_names();
@@ -462,10 +467,10 @@ class EmailFunctions
 
 				WHERE p.post_type = 'shop_coupon'
 				GROUP BY tr.term_taxonomy_id";
-		$this->test_add_log('-- ' . $this->type . PHP_EOL  . $sql);
+				$this->test_add_log('-- couponemails_get_full_stats -- ' . $this->type . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
 		return $result;
-	}*/
+	}
 		
 	function couponemails_get_cat_slug_id($cat_slug)
 	{

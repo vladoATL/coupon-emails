@@ -225,13 +225,22 @@ class Coupon_Email_Admin {
 			$funcs->couponemails_add_log(sprintf( _x( "%s has already received coupon for this review", "Log file", "coupon-emails" ), $reviewed->comment_author_email ) . ": " . $meta);
 			return 0;
 		}
-
 		$isOK =  $funcs->reviews_filtered($user_id, $comment_main_prod_ID, $comment_ID);
-
 		if ($isOK) {
 			$user = get_user_by( 'id', $user_id );
 			$coupon = $funcs->	couponemails_create($user);
 			$meta_id = update_comment_meta($comment_ID,"reviewedemail_sent",$coupon);
+		}		
+	}
+	
+	public function onetimeemails_send(){
+		//\COUPONEMAILS\EmailFunctions::test_add_log('-- onetimeemails_send -- '  . PHP_EOL  );	
+		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce']
+		&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_onetime_nonce_send' ) ) {
+			
+			$onetimes = new \COUPONEMAILS\Onetimes();
+			$result = $onetimes->send_to_users_filtered();	
+			wp_die();
 		}		
 	}
 	
