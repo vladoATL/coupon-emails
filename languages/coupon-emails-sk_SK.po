@@ -3,7 +3,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Plural-Forms: nplurals=3; plural=( n == 1 ) ? 0 : ( n >= 2 && n <= 4 ) ? 1 : "
 "2;\n"
-"PO-Revision-Date: 2023-09-13 11:30+0000\n"
+"PO-Revision-Date: 2023-09-20 08:17+0000\n"
 "POT-Creation-Date: 2023-08-17 17:31+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
 "Project-Id-Version: Coupon Emails\n"
@@ -68,7 +68,7 @@ msgstr "Kategórie kupónov, ktoré sa majú validovať"
 msgid "characters"
 msgstr "znakov"
 
-#: includes/class-birthdayfield.php:44
+#: includes/class-birthdayfield.php:53
 msgctxt "Check out"
 msgid "Date of birth - Year is not important but helps"
 msgstr "Dátum narodenia - rok nie je dôležitý ale pomôže"
@@ -94,71 +94,71 @@ msgstr "Počet znakov kupónu"
 msgid "Coupon category"
 msgstr "Kategória kupónu"
 
-#: coupon-emails.php:218
+#: coupon-emails.php:250
 #| msgid "after-order"
 msgctxt "Coupon category"
 msgid "After order email"
 msgstr "Email po objednávke"
 
-#: coupon-emails.php:392
+#: coupon-emails.php:424
 msgctxt "Coupon category"
 msgid "After Review"
 msgstr "Po hodnotení"
 
-#: coupon-emails.php:142
+#: coupon-emails.php:175
 #| msgid "birth-day"
 msgctxt "Coupon category"
 msgid "Birth day email"
 msgstr "Email na narodeniny"
 
-#: coupon-emails.php:279
+#: coupon-emails.php:311
 msgctxt "Coupon category"
 msgid "Expiration reminder"
 msgstr "Pripomenutie exspirácie"
 
-#: coupon-emails.php:355
+#: coupon-emails.php:387
 msgctxt "Coupon category"
 msgid "Name day email"
 msgstr "Email na meniny"
 
-#: coupon-emails.php:319
+#: coupon-emails.php:351
 #| msgid "one-time"
 msgctxt "Coupon category"
 msgid "One-time email"
 msgstr "Jednorazový email"
 
-#: coupon-emails.php:179
+#: coupon-emails.php:212
 #| msgid "reorder"
 msgctxt "Coupon category"
 msgid "Reorder email"
 msgstr "Email pre preobjednanie"
 
-#: coupon-emails.php:208
+#: coupon-emails.php:241
 msgctxt "Coupon description"
 msgid "After order {fname} {lname}: {email}"
 msgstr "Po objednaní {fname} {lname}: {email}"
 
-#: coupon-emails.php:382
+#: coupon-emails.php:414
 msgctxt "Coupon description"
 msgid "After review {fname} {lname}: {email}"
 msgstr "Po hodnotení {fname} {lname}: {email}"
 
-#: coupon-emails.php:133
+#: coupon-emails.php:166
 msgctxt "Coupon description"
 msgid "Birthday {fname} {lname}: {email}"
 msgstr "Narodeniny {fname} {lname}: {email}"
 
-#: coupon-emails.php:346
+#: coupon-emails.php:378
 msgctxt "Coupon description"
 msgid "Name Day {fname}: {email}"
 msgstr "Meniny {fname}: {email}"
 
-#: coupon-emails.php:307
+#: coupon-emails.php:339
 msgctxt "Coupon description"
 msgid "One time {fname} {lname}: {email}"
 msgstr "Jednorazovo {fname} {lname}: {email}"
 
-#: coupon-emails.php:170
+#: coupon-emails.php:203
 msgctxt "Coupon description"
 msgid "Reorder {fname} {lname}: {email}"
 msgstr "Preobjednanie {fname} {lname}: {email}"
@@ -183,7 +183,7 @@ msgstr "Nastavenie kupónu"
 msgid "Coupons category"
 msgstr "Kategória kupónov"
 
-#: admin/partials/birth-day-email-admin-display.php:153
+#: admin/partials/birth-day-email-admin-display.php:160
 #: admin/partials/reorder-email-admin-display.php:175
 #: admin/partials/name-day-email-admin-display.php:188
 #: admin/partials/review-reminder-email-admin-display.php:207
@@ -225,7 +225,11 @@ msgstr "Zmazať nepoužité exspirované kupóny po dňoch"
 msgid "Description will be used on Coupons page."
 msgstr "Popis bude použitý na stránke Zľavové kódy"
 
-#: includes/class-birthdayfield.php:54 includes/class-birthdayfield.php:84
+#: admin/partials/birth-day-email-admin-display.php:116
+msgid "Display birthday field to users"
+msgstr "Zobraziť používateľom pole narodenín"
+
+#: includes/class-birthdayfield.php:63 includes/class-birthdayfield.php:93
 msgctxt "DOB note"
 msgid "Year is not important but helps"
 msgstr "Rok nie je dôležitý ale pomôže"
@@ -234,8 +238,8 @@ msgstr "Rok nie je dôležitý ale pomôže"
 msgid "Don't generate coupon"
 msgstr "Negenerovať kupón"
 
-#: admin/partials/birth-day-email-admin-display.php:137
 #: admin/partials/birth-day-email-admin-display.php:144
+#: admin/partials/birth-day-email-admin-display.php:151
 #: admin/partials/reorder-email-admin-display.php:164
 #: admin/partials/name-day-email-admin-display.php:155
 #: admin/partials/name-day-email-admin-display.php:179
@@ -246,32 +250,29 @@ msgstr "Negenerovať kupón"
 msgid "Download csv"
 msgstr "Stahnúť csv"
 
-#: admin/partials/birth-day-email-admin-display.php:138
+#: admin/partials/birth-day-email-admin-display.php:145
 #| msgid "Download csv file with brith days of users."
 msgid "Download csv file with brithdays of users."
 msgstr "Stiahnuť csv súbor s narodeninami používateľov."
 
-#: admin/partials/birth-day-email-admin-display.php:145
+#: admin/partials/birth-day-email-admin-display.php:152
 #: admin/partials/name-day-email-admin-display.php:180
 msgid "Download csv file with filtered users for today's and tomorrow's email."
 msgstr ""
 "Stiahnuť súbor csv s filtrovanými používateľmi pre dnešný a zajtrajší e-mail."
 
+#: admin/partials/reorder-email-admin-display.php:165
 #: admin/partials/review-reminder-email-admin-display.php:198
 #: admin/partials/afterorder-email-admin-display.php:172
 #: admin/partials/expiration-reminder-email-admin-display.php:138
 msgid "Download csv file with filtered users for today's email."
 msgstr "Stiahnuť súbor csv s filtrovanými používateľmi pre dnešný e-mail."
 
-#: admin/partials/reorder-email-admin-display.php:165
-msgid "Download csv file with filtered users."
-msgstr "Stiahnuť csv súbor s vyfiltrovanými používateľov."
-
 #: admin/partials/onetime-email-admin-display.php:223
 msgid "Download csv file with selected users."
 msgstr "Stiahnuť csv súbor s vybranými používateľmi."
 
-#: admin/partials/birth-day-email-admin-display.php:135
+#: admin/partials/birth-day-email-admin-display.php:142
 msgid "Download file with birthdays"
 msgstr "Stiahnuť súbor s narodeninami"
 
@@ -279,15 +280,11 @@ msgstr "Stiahnuť súbor s narodeninami"
 msgid "Download file with users to send email"
 msgstr "Stiahnuť súbor s používateľmi, ktorý dostanú email"
 
-#: admin/partials/reorder-email-admin-display.php:162
-msgid "Download list of users who will receive the email"
-msgstr "Stiahnuť zoznam používateľov, ktorí dostanú e-mail"
-
 #: admin/partials/email-table.php:55
 msgid "Email body"
 msgstr "Text emailu"
 
-#: coupon-emails.php:384
+#: coupon-emails.php:416
 #| msgid ""
 #| "<p style='font-size: 18px;'>{fname}, thank you for your review of our "
 #| "product</p>\n"
@@ -337,7 +334,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:309
+#: coupon-emails.php:341
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>Come back to our site, {fname}! "
@@ -378,7 +375,7 @@ msgstr ""
 "2. klikni na “Stratili ste heslo” a budeš si môcť zvoliť svoje heslo na "
 "prihlásenie.</p>\n"
 
-#: coupon-emails.php:273
+#: coupon-emails.php:305
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>Don't throw away an excellent "
 #| "opportunity to save, {fname}!</p>\n"
@@ -414,7 +411,7 @@ msgstr ""
 "<p style='font-size: 14px;'>Platnosť kupónu sa nedá predĺžiť a je možné ho "
 "uplatniť len z účtu {email}.</p>"
 
-#: coupon-emails.php:135
+#: coupon-emails.php:168
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>Have a nice birthday, {fname}!"
 #| "</p>\n"
@@ -461,7 +458,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:348
+#: coupon-emails.php:380
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>Have a nice name day, {fname}!"
 #| "</p>\n"
@@ -506,7 +503,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:243
+#: coupon-emails.php:275
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>Thanks for shopping with us "
 #| "{last_order_date}, {fname}!</p>\n"
@@ -546,7 +543,7 @@ msgstr ""
 "<p style='font-size: 18px;'>Tím {site_name}</p>\n"
 "<p style='font-size: 14px;'>Na niektoré produkty sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:172
+#: coupon-emails.php:205
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>We have a special discount "
 #| "for you, {fname}!</p>\n"
@@ -595,7 +592,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:210
+#: coupon-emails.php:243
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>We have a special discount "
 #| "for you, {fname}!</p>\n"
@@ -609,16 +606,16 @@ msgstr ""
 #| "discounted products.</p>\n"
 #| "<p style='font-size: 18px;font-weight:600;'>ENJOY !</p>\n"
 #| "<p style='font-size: 18px;'>The Team of {site_name}</p>\n"
-#| "<p style='font-size: 14px;'>The coupon can only be used after logging "
-#| "into your account and cannot be used with other discounts. Some products "
-#| "are excluded  from the discount.</p>"
+#| "<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used "
+#| "after logging into your account and cannot be used with other discounts. "
+#| "Some products are excluded  from the discount.</p>"
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>We have a special discount for "
 "you, {fname}!</p>\n"
-"\t<p style='font-size: 18px;'>Thank you\n"
-"\tfor your order dated  {last_order_date}. If you like our products, take "
-"advantage of this offer and order again. Here is the discount code:</p>\n"
+"\t<p style='font-size: 18px;'>Thank for your order dated {last_order_date}. "
+"If you like our products, take advantage of this offer and order again. Here "
+"is the discount code:</p>\n"
 "<p style='font-size: 24px;font-weight:800;'>{coupon}</p>\n"
 "\t<p style='font-size: 18px;'>During the next {expires_in_days} days (until "
 "{expires}) you can use it in our online store {site_name_url} and get a "
@@ -662,27 +659,27 @@ msgstr "Meno odosielateľa"
 msgid "Email header"
 msgstr "Hlavička emailu"
 
-#: coupon-emails.php:119 coupon-emails.php:333
+#: coupon-emails.php:151 coupon-emails.php:365
 msgctxt "Email Header"
 msgid "Congratulations"
 msgstr "Blahoželáme!"
 
-#: coupon-emails.php:370
+#: coupon-emails.php:402
 msgctxt "Email Header"
 msgid "Here is your gift"
 msgstr "Tu je tvoj darček"
 
-#: coupon-emails.php:263
+#: coupon-emails.php:295
 msgctxt "Email Header"
 msgid "Hurry up!"
 msgstr "Ponáhľaj sa!"
 
-#: coupon-emails.php:294
+#: coupon-emails.php:326
 msgctxt "Email Header"
 msgid "We are missing you!"
 msgstr "Chýbaš nám!"
 
-#: coupon-emails.php:157 coupon-emails.php:194 coupon-emails.php:233
+#: coupon-emails.php:190 coupon-emails.php:227 coupon-emails.php:265
 msgctxt "Email Header"
 msgid "Your discount"
 msgstr "Zľava len pre Teba"
@@ -691,43 +688,43 @@ msgstr "Zľava len pre Teba"
 msgid "Email subject"
 msgstr "Predmet emailu"
 
-#: coupon-emails.php:118
+#: coupon-emails.php:150
 msgctxt "Email Subject"
 msgid "{fname}, here is your birthday gift"
 msgstr "{fname}, tu je tvoj narodeninový darček"
 
-#: coupon-emails.php:293
+#: coupon-emails.php:325
 msgctxt "Email Subject"
 msgid "{fname}, here is your discount coupon"
 msgstr "{fname}, tu je tvoj zľavový kupón"
 
-#: coupon-emails.php:332
+#: coupon-emails.php:364
 msgctxt "Email Subject"
 msgid "{fname}, here is your name day gift"
 msgstr "{fname}, tu je tvoj meninový darček"
 
-#: coupon-emails.php:156
+#: coupon-emails.php:189
 #| msgid "{fname}, it's time to order again"
 msgctxt "Email Subject"
 msgid "{fname}, it's time to order with discount"
 msgstr "{fname}, je čas využiť zľavu"
 
-#: coupon-emails.php:232
+#: coupon-emails.php:264
 msgctxt "Email Subject"
 msgid "{fname}, share your thoughts!"
 msgstr "{fname}, podeľ sa o svoje názory!"
 
-#: coupon-emails.php:193
+#: coupon-emails.php:226
 msgctxt "Email Subject"
 msgid "{fname}, thank you for your order"
 msgstr "{fname}, ďakujeme za objednávku"
 
-#: coupon-emails.php:369
+#: coupon-emails.php:401
 msgctxt "Email Subject"
 msgid "{fname}, thank you for your review"
 msgstr "{fname}, ďakujeme za hodnotenie"
 
-#: coupon-emails.php:262
+#: coupon-emails.php:294
 msgctxt "Email Subject"
 msgid "{fname}, your coupon expires soon!"
 msgstr "{fname}, platnosť tvojho kupónu čoskoro vyprší!"
@@ -853,8 +850,8 @@ msgstr[2] ""
 "Ak chcete spustiť test, začiarknite políčko a uložte nastavenia. Po stlačení "
 "tohto tlačidla sa vytvorí maximálne %s kupónov a odošlú sa emaily správcovi."
 
-#: includes/class-birthdayfield.php:68 includes/class-birthdayfield.php:102
-#: includes/class-birthdayfield.php:113
+#: includes/class-birthdayfield.php:77 includes/class-birthdayfield.php:111
+#: includes/class-birthdayfield.php:122
 msgid "Invalid date format for date of birth"
 msgstr "Nesprávny formát narodenín"
 
@@ -871,19 +868,20 @@ msgid "Leave this field blank if unexpired coupons are to be created."
 msgstr ""
 "Toto pole nechajte prázdne, ak sa majú vytvárať kupóny s bez exspirácie."
 
+#: admin/partials/reorder-email-admin-display.php:162
 #: admin/partials/review-reminder-email-admin-display.php:195
 #: admin/partials/afterorder-email-admin-display.php:169
 #: admin/partials/expiration-reminder-email-admin-display.php:135
 msgid "List of users who receive the email today"
 msgstr "Zoznam používateľov, ktorí dnes dostanú email"
 
-#: admin/partials/birth-day-email-admin-display.php:142
+#: admin/partials/birth-day-email-admin-display.php:149
 #: admin/partials/name-day-email-admin-display.php:177
 msgid "List of users who receive the email today and tomorrow"
 msgstr "Zoznam používateľov, ktorí dostanú email dnes a zajtra"
 
-#: admin/class-coupon-emails-admin.php:179
-#: admin/class-coupon-emails-admin.php:225
+#: admin/class-coupon-emails-admin.php:180
+#: admin/class-coupon-emails-admin.php:226
 #, php-format
 msgctxt "Log file"
 msgid "%s has already received coupon for this review"
@@ -894,7 +892,7 @@ msgctxt "Log file"
 msgid "_cron scheduled"
 msgstr "_cron naplánovaný"
 
-#: includes/class-coupon-emails-functions.php:116
+#: includes/class-coupon-emails-functions.php:120
 #, php-format
 msgctxt "Log file"
 msgid ""
@@ -909,12 +907,12 @@ msgctxt "Log file"
 msgid "Birth day coupon flag has not been updated for"
 msgstr "Príznak kupónu na narodeniny nebol aktualizovaný pre"
 
-#: includes/class-coupon-emails-functions.php:102
+#: includes/class-coupon-emails-functions.php:106
 msgctxt "Log file"
 msgid "Cannot send email to incorrect or missing address"
 msgstr "Nie je možné odoslať email na nesprávnu alebo chýbajúcu adresu"
 
-#: includes/class-coupon-emails-functions.php:92
+#: includes/class-coupon-emails-functions.php:96
 msgctxt "Log file"
 msgid "coupon"
 msgstr "kupón"
@@ -924,18 +922,18 @@ msgctxt "Log file"
 msgid "Cron scheduling error"
 msgstr "Chyba plánovania Cronu"
 
-#: includes/class-coupon-emails-functions.php:99
+#: includes/class-coupon-emails-functions.php:103
 msgctxt "Log file"
 msgid "Email sent to"
 msgstr "Email odoslaný na adresu"
 
-#: includes/class-coupon-emails-functions.php:59
+#: includes/class-coupon-emails-functions.php:63
 msgctxt "Log file"
 msgid "No available coupons to create."
 msgstr "Nie sú k dispozícií ďalšie kupóny na vytvorenie"
 
-#: includes/class-coupon-emails-functions.php:96
-#: includes/class-coupon-emails-functions.php:114
+#: includes/class-coupon-emails-functions.php:100
+#: includes/class-coupon-emails-functions.php:118
 #, php-format
 msgctxt "Log file"
 msgid "Test email sent to %s instead of to"
@@ -958,7 +956,7 @@ msgstr ""
 msgid "Maximum"
 msgstr "Maximum"
 
-#: admin/class-coupon-emails-admin.php:69
+#: admin/class-coupon-emails-admin.php:70
 msgctxt "menu"
 msgid "Coupon Emails"
 msgstr "Kupónové emaily"
@@ -974,10 +972,14 @@ msgstr "Minimum"
 msgid "Minimum orders made by a user"
 msgstr "Minimálne objednávky uskutočnené používateľom"
 
-#: includes/class-birthdayfield.php:83
+#: includes/class-birthdayfield.php:92
 msgctxt "My account"
 msgid "Date of birth"
 msgstr "Dátum narodenia"
+
+#: coupon-emails.php:111
+msgid "My Coupons"
+msgstr "Moje zľavové kupóny"
 
 #: admin/partials/coupon-emails-admin-display.php:33
 msgid "Name Day"
@@ -992,7 +994,7 @@ msgstr "Kalendár s meninami"
 msgid "No roles"
 msgstr "Žiadne roly"
 
-#: includes/class-coupon-emails-functions.php:536
+#: includes/class-coupon-emails-functions.php:541
 #, php-format
 msgid "One expired unused coupon was deleted."
 msgid_plural "%s expired unused coupons were deleted."
@@ -1012,6 +1014,10 @@ msgstr "Iba tí, ktorí už hodnotili"
 msgid "Only those who have not rated yet"
 msgstr "Iba tí, ktorí ešte nehodnotili"
 
+#: public/class-coupon-emails-public.php:80
+msgid "Owned Coupons"
+msgstr "Moje vlastné kupóny"
+
 #: admin/partials/email-table.php:69
 msgid "Placeholders"
 msgstr "Zástupné reťazce"
@@ -1020,12 +1026,12 @@ msgstr "Zástupné reťazce"
 msgid "Polish calendar"
 msgstr "Poľský kalendár"
 
-#: includes/class-birthdayfield.php:128
+#: includes/class-birthdayfield.php:137 includes/class-birthdayfield.php:138
 msgctxt "Profile"
 msgid "Date of birth"
 msgstr "Dátum narodenia"
 
-#: includes/class-birthdayfield.php:53
+#: includes/class-birthdayfield.php:62
 msgctxt "Registration"
 msgid "Date of birth"
 msgstr "Dátum narodenia"
@@ -1095,7 +1101,7 @@ msgstr "Vyberte roly používateľov, ktoré chcete vylúčiť z odosielania ema
 msgid "Select user roles to send the emails to."
 msgstr "Vyberte roly používateľov, ktorým sa majú emaily odosielať."
 
-#: admin/partials/birth-day-email-admin-display.php:122
+#: admin/partials/birth-day-email-admin-display.php:129
 #: admin/partials/reorder-email-admin-display.php:73
 #: admin/partials/name-day-email-admin-display.php:170
 #: admin/partials/review-reminder-email-admin-display.php:95
@@ -1109,7 +1115,7 @@ msgstr "Posielať emaily každý deň v čase"
 msgid "Send email only to these addresses"
 msgstr "Emaily budú poslané iba na tieto adresy"
 
-#: admin/partials/birth-day-email-admin-display.php:116
+#: admin/partials/birth-day-email-admin-display.php:123
 msgid "Send email X days before birthday"
 msgstr "Poslať email X dní pred narodeninami"
 
@@ -1126,11 +1132,11 @@ msgstr "Poslať emaily"
 msgid "Send even if there is no user name in the database"
 msgstr "Odoslať, aj keď v databáze nie je uvedené meno používateľa"
 
-#: admin/partials/birth-day-email-admin-display.php:129
+#: admin/partials/birth-day-email-admin-display.php:136
 msgid "Send it onle one time in a year"
 msgstr "Poslať iba raz do roka"
 
-#: admin/partials/birth-day-email-admin-display.php:131
+#: admin/partials/birth-day-email-admin-display.php:138
 msgid ""
 "Send the email with coupon only once in a year to customer even though the "
 "DOB was changed."
@@ -1367,8 +1373,8 @@ msgstr ""
 "nemajú žiadne objednávky, bez ohľadu na výbery vo filtroch produktov a "
 "kategórií."
 
-#: includes/class-coupon-emails-functions.php:81
-#: includes/class-coupon-emails-functions.php:106
+#: includes/class-coupon-emails-functions.php:85
+#: includes/class-coupon-emails-functions.php:110
 #, php-format
 #| msgid "This is a test email sent to %s instead of to"
 msgid "This is a test email sent to %s instead of to "
@@ -1378,7 +1384,7 @@ msgstr "Toto je testovací email odoslaný na adresu %s namiesto na adresu"
 msgid "This is short text on the top of the email."
 msgstr "Toto je krátky text v hlavičke na vrchu správy."
 
-#: admin/partials/birth-day-email-admin-display.php:125
+#: admin/partials/birth-day-email-admin-display.php:132
 #: admin/partials/reorder-email-admin-display.php:76
 #: admin/partials/name-day-email-admin-display.php:173
 #: admin/partials/review-reminder-email-admin-display.php:98
@@ -1399,12 +1405,12 @@ msgstr ""
 "Toto nastavenie umožňuje filtrovať odosielanie e-mailov podľa toho, či "
 "používateľ predtým vytvoril hodnotenie."
 
-#: includes/class-coupon-emails-functions.php:559
+#: includes/class-coupon-emails-functions.php:564
 #, php-format
 msgid "Today %s is Name Day celebrated by"
 msgstr "Dnes %s meniny oslavuje"
 
-#: includes/class-coupon-emails-functions.php:561
+#: includes/class-coupon-emails-functions.php:566
 #, php-format
 msgid "Tomorrow is Name Day celebrated by"
 msgid_plural "In %s days is Name Day celebrated by"
@@ -1419,6 +1425,14 @@ msgstr "Spolu"
 #: admin/partials/common-settings-admin-display.php:70
 msgid "Total coupons"
 msgstr "Spolu kupónov"
+
+#: admin/partials/birth-day-email-admin-display.php:118
+msgid ""
+"Turn on and off displaying of the birthday field in My Account page and in "
+"Checkout"
+msgstr ""
+"Zapnutie a vypnutie zobrazovania poľa narodenín na stránke Môj účet a v "
+"Pokladni"
 
 #: admin/partials/birth-day-email-admin-display.php:104
 #: admin/partials/reorder-email-admin-display.php:56
@@ -1460,6 +1474,10 @@ msgstr ""
 "Zapnite túto funkciu, ak chcete, aby vaša emailová správa vyzerala ako bežný "
 "email WooCommerce."
 
+#: public/class-coupon-emails-public.php:79
+msgid "Unused / Expired Coupons"
+msgstr "Nepoužité / exspirované kupóny"
+
 #: admin/partials/email-table.php:37
 msgid "Use WooCommerce email template"
 msgstr "Použiť šablónu WooCommerce"
@@ -1467,6 +1485,10 @@ msgstr "Použiť šablónu WooCommerce"
 #: admin/partials/email-table.php:78
 msgid "Use {fname5} for Czech salutation."
 msgstr "Pre české oslovenia použite reťazec {fname5}"
+
+#: public/class-coupon-emails-public.php:81
+msgid "Used Coupons"
+msgstr "Použité kupóny"
 
 #: admin/partials/common-settings-admin-display.php:71
 msgid "Used coupons"
@@ -1528,3 +1550,7 @@ msgstr "Používatelia, ktorí celkom minuli"
 #. Author of the plugin
 msgid "Vlado Laco"
 msgstr "Vlado Laco"
+
+#: public/class-coupon-emails-public.php:82
+msgid "You have no coupons."
+msgstr "Nemáš žiadne kupóny."
