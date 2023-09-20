@@ -1,4 +1,5 @@
 <?php
+namespace COUPONEMAILS;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -20,7 +21,7 @@
  * @subpackage Coupon_Emails/admin
  * @author     Vlado Laco <vlado@perties.sk>
  */
-class Coupon_Email_Admin {
+class Coupon_Emails_Admin {
 
 	/**
 	 * The ID of this plugin.

@@ -1,4 +1,5 @@
 <?php
+namespace COUPONEMAILS;
 
 /**
  * Define the internationalization functionality

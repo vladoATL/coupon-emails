@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -14,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders and more with many customization options.
- * Version:           1.1.2
+ * Version:           1.2.1
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -23,6 +22,7 @@
  * Date of Start:	  16.8.2023
  */
 
+namespace COUPONEMAILS;
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -33,9 +33,11 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.1.2.1' );
+define( 'COUPON_EMAILS_VERSION', '1.2.1.1' );
 define( 'MAX_TEST_EMAILS', '10' );
 define( 'ENABLE_SQL_LOGS', '1' );
+define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
+
 
 /**
  * The code that runs during plugin activation.
@@ -82,10 +84,39 @@ require_once plugin_dir_path( __FILE__ ) . 	'includes/class-reviewed.php';
 require_once plugin_dir_path( __FILE__ ) . 	'includes/class-expiration-reminder.php';
 require_once plugin_dir_path( __FILE__ ) . 	'includes/class-review-reminder.php';
 
+require_once plugin_dir_path( __FILE__ ) . 	'helpers/class-helper-functions.php';
+require_once plugin_dir_path( __FILE__ ) . 	'models/Coupon_Card.php';
+require_once plugin_dir_path( __FILE__ ) . 	'models/Email_Coupon.php';
+
+
 \COUPONEMAILS\BirthdayField::register();
 
 
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'couponemails_settings_link' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), '\COUPONEMAILS\couponemails_settings_link' );
+add_filter( 'woocommerce_account_menu_items',  '\COUPONEMAILS\register_my_coupons_menu_item', 10  );
+
+function register_my_coupons_menu_item( array $items ){
+	 
+	if ( ! is_user_logged_in() ) {
+		return $items;
+	}
+	
+	$filtered_items = array();
+	foreach ( $items as $key => $item ) {
+		$filtered_items[ $key ] = $item;
+		// insert my accounts menu item after account details.
+		if ( 'edit-account' === $key ) {
+			if (! is_plugin_active('advanced-coupons-for-woocommerce/advanced-coupons-for-woocommerce.php')) {
+				$filtered_items[ 'account-coupons' ] = __( 'My Coupons','coupon-emails' );
+			}	else {
+				unset( $filtered_items[ 'account-coupons' ] );
+			}		
+			
+		}
+	}
+
+	return $filtered_items;
+}
 
 function couponemails_plugin_save_defaults() {
     	namedayemail_save_defaults(true);	
@@ -120,6 +151,7 @@ function birthdayemail_save_defaults($add_new = false)
 	'days_before'	=>	1,
 	'characters' =>	7,
 	'wc_template' =>	1,
+	'display_dob_fields'  =>	1,
 	'once_year' =>	1,
 	'test' =>	1,
 	'send_time'  =>	'05:30',
@@ -208,8 +240,7 @@ function afterorderemail_save_defaults($add_new = false)
 	'description' => _x('After order {fname} {lname}: {email}','Coupon description','coupon-emails') ,
 	'coupon_amount'	=>	15,
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We have a special discount for you, {fname}!</p>
-	<p style='font-size: 18px;'>Thank you
-	for your order dated  {last_order_date}. If you like our products, take advantage of this offer and order again. Here is the discount code:</p>
+	<p style='font-size: 18px;'>Thank for your order dated {last_order_date}. If you like our products, take advantage of this offer and order again. Here is the discount code:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
 	<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>

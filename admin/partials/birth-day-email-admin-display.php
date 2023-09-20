@@ -112,6 +112,13 @@ id="restore_birthdayemail_values_btn" />
 				<input type="checkbox" style="display: none;" name="test_enabled" id="test_enabled"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>	<?php  echo wc_help_tip(sprintf(_n( 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupon will be created and emails sent to administrator.', 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupons will be created and test emails sent to administrator.', MAX_TEST_EMAILS, 'coupon-emails' ), MAX_TEST_EMAILS), false); ?>			
 			</td>
 		</tr>
+		<tr valign="top">
+			<th class="titledesc"><?php echo __( 'Display birthday field to users', 'coupon-emails' ); ?>:</th>
+			<td><input type="checkbox" name="birthdayemail_options[display_dob_fields]" id="birthdayemail_options[display_dob_fields]"  value="1" <?php echo checked( 1, $options['display_dob_fields'] ?? '', false ) ?? '' ; ?>>
+				<?php  echo wc_help_tip(__( 'Turn on and off displaying of the birthday field in My Account page and in Checkout', 'coupon-emails' ), false); ?>
+			</td>
+		</tr>		
+		
 		<tr>
 			<th class="titledesc"><?php echo __( 'Send email X days before birthday', 'coupon-emails' ); ?>:</th>
 			<td>

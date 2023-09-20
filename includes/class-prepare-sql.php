@@ -67,7 +67,7 @@ class PrepareSQL
 		$expired_cats_array = isset( $options['expiration_cats']) ? $options['expiration_cats'] : "";
 		if (!empty($expired_cats_array)) $cat_str = implode(',', $expired_cats_array);
 		
-		$sql = "SELECT t.name AS coupon_cat, p.post_title AS coupon, pme.meta_value as user_email, 
+		$sql = "SELECT GROUP_CONCAT(t.name SEPARATOR ', ') AS coupon_cat, p.post_title AS coupon, pme.meta_value as user_email, 
 		NULL as user_firstname, NULL as user_lastname, FROM_UNIXTIME(pm.meta_value , '%e.%c.%Y') AS expires, NULL as ID, p.ID as coupon_ID
 				FROM {$wpdb->prefix}posts AS p
 				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id 
@@ -83,7 +83,7 @@ class PrepareSQL
 				WHERE post_type = 'shop_coupon'  
 				AND DATE(FROM_UNIXTIME(pm.meta_value - $day_before * 86400 )) = CURDATE()
 				AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
-				";
+				GROUP BY p.ID";
 				
 				EmailFunctions::test_add_log('-- get_users_with_expired_coupons -- ' . $this->type . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);

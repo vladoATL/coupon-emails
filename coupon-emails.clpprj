@@ -12,13 +12,14 @@
  <removed value=";"/>
  <added value=""/>
  <lastopfiles>
-  <file name="C:\PHP Code\coupon-emails\admin\partials\onetime-email-admin-display.php"/>
-  <file name="C:\PHP Code\coupon-emails\includes\class-prepare-sql.php"/>
-  <file name="C:\PHP Code\coupon-emails\includes\class-onetimes.php"/>
-  <file name="C:\PHP Code\coupon-emails\admin\partials\afterorder-email-admin-display.php"/>
-  <file name="C:\PHP Code\coupon-emails\admin\js\coupon-emails-admin.js"/>
-  <file name="C:\PHP Code\coupon-emails\admin\class-coupon-emails-admin.php"/>
+  <file name="C:\PHP Code\coupon-emails\models\Coupon_Card.php"/>
+  <file name="C:\PHP Code\coupon-emails\models\Email_Coupon.php"/>
+  <file name="C:\PHP Code\coupon-emails\public\templates\single-coupon.php"/>
+  <file name="C:\PHP Code\coupon-emails\public\templates\coupons-list.php"/>
+  <file name="C:\PHP Code\coupon-emails\public\templates\account-coupons.php"/>
   <file name="C:\PHP Code\coupon-emails\coupon-emails.php"/>
+  <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-deactivator.php"/>
+  <file name="C:\PHP Code\coupon-emails\README.txt"/>
   <lastactivefile name=""/>
  </lastopfiles>
  <errors version="1.12.0">
@@ -45,14 +46,18 @@
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\expiration-reminder-email-admin-display.php">
    <error val="0;58;89;58;2002;1;"/>
-   <error val="0;133;94;133;2002;1;"/>
+   <error val="0;147;94;147;2002;1;"/>
+   <error val="0;58;89;58;2002;1;"/>
+   <error val="0;147;94;147;2002;1;"/>
+   <error val="0;58;89;58;2002;1;"/>
+   <error val="0;147;94;147;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\common-settings-admin-display.php">
    <error val="0;111;87;111;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\birth-day-email-admin-display.php">
    <error val="0;90;89;90;2002;1;"/>
-   <error val="113;152;200;152;2002;1;"/>
+   <error val="113;159;200;159;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\afterorder-email-admin-display.php">
    <error val="0;44;89;44;2002;1;"/>
@@ -65,7 +70,12 @@
  <smartyassings/>
  <twigtemplate/>
  <yiidata/>
- <todoblock/>
+ <todoblock>
+  <todofile name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-inflection.php">
+   <todo pos="9;214" name="TODO verify ňe is ok"/>
+   <todo pos="9;286" name="TODO duplicate"/>
+  </todofile>
+ </todoblock>
  <dbgurls/>
- <lasttime value="1694552229"/>
+ <lasttime value="1695168046"/>
 </project>

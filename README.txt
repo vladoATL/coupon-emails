@@ -33,7 +33,7 @@ The date of birth field is automatically added to the checkout and user profile 
 - Czech customer salutation (5th fall) - use the wildcard **{fname5}**
 - secure test mode
 - activity logs
-- possibility to create categories of coupons used by plugin [Advanced Coupons Free](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/)
+- possibility to create categories of coupons used by plugin [Advanced Coupons Free](https://wordpress.org/plugins/coupon-emails-free/)
 - compatibility with [Site Reviews](https://wordpress.org/plugins/site-reviews/) plugin
 - name calendar for countries Slovakia, Czech Republic, Hungary, Poland, Croatia, Austria, Spain 
 - plugin is currently translated into Slovak and Czech. Further translations are welcome
@@ -64,6 +64,9 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.2.1 =
+* Add My Coupons menu to My Account
+
 = 1.1.2 =
 * Add a new coupon category for expiration reminders
 
@@ -80,7 +83,7 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 = Third Party Plugin Support =
 Coupon Emails plugin is officially compatible with the following plugins:
 * [WooCommerce]
-* [Advanced Coupons](https://wordpress.org/plugins/advanced-coupons-for-woocommerce-free/)
+* [Advanced Coupons](https://wordpress.org/plugins/coupon-emails-free/)
 * [Site Reviews](https://wordpress.org/plugins/site-reviews/)
 
 == Changelog ==

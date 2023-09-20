@@ -1,4 +1,5 @@
 <?php
+namespace COUPONEMAILS;
 
 /**
  * Register all actions and filters for the plugin

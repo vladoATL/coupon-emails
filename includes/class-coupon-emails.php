@@ -1,4 +1,5 @@
 <?php
+namespace COUPONEMAILS;
 
 /**
  * The file that defines the core plugin class
@@ -91,8 +92,8 @@ class Coupon_Emails {
 	 *
 	 * - Coupon_Email_Loader. Orchestrates the hooks of the plugin.
 	 * - Coupon_Email_i18n. Defines internationalization functionality.
-	 * - Coupon_Email_Admin. Defines all hooks for the admin area.
-	 * - Coupon_Email_Public. Defines all hooks for the public side of the site.
+	 * - Coupon_Emails_Admin. Defines all hooks for the admin area.
+	 * - Coupon_Emails_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -123,7 +124,7 @@ class Coupon_Emails {
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		 //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-coupon-emails-public.php';
+		 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-coupon-emails-public.php';
 
 		$this->loader = new Coupon_Email_Loader();
 	}
@@ -154,7 +155,7 @@ class Coupon_Emails {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Coupon_Email_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Coupon_Emails_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );		
@@ -169,8 +170,6 @@ class Coupon_Emails {
 		$this->loader->add_action( 'wp_ajax_email_make_test', $plugin_admin, 'email_make_test' );		
 		$this->loader->add_action( 'wp_ajax_onetimeemails_send', $plugin_admin, 'onetimeemails_send' );		
 		
-		
-		
 		if ( is_plugin_active( 'site-reviews/site-reviews.php' ) ) {
 			$this->loader->add_action('site-reviews/review/created',  $plugin_admin, 'site_reviews_comment_posted_callback' , 11, 2);
 			$this->loader->add_action( 'post_updated', $plugin_admin, 'site_reviews_approve_comment_callback', 10, 3 );
@@ -178,7 +177,6 @@ class Coupon_Emails {
 		
 		$this->loader->add_action('admin_init',  $plugin_admin, 'register_shop_coupon_cat_taxonomy' , 0 );	
 	}
-	
 	
 	
 	/**
@@ -189,11 +187,13 @@ class Coupon_Emails {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
-/*		$plugin_public = new Coupon_Email_Public( $this->get_plugin_name(), $this->get_version() );
-
+		$plugin_public = new Coupon_Emails_Public( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_action( 'woocommerce_account_account-coupons_endpoint', $plugin_public,  'account_coupons_page'  );
+		$this->loader->add_action( 'init', $plugin_public, 'account_coupons_page_add_endpoint' );
+		
+		
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );*/	
+		/*		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );*/
 	}
 
 	/**

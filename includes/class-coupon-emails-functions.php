@@ -12,6 +12,7 @@ class EmailFunctions
 	public $options_array;
 	protected $emails_cnt;
 	protected $product_name;
+	protected $types_array;
 
 	public function __construct($type = "", $product_name = "")
 	{
@@ -20,6 +21,7 @@ class EmailFunctions
 		$this->options_array = get_option($this->options_name);
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
+		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail"];
 	}
 
 	function couponemails_create($user, $istest = false, $coupon = "")
@@ -55,8 +57,7 @@ class EmailFunctions
 				if (empty($coupon)) {
 					$coupon = $this->couponemails_get_unique_coupon($user);
 				} else {
-					if (isset($options['coupon_cat']))
-						$cat_id = $this->couponemails_coupon_category($user->coupon_ID, $options['coupon_cat']);
+					$cat_id = $this->couponemails_coupon_category($user->coupon_ID, $this->type);
 				}
 				if (empty($coupon)) {
 					$this->couponemails_add_log(_x( 'No available coupons to create.', 'Log file', 'coupon-emails' ) );
@@ -335,17 +336,17 @@ class EmailFunctions
 		// update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->id );
 
 		$cat_id = 0;
-		if (isset($options['coupon_cat']))
-			$cat_id = $this->couponemails_coupon_category($new_coupon_id, $options['coupon_cat']);
+			$cat_id = $this->couponemails_coupon_category($new_coupon_id, $this->type);
 
 		return $generated_code;
 	}
 
-	function couponemails_coupon_category($new_coupon_id, $category)
+	function couponemails_coupon_category($new_coupon_id, $cat_slug)
 	{
 		global $wpdb;
-		$cat_slug = sanitize_title($category);
-
+		$type_option = $this->type . '_options';
+		$options = get_option($type_option);
+		$category = $options['coupon_cat'];
 		$term_id = $this->couponemails_get_cat_slug_id($cat_slug) ;
 		if ( empty($term_id)) {
 			$term_id = $this->couponemails_coupon_category_create($category, $cat_slug) ;
@@ -375,10 +376,8 @@ class EmailFunctions
 
 	function couponemails_get_coupons_cat_names()
 	{
-		$names_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail"];
 		$cats_array = array();
-
-		foreach ($names_array as $name) {
+		foreach ($this->types_array as $name) {
 			$options = get_option($name . '_options');
 			$cat_name = isset($options["coupon_cat"]) ? $options["coupon_cat"] : "";
 			if (! empty($cat_name))
@@ -386,6 +385,12 @@ class EmailFunctions
 		}
 		$names = sprintf("'%s'", implode("','", $cats_array ) );
 		return $names;
+	}
+
+	function couponemails_get_coupons_cat_slugs()
+	{
+		$names = sprintf("'%s'", implode("','", $this->types_array ) );
+		return $names ;
 	}
 
 	function couponemails_get_coupons_cat_name($name)
@@ -401,13 +406,12 @@ class EmailFunctions
 	function couponemails_get_stats()
 	{
 		global $wpdb;
-		$cat_names = $this->couponemails_get_coupons_cat_names();
+		$cat_names = $this->couponemails_get_coupons_cat_slugs();
 		$sql = "SELECT t.name, COUNT(p.ID) as total_count, used.used_count
 				FROM {$wpdb->prefix}posts AS p
-				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id AND tr.term_taxonomy_id IN (
-				SELECT term_id FROM {$wpdb->prefix}terms AS t WHERE t.name IN ($cat_names) )
+				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id 
+				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tr.term_taxonomy_id AND t.slug IN ($cat_names)
 				JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
-				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tt.term_id
 
 				LEFT OUTER JOIN (
 				SELECT COUNT(ID) AS used_count, tr.term_taxonomy_id AS term_taxonomy_id
@@ -431,10 +435,8 @@ class EmailFunctions
 		$cat_names = $this->couponemails_get_coupons_cat_names();
 		$sql = "SELECT t.name, COUNT(p.ID) as total_count, notexpired.notexpired_count, expired.expired_count, used.used_count
 				FROM {$wpdb->prefix}posts AS p
-				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id AND tr.term_taxonomy_id IN (
-				SELECT term_id FROM {$wpdb->prefix}terms AS t WHERE t.name IN ($cat_names) )
-				JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
-				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tt.term_id
+				JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id
+				JOIN {$wpdb->prefix}terms AS t ON t.term_id = tr. ON tt.term_taxonomy_id = tr.term_taxonomy_id
 
 				LEFT OUTER JOIN (
 				SELECT COUNT(ID) AS expired_count, tr.term_taxonomy_id AS term_taxonomy_id

@@ -9,28 +9,37 @@ class BirthdayField
 {
 	static function register()
 	{
-		$registration = 'on'; //\get_option('lws_woorewards_registration_birthday_field');
+		$options = get_option('birthdayemail_options');
+		$display_fields = isset($options['display_dob_fields']) ? $options['display_dob_fields'] : "";
+		
+		$registration = \get_option('lws_woorewards_registration_birthday_field');
+		$detail       = \get_option('lws_woorewards_myaccount_detail_birthday_field');
+		$myaccount    = \get_option('lws_woorewards_myaccount_register_birthday_field');
+		
+		$me = new self();
 
-		if( $registration )
-		{
-			$me = new self();
-
+		if (! $registration && $display_fields ) {
 			\add_filter('woocommerce_checkout_fields', array($me, 'checkout'));
-
+		}
+		if (! $detail && $display_fields ) {
 			\add_action('woocommerce_edit_account_form', array($me, 'myaccountDetailForm'));
 			\add_action('woocommerce_save_account_details', array($me, 'myaccountDetailSave'));
-
+		}
+		if (! $myaccount && $display_fields ) {
 			\add_action('woocommerce_register_form', array($me, 'myaccountRegisterForm'));
 			\add_filter('woocommerce_process_registration_errors', array($me, 'myaccountRegisterValidation'), 10, 4);
 			\add_action('woocommerce_created_customer', array($me, 'myaccountRegisterSave'), 10, 1);
-
+		}
+	
+		if ( ! $registration && ! $detail && ! $myaccount && $display_fields ) {
 			\add_action('show_user_profile', array($me, 'showProfileBirthday'));
 			\add_action('edit_user_profile', array($me, 'showProfileBirthday'));
-			\add_action('personal_options_update', array($me, 'saveProfileBirthday'));
-			\add_action('edit_user_profile_update', array($me, 'saveProfileBirthday'));
 		}
+		
+		\add_action('personal_options_update', array($me, 'saveProfileBirthday'));
+		\add_action('edit_user_profile_update', array($me, 'saveProfileBirthday'));
+		
 	}
-
 	
 	protected function getDefaultBirthdayMetaKey()
 	{
@@ -126,11 +135,14 @@ class BirthdayField
 	{
 		$field = $this->getDefaultBirthdayMetaKey();
 		$label = _x("Date of birth", "Profile", "coupon-emails");
+		$header = _x("Date of birth", "Profile", "coupon-emails");
 		$value = \esc_attr(\get_user_meta($user->ID, $field, true));
 		echo <<<EOT
 <table class="form-table">
 	<tr>
-		<th><label for='{$field}'>{$label}</label></th>
+	<th><h2><label
+	for
+		='{$field}'>{$label}</label></h2></th>
 		<td><input type='date' name='{$field}' id='{$field}' value='{$value}' /></td>
 	</tr>
 </table>
