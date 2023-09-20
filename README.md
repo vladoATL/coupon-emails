@@ -24,7 +24,7 @@
 - české oslovenie zákazníka (5. pád) - použite zástupný kód **{fname5}**
 - bezpečný testovací mód
 - záznamy aktivity (log)
-- možnosť vytvoriť kategórie kupónov využívaných pluginom plugin [Advanced Coupons Free](https://wordpress.org/plugins/coupon-emails-free/)
+- možnosť vytvoriť kategórie kupónov využívaných pluginom plugin [Advanced Coupons Free](https://wordpress.org/plugins/advanced-coupons-for-woocommerce/)
 - kompatibilita s pluginom [Site Reviews](https://wordpress.org/plugins/site-reviews/)
 - meninový kalendár pre krajiny Slovensko, Česko, Maďarsko, Poľsko, Chorvátsko, Rakúsko, Španielsko 
 - plugin je momentálne preložený do slovenčiny a češtiny. Ďalšie preklady sú vítané
