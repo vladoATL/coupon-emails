@@ -21,12 +21,11 @@ class EmailFunctions
 		$this->options_array = get_option($this->options_name);
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
-		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referrer"];
+		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral"];
 	}
 
 	function couponemails_create($user, $istest = false, $coupon = "")
-	{
-				
+	{				
 		$success = true;
 		$options = $this->options_array;
 		$subject_user = $options['subject'];
@@ -247,13 +246,14 @@ class EmailFunctions
 		return $headers_user;
 	}
 
-	function couponemails_get_unique_coupon($user)
+	function couponemails_get_unique_coupon($user, $prefix = "", $cat_slug = "")
 	{
 		global $wpdb;
 		$options = $this->options_array;
+		$cat_slug = empty($cat_slug) ?  $this->type : $cat_slug ;
 		$coupon_codes = $wpdb->get_col("SELECT post_name FROM $wpdb->posts WHERE post_type = 'shop_coupon'");
 		$characters = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-		$char_length = $options['characters'];
+		$char_length = $options[$prefix.'characters'];
 		if ($char_length == 0)
 			return "";
 		$stp = 0;
@@ -270,8 +270,8 @@ class EmailFunctions
 				break; // stop the loop: The generated coupon code doesn't exist already
 			}
 		}
-		$amount = $options['coupon_amount']; // Amount
-		$discount = $options['disc_type'];
+		$amount = $options[$prefix.'coupon_amount']; // Amount
+		$discount = $options[$prefix.'disc_type'];
 
 		switch ($discount) {
 			case 1:
@@ -287,17 +287,19 @@ class EmailFunctions
 				$discount_type = 'percent_product';
 				break;
 		}
-
-		$expiration_date = is_numeric( $options['expires']) ? $options['expires'] + 1 : 0;
+		if (isset( $options[$prefix.'expires']) ) {
+			$expiration_date = is_numeric( $options[$prefix.'expires']) ? $options[$prefix.'expires'] + 1 : 0;} else {
+				$expiration_date = 0;	
+			}
 		$expiry_date   = date('Y-m-d', strtotime('+' . $expiration_date . ' days'));
-		$max_products = isset( $options['max_products']) ? $options['max_products'] : '';
-		$description = $options['description'];
+		$max_products = isset( $options[$prefix.'max_products']) ? $options[$prefix.'max_products'] : '';
+		$description = $options[$prefix.'description'];
 		$description = $this->couponemails_replace_placeholders($description, $user, $options);
-		$free_shipping = isset( $options['free_shipping']) ? "yes" : 'no';
-		$individual_use = isset( $options['individual_use']) ? "yes" : 'no';
-		$exclude_discounted = isset( $options['exclude_discounted']) ? "yes" : 'no';
-		$minimum_amount = isset( $options['$minimum_amount']) ? $options['$minimum_amount'] : '';
-		$maximum_amount = isset( $options['$maximum_amount']) ? $options['$maximum_amount'] : '';
+		$free_shipping = isset( $options[$prefix.'free_shipping']) ? "yes" : 'no';
+		$individual_use = isset( $options[$prefix.'individual_use']) ? "yes" : 'no';
+		$exclude_discounted = isset( $options[$prefix.'exclude_discounted']) ? "yes" : 'no';
+		$minimum_amount = isset( $options[$prefix.'$minimum_amount']) ? $options[$prefix.'$minimum_amount'] : '';
+		$maximum_amount = isset( $options[$prefix.'$maximum_amount']) ? $options[$prefix.'$maximum_amount'] : '';
 
 		$coupon = array(
 		'post_title' => $generated_code,
@@ -305,7 +307,7 @@ class EmailFunctions
 		'post_status' => 'publish',
 		'post_author' => 1,
 		'post_type'     => 'shop_coupon',
-		'post_excerpt' => $description, // __( 'Name day', 'coupon-emails' ) . ' ' . $user->user_firstname  . ' ' . $user->user_email,
+		'post_excerpt' => $description, 
 		);
 		$new_coupon_id = wp_insert_post( $coupon );
 
@@ -313,14 +315,14 @@ class EmailFunctions
 		update_post_meta( $new_coupon_id, 'discount_type', $discount_type );
 		update_post_meta( $new_coupon_id, 'coupon_amount', $amount );
 		update_post_meta( $new_coupon_id, 'individual_use', $individual_use );
-		if (isset($options['exclude_prods']))
-			update_post_meta( $new_coupon_id, 'exclude_product_ids', implode(",", $options['exclude_prods'] )  );
-		if (isset($options['only_products']))
-			update_post_meta( $new_coupon_id, 'product_ids', implode(",", $options['only_products']) );
-		if (isset($options['exclude_cats']))
-			update_post_meta( $new_coupon_id, 'exclude_product_categories',  $options['exclude_cats'] );
-		if (isset($options['only_cats']))
-			update_post_meta( $new_coupon_id, 'product_categories', implode(",", $options['only_cats']) );
+		if (isset($options[$prefix.'exclude_prods']))
+			update_post_meta( $new_coupon_id, 'exclude_product_ids', implode(",", $options[$prefix.'exclude_prods'] )  );
+		if (isset($options[$prefix.'only_products']))
+			update_post_meta( $new_coupon_id, 'product_ids', implode(",", $options[$prefix.'only_products']) );
+		if (isset($options[$prefix.'exclude_cats']))
+			update_post_meta( $new_coupon_id, 'exclude_product_categories',  $options[$prefix.'exclude_cats'] );
+		if (isset($options[$prefix.'only_cats']))
+			update_post_meta( $new_coupon_id, 'product_categories', implode(",", $options[$prefix.'only_cats']) );
 		update_post_meta( $new_coupon_id, 'exclude_sale_items', $exclude_discounted );
 		update_post_meta( $new_coupon_id, 'minimum_amount', $minimum_amount );
 		update_post_meta( $new_coupon_id, 'maximum_amount', $maximum_amount );
@@ -332,14 +334,13 @@ class EmailFunctions
 		//update_post_meta( $new_coupon_id, 'date_expires_local', $expiry_date );
 		update_post_meta( $new_coupon_id, 'free_shipping', $free_shipping );
 		update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
-		update_post_meta( $new_coupon_id, 'customer_id', $user->id );
+		update_post_meta( $new_coupon_id, 'customer_id', $user->ID );
 		
 		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
 		update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
-		// update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->id );
+		// update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->ID );
 
-		$cat_id = 0;
-			$cat_id = $this->couponemails_coupon_category($new_coupon_id, $this->type);
+		$cat_id = $this->couponemails_coupon_category($new_coupon_id, $cat_slug );
 
 		return $generated_code;
 	}

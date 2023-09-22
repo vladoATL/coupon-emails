@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.2.2.1' );
+define( 'COUPON_EMAILS_VERSION', '1.2.2.3' );
 define( 'MAX_TEST_EMAILS', '10' );
 define( 'ENABLE_SQL_LOGS', '1' );
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
@@ -375,6 +375,7 @@ function referralemail_save_defaults($add_new = false)
 	'subject'	=>	_x('Hi, this is what I bought','Email Subject','coupon-emails') ,
 	'header'  =>	_x('I recommend it!','Email Header','coupon-emails') ,
 	'characters' =>	7,
+	'ref_characters' =>	7,
 	'wc_template' =>	1,
 	'expires'	=>	14,
 	'disc_type' => 1,
