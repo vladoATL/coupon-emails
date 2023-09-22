@@ -13,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders and more with many customization options.
- * Version:           1.2.1
+ * Version:           1.2.2.1
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.2.1.2' );
+define( 'COUPON_EMAILS_VERSION', '1.2.2.1' );
 define( 'MAX_TEST_EMAILS', '10' );
 define( 'ENABLE_SQL_LOGS', '1' );
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
@@ -57,10 +57,10 @@ function deactivate_coupon_emails() {
 	Coupon_Email_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_coupon_emails' );
-register_deactivation_hook( __FILE__, 'deactivate_coupon_emails' );
-register_deactivation_hook( __FILE__, 'couponemails_plugin_deactivation' );
-register_activation_hook( __FILE__, 'couponemails_plugin_save_defaults' );
+register_activation_hook( __FILE__, '\COUPONEMAILS\activate_coupon_emails' );
+register_deactivation_hook( __FILE__, '\COUPONEMAILS\deactivate_coupon_emails' );
+register_deactivation_hook( __FILE__, '\COUPONEMAILS\couponemails_plugin_deactivation' );
+register_activation_hook( __FILE__, '\COUPONEMAILS\couponemails_plugin_save_defaults' );
 
 
 /**
@@ -88,15 +88,44 @@ require_once plugin_dir_path( __FILE__ ) . 	'helpers/class-helper-functions.php'
 require_once plugin_dir_path( __FILE__ ) . 	'models/Coupon_Card.php';
 require_once plugin_dir_path( __FILE__ ) . 	'models/Email_Coupon.php';
 
+require_once plugin_dir_path( __FILE__ ) .  'public/includes/class-referral.php';
+
 
 \COUPONEMAILS\BirthdayField::register();
 
 
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), '\COUPONEMAILS\couponemails_settings_link' );
-add_filter( 'woocommerce_account_menu_items',  '\COUPONEMAILS\register_my_coupons_menu_item', 10  );
 
-function register_my_coupons_menu_item( array $items ){
-	 
+$options = get_option('couponemails_options');
+$show_account_coupons = isset($options["show_account_coupons"]) ? $options["show_account_coupons"] : 0;
+if ($show_account_coupons) {
+	add_filter( 'woocommerce_account_menu_items',  '\COUPONEMAILS\register_my_coupons_menu_item', 10  );
+} else {
+	add_filter( 'woocommerce_account_menu_items', '\COUPONEMAILS\remove_account_coupons_menu_item' );
+}
+
+$enable_referral = isset($options["enable_referral"]) ? $options["enable_referral"] : 0;
+if ($enable_referral) {
+	add_filter( 'woocommerce_account_menu_items',  '\COUPONEMAILS\register_referral_menu_item', 10  );
+} else {
+	add_filter( 'woocommerce_account_menu_items', '\COUPONEMAILS\remove_referral_menu_item' );
+}
+
+
+function remove_referral_menu_item( $menu_links )
+{
+	unset( $menu_links[ 'referral' ] );
+	return $menu_links;
+}
+
+function remove_account_coupons_menu_item( $menu_links )
+{
+	unset( $menu_links[ 'account-coupons' ] );
+	return $menu_links;
+}
+
+function register_referral_menu_item( array $items )
+{	 
 	if ( ! is_user_logged_in() ) {
 		return $items;
 	}
@@ -106,12 +135,29 @@ function register_my_coupons_menu_item( array $items ){
 		$filtered_items[ $key ] = $item;
 		// insert my accounts menu item after account details.
 		if ( 'edit-account' === $key ) {
+			$filtered_items[ 'referral' ] = __( 'My referrals','coupon-emails' );
+		}
+	}
+
+	return $filtered_items;
+}
+
+function register_my_coupons_menu_item( array $items )
+{
+	if ( ! is_user_logged_in() ) {
+		return $items;
+	}
+
+	$filtered_items = array();
+	foreach ( $items as $key => $item ) {
+		$filtered_items[ $key ] = $item;
+		// insert my accounts menu item after account details.
+		if ( 'edit-account' === $key ) {
 			if (! is_plugin_active('advanced-coupons-for-woocommerce/advanced-coupons-for-woocommerce.php')) {
 				$filtered_items[ 'account-coupons' ] = __( 'My Coupons','coupon-emails' );
-			}	else {
+			} else {
 				unset( $filtered_items[ 'account-coupons' ] );
-			}		
-			
+			}
 		}
 	}
 
@@ -127,6 +173,7 @@ function couponemails_plugin_save_defaults() {
 		couponemails_save_defaults(true);
 		reviewreminderemail_save_defaults(true);
 		expirationreminderemail_save_defaults(true);
+		referralemail_save_defaults(true);
 }
 
 function couponemails_save_defaults($add_new = false)
@@ -170,7 +217,7 @@ function birthdayemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('Birth day email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
@@ -207,7 +254,7 @@ function reorderemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('Reorder email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
@@ -245,7 +292,7 @@ function afterorderemail_save_defaults($add_new = false)
 	<p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special <strong>{percent}%</strong> discount on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ENJOY !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('After order email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
@@ -276,7 +323,7 @@ function reviewreminderemail_save_defaults($add_new = false)
 <p style='font-size: 19px;font-weight:600;'>As a thank you, we'll send you a discount code that you can use the next time you buy our products from us.</p>
 <p style='font-size: 18px;'>We'd love to hear your feedback.</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px; line-height: 95%;'>Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px; line-height: 95%;'>Some products are excluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
 		add_option( 'reviewreminderemail_options', $option_array );
@@ -302,7 +349,7 @@ function expirationreminderemail_save_defaults($add_new = false)
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Don't throw away an excellent opportunity to save, {fname}!</p>
-	<p style='font-size: 18px;'>We've recently sent you a rare discount coupon for your next purchase, which expires on {for_date}:</p>
+	<p style='font-size: 18px;'>We've recently sent you a rare discount coupon for your next purchase, which expires in {expires_in_days} days on {expires}:</p>
 <p style='font-size: 24px;font-weight:800;'>{coupon}</p>
 <p style='font-size: 18px;'>Come back to our website {site_name_url} and save!</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
@@ -315,6 +362,52 @@ function expirationreminderemail_save_defaults($add_new = false)
 		update_option( 'expirationreminderemail_options', $option_array );
 	}
 }
+
+function referralemail_save_defaults($add_new = false)
+{
+	$current_user = wp_get_current_user();
+
+	$option_array = array(
+	'headline'	=>	_x("Send an email with a discount coupon to friends who don't know about us yet.",'My Account page','coupon-emails') ,
+	'ref_explanation'	=>	_x("This is a coupon you can use on your next purchase with us. Its value increases every time someone uses the coupon from the email you sent. Your coupon will expire 30 days after the last time you send a referral email.",'My Account page','coupon-emails') ,
+	'directions'	=>	_x("In the box below, enter the email addresses, separated by a comma, of friends to whom you want to send a recommendation of our products with a coupon for a 10% discount on their first purchase. Enter your personal text and press the Send button. If they send us an order, we will credit you 5% of the value of the products ordered. ",'My Account page','coupon-emails') ,
+	'ref_description'  =>	_x('Referrer: {email}','Email Header','coupon-emails') ,
+	'subject'	=>	_x('Hi, this is what I bought','Email Subject','coupon-emails') ,
+	'header'  =>	_x('I recommend it!','Email Header','coupon-emails') ,
+	'characters' =>	7,
+	'wc_template' =>	1,
+	'expires'	=>	14,
+	'disc_type' => 1,
+	'ref_disc_type' => 1,
+	'exclude_discounted' => 1,
+	'ref_exclude_discounted' => 1,
+	'ref_individual_use' => 1,
+	'individual_use' => 1,
+	'description' => _x('Referral: {email}','Coupon description','coupon-emails') ,
+	'coupon_amount'	=>	10,
+	'ref_coupon_amount'	=>	5,	
+	'from_name'	=>	get_bloginfo('name'),
+	'from_address'	=>	get_bloginfo('admin_email'),
+	'bcc_address' => $current_user->user_email,
+	'email_footer' => '{site_name_url}',
+	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>I want to share with you my satisfaction with great products!</p>
+	<p style='font-size: 18px;'>I am also sending a coupon for a 10% discount, which can be redeemed at {site_name_url} for the following {expires_in_days} days until {expires}:</p>
+<div style='font-size: 24px;font-weight:800;'>{coupon}</div>
+<div style='font-size: 18px;font-weight:600;'>{personal_text}</div>
+<p style='font-size: 18px;'>Visit this website {site_url} and save!<br>
+Greetings,<br>{referrer}</p><br>
+<div style='font-size: 14px; line-height: 95%;'>Some products are excluded from the discount. The validity of the voucher cannot be extended.</div>" ,'Email Body', 'coupon-emails'	),
+	'ref_coupon_cat' =>	_x('Referrer','Coupon category', 'coupon-emails'	) ,
+	'coupon_cat' =>	_x('Referred','Coupon category', 'coupon-emails'	) ,
+	);
+	if ($add_new == true) {
+		add_option( 'referralemail_options', $option_array );
+	} else {
+		update_option( 'referralemail_options', $option_array );
+	}
+}
+
+
 
 function onetimeemail_save_defaults($add_new = false)
 {
@@ -382,7 +475,7 @@ function namedayemail_save_defaults($add_new = false){
 <p style='font-size: 18px;'>During the next {expires_in_days} days you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 				'coupon_cat' =>	_x('Name day email','Coupon category', 'coupon-emails'	) ,
 			);
 			if ($add_new == true) {
@@ -419,7 +512,7 @@ function reviewedemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>During the next {expires_in_days} days (until {expires}) you can use it in our online store {site_name_url} and get a special discount of <strong>{percent}%</strong> on {products_cnt} non-discounted products.</p>
 <p style='font-size: 18px;font-weight:600;'>ALL THE BEST !</p>
 <p style='font-size: 18px;'>The Team of {site_name}</p>
-<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded  from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
+<p style='font-size: 14px; line-height: 95%;'>The coupon can only be used after logging into your account and cannot be used with other discounts. Some products are excluded from the discount.</p>" ,'Email Body', 'coupon-emails'	) ,
 	'coupon_cat' =>	_x('After Review','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {

@@ -57,6 +57,39 @@
 	 
 	 	jQuery( document ).on(
 	"click",
+	"#referralemail-setting #restore_referralemail_values_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_restore_settings',
+			nonce: nonce,
+			option_name: 'referralemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#referralemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#referralemail-setting .namedays_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#referralemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#referralemail-setting .namedays_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);
+		 
+	 	jQuery( document ).on(
+	"click",
 	"#reviewedemail-setting #restore_reviewed_values_btn",
 	function() {
 		event.preventDefault();

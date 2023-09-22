@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This plugin automatically generates emails with unique coupons for customers' birthdays, their name day, after they place an order and after they review a product with many customization options. Sends various reminders.
 
 == Description ==
-This plugin is an excellent tool when marketing with discount coupons. It generates unique coupons for each customer according to configurable filters. The coupon email can be sent on the customer's birthday, their name day, a certain number of days after the order, to customers who haven't ordered anything for a long time, or to one-time filtered customers. You can also set up a thank you review email with a coupon. It sends reminders before coupons are about to expire and after a product has been purchased to hoidnote it.
+This plugin is an excellent tool when marketing with discount coupons. It generates unique coupons for each customer according to configurable filters. The coupon email can be sent on the customer's birthday, their name day, a certain number of days after the order, to customers who haven't ordered anything for a long time, or to one-time filtered customers. You can also set up a thank you review email with a coupon. It sends reminders before coupons are about to expire and after a product has been purchased to review it.
 
 The date of birth field is automatically added to the checkout and user profile page. Name badges are currently available for Slovakia, Czech Republic, Austria and Hungary, Poland, Croatia and Spain. It is possible to set a Czech greeting for Czech names.
 

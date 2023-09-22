@@ -104,8 +104,15 @@ class Coupon_Emails_Admin {
 		 );
 		 register_setting( 'expirationreminderemail_plugin_options', 'expirationreminderemail_options',
 		 array('sanitize_callback' => array( $this, 'expirationreminderemail_validate_options' ),)
-		 );		 
+		 );	
+		 register_setting( 'referralemail_plugin_options', 'referralemail_options',
+		 array('sanitize_callback' => array( $this, 'referralemail_validate_options' ),)
+		 );		 	 
 	}
+	function referralemail_validate_options($input)
+	{
+		return $input;
+	}	
 	function reviewedemail_validate_options($input)
 	{
 		return $input;
@@ -303,6 +310,9 @@ class Coupon_Emails_Admin {
 				case "expirationreminderemail":
 					expirationreminderemail_save_defaults($add_new);
 					break;	
+				case "referralemail":
+					referralemail_save_defaults($add_new);
+					break;					
 				}						
 			wp_die();
 		}

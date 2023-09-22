@@ -211,9 +211,8 @@ id="restore_onetimeemail_values_btn" />
 		<tr>
 			<th class="titledesc"><?php echo __( 'Send email only to these addresses', 'coupon-emails' ); ?>:</th>
 			<td>
-
-<textarea  style="width: 500px;" id="onetimeemail_options[email_address]" name="onetimeemail_options[email_address]" rows="3" type='textarea'><?php echo $options['email_address'] ?? ''; ?></textarea>
-<?php  echo wc_help_tip(__( 'Add multiple emails separated by comma ( , ).', 'coupon-emails' ) . ' ' . __( 'Settings of other filters will be ignored if not empty.', 'coupon-emails'  ), false); ?>
+				<textarea  style="width: 500px;" id="onetimeemail_options[email_address]" name="onetimeemail_options[email_address]" rows="3" type='textarea'><?php echo $options['email_address'] ?? ''; ?></textarea>
+				<?php  echo wc_help_tip(__( 'Add multiple emails separated by comma ( , ).', 'coupon-emails' ) . ' ' . __( 'Settings of other filters will be ignored if not empty.', 'coupon-emails'  ), false); ?>
 			</td>
 		</tr>		
 		<tr>

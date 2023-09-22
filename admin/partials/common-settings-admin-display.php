@@ -52,6 +52,16 @@ $options = get_option('couponemails_options');
 		<td><input type="checkbox" name="couponemails_options[enable_logs]" id="couponemails_options[enable_logs]"  value="1" <?php echo checked( 1, $options['enable_logs'] ?? '', false ) ?? '' ; ?>>			
 		</td>
 	</tr>
+	<tr valign="top">
+		<th scope="row" class="titledesc"><?php echo __( 'Show coupons on My Account page', 'coupon-emails' ); ?>:</th>
+		<td><input type="checkbox" name="couponemails_options[show_account_coupons]" id="couponemails_options[show_account_coupons]"  value="1" <?php echo checked( 1, $options['show_account_coupons'] ?? '', false ) ?? '' ; ?>>
+		</td>
+	</tr>	
+	<tr valign="top">
+		<th scope="row" class="titledesc"><?php echo __( 'Enable referral', 'coupon-emails' ); ?>:</th>
+		<td><input type="checkbox" name="couponemails_options[enable_referral]" id="couponemails_options[enable_referral]"  value="1" <?php echo checked( 1, $options['enable_referral'] ?? '', false ) ?? '' ; ?>>
+		</td>
+	</tr>	
 	<tr>
 		<td>
 			<p class="submit">

@@ -176,8 +176,7 @@ class Coupon_Emails {
 		}			
 		
 		$this->loader->add_action('admin_init',  $plugin_admin, 'register_shop_coupon_cat_taxonomy' , 0 );	
-	}
-	
+	}	
 	
 	/**
 	 * Register all of the hooks related to the public-facing functionality
@@ -189,8 +188,9 @@ class Coupon_Emails {
 	private function define_public_hooks() {
 		$plugin_public = new Coupon_Emails_Public( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'woocommerce_account_account-coupons_endpoint', $plugin_public,  'account_coupons_page'  );
-		$this->loader->add_action( 'init', $plugin_public, 'account_coupons_page_add_endpoint' );
-		
+		$this->loader->add_action( 'woocommerce_account_referral_endpoint', $plugin_public,  'referral_page'  );
+		$this->loader->add_action( 'init', $plugin_public, 'account_coupons_page_add_endpoint' );	
+		$this->loader->add_action( 'init', $plugin_public, 'referral_page_add_endpoint' );	
 		
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		/*		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );*/

@@ -21,7 +21,7 @@ class EmailFunctions
 		$this->options_array = get_option($this->options_name);
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
-		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail"];
+		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referrer"];
 	}
 
 	function couponemails_create($user, $istest = false, $coupon = "")
@@ -135,6 +135,7 @@ class EmailFunctions
 		} else {
 			$days_before =0;
 		}
+		$current_user = wp_get_current_user();
 		$inflection = new Inflection();
 		$first_name =  isset($user->user_firstname) &&  ! empty($user->user_firstname)  ?  $user->user_firstname : $user->user_email ;
 		$last_name = isset($user->user_lastname) &&  ! empty($user->user_lastname)  ? $user->user_lastname : "";
@@ -154,6 +155,7 @@ class EmailFunctions
 		'{email}',
 		'{reviewed_prod}',
 		'{last_order_date}',
+		'{referrer}',
 		),
 		array(
 		get_option( 'blogname' ),
@@ -170,6 +172,7 @@ class EmailFunctions
 		strtolower($user-> user_email),
 		$this->product_name,
 		$this->get_last_order_date($user-> user_email),
+		$current_user->user_firstname . " " . $current_user->user_lastname,
 		),
 		$content
 		);
@@ -528,7 +531,7 @@ class EmailFunctions
 			return;
 
 		$where_in = implode(",", $coupon_ids );
-		$this->test_add_log('-- couponemails_delete_expired - ' . $this->type . PHP_EOL . $sql . $where_in);
+		$this->test_add_log('-- couponemails_delete_expired - ' . $this->type . PHP_EOL . $sql . PHP_EOL . $where_in);
 		
 		$sql_pm = "DELETE FROM $wpdb->postmeta WHERE post_id IN (" . $where_in . ")";	
 		$sql_p = "DELETE FROM $wpdb->posts WHERE ID IN (" . $where_in . ")";

@@ -64,7 +64,10 @@
 	padding: 1px 10px 10px 10px;
 	margin-top: 5px;
 }
-
+.alt_coupon_setting, .email_setting {
+	padding: 1px 10px 10px 10px;
+	margin-top: 5px;
+}
 .btn-restore {
     float: right;
     margin-right: 5%;

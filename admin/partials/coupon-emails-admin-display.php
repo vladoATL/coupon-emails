@@ -11,6 +11,9 @@ $reviewed_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reviewedemail')
 $reorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reorderemail');
 $onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimeemail');
 $reviewreminder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reminderemail');
+$referral_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('referral');
+$options = get_option('couponemails_options');
+$enable_referral = isset($options["enable_referral"]) ? $options["enable_referral"] : 0;
 
 //Get the active tab from the $_GET param
 $default_tab = null;
@@ -54,6 +57,11 @@ $section = isset($_GET['section']) ? $_GET['section'] : $default_tab;
 		<?php
 		if ($tab==='reminder') : ?>nav-tab-active<?php
 	endif; echo(' ' . $reviewreminder_top); ?>"> <?php echo  __( 'Reminders', 'coupon-emails' ); ?></a>
+
+	<a href="?page=couponemails&tab=referral" class="nav-tab
+		<?php
+		if ($tab==='referral') : ?>nav-tab-active<?php
+		endif; echo(' ' . $referral_top); ?>"> <?php echo  __( 'Referrals', 'coupon-emails' ); ?></a>
 	
 </nav>
 	
@@ -99,6 +107,13 @@ case 'reviewed':
 	?>
 	<div class="metabox-holder">
 		<?php include('reviewed-email-admin-display.php');	?>
+	</div>
+	<?php
+	break;	
+case 'referral':
+	?>
+	<div class="metabox-holder">
+		<?php include('referral-email-admin-display.php'); ?>
 	</div>
 	<?php
 	break;	

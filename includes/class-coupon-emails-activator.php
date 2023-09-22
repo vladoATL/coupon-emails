@@ -1,5 +1,5 @@
 <?php
-
+namespace COUPONEMAILS;
 /**
  * Fired during plugin activation
  *
