@@ -449,7 +449,7 @@ class EmailFunctions
 				GROUP BY tr.term_taxonomy_id
 				) AS used ON tr.term_taxonomy_id = used.term_taxonomy_id
 
-				WHERE p.post_type = 'shop_coupon'
+				WHERE p.post_type = 'shop_coupon' AND  p.post_status= 'publish'
 				GROUP BY tr.term_taxonomy_id";
 				// $this->test_add_log('-- couponemails_get_stats -- ' . $this->type . PHP_EOL  . $sql);					
 		$result = $wpdb->get_results($sql, OBJECT);
@@ -471,7 +471,7 @@ class EmailFunctions
 				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
 				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
 				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
-				WHERE post_type = 'shop_coupon' AND pm.meta_value < UNIX_TIMESTAMP() AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
+				WHERE post_type = 'shop_coupon' AND  post_status= 'publish' AND pm.meta_value < UNIX_TIMESTAMP() AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
 				GROUP BY tr.term_taxonomy_id
 				) AS expired ON tr.term_taxonomy_id = expired.term_taxonomy_id
 
@@ -481,7 +481,7 @@ class EmailFunctions
 				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
 				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
 				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
-				WHERE post_type = 'shop_coupon' AND pm.meta_value >= UNIX_TIMESTAMP()
+				WHERE post_type = 'shop_coupon' AND  post_status= 'publish' AND pm.meta_value >= UNIX_TIMESTAMP()
 				GROUP BY tr.term_taxonomy_id
 				) AS notexpired ON tr.term_taxonomy_id = notexpired.term_taxonomy_id
 
@@ -490,11 +490,11 @@ class EmailFunctions
 				FROM {$wpdb->prefix}posts AS p
 				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
 				JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
-				WHERE post_type = 'shop_coupon' AND pmu.meta_value > 0
+				WHERE post_type = 'shop_coupon' AND  post_status= 'publish' AND pmu.meta_value > 0
 				GROUP BY tr.term_taxonomy_id
 				) AS used ON tr.term_taxonomy_id = used.term_taxonomy_id
 
-				WHERE p.post_type = 'shop_coupon'
+				WHERE p.post_type = 'shop_coupon' AND  p.post_status= 'publish'
 				GROUP BY tr.term_taxonomy_id";
 				$this->test_add_log('-- couponemails_get_full_stats -- ' . $this->type . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
@@ -542,7 +542,7 @@ class EmailFunctions
 		$sql = "SELECT ID FROM $wpdb->posts AS p
 				JOIN $wpdb->postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
 				LEFT JOIN $wpdb->postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
-				WHERE post_type = 'shop_coupon'
+				WHERE post_type = 'shop_coupon' AND  post_status= 'publish'
 				AND pm.meta_value > 0
 				AND ( pmu.meta_value = 0 OR pmu.meta_value IS NULL )
 				AND pm.meta_value + (" . $days_delete . "*86400) < UNIX_TIMESTAMP()

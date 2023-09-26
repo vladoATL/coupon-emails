@@ -58,6 +58,24 @@ class PrepareSQL
 		return $result;
 	}
 	
+	public function get_coupon_codes_for_email( $email, $coupon_slug = "")
+	{
+		global $wpdb;
+		$sql = "SELECT p.post_title AS coupon
+		FROM wp7r_posts AS p
+		JOIN wp7r_term_relationships tr ON p.ID = tr.object_id
+		JOIN wp7r_terms AS t ON t.term_id = tr.term_taxonomy_id
+		JOIN wp7r_postmeta AS pme ON p.ID = pme.post_id AND pme.meta_key = 'referral'
+		WHERE post_type = 'shop_coupon'  AND  p.post_status= 'publish'
+		AND pme.meta_value LIKE '%{$email}%' ";
+		
+		if (! empty($coupon_slug)) {
+			$sql .= " AND t.slug =  '$coupon_slug'";
+		}
+		$result = (array) $wpdb->get_results($sql);
+		return $result;		
+	}
+	
 	public function get_users_with_expired_coupons( $as_objects = false)
 	{
 		global $wpdb;
@@ -80,7 +98,7 @@ class PrepareSQL
 				JOIN {$wpdb->prefix}postmeta AS pme ON p.ID = pme.post_id AND pme.meta_key = 'customer_email'
 				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pmu ON p.ID = pmu.post_id AND pmu.meta_key = 'usage_count'
 				LEFT OUTER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = 'date_expires'
-				WHERE post_type = 'shop_coupon'  
+				WHERE post_type = 'shop_coupon'  AND  post_status= 'publish'
 				AND DATE(FROM_UNIXTIME(pm.meta_value - $day_before * 86400 )) = CURDATE()
 				AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
 				GROUP BY p.ID";
