@@ -193,6 +193,7 @@ class Coupon_Emails {
 		$this->loader->add_action( 'init', $plugin_public, 'referral_page_add_endpoint' );	
 		
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'woocommerce_order_status_changed', $plugin_public, 'coupon_emails_order_status_changed', 99, 4 );
 		/*		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );*/
 	}
 

@@ -13,6 +13,9 @@ class EmailFunctions
 	protected $emails_cnt;
 	protected $product_name;
 	protected $types_array;
+	public $new_coupon_id;
+	public $coupon_code;
+	public $coupon_expiration;
 
 	public function __construct($type = "", $product_name = "")
 	{
@@ -24,12 +27,12 @@ class EmailFunctions
 		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral"];
 	}
 
-	function couponemails_create($user, $istest = false, $coupon = "")
+	function couponemails_create($user, $istest = false, $coupon = "", $html_body = "")
 	{				
 		$success = true;
 		$options = $this->options_array;
-		$subject_user = $options['subject'];
-		$html_body = $options['email_body'];
+		$subject_user = $options['subject'];		
+		$html_body = empty($html_body) ? $options['email_body'] : $html_body;
 		$from_name = $options['from_name'];
 		$from_address = $options['from_address'];
 		$header  = $options['header'];
@@ -332,8 +335,12 @@ class EmailFunctions
 		$expiry_date_unix = strtotime($expiry_date);
 		update_post_meta( $new_coupon_id, 'date_expires', $expiry_date_unix );
 		//update_post_meta( $new_coupon_id, 'date_expires_local', $expiry_date );
+		$this->coupon_expiration = $expiry_date;
 		update_post_meta( $new_coupon_id, 'free_shipping', $free_shipping );
-		update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
+		\COUPONEMAILS\EmailFunctions::test_add_log('-- couponemails_get_unique_coupon -- ' . $cat_slug . " " . $prefix . " " . $this->type . PHP_EOL  );
+		if ($this->type != 'referralemail' || $prefix == "ref_") {				
+			update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
+		}
 		update_post_meta( $new_coupon_id, 'customer_id', $user->ID );
 		
 		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
@@ -341,7 +348,8 @@ class EmailFunctions
 		// update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->ID );
 
 		$cat_id = $this->couponemails_coupon_category($new_coupon_id, $cat_slug );
-
+		$this->new_coupon_id = $new_coupon_id;
+		$this->coupon_code = $generated_code;
 		return $generated_code;
 	}
 
@@ -361,11 +369,26 @@ class EmailFunctions
 							(SELECT pt.term_id FROM {$wpdb->prefix}term_taxonomy AS pt
 							INNER JOIN {$wpdb->prefix}terms AS t ON t.term_id = pt.term_id
 							WHERE t.slug =  '$cat_slug')";
-
 		$wpdb->query($sql);
 		return $term_id;
 	}
 
+	static function is_coupon_in_category($coupon_code, $cat_slug)
+	{
+		global $wpdb;
+		$sql = "SELECT p.ID FROM {$wpdb->prefix}term_taxonomy AS pt
+				JOIN {$wpdb->prefix}terms AS t ON t.term_id = pt.term_id
+				JOIN {$wpdb->prefix}term_relationships AS tr ON tr.term_taxonomy_id = pt.term_taxonomy_id
+				JOIN {$wpdb->prefix}posts AS p ON p.ID = tr.object_id
+				WHERE t.slug =  '$cat_slug'
+				AND p.post_title = '$coupon_code'";
+				$term_id = $wpdb->get_var($sql);
+				if ($term_id>0) {
+					return true;
+				} else {
+					return false;
+				}
+	}
 	function couponemails_coupon_category_create($category, $cat_slug)
 	{
 		global $wpdb;

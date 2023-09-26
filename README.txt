@@ -64,6 +64,9 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.3.1 =
+* Add referral coupons
+
 = 1.2.1 =
 * Add My Coupons menu to My Account
 

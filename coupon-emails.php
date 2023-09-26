@@ -13,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders and more with many customization options.
- * Version:           1.2.2.1
+ * Version:           1.3.1
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.2.2.3' );
+define( 'COUPON_EMAILS_VERSION', '1.3.1.1' );
 define( 'MAX_TEST_EMAILS', '10' );
 define( 'ENABLE_SQL_LOGS', '1' );
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
@@ -378,6 +378,7 @@ function referralemail_save_defaults($add_new = false)
 	'ref_characters' =>	7,
 	'wc_template' =>	1,
 	'expires'	=>	14,
+	'ref_expires'	=>	30,
 	'disc_type' => 1,
 	'ref_disc_type' => 1,
 	'exclude_discounted' => 1,
@@ -461,7 +462,7 @@ function namedayemail_save_defaults($add_new = false){
 				'wc_template' =>	1,
 				'test' =>	1,
 				'send_time'  =>	'05:00',
-				'expires'	=>	31,
+				'expires'	=>	30,
 				'from_name'	=>	get_bloginfo('name'),
 				'from_address'	=>	get_bloginfo('admin_email'),
 				'bcc_address' => $current_user->user_email,
@@ -497,7 +498,7 @@ function reviewedemail_save_defaults($add_new = false)
 	'wc_template' =>	1,
 	'test' =>	1,
 	'send_time'  =>	'06:30',
-	'expires'	=>	31,
+	'expires'	=>	30,
 	'from_name'	=>	get_bloginfo('name'),
 	'from_address'	=>	get_bloginfo('admin_email'),
 	'bcc_address' => $current_user->user_email,
