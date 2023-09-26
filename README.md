@@ -2,9 +2,9 @@
  WooCommerce Coupon Emails plugin
 
  ---
-**Coupon Emails** is a WooPress plugin designed to send emails with unique discount coupons to WooCommerce customers at a specified time before their birthday, name day, before the anniversary of a previous order, after an order has been placed or after a review has been sent. It is possible to automatically send coupon expiration reminder emails and review submission reminders.
+**Coupon Emails** is a WooPress plugin designed to send emails with unique discount coupons to WooCommerce customers at a specified time before their birthday, name day, before the anniversary of a previous order, after an order has been placed or after a review has been sent. It is possible to automatically send coupon expiration reminder emails and review submission reminders. Users can send referral emails to friends and get rewarded for their purchases.
 
-**Email s kupónom** je WooPress plugin určený na posielnie emailov s jedinečnými zľavovými kupónmi pre zákazníkov WooCommerce v určený čas pred ich narodeninami, meninami, pred výročím predchádzajúcej objednávky, po objednaní alebo zaslanej recenzii. Je možné automaticky zasielať emaily s pripomenutím exspirácie kupónu a na pripomentie zaslania hodnotenia.
+**Email s kupónom** je WooPress plugin určený na posielnie emailov s jedinečnými zľavovými kupónmi pre zákazníkov WooCommerce v určený čas pred ich narodeninami, meninami, pred výročím predchádzajúcej objednávky, po objednaní alebo zaslanej recenzii. Je možné automaticky zasielať emaily s pripomenutím exspirácie kupónu a na pripomentie zaslania hodnotenia. Používatelia môžu posielať e-maily s odporúčaniami priateľom a získať odmenu za ich nákupy.
 
 ### **Funkcie**
 - pridané pole Narodeniny pre účet zákazníka 
@@ -18,6 +18,7 @@
 - automatické zasielielanie emailov s pripomenutím exspirácie kupónu
 - automatické zasielielanie emailov s výzvou na vytvorenie hodnotenia zakúpeného produktu
 - automatické mazanie nevyužitých kupónov po určených dňoch
+- odporúčacie e-maily s kupónom a odmenou za nákup pre odporúčajúceho
 - nastavenie času zasielania
 - prevencia zaslania dvoch narodeninvých kupónov za rok pre jedného zákazníka ak si zmení dátum narodenia
 - zástupné značky v texte emailu
