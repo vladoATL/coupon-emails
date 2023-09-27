@@ -73,6 +73,15 @@
     margin-right: 5%;
 }
 
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container--default .select2-results__option--highlighted[data-selected]{
+	color: inherit !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected]:hover,
+.select2-container--default .select2-results__option--highlighted[data-selected]:hover{
+	background-color: #f6f7f7 !important;
+}
+
 .title-center {
 	text-align: center !important;
 	}	
