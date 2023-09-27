@@ -12,8 +12,8 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
- * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders and more with many customization options.
- * Version:           1.3.1
+ * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders, referral email and more with many customization options.
+ * Version:           1.4.1
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
