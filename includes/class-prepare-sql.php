@@ -33,18 +33,29 @@ class PrepareSQL
 			retrun ;
 		$trimmed_array = array_map('trim', $email_address);
 		$addresses = sprintf("'%s'", implode("','", $trimmed_array ) );
+		
+		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+			$sql2 = "
+			SELECT wco.customer_id AS user_id, COUNT(wco.ID) AS orders_count, ROUND(SUM(wco.total_amount),2) AS orders_total, DATE(MAX(wco.date_created_gmt)) AS last_order
+			FROM {$wpdb->prefix}wc_orders AS wco
+			WHERE wco.status = 'wc-completed' AND wco.customer_id IS NOT NULL
+			GROUP BY wco.customer_id";
+		} else {
+			$sql2 = "
+			SELECT upm.meta_value AS user_id, SUM(upmt.meta_value) AS orders_total, DATE(max(p.post_date)) AS last_order, COUNT(p.ID) AS orders_count
+			FROM {$wpdb->prefix}posts AS p
+				JOIN {$wpdb->prefix}postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
+				JOIN {$wpdb->prefix}postmeta AS upmt ON upmt.post_id = p.ID AND upmt.meta_key = '_order_total'
+			WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'
+			GROUP BY upm.meta_value";
+		}
+		
 		$sql ="
 			SELECT umfn.meta_value AS user_firstname, umln.meta_value AS user_lastname, u.user_email, u.ID, orders.orders_count, orders.orders_total, orders.last_order
 			FROM {$wpdb->prefix}users AS u
 				JOIN {$wpdb->prefix}usermeta AS umfn ON u.ID =  umfn.user_id AND umfn.meta_key = 'first_name'
 				JOIN {$wpdb->prefix}usermeta AS umln ON u.ID =  umln.user_id AND umln.meta_key = 'last_name'
-				LEFT OUTER  JOIN (SELECT upm.meta_value AS user_id, SUM(upmt.meta_value) AS orders_total, DATE(max(p.post_date)) AS last_order, COUNT(p.ID) AS orders_count
-			FROM {$wpdb->prefix}posts AS p
-				JOIN {$wpdb->prefix}postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
-				JOIN {$wpdb->prefix}postmeta AS upmt ON upmt.post_id = p.ID AND upmt.meta_key = '_order_total'
-			WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'
-			GROUP BY upm.meta_value
-			) AS orders
+				LEFT OUTER  JOIN ( $sql2 ) AS orders
 			ON orders.user_id = u.ID
 			WHERE u.user_email IN ($addresses)
 			";
@@ -62,10 +73,10 @@ class PrepareSQL
 	{
 		global $wpdb;
 		$sql = "SELECT p.post_title AS coupon
-		FROM wp7r_posts AS p
-		JOIN wp7r_term_relationships tr ON p.ID = tr.object_id
-		JOIN wp7r_terms AS t ON t.term_id = tr.term_taxonomy_id
-		JOIN wp7r_postmeta AS pme ON p.ID = pme.post_id AND pme.meta_key = 'referral'
+		FROM {$wpdb->prefix}posts AS p
+		JOIN {$wpdb->prefix}term_relationships tr ON p.ID = tr.object_id
+		JOIN {$wpdb->prefix}terms AS t ON t.term_id = tr.term_taxonomy_id
+		JOIN {$wpdb->prefix}postmeta AS pme ON p.ID = pme.post_id AND pme.meta_key = 'referral'
 		WHERE post_type = 'shop_coupon'  AND  p.post_status= 'publish'
 		AND pme.meta_value LIKE '%{$email}%' ";
 		
@@ -206,20 +217,37 @@ class PrepareSQL
 				$field = "";
 			}
 			$cat_str = implode(',', $categories);
-			$sql.= "
-			SELECT pmc.meta_value AS user_id, p.ID AS prod_id, tr.term_taxonomy_id AS cat_id, t.name AS cat_name $field
-				FROM {$wpdb->prefix}posts o
-				JOIN {$wpdb->prefix}postmeta pmc ON o.ID = pmc.post_id AND pmc.meta_key = '_customer_user'
+			if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+				$sql.= "
+				SELECT o.customer_id AS user_id, p.ID AS prod_id, tr.term_taxonomy_id AS cat_id, t.name AS cat_name , COUNT(p.ID) AS orders_cnt
+				FROM {$wpdb->prefix}wc_orders o
 				JOIN {$wpdb->prefix}woocommerce_order_items oi ON o.ID = oi.order_id AND oi.order_item_type = 'line_item'
 				JOIN {$wpdb->prefix}woocommerce_order_itemmeta oim ON oim.order_item_id = oi.order_item_id AND oim.meta_key = '_product_id'
 				JOIN {$wpdb->prefix}posts p ON p.ID = oim.meta_value
 				JOIN {$wpdb->prefix}term_relationships AS tr ON (p.ID = tr.object_id)
-					AND  tr.term_taxonomy_id IN ($cat_str)
+				AND  tr.term_taxonomy_id IN ($cat_str)
 				JOIN {$wpdb->prefix}terms AS t ON tr.term_taxonomy_id = t.term_id
 				JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_id = t.term_id AND tt.taxonomy ='product_cat'
-			WHERE
-				o.post_type = 'shop_order' AND o.post_status = 'wc-completed'
-			GROUP BY  pmc.meta_value ";
+				WHERE
+				o.status = 'wc-completed'
+				GROUP BY  o.customer_id ";
+			} else {
+				$sql.= "
+				SELECT pmc.meta_value AS user_id, p.ID AS prod_id, tr.term_taxonomy_id AS cat_id, t.name AS cat_name $field
+					FROM {$wpdb->prefix}posts o
+					JOIN {$wpdb->prefix}postmeta pmc ON o.ID = pmc.post_id AND pmc.meta_key = '_customer_user'
+					JOIN {$wpdb->prefix}woocommerce_order_items oi ON o.ID = oi.order_id AND oi.order_item_type = 'line_item'
+					JOIN {$wpdb->prefix}woocommerce_order_itemmeta oim ON oim.order_item_id = oi.order_item_id AND oim.meta_key = '_product_id'
+					JOIN {$wpdb->prefix}posts p ON p.ID = oim.meta_value
+					JOIN {$wpdb->prefix}term_relationships AS tr ON (p.ID = tr.object_id)
+						AND  tr.term_taxonomy_id IN ($cat_str)
+					JOIN {$wpdb->prefix}terms AS t ON tr.term_taxonomy_id = t.term_id
+					JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_id = t.term_id AND tt.taxonomy ='product_cat'
+				WHERE
+					o.post_type = 'shop_order' AND o.post_status = 'wc-completed'
+				GROUP BY  pmc.meta_value ";				
+			}
+
 			$sql .= ")
 				AS categories$sufix
 				ON categories$sufix.user_id  = u.ID ";
@@ -247,7 +275,22 @@ class PrepareSQL
 				$field = "";
 			}
 			$prod_str = implode(',', $bought_products);
-			$sql.= "SELECT pmc.meta_value AS user_id $field
+			
+			if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+				$sql .= "
+				SELECT p.customer_id AS user_id $field
+				FROM {$wpdb->prefix}wc_orders AS p
+					join {$wpdb->prefix}woocommerce_order_items oi on p.ID = oi.order_id AND oi.order_item_type = 'line_item'
+					join {$wpdb->prefix}woocommerce_order_itemmeta oim on oim.order_item_id = oi.order_item_id AND oim.meta_key = '_product_id'
+					join {$wpdb->prefix}woocommerce_order_itemmeta oimv on oimv.order_item_id = oi.order_item_id AND oimv.meta_key = '_variation_id'
+				WHERE
+					STATUS = 'wc-completed' AND p.customer_id IS NOT NULL
+					AND (oimv.meta_value IN ($prod_str) OR oim.meta_value IN ($prod_str))
+				GROUP BY p.customer_id				
+				";
+			} else {
+				$sql.= "
+				SELECT pmc.meta_value AS user_id $field
 			    FROM {$wpdb->prefix}posts p
 					join {$wpdb->prefix}postmeta pmc on p.ID = pmc.post_id AND pmc.meta_key = '_customer_user'
 					join {$wpdb->prefix}woocommerce_order_items oi on p.ID = oi.order_id AND oi.order_item_type = 'line_item'
@@ -255,8 +298,11 @@ class PrepareSQL
 					join {$wpdb->prefix}woocommerce_order_itemmeta oimv on oimv.order_item_id = oi.order_item_id AND oimv.meta_key = '_variation_id'
 			    WHERE
 			        post_type = 'shop_order' AND post_status = 'wc-completed'
-					AND (oimv.meta_value IN (" . $prod_str . ") OR oim.meta_value IN (" . $prod_str . "))
-				GROUP BY user_id";
+					AND (oimv.meta_value IN $prod_str OR oim.meta_value IN  $prod_str ))
+				GROUP BY user_id
+				";				
+			}				
+
 			$sql .= ")
 				AS products$sufix
 				ON products$sufix.user_id  = u.ID ";
@@ -310,8 +356,12 @@ class PrepareSQL
 			$since_last_order_date = date('Y-m-d', strtotime('-' . $days_since_last_order . ' days'));
 		}		
 		if ($minimum_orders > 0) {
-			$minimum_orders_str = ", COUNT(p.ID) AS orders_count, ROUND(SUM(upmt.meta_value),2) AS orders_total, DATE(max(p.post_date)) AS last_order";
-			$min_orders_join = "JOIN $wpdb->postmeta AS upmt ON upmt.post_id = p.ID AND upmt.meta_key = '_order_total'";
+			if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+				$minimum_orders_str = ", COUNT(p.ID) AS orders_count, ROUND(SUM(p.total_amount),2) AS orders_total, DATE(max(p.date_created_gmt)) AS last_order";			
+			} else {
+				$minimum_orders_str = ", COUNT(p.ID) AS orders_count, ROUND(SUM(upmt.meta_value),2) AS orders_total, DATE(max(p.post_date)) AS last_order";
+				$min_orders_join = "JOIN $wpdb->postmeta AS upmt ON upmt.post_id = p.ID AND upmt.meta_key = '_order_total'";
+			}
 		}
 		else if ($minimum_orders == 0) {
 			$minimum_orders_str = ", COUNT(p.ID) AS orders_count ";
@@ -322,28 +372,52 @@ class PrepareSQL
 			$min_orders_join = "";
 		}
 		$sql = " JOIN (";
-		$sql .="SELECT upm.meta_value AS user_id $minimum_orders_str
+		
+		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+			$sql .="SELECT p.customer_id AS user_id $minimum_orders_str
+			FROM {$wpdb->prefix}wc_orders AS p
+				WHERE p.status = 'wc-completed'";
+			if ( $this->type != 'onetimeemail') {
+				if (! empty($days_since_last_order))
+					$sql .= " AND DATE(p.date_created_gmt)  {$this->days_since_sign} '" . $since_last_order_date . "' ";
+				if (! empty($total_spent) )
+					$sql .= " AND p.total_amount " . $total_spent . " ";
+			}
+			$sql .=	"
+				GROUP BY user_id
+				HAVING 1=1";
+			if ($minimum_orders > 0)
+				$sql .= " AND COUNT(p.ID)  >= " . $minimum_orders;
+			if ($this->type == 'onetimeemail') {
+				if (! empty($days_since_last_order))
+					$sql .= " AND DATE(max(p.date_created_gmt))  {$this->days_since_sign} '" . $since_last_order_date . "' ";
+				if (! empty($total_spent) )
+					$sql .= " AND SUM(p.total_amount) " . $total_spent . " ";
+			}			
+		} else {
+			$sql .="SELECT upm.meta_value AS user_id $minimum_orders_str
 			FROM $wpdb->posts AS p
 				JOIN $wpdb->postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
 				$min_orders_join
 				WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'";
-				if ( $this->type != 'onetimeemail') {
-					if (! empty($days_since_last_order))
-						$sql .= " AND DATE(p.post_date)  {$this->days_since_sign} '" . $since_last_order_date . "' ";
-					if (! empty($total_spent) )
-						$sql .= " AND upmt.meta_value " . $total_spent . " ";					
-				}
+			if ( $this->type != 'onetimeemail') {
+				if (! empty($days_since_last_order))
+					$sql .= " AND DATE(p.post_date)  {$this->days_since_sign} '" . $since_last_order_date . "' ";
+				if (! empty($total_spent) )
+					$sql .= " AND upmt.meta_value " . $total_spent . " ";
+			}
 			$sql .=	"
 				GROUP BY upm.meta_value
 				HAVING 1=1";
-		if ($minimum_orders > 0)
-			$sql .= " AND COUNT(p.ID)  >= " . $minimum_orders;
+			if ($minimum_orders > 0)
+				$sql .= " AND COUNT(p.ID)  >= " . $minimum_orders;
 			if ($this->type == 'onetimeemail') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(max(p.post_date))  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
 					$sql .= " AND SUM(upmt.meta_value) " . $total_spent . " ";
 			}
+		}
 		$sql .= ") AS orders
 		ON orders.user_id = u.ID ";
 

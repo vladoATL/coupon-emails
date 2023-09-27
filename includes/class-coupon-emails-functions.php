@@ -184,12 +184,22 @@ class EmailFunctions
 	function get_last_order_date($user_email)
 	{
 		global $wpdb;
-		$sql = "SELECT max(DATE(p.post_date)) AS last_order_date
-		FROM {$wpdb->prefix}posts AS p
-		JOIN {$wpdb->prefix}postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
-		JOIN {$wpdb->prefix}users AS u ON upm.meta_value = u.ID AND  u.user_email = '{$user_email}'
-		WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'
-		GROUP BY upm.meta_value" ;
+		
+		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+			$sql = "SELECT max(DATE(wco.date_created_gmt)) AS last_order_date
+				FROM {$wpdb->prefix}wc_orders AS wco
+				JOIN {$wpdb->prefix}users AS u ON wco.customer_id = u.ID AND  u.user_email = '{$user_email}'
+				WHERE wco.status = 'wc-completed'
+				GROUP BY wco.customer_id;";
+		} else {
+			$sql = "SELECT max(DATE(p.post_date)) AS last_order_date
+				FROM {$wpdb->prefix}posts AS p
+				JOIN {$wpdb->prefix}postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
+				JOIN {$wpdb->prefix}users AS u ON upm.meta_value = u.ID AND  u.user_email = '{$user_email}'
+				WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'
+				GROUP BY upm.meta_value" ;			
+		}		
+		
 		$order_date = $wpdb->get_var($sql);
 
 		return date_i18n('j. F Y', strtotime($order_date));

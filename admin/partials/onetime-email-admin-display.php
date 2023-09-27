@@ -17,7 +17,7 @@ if ( isset( $_GET['onetimeexport'] ) ) {
 	$csv = implode( ';' , $table_head );
 	$csv .= "\n";
 
-	$onetimes = new PrepareSQL($option_name, '=');
+	$onetimes = new PrepareSQL($option_name, '<=');
 	$result = $onetimes->get_users_filtered();
 		
 	foreach ( $result as $key => $value ) {
