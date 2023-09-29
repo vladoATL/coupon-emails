@@ -27,7 +27,7 @@ class EmailFunctions
 		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral"];
 	}
 
-	function couponemails_create($user, $istest = false, $coupon = "", $html_body = "")
+	function couponemails_create($user, $istest = false, $args = array(), $html_body = "")
 	{				
 		$success = true;
 		$options = $this->options_array;
@@ -36,7 +36,11 @@ class EmailFunctions
 		$from_name = $options['from_name'];
 		$from_address = $options['from_address'];
 		$header  = $options['header'];
-
+		$coupon = "";
+		
+		if ( ! empty( $args ) && is_array( $args ) ) {
+			extract( $args ); 
+		}
 		if (empty($coupon)) {
 			if (isset($user->coupon)) {
 				$coupon = $user->coupon;
@@ -78,8 +82,8 @@ class EmailFunctions
 			$admin_email = get_bloginfo('admin_email');
 		}
 		
-		$html_body = $this->couponemails_replace_placeholders($html_body, $user, $options);
-		$subject_user = $this->couponemails_replace_placeholders($subject_user, $user, $options);
+		$html_body = $this->couponemails_replace_placeholders($html_body, $user, $options, $args);
+		$subject_user = $this->couponemails_replace_placeholders($subject_user, $user, $options, $args);
 
 		if ((!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') && $options['test'] != 1) || $istest == true) {
 			if (is_email($email)) {
@@ -128,10 +132,20 @@ class EmailFunctions
 		return $coupon; // $success;
 	}
 
-	function couponemails_replace_placeholders($content, $user, $options)
+	function couponemails_replace_placeholders($content, $user, $options, $args = array())
 	{
 		$date_format = get_option( 'date_format' );
-		// $this->couponemails_add_log(print_r($user, true));
+		$friend_firstname = '{friend_firstname}';
+		$friend_lastname = '{friend_lastname}';
+		$reward_amount = '{reward_amount}';
+		$coupon_amount = isset($options['coupon_amount'] ) ? $options['coupon_amount'] : '{percent}';
+		$expires_in_days = isset($options['expires'] ) ? $options['expires'] : '{expires_in_days}';
+		$expires = isset($options['expires'] ) ? date_i18n('j. F Y', strtotime('+' . $options['expires'] . ' days')) : '{expires}' ;
+
+		if ( ! empty( $args ) && is_array( $args ) ) {
+			extract( $args );
+		}
+
 		if (isset($options['days_before'])) {
 			$days_before = is_numeric($options['days_before']) ? $options['days_before'] : 0;
 		} else {
@@ -150,6 +164,7 @@ class EmailFunctions
 		'{expires}',
 		'{for_date}',
 		'{percent}',
+		'{coupon_amount}',
 		'{fname}',
 		'{fname5}',
 		'{lname}',
@@ -158,26 +173,34 @@ class EmailFunctions
 		'{reviewed_prod}',
 		'{last_order_date}',
 		'{referrer}',
+		'{friend_firstname}',
+		'{friend_lastname}',
+		'{reward_amount}',
 		),
 		array(
 		get_option( 'blogname' ),
 		home_url(),
 		'<a href=' . home_url() . '>' . get_option( 'blogname' ) . '</a>',
-		isset($options['expires'] ) ? $options['expires'] : '' ,
-		isset($options['expires'] ) ? date_i18n('j. F Y', strtotime('+' . $options['expires'] . ' days')) : '' ,
+		$expires_in_days,				
+		$expires,
 		date_i18n('j. F Y', strtotime('+' . $days_before . ' days')),
-		isset($options['coupon_amount'] ) ? $options['coupon_amount'] : '' ,
+		$coupon_amount,
+		$coupon_amount,
 		ucfirst(strtolower($first_name)),
 		$inflection->inflect(ucfirst(strtolower($first_name)))[5],
 		ucfirst(strtolower($last_name)),
-		isset($options['max_products'] ) ? $options['max_products'] : '' ,
+		isset($options['max_products'] ) ? $options['max_products'] : '{products_cnt}' ,
 		strtolower($user-> user_email),
 		$this->product_name,
 		$this->get_last_order_date($user-> user_email),
 		$current_user->user_firstname . " " . $current_user->user_lastname,
+		$friend_firstname,
+		$friend_lastname,
+		is_numeric($reward_amount) ? wc_price($reward_amount) : $reward_amount,
 		),
 		$content
 		);
+
 		return $replaced_text;
 	}
 
@@ -366,6 +389,9 @@ class EmailFunctions
 	function couponemails_coupon_category($new_coupon_id, $cat_slug)
 	{
 		global $wpdb;
+		if (!$new_coupon_id ) {
+			return;
+		}
 		$type_option = $this->type . '_options';
 		$options = get_option($type_option);
 		$category = $options['coupon_cat'];

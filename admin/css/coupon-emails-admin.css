@@ -64,6 +64,10 @@
 	padding: 1px 10px 10px 10px;
 	margin-top: 5px;
 }
+.basic_setting {
+	padding: 1px 10px 10px 10px;
+	margin-top: 5px;
+}
 .alt_coupon_setting, .email_setting {
 	padding: 1px 10px 10px 10px;
 	margin-top: 5px;
@@ -83,18 +87,18 @@
 }
 
 .title-center {
-	text-align: center !important;
-	}	
-	.couponemails_wrapper {
-		overflow: hidden;
-	}
-	.couponemails_left  {
-		float: left;
-		width: 700px;
-	}
-	.couponemails_right {
-		overflow: hidden;
-	}
+text-align: center !important;
+}	
+.couponemails_wrapper {
+	overflow: hidden;
+}
+.couponemails_left  {
+	float: left;
+	width: 700px;
+}
+.couponemails_right {
+	overflow: hidden;
+}
 
 	@media screen and (max-width: 1080px) {
 		.couponemails_left {

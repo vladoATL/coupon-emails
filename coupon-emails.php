@@ -13,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders, referral email and more with many customization options.
- * Version:           1.4.2
+ * Version:           1.4.3
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -33,9 +33,9 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.4.2.1' );
+define( 'COUPON_EMAILS_VERSION', '1.4.3.2' );
 define( 'MAX_TEST_EMAILS', '10' );
-define( 'ENABLE_SQL_LOGS', '0' );
+define( 'ENABLE_SQL_LOGS', '1' );
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
 
 
@@ -181,6 +181,7 @@ function couponemails_plugin_save_defaults() {
 		reviewreminderemail_save_defaults(true);
 		expirationreminderemail_save_defaults(true);
 		referralemail_save_defaults(true);
+		referralconfirmationemail_save_defaults(true);
 }
 
 function couponemails_save_defaults($add_new = false)
@@ -370,6 +371,33 @@ function expirationreminderemail_save_defaults($add_new = false)
 	}
 }
 
+function referralconfirmationemail_save_defaults($add_new = false)
+{
+	$current_user = wp_get_current_user();
+
+	$option_array = array(
+	'subject'	=>	_x('{fname}, here is your reward!','Email Subject','coupon-emails') ,
+	'header'  =>	_x('Thanks for recommendation!','Email Header','coupon-emails') ,
+	'wc_template' =>	1,
+	'from_name'	=>	get_bloginfo('name'),
+	'from_address'	=>	get_bloginfo('admin_email'),
+	'bcc_address' => $current_user->user_email,
+	'email_footer' => '{site_name_url}',
+	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>We received an order from your friend {friend_firstname} {friend_lastname}!</p>
+<p style='font-size: 18px;'>Thank you for recommending our products. As a gift for you, we have added {reward_amount} to the value of your coupon:</p> 
+<p style='font-size: 24px;font-weight:800;'>{coupon}</p>
+<p style='font-size: 18px;'>Its total value is now {coupon_amount} and it is valid until {expires}.</p>
+<p style='font-size: 18px;'>Come back to our website {site_name_url} and save!</p>
+<p style='font-size: 18px;'>The Team of {site_name}</p>
+<p style='font-size: 14px; line-height: 95%;'>The validity of the voucher cannot be extended and can only be redeemed from the account of {email}.</p>" ,'Email Body', 'coupon-emails'	),
+	);
+	if ($add_new == true) {
+		add_option( 'referralconfirmationemail_options', $option_array );
+	} else {
+		update_option( 'referralconfirmationemail_options', $option_array );
+	}	
+}
+
 function referralemail_save_defaults($add_new = false)
 {
 	$current_user = wp_get_current_user();
@@ -400,7 +428,7 @@ function referralemail_save_defaults($add_new = false)
 	'bcc_address' => $current_user->user_email,
 	'email_footer' => '{site_name_url}',
 	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>I want to share with you my satisfaction with great products!</p>
-	<p style='font-size: 18px;'>I am also sending a coupon for a 10% discount, which can be redeemed at {site_name_url} for the following {expires_in_days} days until {expires}:</p>
+<p style='font-size: 18px;'>I am also sending a coupon for a {percent}% discount, which can be redeemed at {site_name_url} for the following {expires_in_days} days until {expires}:</p>
 <div style='font-size: 24px;font-weight:800;'>{coupon}</div>
 <div style='font-size: 18px;font-weight:600;'>{personal_text}</div>
 <p style='font-size: 18px;'>Visit this website {site_url} and save!<br>

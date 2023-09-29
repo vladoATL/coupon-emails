@@ -24,3 +24,4 @@ delete_option('reviewedemail_options')
 delete_option('reviewreminderemail_options');
 delete_option('expirationreminderemail_options');
 delete_option('referralemail_options');
+delete_option('referralconfirmationemail_options');

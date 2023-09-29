@@ -107,8 +107,15 @@ class Coupon_Emails_Admin {
 		 );	
 		 register_setting( 'referralemail_plugin_options', 'referralemail_options',
 		 array('sanitize_callback' => array( $this, 'referralemail_validate_options' ),)
-		 );		 	 
+		 );		
+		 register_setting( 'referralconfirmationemail_plugin_options', 'referralconfirmationemail_options',
+		 array('sanitize_callback' => array( $this, 'referralconfirmationemail_validate_options' ),)
+		 );			  	 
 	}
+	function referralconfirmationemail_validate_options($input)
+	{
+		return $input;
+	}	
 	function referralemail_validate_options($input)
 	{
 		return $input;
@@ -265,8 +272,9 @@ class Coupon_Emails_Admin {
 		{
 			$user = wp_get_current_user();
 			$funcs = new \COUPONEMAILS\EmailFunctions($option_name);
-			if ($option_name == 'expirationreminderemail') {
-				$funcs->	couponemails_create($user, true, "TESTCOUPON");
+			if (in_array($option_name, array('expirationreminderemail','referralconfirmationemail'))) {
+				$args = array("coupon" => "TESTCOUPON");
+				$funcs->	couponemails_create($user, true, $args);
 			} else {
 				$funcs->	couponemails_create($user, true);	
 			}
@@ -312,7 +320,10 @@ class Coupon_Emails_Admin {
 					break;	
 				case "referralemail":
 					referralemail_save_defaults($add_new);
-					break;					
+					break;	
+				case "referralconfirmationemail":
+					referralconfirmationemail_save_defaults($add_new);
+					break;									
 				}						
 			wp_die();
 		}

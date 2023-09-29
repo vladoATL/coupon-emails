@@ -57,6 +57,39 @@
 	 
 	 	jQuery( document ).on(
 	"click",
+	"#referralconfirmationemail-setting #restore_referralconfirmationemail_values_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_restore_settings',
+			nonce: nonce,
+			option_name: 'referralconfirmationemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#referralconfirmationemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#referralconfirmationemail-setting .namedays_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#referralconfirmationemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#referralconfirmationemail-setting .namedays_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);
+		 
+	 	jQuery( document ).on(
+	"click",
 	"#referralemail-setting #restore_referralemail_values_btn",
 	function() {
 		event.preventDefault();
@@ -417,6 +450,71 @@
 		}
 	);	
 
+jQuery( document ).on(
+	"click",
+	"#referralemail-setting #test_referralemail_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_make_test',
+			nonce: nonce,
+			option_name: 'referralemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#referralemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#referralemail-setting .namedays_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#referralemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#referralemail-setting .namedays_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);
+	
+jQuery( document ).on(
+	"click",
+	"#referralconfirmationemail-setting #test_referralconfirmationemail_btn",
+	function() {
+		event.preventDefault();
+		var nonce = jQuery( this ).attr( 'attr-nonce' );
+		var data  = {
+			action: 'email_make_test',
+			nonce: nonce,
+			option_name: 'referralconfirmationemail',
+		};
+		jQuery.ajax(
+		{
+			type: "post",
+			url: ajaxurl,
+			data: data,
+			beforeSend: function(response) {
+				jQuery( "#referralconfirmationemail-setting .loader_cover" ).addClass( 'active' );
+				jQuery( "#referralconfirmationemail-setting .namedays_loader" ).addClass( 'loader' );
+			},
+			complete: function(response) {
+				jQuery( "#referralconfirmationemail-setting .loader_cover" ).removeClass( 'active' );
+				jQuery( "#referralconfirmationemail-setting .namedays_loader" ).removeClass( 'loader' );
+			},
+			success: function(response) {
+				location.reload();
+			}
+		}
+		);
+		return false;
+	}
+	);	
 jQuery( document ).on(
 	"click",
 	"#reviewedemail-setting #test_reviewedemail_btn",

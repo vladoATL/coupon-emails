@@ -113,7 +113,16 @@ case 'reviewed':
 case 'referral':
 	?>
 	<div class="metabox-holder">
-		<?php include('referral-email-admin-display.php'); ?>
+		<?php
+		switch ($section) :
+		case 'confirmation':
+			include('referral-confirmation-email-admin-display.php');
+		break;
+		default:
+			include('referral-email-admin-display.php');
+		break;
+		endswitch;
+		?>	
 	</div>
 	<?php
 	break;	
