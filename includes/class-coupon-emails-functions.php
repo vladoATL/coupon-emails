@@ -719,6 +719,22 @@ class EmailFunctions
 				return "top-gray";
 			}			
 			break;
+		case 'referralemail':
+			$options_r = get_option("couponemails_options");
+			if (isset($options['enabled']) && $options['enabled']) {
+				if (isset($options_r['enable_referral']) && $options_r['enable_referral']) {
+					return "top-green";
+				} else {
+					return "top-gray";
+				}				
+			} else {
+				if (isset($options_r['enable_referral']) && $options_r['enable_referral']) {
+					return "top-orange";
+				} else {
+					return "top-gray";
+				}				
+			}					
+			break;
 		case 'reminderemail':
 			$options_array = array( 'reviewreminderemail','expirationreminderemail');
 			$isenabled = 0;

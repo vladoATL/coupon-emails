@@ -11,7 +11,7 @@ $reviewed_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reviewedemail')
 $reorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reorderemail');
 $onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimeemail');
 $reviewreminder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reminderemail');
-$referral_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('referral');
+$referral_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('referralemail');
 $options = get_option('couponemails_options');
 $enable_referral = isset($options["enable_referral"]) ? $options["enable_referral"] : 0;
 
