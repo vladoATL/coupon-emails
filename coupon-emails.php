@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'COUPON_EMAILS_VERSION', '1.4.3.2' );
 define( 'MAX_TEST_EMAILS', '10' );
-define( 'ENABLE_SQL_LOGS', '1' );
+define( 'ENABLE_SQL_LOGS', '0' );
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
 
 
