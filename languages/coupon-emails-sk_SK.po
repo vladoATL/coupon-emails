@@ -3,7 +3,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Plural-Forms: nplurals=3; plural=( n == 1 ) ? 0 : ( n >= 2 && n <= 4 ) ? 1 : "
 "2;\n"
-"PO-Revision-Date: 2023-09-29 19:53+0000\n"
+"PO-Revision-Date: 2023-09-30 16:52+0000\n"
 "POT-Creation-Date: 2023-08-17 17:31+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
 "Project-Id-Version: Coupon Emails\n"
@@ -15,6 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Loco-Version: 2.6.6; wp-6.3.1"
 
+#: public/includes/class-referral.php:87
+#, php-format
+msgid "%s is invalid email format."
+msgstr "%s je nesprávny emailový formát."
+
 #: public/templates/single-coupon.php:26
 #, php-format
 msgid "%s use remaining"
@@ -22,6 +27,11 @@ msgid_plural "%s uses remaining"
 msgstr[0] " Zostáva %s použitie"
 msgstr[1] " Zostávajú %s použitia"
 msgstr[2] " Zostáva %s použití"
+
+#: public/includes/class-referral.php:92
+#, php-format
+msgid "A user with email %s has already received a referral email."
+msgstr "Používateľ s adresou %s už dostal odporúčací e-mail."
 
 #: admin/partials/expiration-reminder-email-admin-display.php:121
 msgid "Add coupon category"
@@ -53,9 +63,13 @@ msgstr "Všetky roly"
 msgid "All users"
 msgstr "Všetci používatelia"
 
-#: admin/partials/referral-email-admin-display.php:42
+#: admin/partials/referral-email-admin-display.php:48
 msgid "Allow multiple referral coupons for one address"
 msgstr "Povoliť viacero odporúčacích kupónov pre jednu adresu"
+
+#: admin/partials/referral-email-admin-display.php:42
+msgid "Allow the coupon to be sent to existing users"
+msgstr "Povoliť zasielanie kupónov existujúcim používateľom"
 
 #: public/class-coupon-emails-public.php:66
 msgid "Applicable coupons"
@@ -81,12 +95,12 @@ msgstr "Kategórie kupónov, ktoré sa majú validovať"
 #: admin/partials/coupon-form.php:27 admin/partials/coupon-form.php:28
 #: admin/partials/coupon-form.php:29 admin/partials/coupon-form.php:30
 #: admin/partials/coupon-form.php:31 admin/partials/coupon-form.php:32
-#: admin/partials/referral-email-admin-display.php:84
-#: admin/partials/referral-email-admin-display.php:85
-#: admin/partials/referral-email-admin-display.php:86
-#: admin/partials/referral-email-admin-display.php:87
-#: admin/partials/referral-email-admin-display.php:88
-#: admin/partials/referral-email-admin-display.php:89
+#: admin/partials/referral-email-admin-display.php:90
+#: admin/partials/referral-email-admin-display.php:91
+#: admin/partials/referral-email-admin-display.php:92
+#: admin/partials/referral-email-admin-display.php:93
+#: admin/partials/referral-email-admin-display.php:94
+#: admin/partials/referral-email-admin-display.php:95
 msgid "characters"
 msgstr "znakov"
 
@@ -108,96 +122,96 @@ msgid "Common"
 msgstr "Spoločné"
 
 #: admin/partials/coupon-form.php:24
-#: admin/partials/referral-email-admin-display.php:81
+#: admin/partials/referral-email-admin-display.php:87
 msgid "Count of coupon characters"
 msgstr "Počet znakov kupónu"
 
 #: admin/partials/coupon-form.php:181
-#: admin/partials/referral-email-admin-display.php:238
+#: admin/partials/referral-email-admin-display.php:244
 #| msgid "Coupon category slug"
 msgid "Coupon category"
 msgstr "Kategória kupónu"
 
-#: coupon-emails.php:304
+#: coupon-emails.php:308
 #| msgid "after-order"
 msgctxt "Coupon category"
 msgid "After order email"
 msgstr "Email po objednávke"
 
-#: coupon-emails.php:553
+#: coupon-emails.php:557
 msgctxt "Coupon category"
 msgid "After Review"
 msgstr "Po hodnotení"
 
-#: coupon-emails.php:229
+#: coupon-emails.php:233
 #| msgid "birth-day"
 msgctxt "Coupon category"
 msgid "Birth day email"
 msgstr "Email na narodeniny"
 
-#: coupon-emails.php:365
+#: coupon-emails.php:369
 msgctxt "Coupon category"
 msgid "Expiration reminder"
 msgstr "Pripomenutie exspirácie"
 
-#: coupon-emails.php:516
+#: coupon-emails.php:520
 msgctxt "Coupon category"
 msgid "Name day email"
 msgstr "Email na meniny"
 
-#: coupon-emails.php:480
+#: coupon-emails.php:484
 #| msgid "one-time"
 msgctxt "Coupon category"
 msgid "One-time email"
 msgstr "Jednorazový email"
 
-#: coupon-emails.php:438
+#: coupon-emails.php:442
 msgctxt "Coupon category"
 msgid "Referred"
 msgstr "Odporučené"
 
-#: coupon-emails.php:437
+#: coupon-emails.php:441
 msgctxt "Coupon category"
 msgid "Referrer"
 msgstr "Odporúčajúci"
 
-#: coupon-emails.php:266
+#: coupon-emails.php:270
 #| msgid "reorder"
 msgctxt "Coupon category"
 msgid "Reorder email"
 msgstr "Email pre preobjednanie"
 
-#: coupon-emails.php:295
+#: coupon-emails.php:299
 msgctxt "Coupon description"
 msgid "After order {fname} {lname}: {email}"
 msgstr "Po objednaní {fname} {lname}: {email}"
 
-#: coupon-emails.php:543
+#: coupon-emails.php:547
 msgctxt "Coupon description"
 msgid "After review {fname} {lname}: {email}"
 msgstr "Po hodnotení {fname} {lname}: {email}"
 
-#: coupon-emails.php:220
+#: coupon-emails.php:224
 msgctxt "Coupon description"
 msgid "Birthday {fname} {lname}: {email}"
 msgstr "Narodeniny {fname} {lname}: {email}"
 
-#: coupon-emails.php:507
+#: coupon-emails.php:511
 msgctxt "Coupon description"
 msgid "Name Day {fname}: {email}"
 msgstr "Meniny {fname}: {email}"
 
-#: coupon-emails.php:468
+#: coupon-emails.php:472
 msgctxt "Coupon description"
 msgid "One time {fname} {lname}: {email}"
 msgstr "Jednorazovo {fname} {lname}: {email}"
 
-#: coupon-emails.php:423
+#: coupon-emails.php:427
 msgctxt "Coupon description"
 msgid "Referral: {email}"
 msgstr "Odporúčanie pre: {email}"
 
-#: coupon-emails.php:257
+#: coupon-emails.php:261
 msgctxt "Coupon description"
 msgid "Reorder {fname} {lname}: {email}"
 msgstr "Preobjednanie {fname} {lname}: {email}"
@@ -214,11 +228,11 @@ msgstr "Kupónové emaily - nastavenie"
 msgid "Coupon expires in days"
 msgstr "Kupón exspiruje po počte dní"
 
-#: admin/partials/referral-email-admin-display.php:129
+#: admin/partials/referral-email-admin-display.php:135
 msgid "Coupon expires X days after the last email"
 msgstr "Platnosť kupónu vyprší X dní po poslednom e-maile"
 
-#: admin/partials/referral-email-admin-display.php:67
+#: admin/partials/referral-email-admin-display.php:73
 msgid "Coupon explanation for the referrer"
 msgstr "Vysvetlenie kupónu pre odosielateľa"
 
@@ -233,7 +247,7 @@ msgstr "Kategória kupónov"
 #: admin/partials/birth-day-email-admin-display.php:160
 #: admin/partials/reorder-email-admin-display.php:175
 #: admin/partials/name-day-email-admin-display.php:188
-#: admin/partials/referral-email-admin-display.php:253
+#: admin/partials/referral-email-admin-display.php:259
 #: admin/partials/review-reminder-email-admin-display.php:207
 #: admin/partials/onetime-email-admin-display.php:231
 #: admin/partials/afterorder-email-admin-display.php:181
@@ -270,12 +284,12 @@ msgid "Delete unused coupons in days after expiration"
 msgstr "Zmazať nepoužité exspirované kupóny po dňoch"
 
 #: admin/partials/coupon-form.php:20
-#: admin/partials/referral-email-admin-display.php:77
+#: admin/partials/referral-email-admin-display.php:83
 #| msgid "Description will be used in Coupons page."
 msgid "Description will be used on Coupons page."
 msgstr "Popis bude použitý na stránke Zľavové kódy"
 
-#: admin/partials/referral-email-admin-display.php:55
+#: admin/partials/referral-email-admin-display.php:61
 msgid "Directions for users"
 msgstr "Návod pre používateľov"
 
@@ -289,7 +303,7 @@ msgid "Year is not important but helps"
 msgstr "Rok nie je dôležitý ale pomôže"
 
 #: admin/partials/coupon-form.php:33
-#: admin/partials/referral-email-admin-display.php:90
+#: admin/partials/referral-email-admin-display.php:96
 msgid "Don't generate coupon"
 msgstr "Negenerovať kupón"
 
@@ -335,7 +349,7 @@ msgstr "Stiahnuť súbor s narodeninami"
 msgid "Download file with users to send email"
 msgstr "Stiahnuť súbor s používateľmi, ktorý dostanú email"
 
-#: public/partials/referral-public-display.php:143
+#: public/partials/referral-public-display.php:138
 msgid "Email"
 msgstr "Email"
 
@@ -343,7 +357,7 @@ msgstr "Email"
 msgid "Email body"
 msgstr "Text emailu"
 
-#: coupon-emails.php:545
+#: coupon-emails.php:549
 #| msgid ""
 #| "<p style='font-size: 18px;'>{fname}, thank you for your review of our "
 #| "product</p>\n"
@@ -393,7 +407,7 @@ msgstr ""
 "a nie je možné ho použiť s inými zľavami. Na niektoré produkty sa zľava "
 "nevzťahuje.</p>"
 
-#: coupon-emails.php:470
+#: coupon-emails.php:474
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>Come back to our site, {fname}! "
@@ -434,7 +448,7 @@ msgstr ""
 "2. klikni na “Stratili ste heslo” a budeš si môcť zvoliť svoje heslo na "
 "prihlásenie.</p>\n"
 
-#: coupon-emails.php:359
+#: coupon-emails.php:363
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>Don't throw away an excellent "
@@ -461,7 +475,7 @@ msgstr ""
 "<p style='font-size: 14px;'>Platnosť kupónu sa nedá predĺžiť a je možné ho "
 "uplatniť len z účtu {email}.</p>"
 
-#: coupon-emails.php:222
+#: coupon-emails.php:226
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>Have a nice birthday, {fname}!"
 #| "</p>\n"
@@ -508,7 +522,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:509
+#: coupon-emails.php:513
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>Have a nice name day, {fname}!"
 #| "</p>\n"
@@ -553,7 +567,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:430
+#: coupon-emails.php:434
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>I want to share with you my "
 #| "satisfaction with great products!</p>\n"
@@ -594,7 +608,7 @@ msgstr ""
 "<div style='font-size: 14px; line-height: 95%;'>Na niektoré produkty sa "
 "zľava nevzťahuje. Platnosť kupónu nie je možné predĺžiť.</div>"
 
-#: coupon-emails.php:329
+#: coupon-emails.php:333
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>Thanks for shopping with us "
 #| "{last_order_date}, {fname}!</p>\n"
@@ -634,7 +648,7 @@ msgstr ""
 "<p style='font-size: 18px;'>Tím {site_name}</p>\n"
 "<p style='font-size: 14px;'>Na niektoré produkty sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:259
+#: coupon-emails.php:263
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>We have a special discount "
 #| "for you, {fname}!</p>\n"
@@ -683,7 +697,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:297
+#: coupon-emails.php:301
 #| msgid ""
 #| "<p style='font-size: 20px;font-weight:600;'>We have a special discount "
 #| "for you, {fname}!</p>\n"
@@ -734,7 +748,7 @@ msgstr ""
 "Tvojho účtu a nie je možné ho použiť s inými zľavami. Na niektoré produkty "
 "sa zľava nevzťahuje.</p>"
 
-#: coupon-emails.php:386
+#: coupon-emails.php:390
 msgctxt "Email Body"
 msgid ""
 "<p style='font-size: 20px;font-weight:600;'>We received an order from your "
@@ -780,42 +794,42 @@ msgstr "Meno odosielateľa"
 msgid "Email header"
 msgstr "Hlavička emailu"
 
-#: coupon-emails.php:205 coupon-emails.php:494
+#: coupon-emails.php:209 coupon-emails.php:498
 msgctxt "Email Header"
 msgid "Congratulations"
 msgstr "Blahoželáme!"
 
-#: coupon-emails.php:531
+#: coupon-emails.php:535
 msgctxt "Email Header"
 msgid "Here is your gift"
 msgstr "Tu je tvoj darček"
 
-#: coupon-emails.php:349
+#: coupon-emails.php:353
 msgctxt "Email Header"
 msgid "Hurry up!"
 msgstr "Ponáhľaj sa!"
 
-#: coupon-emails.php:411
+#: coupon-emails.php:415
 msgctxt "Email Header"
 msgid "I recommend it!"
 msgstr "Odporúčam to!"
 
-#: coupon-emails.php:409
+#: coupon-emails.php:413
 msgctxt "Email Header"
 msgid "Referrer: {email}"
 msgstr "Odporúčajúci: {email}"
 
-#: coupon-emails.php:380
+#: coupon-emails.php:384
 msgctxt "Email Header"
 msgid "Thanks for recommendation!"
 msgstr "Ďakujeme za odporúčanie!"
 
-#: coupon-emails.php:455
+#: coupon-emails.php:459
 msgctxt "Email Header"
 msgid "We are missing you!"
 msgstr "Chýbaš nám!"
 
-#: coupon-emails.php:244 coupon-emails.php:281 coupon-emails.php:319
+#: coupon-emails.php:248 coupon-emails.php:285 coupon-emails.php:323
 msgctxt "Email Header"
 msgid "Your discount"
 msgstr "Zľava len pre Teba"
@@ -824,58 +838,58 @@ msgstr "Zľava len pre Teba"
 msgid "Email subject"
 msgstr "Predmet emailu"
 
-#: coupon-emails.php:410
+#: coupon-emails.php:414
 msgctxt "Email Subject"
 msgid "Hi, this is what I bought"
 msgstr "Ahoj, toto som si kúpila"
 
-#: coupon-emails.php:204
+#: coupon-emails.php:208
 msgctxt "Email Subject"
 msgid "{fname}, here is your birthday gift"
 msgstr "{fname}, tu je tvoj narodeninový darček"
 
-#: coupon-emails.php:454
+#: coupon-emails.php:458
 msgctxt "Email Subject"
 msgid "{fname}, here is your discount coupon"
 msgstr "{fname}, tu je tvoj zľavový kupón"
 
-#: coupon-emails.php:493
+#: coupon-emails.php:497
 msgctxt "Email Subject"
 msgid "{fname}, here is your name day gift"
 msgstr "{fname}, tu je tvoj meninový darček"
 
-#: coupon-emails.php:379
+#: coupon-emails.php:383
 msgctxt "Email Subject"
 msgid "{fname}, here is your reward!"
 msgstr "{fname}, tu je tvoja odmena!"
 
-#: coupon-emails.php:243
+#: coupon-emails.php:247
 #| msgid "{fname}, it's time to order again"
 msgctxt "Email Subject"
 msgid "{fname}, it's time to order with discount"
 msgstr "{fname}, je čas využiť zľavu"
 
-#: coupon-emails.php:318
+#: coupon-emails.php:322
 msgctxt "Email Subject"
 msgid "{fname}, share your thoughts!"
 msgstr "{fname}, podeľ sa o svoje názory!"
 
-#: coupon-emails.php:280
+#: coupon-emails.php:284
 msgctxt "Email Subject"
 msgid "{fname}, thank you for your order"
 msgstr "{fname}, ďakujeme za objednávku"
 
-#: coupon-emails.php:530
+#: coupon-emails.php:534
 msgctxt "Email Subject"
 msgid "{fname}, thank you for your review"
 msgstr "{fname}, ďakujeme za hodnotenie"
 
-#: coupon-emails.php:348
+#: coupon-emails.php:352
 msgctxt "Email Subject"
 msgid "{fname}, your coupon expires soon!"
 msgstr "{fname}, platnosť tvojho kupónu čoskoro vyprší!"
 
-#: public/partials/referral-public-display.php:116
+#: public/partials/referral-public-display.php:111
 msgid "Email text"
 msgstr "Text emailu"
 
@@ -938,20 +952,20 @@ msgstr ""
 "Zadajte počet dní do skončenia platnosti kupónu zákazníka kedy sa zašle "
 "email. Prázdne pole alebo 0 znamená, že platnosť kupónu vyprší dnes."
 
-#: admin/partials/referral-email-admin-display.php:51
+#: admin/partials/referral-email-admin-display.php:57
 msgid "Enter the title that comes above the user instructions."
 msgstr "Zadajte názov, ktorý je uvedený nad pokynmi pre používateľa."
 
-#: public/partials/referral-public-display.php:126
+#: public/partials/referral-public-display.php:121
 msgid "Enter your personal text here"
 msgstr "Sem vlož svoj osobný text"
 
 #: admin/partials/coupon-form.php:174
-#: admin/partials/referral-email-admin-display.php:231
+#: admin/partials/referral-email-admin-display.php:237
 msgid "Exclude discounted products"
 msgstr "Neplatný pre zľavnené produkty"
 
-#: public/partials/referral-public-display.php:144
+#: public/partials/referral-public-display.php:139
 msgid "Expiration"
 msgstr "Exspirácia"
 
@@ -967,11 +981,11 @@ msgstr "Pripomenutia exspirácii"
 msgid "Filter by previous reviews"
 msgstr "Filtrovanie podľa predchádzajúcich recenzií"
 
-#: admin/partials/referral-email-admin-display.php:101
+#: admin/partials/referral-email-admin-display.php:107
 msgid "Fixed amount"
 msgstr "Pevná čiastka"
 
-#: public/partials/referral-public-display.php:107
+#: public/partials/referral-public-display.php:102
 msgid "Friends' email addresses"
 msgstr "Emailové adresy priateľov"
 
@@ -989,11 +1003,11 @@ msgstr ""
 "mnohými možnosťami prispôsobenia."
 
 #: admin/partials/coupon-form.php:86
-#: admin/partials/referral-email-admin-display.php:143
+#: admin/partials/referral-email-admin-display.php:149
 msgid "Good only for products"
 msgstr "Kupón platný len pre produkty"
 
-#: admin/partials/referral-email-admin-display.php:48
+#: admin/partials/referral-email-admin-display.php:54
 msgid "Headline"
 msgstr "Titulok"
 
@@ -1009,13 +1023,21 @@ msgstr ""
 "Ak toto políčko nie je začiarknuté, email dostanú len používatelia, ktorí "
 "úplne dokončili registráciu a ktorých meno je v databáze."
 
-#: admin/partials/referral-email-admin-display.php:44
+#: admin/partials/referral-email-admin-display.php:50
 msgid ""
 "If this option is not checked, only one referral coupon can be sent per "
 "email address."
 msgstr ""
 "Ak táto možnosť nie je zaškrtnutá, na jednu e-mailovú adresu možno poslať "
 "len jeden odporúčací kupón."
+
+#: admin/partials/referral-email-admin-display.php:44
+msgid ""
+"If this option is not checked, the email will not be sent to already "
+"registered email addresses."
+msgstr ""
+"Ak táto možnosť nie je zaškrtnutá, e-mail nebude odoslaný na už "
+"zaregistrované emailové adresy."
 
 #: admin/partials/common-settings-admin-display.php:46
 msgid ""
@@ -1056,10 +1078,6 @@ msgstr[2] ""
 msgid "Invalid date format for date of birth"
 msgstr "Nesprávny formát narodenín"
 
-#: public/partials/referral-public-display.php:46
-msgid "Invalid email format"
-msgstr "Nesprávny formát emailu"
-
 #: admin/partials/onetime-email-admin-display.php:198
 msgid "Last order made more than X days before today"
 msgstr "Posledná objednávka bola uskutočnená viac ako X dní pred dnešným dňom"
@@ -1069,7 +1087,7 @@ msgid "Last user activity made more than X days before today"
 msgstr "Posledná aktivita používateľa vykonaná pred viac ako X dňami"
 
 #: admin/partials/coupon-form.php:75
-#: admin/partials/referral-email-admin-display.php:132
+#: admin/partials/referral-email-admin-display.php:138
 msgid "Leave this field blank if unexpired coupons are to be created."
 msgstr ""
 "Toto pole nechajte prázdne, ak sa majú vytvárať kupóny s bez exspirácie."
@@ -1163,7 +1181,7 @@ msgid "Maximum"
 msgstr "Maximum"
 
 #: admin/partials/coupon-form.php:65
-#: admin/partials/referral-email-admin-display.php:122
+#: admin/partials/referral-email-admin-display.php:128
 msgid "Maximum order value"
 msgstr "Maximálna výška objednávky"
 
@@ -1180,7 +1198,7 @@ msgid "Minimum"
 msgstr "Minimum"
 
 #: admin/partials/coupon-form.php:58
-#: admin/partials/referral-email-admin-display.php:115
+#: admin/partials/referral-email-admin-display.php:121
 msgid "Minimum order value"
 msgstr "Minimálna výška objednávky"
 
@@ -1197,7 +1215,7 @@ msgctxt "My account"
 msgid "Date of birth"
 msgstr "Dátum narodenia"
 
-#: coupon-emails.php:408
+#: coupon-emails.php:412
 msgctxt "My Account page"
 msgid ""
 "In the box below, enter the email addresses, separated by a comma, of "
@@ -1212,13 +1230,13 @@ msgstr ""
 "objednávku, pripíšeme ti na účet 5% z hodnoty objednaných produktov (bez "
 "dopravy). \n"
 
-#: coupon-emails.php:406
+#: coupon-emails.php:410
 msgctxt "My Account page"
 msgid ""
 "Send an email with a discount coupon to friends who don't know about us yet."
 msgstr "Pošli email so zľavovým kupónom priateľkám, ktoré o nás ešte nevedia."
 
-#: coupon-emails.php:407
+#: coupon-emails.php:411
 msgctxt "My Account page"
 msgid ""
 "This is a coupon you can use on your next purchase with us. Its value "
@@ -1234,23 +1252,23 @@ msgstr ""
 msgid "My Account->Referrals page"
 msgstr "Stránka Môj účet->Odporúčania"
 
-#: coupon-emails.php:164
+#: coupon-emails.php:168
 msgid "My Coupons"
 msgstr "Moje zľavové kupóny"
 
-#: public/partials/referral-public-display.php:70
+#: public/partials/referral-public-display.php:65
 msgid "My referral coupon"
 msgstr "Môj kupón za odporúčanie"
 
-#: coupon-emails.php:145 public/partials/referral-public-display.php:139
+#: coupon-emails.php:149 public/partials/referral-public-display.php:134
 msgid "My referrals"
 msgstr "Moje odporúčania"
 
-#: public/partials/referral-public-display.php:112
+#: public/partials/referral-public-display.php:107
 msgid "myfriend@gmail.com,first.last@company.com,somebody@somewhere.net"
 msgstr "mojapriatelka@gmail.com,meno.priezvisko@firma.com,niekto@niekde.net"
 
-#: public/partials/referral-public-display.php:145
+#: public/partials/referral-public-display.php:140
 msgid "Name"
 msgstr "Meno"
 
@@ -1267,7 +1285,7 @@ msgstr "Kalendár s meninami"
 msgid "No roles"
 msgstr "Žiadne roly"
 
-#: admin/partials/referral-email-admin-display.php:111
+#: admin/partials/referral-email-admin-display.php:117
 msgid "Nominal value or percentage to be credited as reward."
 msgstr "Nominálna hodnota alebo percento, ktoré sa má pripísať ako odmena."
 
@@ -1296,7 +1314,7 @@ msgstr "Iba tí, ktorí ešte nehodnotili"
 msgid "Order Confirmation"
 msgstr "Potvrdenie objednávky"
 
-#: admin/partials/referral-email-admin-display.php:100
+#: admin/partials/referral-email-admin-display.php:106
 msgid "Percentage of products value"
 msgstr "Percento hodnoty produktov"
 
@@ -1323,7 +1341,7 @@ msgstr "Nastavenia kupónov pre príjemcu"
 msgid "Referrals"
 msgstr "Odporúčania"
 
-#: admin/partials/referral-email-admin-display.php:64
+#: admin/partials/referral-email-admin-display.php:70
 msgid "Referrer Coupon settings"
 msgstr "Nastavenia kupónu odporúčajúceho"
 
@@ -1369,11 +1387,11 @@ msgstr "Pripomenutia hodnotení"
 msgid "Reviews only with minimum stars"
 msgstr "Iba hodnotenia s hviezdičkami minimálne"
 
-#: public/partials/referral-public-display.php:146
+#: public/partials/referral-public-display.php:141
 msgid "Reward"
 msgstr "Odmena"
 
-#: admin/partials/referral-email-admin-display.php:108
+#: admin/partials/referral-email-admin-display.php:114
 msgid "Reward amount"
 msgstr "Hodnota odmeny"
 
@@ -1398,7 +1416,7 @@ msgid "Run now"
 msgstr "Spustiť test"
 
 #: admin/partials/coupon-form.php:35
-#: admin/partials/referral-email-admin-display.php:92
+#: admin/partials/referral-email-admin-display.php:98
 msgid "Select how many characters the generated coupons should consist of."
 msgstr "Vyberte, z koľkých znakov sa majú generované kupóny skladať."
 
@@ -1412,8 +1430,8 @@ msgstr "Vyberte roly používateľov, ktoré chcete vylúčiť z odosielania ema
 msgid "Select user roles to send the emails to."
 msgstr "Vyberte roly používateľov, ktorým sa majú emaily odosielať."
 
-#: public/partials/referral-public-display.php:135
-#: public/partials/referral-public-display.php:136
+#: public/partials/referral-public-display.php:130
+#: public/partials/referral-public-display.php:131
 msgid "Send"
 msgstr "Poslať"
 
@@ -1460,7 +1478,7 @@ msgstr ""
 "Email s kupónom sa zašle zákazníkom len raz do roka aj v prípade, že zmenili "
 "svoj dátum narodenia."
 
-#: public/partials/referral-public-display.php:100
+#: public/partials/referral-public-display.php:95
 msgid "Sending referrals"
 msgstr "Zasielanie odporúčaní"
 
@@ -1475,7 +1493,7 @@ msgstr ""
 "Tu sa nastavuje minimálny počet hviezdičiek, ktoré musí mať hodnotenie aby "
 "som email odoslaný."
 
-#: admin/partials/referral-email-admin-display.php:104
+#: admin/partials/referral-email-admin-display.php:110
 msgid "Set the type of reward calculation."
 msgstr "Nastavenie typu výpočtu odmeny."
 
@@ -1576,7 +1594,7 @@ msgstr "Slovenský kalendár"
 msgid "Spanish calendar"
 msgstr "Španielsky kalendár"
 
-#: public/partials/referral-public-display.php:62
+#: public/partials/referral-public-display.php:57
 msgid ""
 "The amount and expiration date of the coupon will increase after each "
 "friends purchase."
@@ -1654,13 +1672,18 @@ msgstr ""
 "kategóriách a nepoužili ich."
 
 #: admin/partials/coupon-form.php:82
-#: admin/partials/referral-email-admin-display.php:139
+#: admin/partials/referral-email-admin-display.php:145
 msgid ""
 "The generated coupon can be used for a maximum number of products. For "
 "unlimited use, leave blank."
 msgstr ""
 "Vygenerovaný kupón bude možné použiť na maximálny počet produktov. Pre "
 "neobmedzené použitie nechajte prázdne."
+
+#: public/includes/class-referral.php:96
+#, php-format
+msgid "The user with the email %s is already registered on our website."
+msgstr "Používateľ s emailom %s je už zaregistrovaný na našej webovej stránke."
 
 #: admin/partials/reorder-email-admin-display.php:158
 #: admin/partials/review-reminder-email-admin-display.php:180
@@ -1714,7 +1737,7 @@ msgstr ""
 "vytvorí, ak neexistuje. Kategória bude pridaná k existujúcemu kupónu."
 
 #: admin/partials/coupon-form.php:184
-#: admin/partials/referral-email-admin-display.php:241
+#: admin/partials/referral-email-admin-display.php:247
 msgid ""
 "This feature can be best used if the Advanced Coupons for WooCommerce plugin "
 "(free) is installed. Enter the name of the coupon category that will be "
@@ -1749,7 +1772,7 @@ msgstr "Toto je testovací email odoslaný na adresu %s namiesto na adresu"
 msgid "This is short text on the top of the email."
 msgstr "Toto je krátky text v hlavičke na vrchu správy."
 
-#: admin/partials/referral-email-admin-display.php:70
+#: admin/partials/referral-email-admin-display.php:76
 msgid ""
 "This is the text on the My Account page explaining the coupon features to "
 "the referrer"
@@ -1757,7 +1780,7 @@ msgstr ""
 "Toto je text na stránke Môj účet, v ktorom sa odporúčajúcemu vysvetľujú "
 "funkcie kupónu"
 
-#: admin/partials/referral-email-admin-display.php:58
+#: admin/partials/referral-email-admin-display.php:64
 msgid ""
 "This is the text on the My Account page with instructions on how to send a "
 "referral email to a friend and the benefits of sending it."
@@ -1855,7 +1878,7 @@ msgstr ""
 "Zapnite túto funkciu, ak chcete, aby vaša emailová správa vyzerala ako bežný "
 "email WooCommerce."
 
-#: admin/partials/referral-email-admin-display.php:97
+#: admin/partials/referral-email-admin-display.php:103
 msgid "Type of reward calculation"
 msgstr "Typ výpočtu odmien"
 
@@ -1946,7 +1969,7 @@ msgstr "Vlado Laco"
 msgid "You have no coupons."
 msgstr "Nemáš žiadne kupóny."
 
-#: public/partials/referral-public-display.php:59
+#: public/partials/referral-public-display.php:54
 msgid ""
 "Your coupon will appear here after you email your friends as described below."
 msgstr ""
