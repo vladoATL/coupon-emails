@@ -33,9 +33,13 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.4.3.2' );
+define( 'COUPON_EMAILS_VERSION', '1.4.3.3' );
 define( 'MAX_TEST_EMAILS', '10' );
-define( 'ENABLE_SQL_LOGS', '0' );
+if (!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') ) {
+	define( 'ENABLE_SQL_LOGS', '0' );
+} else {
+	define( 'ENABLE_SQL_LOGS', '1' );
+}
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
 
 

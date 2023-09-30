@@ -12,19 +12,18 @@
  <removed value=";"/>
  <added value=""/>
  <lastopfiles>
-  <file name="C:\PHP Code\coupon-emails\public\partials\referral-public-display.php"/>
+  <file name="C:\PHP Code\coupon-emails\admin\partials\referral-email-admin-display.php"/>
   <file name="C:\PHP Code\coupon-emails\public\includes\class-referral.php"/>
+  <file name="C:\PHP Code\coupon-emails\models\Email_Coupon.php"/>
   <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-functions.php"/>
-  <file name="C:\PHP Code\coupon-emails\models\Coupon_Card.php"/>
   <file name="C:\PHP Code\coupon-emails\public\class-coupon-emails-public.php"/>
-  <file name="C:\PHP Code\coupon-emails\admin\partials\name-day-email-admin-display.php"/>
-  <file name="C:\PHP Code\coupon-emails\admin\partials\coupon-emails-admin-display.php"/>
   <file name="C:\PHP Code\coupon-emails\coupon-emails.php"/>
+  <file name="C:\PHP Code\coupon-emails\README.txt"/>
   <lastactivefile name=""/>
  </lastopfiles>
  <errors version="1.12.0">
   <errfile name="C:\PHP Code\coupon-emails\public\partials\referral-public-display.php">
-   <error val="0;132;81;132;2002;1;"/>
+   <error val="0;135;81;135;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\reviewed-email-admin-display.php">
    <error val="0;11;88;11;2002;1;"/>
@@ -39,8 +38,12 @@
    <error val="0;175;94;175;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\referral-email-admin-display.php">
-   <error val="0;10;89;10;2002;1;"/>
-   <error val="0;236;94;236;2002;1;"/>
+   <error val="0;20;89;20;2002;1;"/>
+   <error val="0;253;94;253;2002;1;"/>
+  </errfile>
+  <errfile name="C:\PHP Code\coupon-emails\admin\partials\referral-confirmation-email-admin-display.php">
+   <error val="0;20;89;20;2002;1;"/>
+   <error val="0;47;94;47;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\onetime-email-admin-display.php">
    <error val="0;46;89;46;2002;1;"/>
@@ -52,10 +55,6 @@
    <error val="0;188;97;188;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\expiration-reminder-email-admin-display.php">
-   <error val="0;58;89;58;2002;1;"/>
-   <error val="0;147;94;147;2002;1;"/>
-   <error val="0;58;89;58;2002;1;"/>
-   <error val="0;147;94;147;2002;1;"/>
    <error val="0;58;89;58;2002;1;"/>
    <error val="0;147;94;147;2002;1;"/>
   </errfile>
@@ -84,5 +83,5 @@
   </todofile>
  </todoblock>
  <dbgurls/>
- <lasttime value="1695423997"/>
+ <lasttime value="1696019045"/>
 </project>

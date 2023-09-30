@@ -370,7 +370,6 @@ class EmailFunctions
 		//update_post_meta( $new_coupon_id, 'date_expires_local', $expiry_date );
 		$this->coupon_expiration = $expiry_date;
 		update_post_meta( $new_coupon_id, 'free_shipping', $free_shipping );
-		\COUPONEMAILS\EmailFunctions::test_add_log('-- couponemails_get_unique_coupon -- ' . $cat_slug . " " . $prefix . " " . $this->type . PHP_EOL  );
 		if ($this->type != 'referralemail' || $prefix == "ref_") {				
 			update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
 		}
@@ -379,8 +378,9 @@ class EmailFunctions
 		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
 		update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
 		// update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->ID );
-
-		$cat_id = $this->couponemails_coupon_category($new_coupon_id, $cat_slug );
+		if (! in_array($cat_slug, array("referralconfirmationemail"))) {
+			$cat_id = $this->couponemails_coupon_category($new_coupon_id, $cat_slug );
+		}
 		$this->new_coupon_id = $new_coupon_id;
 		$this->coupon_code = $generated_code;
 		return $generated_code;
