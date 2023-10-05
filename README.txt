@@ -65,11 +65,17 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.4.5 =
+Enhancement of Emails after ordering
+
+= 1.4.4 =
+* Add Referal emails export
+
 = 1.4.1 =
 * Add WooCommerce HPOS compatibility
 
 = 1.3.1 =
-* Add referral coupons
+* Add Referral coupons
 
 = 1.2.1 =
 * Add My Coupons menu to My Account

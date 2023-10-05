@@ -19,9 +19,11 @@ class EmailFunctions
 
 	public function __construct($type = "", $product_name = "")
 	{
-		$this->type = $type;
-		$this->options_name = $type . '_options';
-		$this->options_array = get_option($this->options_name);
+		if (! empty($type)) {
+			$this->type = $type;
+			$this->options_name = $type . '_options';			
+			$this->options_array = get_option($this->options_name);
+		}
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
 		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral"];

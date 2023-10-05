@@ -69,11 +69,25 @@ id="restore_afterorder_values_btn" />
 				<input type="checkbox" style="display: none;" name="test_enabled" id="test_enabled"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>	<?php  echo wc_help_tip(sprintf(_n( 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupon will be created and emails sent to administrator.', 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupons will be created and test emails sent to administrator.', MAX_TEST_EMAILS, 'coupon-emails' ), MAX_TEST_EMAILS), false); ?>			
 			</td>
 		</tr>
+		<tr valign="top">
+			<th class="titledesc"><?php echo __( 'The previous order was made at least', 'coupon-emails' ); ?>:</th>
+			<td>
+				<select name='afterorderemail_options[previous_order]' style="width: 200px;">
+					<option value='0' <?php selected( $options['previous_order'] ?? '', 0 ); ?>><?php echo __( "Doesn't matter", 'coupon-emails' ); ?>&nbsp;</option>
+					<option value='1' <?php selected( $options['previous_order'] ?? '', 1 ); ?>><?php echo __( 'a week ago', 'coupon-emails' ); ?>&nbsp;</option>
+					<option value='2' <?php selected( $options['previous_order'] ?? '', 2 ); ?>><?php echo __( 'a month ago', 'coupon-emails' ); ?>&nbsp;</option>
+					<option value='3' <?php selected( $options['previous_order'] ?? '', 3 ); ?>><?php echo __( 'a quarter ago', 'coupon-emails' ); ?>&nbsp;</option>
+					<option value='4' <?php selected( $options['previous_order'] ?? '', 4 ); ?>><?php echo __( 'half a year ago', 'coupon-emails' ); ?>&nbsp;</option>
+					<option value='5' <?php selected( $options['previous_order'] ?? '', 5 ); ?>><?php echo __( 'a year ago', 'coupon-emails' ); ?>&nbsp;</option>
+				</select>
+				<?php  echo wc_help_tip(__( 'An email with a coupon will only be sent if the previous order was placed before the specified time period has elapsed. For regular customers.', 'coupon-emails' ), false); ?>
+			</td>
+		</tr>		
 		<tr>
-			<th class="titledesc"><?php echo __( 'Days after last order', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo __( 'Send X days after order', 'coupon-emails' ); ?>:</th>
 			<td>
 				<input type="number" id="afterorderemail_options[days_after_order]" name="afterorderemail_options[days_after_order]"  style="width: 100px;" value="<?php echo $options['days_after_order'] ?? ''; ?>"</input>
-				<?php  echo wc_help_tip(__( 'Enter the number of days after last order when to send this email with coupon.', 'coupon-emails'), false); ?>
+				<?php  echo wc_help_tip(__( 'Enter the number of days after order when to send this email with coupon.', 'coupon-emails'), false); ?>
 			</td>
 		</tr>		
 		<tr>

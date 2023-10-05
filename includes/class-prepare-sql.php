@@ -142,6 +142,7 @@ class PrepareSQL
 		if (! empty( $emails))
 			return $this->get_users_from_emails ($emails, $as_objects);
 		$minimum_orders = isset( $options['minimum_orders']) ? $options['minimum_orders'] : "";
+		$previous_order = isset( $options['previous_order']) ? $options['previous_order'] : "0";
 		if ($this->type != 'onetimeemail') 	$minimum_orders = 1;
 				
 		$minimum_spent = isset( $options['minimum_spent']) ? $options['minimum_spent'] : "";
@@ -158,7 +159,15 @@ class PrepareSQL
 			$select_orders_str = ", orders.orders_count, orders.orders_total, orders.last_order";
 		} else {
 			$select_orders_str = ", '' AS orders_count, '' AS orders_total, '' AS last_order";
-		}		
+		}	
+		if ($previous_order>0) {
+			$select_previous_order_str = $this->get_select_previous_order();
+			$where_previous_order_str = $this->get_where_previous_order($previous_order);
+		} else {
+			$select_previous_order_str = "";
+			$where_previous_order_str = "";			
+		}
+			
 		if ($with_no_name == 1) {
 			$no_fname = "";
 			$no_lname = "";				
@@ -168,7 +177,7 @@ class PrepareSQL
 			$no_lname = " AND umln.meta_value <> '' ";		
 		}
 		$sql = "SELECT u.user_email, umfn.meta_value AS user_firstname, umln.meta_value AS user_lastname, 
-				FROM_UNIXTIME(uma.meta_value, '%e.%c.%Y') AS activity, u.ID $select_orders_str 
+				FROM_UNIXTIME(uma.meta_value, '%e.%c.%Y') AS activity, u.ID $select_orders_str $select_previous_order_str
 				FROM $wpdb->users AS u
 				JOIN $wpdb->usermeta AS umfn ON u.ID =  umfn.user_id AND umfn.meta_key = 'first_name' $no_fname
 				JOIN $wpdb->usermeta AS umln ON u.ID =  umln.user_id AND umln.meta_key = 'last_name' $no_lname " .
@@ -181,9 +190,8 @@ class PrepareSQL
 			$sql .= $this->get_join_categories($not_bought_cats, true) ;
 		}
 
-		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent, $already_rated, $days_after_active) 	;
-
-
+		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent, $already_rated, $where_previous_order_str) 	;
+		
 		EmailFunctions::test_add_log('-- get_users_filtered -- ' . $this->type . PHP_EOL  . $sql);
 		//return $sql;
 
@@ -424,7 +432,54 @@ class PrepareSQL
 		return $sql ;
 	}
 
-	function get_orders_sql($minimum_orders, $days_after_order = "", $total_spent = "", $already_rated = "")
+	function get_select_previous_order()
+	{
+		global $wpdb;
+		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+			$sql = ", (SELECT date(pp.date_created_gmt) AS previous_order
+				FROM {$wpdb->prefix}wc_orders AS pp
+				WHERE pp.status = 'wc-completed' AND pp.customer_id = u.ID
+				ORDER BY pp.date_created_gmt desc
+				LIMIT 1,1) AS previous_order";
+		} else {
+			$sql = ", (SELECT pp.post_date AS previous_order FROM {$wpdb->prefix}posts AS pp
+				JOIN {$wpdb->prefix}postmeta AS upmp ON upmp.post_id = pp.ID AND upmp.meta_key = '_customer_user'
+				WHERE pp.post_type = 'shop_order' AND pp.post_status = 'wc-completed'
+				AND upmp.meta_value = u.ID
+				ORDER BY pp.post_date desc
+				LIMIT 1,1) AS previous_order";
+		}
+		return $sql;				
+	}
+	
+	function get_where_previous_order($previous_order)
+	{		
+		switch ($previous_order) {
+			case 1:
+				$start_date = '(curdate() - INTERVAL 1 WEEK )';
+				break;
+			case 2:
+				$start_date = '(curdate() - INTERVAL 1 MONTH )';
+				break;
+			case 3:
+				$start_date = '(curdate() - INTERVAL 1 QUARTER)';
+				break;
+			case 4:
+				$start_date = '(curdate() - INTERVAL 2 QUARTER)';
+				break;
+			case 5:
+				$start_date = '(curdate() - INTERVAL 1 YEAR)';
+				break;
+			default:
+			$start_date = '';
+				break;				
+		}
+		
+		$sql = "HAVING previous_order BETWEEN $start_date AND CURDATE()";
+		return $sql;		
+	}
+
+	function get_orders_sql($minimum_orders, $days_after_order = "", $total_spent = "", $already_rated = "", $previous_order = "")
 	{
 		global $wpdb;
 /*		if (! isset($minimum_orders) || $minimum_orders == '')
@@ -448,9 +503,10 @@ class PrepareSQL
 			}
 			$sql .="
 			GROUP BY u.ID
+			$previous_order
 			ORDER BY orders.orders_total DESC  ";
 		}
-
+		// \COUPONEMAILS\EmailFunctions::test_add_log('-- get_where_previous_order -- ' .  $previous_order . PHP_EOL  . $sql . PHP_EOL  );
 		return $sql;
 	}
 	
