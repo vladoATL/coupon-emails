@@ -1,6 +1,6 @@
 === Coupon Emails ===
 Contributors: perties2
-Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, Polish, email, review
+Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, Polish, email, review, Heureka
 Requires at least: 5.8
 Tested up to: 6.3.1
 Stable tag: 5.8
@@ -37,6 +37,7 @@ The date of birth field is automatically added to the checkout and user profile 
 - possibility to create categories of coupons used by plugin [Advanced Coupons Free](https://wordpress.org/plugins/advanced-coupons-for-woocommerce/)
 - compatibility with [Site Reviews](https://wordpress.org/plugins/site-reviews/) plugin
 - name calendar for countries Slovakia, Czech Republic, Hungary, Poland, Croatia, Austria, Spain 
+- 'Coupon emails - Heureka add-on' also available for Slovak and Czech market
 - plugin is currently translated into Slovak and Czech. Further translations are welcome
 * (Got more ideas? Tell me!)
 
@@ -65,6 +66,9 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.4.6 =
+Integration for Heureka Coupon Emails
+
 = 1.4.5 =
 Enhancement of Emails after ordering
 

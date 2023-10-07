@@ -12,6 +12,7 @@ $reorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reorderemail');
 $onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimeemail');
 $reviewreminder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reminderemail');
 $referral_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('referralemail');
+$heureka_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('heurekaemail');
 $options = get_option('couponemails_options');
 $enable_referral = isset($options["enable_referral"]) ? $options["enable_referral"] : 0;
 
@@ -19,6 +20,11 @@ $enable_referral = isset($options["enable_referral"]) ? $options["enable_referra
 $default_tab = null;
 $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
 $section = isset($_GET['section']) ? $_GET['section'] : $default_tab;
+
+$heureka_enable = false;
+$heureka_enable = apply_filters( 'couponemails_heureka_enable', $heureka_enable );
+
+
 ?>
 <div class="wrap">
 	<h1><?php _e( 'Coupon Emails Settings','coupon-emails' ); ?></h1>
@@ -63,6 +69,15 @@ $section = isset($_GET['section']) ? $_GET['section'] : $default_tab;
 		if ($tab==='referral') : ?>nav-tab-active<?php
 		endif; echo(' ' . $referral_top); ?>"> <?php echo  __( 'Referrals', 'coupon-emails' ); ?></a>
 	
+	<?php
+	// display Heureka tab from a different plugin
+	if ($heureka_enable) { ?>
+	<a href="?page=couponemails&tab=heureka" class="nav-tab
+	<?php
+	if ($tab==='heureka') : ?>nav-tab-active<?php
+	endif; echo(' ' . $heureka_top); ?>"> <?php echo  __( 'Heureka', 'coupon-emails' ); ?></a>
+	<?php } ?>
+		
 </nav>
 	
 <div class="tab-content">
@@ -110,6 +125,20 @@ case 'reviewed':
 	</div>
 	<?php
 	break;	
+case 'heureka':
+	?>
+	<div class="metabox-holder">
+		<?php 
+		if ( is_plugin_active( 'coupon-emails-heureka/coupon-emails-heureka.php' ) ) {
+			
+			include ( ABSPATH . '/wp-content/plugins/coupon-emails-heureka/admin/partials/heureka-email-admin-display.php');
+		} else {
+			include('heureka-email-admin-display.php');
+		}		
+		 ?>
+	</div>
+	<?php
+	break;		
 case 'referral':
 	?>
 	<div class="metabox-holder">
