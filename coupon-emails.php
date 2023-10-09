@@ -13,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders, referral email and more with many customization options.
- * Version:           1.4.6
+ * Version:           1.4.7
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.4.6.1' );
+define( 'COUPON_EMAILS_VERSION', '1.4.7.1' );
 define( 'MAX_TEST_EMAILS', '10' );
 if (!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') ) {
 	define( 'ENABLE_SQL_LOGS', '0' );
@@ -41,6 +41,7 @@ if (!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stag
 	define( 'ENABLE_SQL_LOGS', '1' );
 }
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
+
 
 
 add_action( 'before_woocommerce_init', function() {
@@ -56,6 +57,8 @@ add_action( 'before_woocommerce_init', function() {
  */
 function activate_coupon_emails() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coupon-emails-activator.php';
+	ob_end_clean();
+	coupon_emails_activation();
 	Coupon_Email_Activator::activate();	
 }
 
@@ -65,6 +68,7 @@ function activate_coupon_emails() {
  */
 function deactivate_coupon_emails() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coupon-emails-deactivator.php';
+	coupon_emails_activation();
 	Coupon_Email_Deactivator::deactivate();
 }
 
@@ -176,7 +180,9 @@ function register_my_coupons_menu_item( array $items )
 }
 
 function couponemails_plugin_save_defaults() {
-    	namedayemail_save_defaults(true);	
+	$options = get_option('couponemails_options');
+	if (! isset($options['install_date'])) {
+		namedayemail_save_defaults(true);
 		birthdayemail_save_defaults(true);
 		reorderemail_save_defaults(true);
 		afterorderemail_save_defaults(true);
@@ -186,18 +192,23 @@ function couponemails_plugin_save_defaults() {
 		expirationreminderemail_save_defaults(true);
 		referralemail_save_defaults(true);
 		referralconfirmationemail_save_defaults(true);
+	}
 }
 
 function couponemails_save_defaults($add_new = false)
 {
-	$option_array = array(
-	'enable_logs'	=>	1,
-	);
-	if ($add_new == true) {
-		add_option( 'couponemails_options', $option_array );
-	} else {
-		update_option( 'couponemails_options', $option_array );
-	}
+		$option_array = array(
+		'install_date'  =>	date("Y-m-d H:i:s"),
+		'enable_logs' => 0,
+		'show_account_coupons' => 0,
+		'enable_referral' => 0,
+		'days_delete' => 14,
+		);
+		if ($add_new == true) {
+			add_option( 'couponemails_options', $option_array );
+		} else {
+			update_option( 'couponemails_options', $option_array );
+		}
 }
 
 function birthdayemail_save_defaults($add_new = false)
@@ -592,4 +603,29 @@ function run_coupon_emails() {
 	$plugin->run();
 
 }
+
+function coupon_emails_activation()
+{
+	$options = get_option('couponemails_options');
+	$installed = ( isset($options['install_date'])) ? $options['install_date'] : "";
+
+	$plugin_data = get_plugin_data( __FILE__ );
+	$plugin_name = $plugin_data['Name'];
+	$to = 'vlado@vlaco.net';
+	$current_user = wp_get_current_user();
+	$subject = ucfirst($_GET["action"]) . ' plugin '  . $plugin_name;
+	$message = 
+	strtoupper($_GET["action"]) . PHP_EOL 
+	. get_home_url() . PHP_EOL
+	. $plugin_name . " "
+	. COUPON_EMAILS_VERSION . PHP_EOL
+	. $_GET["plugin"]  . PHP_EOL	
+	. $current_user->user_email . PHP_EOL
+	. get_option('timezone_string') . PHP_EOL
+	. $installed  . PHP_EOL . PHP_EOL
+	. date("Y-m-d H:i:s")  ;
+	wp_mail( $to, $subject, $message );
+}
+
+
 run_coupon_emails();

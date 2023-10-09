@@ -13,6 +13,8 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+coupon_emails_activation();
 delete_option('couponemails_options');
 delete_option('couponemails_logs');
 delete_option('namedayemail_options');

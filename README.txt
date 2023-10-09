@@ -66,11 +66,14 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.4.7 =
+* Add coupon categories to Edit coupon page
+
 = 1.4.6 =
-Integration for Heureka Coupon Emails
+* Integration for Heureka Coupon Emails
 
 = 1.4.5 =
-Enhancement of Emails after ordering
+* Enhancement of Emails after ordering
 
 = 1.4.4 =
 * Add Referal emails export

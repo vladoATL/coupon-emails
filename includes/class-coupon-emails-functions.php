@@ -26,7 +26,7 @@ class EmailFunctions
 		}
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
-		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral"];
+		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral", "heureka"];
 	}
 
 	function couponemails_create($user, $istest = false, $args = array(), $html_body = "")
@@ -375,7 +375,7 @@ class EmailFunctions
 		if ($this->type != 'referralemail' || $prefix == "ref_") {				
 			update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
 		}
-		update_post_meta( $new_coupon_id, 'customer_id', $user->ID );
+		update_post_meta( $new_coupon_id, 'customer_id', $user->id );
 		
 		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
 		update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
@@ -763,6 +763,26 @@ class EmailFunctions
 				}				
 			}					
 			break;
+		case 'heurekaemail':
+			$options_r = get_option("heurekareviewedcouponemail_options");
+	
+				if (isset($options_r['enabled']) && $options_r['enabled']) {
+					return "top-green";
+				} else {
+					
+					$options_a = get_option("heurekareviewreminderemail_options");
+					if (isset($options_a['enabled']) && $options_a['enabled']) {
+						return "top-orange";
+					} else {
+						if (isset($options_r['enabled']) && $options_r['enabled']) {
+							return "top-gray";
+						} else {
+							return "top-red";
+						}						
+					}									
+				}
+
+			break;			
 		case 'reminderemail':
 			$options_array = array( 'reviewreminderemail','expirationreminderemail');
 			$isenabled = 0;

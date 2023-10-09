@@ -63,7 +63,7 @@ class Namedays
 		$names_array = explode(",", $names_str);
 		$date = $d . '.' . $m  ;
 		$names = sprintf("'%s'", implode("','", $names_array ) );
-		$sql = "SELECT u.id, umfn.meta_value AS user_firstname, umln.meta_value  AS user_lastname, u.user_email AS user_email, $date as date
+		$sql = "SELECT u.id AS id, umfn.meta_value AS user_firstname, umln.meta_value  AS user_lastname, u.user_email AS user_email, $date as date
 				FROM {$wpdb->prefix}users AS u
 				INNER JOIN {$wpdb->prefix}usermeta AS umfn ON
 					umfn.user_id = u.id AND umfn.meta_key = 'first_name'

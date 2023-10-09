@@ -176,6 +176,13 @@ class Coupon_Emails {
 		}			
 		
 		$this->loader->add_action('admin_init',  $plugin_admin, 'register_shop_coupon_cat_taxonomy' , 0 );	
+		
+		$this->loader->add_filter( 'manage_edit-shop_coupon_columns', $plugin_admin, 'add_coupon_email_column'  );
+		$this->loader->add_filter( 'manage_shop_coupon_posts_custom_column', $plugin_admin, 'coupon_email_column_content', 8, 2 );				
+		$this->loader->add_filter( 'manage_edit-shop_coupon_columns', $plugin_admin, 'add_coupon_category_column'  );
+		$this->loader->add_filter( 'manage_shop_coupon_posts_custom_column', $plugin_admin, 'coupon_category_column_content', 10, 2 );
+		$this->loader->add_action( 'restrict_manage_posts', $plugin_admin, 'add_shop_coupon_category_filter', 10 );		
+
 	}	
 	
 	/**

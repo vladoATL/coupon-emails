@@ -18,6 +18,7 @@
 - automatické zasielielanie emailov s pripomenutím exspirácie kupónu
 - automatické zasielielanie emailov s výzvou na vytvorenie hodnotenia zakúpeného produktu
 - automatické mazanie nevyužitých kupónov po určených dňoch
+- kategórie kupónov
 - odporúčacie e-maily s kupónom a odmenou za nákup pre odporúčajúceho
 - nastavenie času zasielania
 - prevencia zaslania dvoch narodeninvých kupónov za rok pre jedného zákazníka ak si zmení dátum narodenia
@@ -27,6 +28,7 @@
 - záznamy aktivity (log)
 - možnosť vytvoriť kategórie kupónov využívaných pluginom plugin [Advanced Coupons Free](https://wordpress.org/plugins/advanced-coupons-for-woocommerce/)
 - kompatibilita s pluginom [Site Reviews](https://wordpress.org/plugins/site-reviews/)
+- k dispozícii je aj prídavný plugin Kupónové emaily Heureka pre slovenský a český trh
 - meninový kalendár pre krajiny Slovensko, Česko, Maďarsko, Poľsko, Chorvátsko, Rakúsko, Španielsko 
 - plugin je momentálne preložený do slovenčiny a češtiny. Ďalšie preklady sú vítané
 

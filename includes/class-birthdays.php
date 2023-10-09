@@ -9,7 +9,7 @@ class Birthdays
 
 		$date_str = sprintf("%02d", $m) . "-" . sprintf("%02d", $d);
 		$sql = "	
-		SELECT m.user_id AS user_id, fmu.meta_value AS user_firstname, lmu.meta_value AS user_lastname, u.user_email AS user_email, m.meta_value as dob,
+		SELECT m.user_id AS id, fmu.meta_value AS user_firstname, lmu.meta_value AS user_lastname, u.user_email AS user_email, m.meta_value as dob,
 		TIMESTAMPDIFF(YEAR, m.meta_value, CURDATE()) AS age, dmu.meta_value AS sent
 		FROM {$wpdb->prefix}users  AS u
 		JOIN {$wpdb->prefix}usermeta AS m ON u.ID = m.user_id AND m.meta_key = 'billing_birth_date'
@@ -97,7 +97,7 @@ class Birthdays
 	function couponemails_set_sent($user, $istest = false)
 	{
 		if (! $istest) {
-			$id = $user->user_id;
+			$id = $user->id;
 
 			$check = get_user_meta( $id, $this->getBirthdaySentMetaKey(), true );
 			if ( empty( $check )) {

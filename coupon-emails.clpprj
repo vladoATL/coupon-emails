@@ -12,18 +12,17 @@
  <removed value=";"/>
  <added value=""/>
  <lastopfiles>
-  <file name="C:\PHP Code\coupon-emails\admin\partials\referral-email-admin-display.php"/>
-  <file name="C:\PHP Code\coupon-emails\public\includes\class-referral.php"/>
-  <file name="C:\PHP Code\coupon-emails\models\Email_Coupon.php"/>
-  <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-functions.php"/>
-  <file name="C:\PHP Code\coupon-emails\public\class-coupon-emails-public.php"/>
+  <file name="C:\PHP Code\coupon-emails\admin\partials\common-settings-admin-display.php"/>
+  <file name="C:\PHP Code\coupon-emails\admin\partials\coupon-emails-admin-display.php"/>
+  <file name="C:\PHP Code\coupon-emails\admin\partials\coupon-form.php"/>
+  <file name="C:\PHP Code\coupon-emails\admin\partials\reviewed-email-admin-display.php"/>
   <file name="C:\PHP Code\coupon-emails\coupon-emails.php"/>
-  <file name="C:\PHP Code\coupon-emails\README.txt"/>
-  <lastactivefile name=""/>
+  <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-functions.php"/>
+  <lastactivefile name="C:\PHP Code\coupon-emails\admin\partials\reviewed-email-admin-display.php"/>
  </lastopfiles>
  <errors version="1.12.0">
   <errfile name="C:\PHP Code\coupon-emails\public\partials\referral-public-display.php">
-   <error val="0;135;81;135;2002;1;"/>
+   <error val="0;130;81;130;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\reviewed-email-admin-display.php">
    <error val="0;11;88;11;2002;1;"/>
@@ -40,6 +39,8 @@
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\referral-email-admin-display.php">
    <error val="0;20;89;20;2002;1;"/>
    <error val="0;253;94;253;2002;1;"/>
+   <error val="0;53;89;53;2002;1;"/>
+   <error val="0;299;94;299;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\referral-confirmation-email-admin-display.php">
    <error val="0;20;89;20;2002;1;"/>
@@ -59,7 +60,7 @@
    <error val="0;147;94;147;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\common-settings-admin-display.php">
-   <error val="0;121;87;121;2002;1;"/>
+   <error val="0;124;87;124;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\birth-day-email-admin-display.php">
    <error val="0;90;89;90;2002;1;"/>
@@ -67,7 +68,7 @@
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\afterorder-email-admin-display.php">
    <error val="0;44;89;44;2002;1;"/>
-   <error val="0;181;94;181;2002;1;"/>
+   <error val="0;195;94;195;2002;1;"/>
   </errfile>
  </errors>
  <cakedata/>
@@ -83,5 +84,5 @@
   </todofile>
  </todoblock>
  <dbgurls/>
- <lasttime value="1696019045"/>
+ <lasttime value="1696784547"/>
 </project>

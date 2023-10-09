@@ -18,14 +18,16 @@ if ( isset( $_GET['birthdayexport'] ) ) {
 	$table_head = array('User ID','First Name', 'Last Name', 'Email',  'DOB',  'Age', 'Last time sent' );
 	$csv = implode( ';' , $table_head );
 	$csv .= "\n";
-
-	$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before']  . ' day'));
+	$days_before = isset($options['days_before']) ? $options['days_before'] : 0;
+	$str_nameday =  date('Y-m-d',strtotime('+' . $days_before  . ' day'));
 	$dateValue = strtotime($str_nameday);
 	$m = intval(date("m", $dateValue));
 	$d = intval(date("d", $dateValue));
 	$result =  (array) $birthday ->get_celebrating_users($d,$m);
+	
+	$days_before = $days_before + 1;
 
-	$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] + 1 . ' day'));
+	$str_nameday =  date('Y-m-d',strtotime('+' . $days_before . ' day'));
 	$dateValue = strtotime($str_nameday);
 	$m = intval(date("m", $dateValue));
 	$d = intval(date("d", $dateValue));
@@ -85,8 +87,8 @@ birthdayemail_run_cron();
 
 <div class="wrap woocommerce">
 <div id="birthdayemail-setting" class="coupon-emails-setting">
-<div class="loader_cover">
-	<div class="birthdays_loader"></div> </div>
+<div class="couponemails_loader_cover">
+	<div class="couponemails_loader"></div> </div>
 	<input type="button" value="<?php echo  __( 'Restore Defaults', 'coupon-emails' ); ?>" class="button button-primary btn-restore"
 attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce' ) ); ?>"
 id="restore_birthdayemail_values_btn" />

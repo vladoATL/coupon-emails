@@ -130,8 +130,16 @@ case 'heureka':
 	<div class="metabox-holder">
 		<?php 
 		if ( is_plugin_active( 'coupon-emails-heureka/coupon-emails-heureka.php' ) ) {
+			switch ($section) :
+			case 'coupon':
+				include ( ABSPATH . '/wp-content/plugins/coupon-emails-heureka/admin/partials/heureka-email-admin-display-coupon.php');
+				break;
+			default:
+				include ( ABSPATH . '/wp-content/plugins/coupon-emails-heureka/admin/partials/heureka-email-admin-display.php');
+				break;
+			endswitch;		
 			
-			include ( ABSPATH . '/wp-content/plugins/coupon-emails-heureka/admin/partials/heureka-email-admin-display.php');
+			
 		} else {
 			include('heureka-email-admin-display.php');
 		}		

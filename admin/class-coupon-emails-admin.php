@@ -31,6 +31,8 @@ class Coupon_Emails_Admin {
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;
+	
+	private $coumn_exists;
 
 	/**
 	 * The version of this plugin.
@@ -51,7 +53,8 @@ class Coupon_Emails_Admin {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;		
+		$this->version = $version;	
+		$this->coumn_exists = false;	
 	}
 
 
@@ -329,22 +332,163 @@ class Coupon_Emails_Admin {
 		}
 	}
 		
-	function register_shop_coupon_cat_taxonomy()
+	public function add_coupon_category_column( $columns )
 	{
-		register_taxonomy( 'shop_coupon_cat', 'post', array(
-		"hierarchical" => true,
-		"label" => "Shop Coupon Category",
-		"singular_label" => "Shop Coupon Category",
-		'query_var' => true,
-		'rewrite' => array( 'slug' => 'shop_coupon_cat', 'with_front' => false ),
-		'public' => true,
-		'show_ui' => true,
-		'show_tagcloud' => true,
-		'_builtin' => false,
-		'show_in_nav_menus' => false
-		));
+		foreach ( $columns as $key => $column ) {
+			if ( $key === 'coupon_categories' ) {
+				$this->coumn_exists = true;
+				break;
+			} 
+		}
+
+		if (! $this->coumn_exists) {
+			$columns['coupon_categories'] = __( 'Categories', 'coupon-emails' );
+		}
+		return $columns;		
 	}
 	
+	public function add_coupon_email_column( $columns )
+	{
+		$columns['restricted_email'] = __( 'Emails', 'coupon-emails' );
+		return $columns;
+	}
+		
+	public function coupon_category_column_content( $column, $coupon_id )
+	{		
+		if ( 'coupon_categories' !== $column ) {
+			return;
+		}		
+		if ( $this->coumn_exists) {
+			return;
+		}
+
+		$categories = get_the_terms( $coupon_id, 'shop_coupon_cat' );
+
+		if ( ! is_array( $categories ) || empty( $categories ) ) {
+			echo '–';
+			return;
+		}
+
+		$content = array_map(
+		function ( $term ) {
+			$filter_link = admin_url( 'edit.php?post_type=shop_coupon&' . 'shop_coupon_cat' . '=' . $term->slug );
+			return sprintf( '<a href="%s">%s</a>', $filter_link, $term->name  );
+		},
+		$categories
+		);
+
+		echo wp_kses_post( implode( ', ', $content ) );
+	}
+	
+	public function coupon_email_column_content( $column, $coupon_id )
+	{
+		if ( 'restricted_email' !== $column ) {
+			return;
+		}
+
+		//$emails = get_the_terms( $coupon_id, 'customer_email' );
+		$emails = get_metadata( 'post', $coupon_id, "customer_email" );
+		if ( ! is_array( $emails ) || empty( $emails ) ) {
+			echo '–';
+			return;
+		}
+
+		$content = array_map(
+		function ( $term ) {
+			$filter_link = admin_url( 'edit.php?post_type=shop_coupon&' . 'shop_coupon_cat' . '=' . $term->slug );
+			return sprintf( '<a href="%s">%s</a>', $filter_link, $term->name  );
+		},
+		$emails
+		);
+
+		echo wp_kses_post( implode( ', ', $emails[0] ) );
+		//echo print_r($emails, true);
+	}
+		
+	public function add_shop_coupon_category_filter( $post_type )
+	{
+		global $wp_query;
+		
+		if ( $this->coumn_exists) {
+			return;
+		}
+		if ( 'shop_coupon' !== $post_type ) {
+			return;
+		}
+
+		$args = array(
+		'pad_counts'         => true,
+		'show_count'         => true,
+		'hierarchical'       => true,
+		'hide_empty'         => false,
+		'show_uncategorized' => true,
+		'orderby'            => 'name',
+		'selected'           => isset( $wp_query->query_vars[ 'shop_coupon_cat'] ) ? $wp_query->query_vars[ 'shop_coupon_cat'] : '',
+		'show_option_none'   => __( 'Select a category', 'coupon-emails' ),
+		'option_none_value'  => '',
+		'value_field'        => 'slug',
+		'taxonomy'           => 'shop_coupon_cat',
+		'name'               => 'shop_coupon_cat',
+		'class'              => 'dropdown_shop_coupon_cat',
+		);
+
+		wp_dropdown_categories( $args );
+	}
+			
+	/**
+	* Register coupon categories taxonomy.
+	*
+	* @since 1.0
+	*/
+	function register_shop_coupon_cat_taxonomy()
+	{
+		$taxonomy_exist = taxonomy_exists( 'shop_coupon_cat' );
+		if (! $taxonomy_exist) {
+			$labels = array(
+			'name'                       => _x( 'Coupon Categories', 'Taxonomy General Name', 'coupon-emails' ),
+			'singular_name'              => _x( 'Coupon Category', 'Taxonomy Singular Name', 'coupon-emails' ),
+			'menu_name'                  => __( 'Coupon Categories', 'coupon-emails' ),
+			'all_items'                  => __( 'All Categories', 'coupon-emails' ),
+			'parent_item'                => __( 'Parent Category', 'coupon-emails' ),
+			'parent_item_colon'          => __( 'Parent Category:', 'coupon-emails' ),
+			'new_item_name'              => __( 'New Category Name', 'coupon-emails' ),
+			'add_new_item'               => __( 'Add New Category', 'coupon-emails' ),
+			'edit_item'                  => __( 'Edit Category', 'coupon-emails' ),
+			'update_item'                => __( 'Update Category', 'coupon-emails' ),
+			'view_item'                  => __( 'View Category', 'coupon-emails' ),
+			'separate_items_with_commas' => __( 'Separate categories with commas', 'coupon-emails' ),
+			'add_or_remove_items'        => __( 'Add or remove categories', 'coupon-emails' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'coupon-emails' ),
+			'popular_items'              => __( 'Popular Categories', 'coupon-emails' ),
+			'search_items'               => __( 'Search Categories', 'coupon-emails' ),
+			'not_found'                  => __( 'Not Found', 'coupon-emails' ),
+			'no_terms'                   => __( 'No categories', 'coupon-emails' ),
+			'items_list'                 => __( 'Categories list', 'coupon-emails' ),
+			'items_list_navigation'      => __( 'Categories list navigation', 'coupon-emails' ),
+			);
+
+			$capabilities = array(
+			'manage_terms' => 'manage_woocommerce',
+			'edit_terms'   => 'manage_woocommerce',
+			'delete_terms' => 'manage_woocommerce',
+			'assign_terms' => 'manage_woocommerce',
+			);
+
+			$args = array(
+			'labels'            => $labels,
+			'hierarchical'      => true,
+			'public'            => false,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => false,
+			'show_tagcloud'     => false,
+			'capabilities'      => $capabilities,
+			'show_in_rest'      => true,
+			);
+
+			register_taxonomy( 'shop_coupon_cat', array( 'shop_coupon' ), $args );
+		}
+	}	
 	/**
 	 * Register the JavaScript for the admin area.
 	 *

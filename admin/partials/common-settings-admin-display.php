@@ -26,9 +26,12 @@ if ( isset( $_GET['deleteexpired'] ) ) {
 ?>
 
 <div class="wrap woocommerce">
-	<div id="namedayemail-setting"  class="coupon-emails-setting">
-
+	<div id="coupon-emails-setting"  class="coupon-emails-setting">
+		<div class="coupon_emails_loader_cover">
+			<div class="coupon_emails_loader"></div>
+	</div>
 <div class="icon32" id="icon-options-general"><br></div>
+<br>
 <h2><?php echo _x('Common Settings','Setting', 'coupon-emails'); ?> </h2>
 <form method="post" id="form1" name="form1" action="options.php">
 <?php
@@ -36,6 +39,7 @@ settings_fields('couponemails_plugin_options');
 $options = get_option('couponemails_options');
 
 ?>
+<input type="hidden" id="couponemails_options[install_date]" name="couponemails_options[install_date]" value="<?php echo $options['install_date'] ?? ''; ?>"</input>
 <div class="couponemails_wrapper">
 	<div class="couponemails_left">
 	<table class="form-table">
