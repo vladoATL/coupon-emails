@@ -24,6 +24,7 @@ class PrepareSQL
 			WHERE 1=1 ';
 		$this->days_since_sign = $days_since_sign;
 		$this->type = $type;
+		EmailFunctions::test_add_log('-- __construct -- ' . $this->type . PHP_EOL );
 	}
 	public function get_users_from_emails($emails, $as_objects = false)
 	{
@@ -143,7 +144,7 @@ class PrepareSQL
 			return $this->get_users_from_emails ($emails, $as_objects);
 		$minimum_orders = isset( $options['minimum_orders']) ? $options['minimum_orders'] : "";
 		$previous_order = isset( $options['previous_order']) ? $options['previous_order'] : "0";
-		if ($this->type != 'onetimeemail') 	$minimum_orders = 1;
+		if ($this->type != 'onetimeemail' && $this->type != 'onetimecouponemail') 	$minimum_orders = 1;
 				
 		$minimum_spent = isset( $options['minimum_spent']) ? $options['minimum_spent'] : "";
 		$maximum_spent = isset( $options['maximum_spent']) ? $options['maximum_spent'] : "";
@@ -385,7 +386,7 @@ class PrepareSQL
 			$sql .="SELECT p.customer_id AS user_id $minimum_orders_str
 			FROM {$wpdb->prefix}wc_orders AS p
 				WHERE p.status = 'wc-completed'";
-			if ( $this->type != 'onetimeemail') {
+			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(p.date_created_gmt)  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -396,7 +397,7 @@ class PrepareSQL
 				HAVING 1=1";
 			if ($minimum_orders > 0)
 				$sql .= " AND COUNT(p.ID)  >= " . $minimum_orders;
-			if ($this->type == 'onetimeemail') {
+			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(max(p.date_created_gmt))  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -408,7 +409,7 @@ class PrepareSQL
 				JOIN $wpdb->postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
 				$min_orders_join
 				WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'";
-			if ( $this->type != 'onetimeemail') {
+			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(p.post_date)  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -419,7 +420,7 @@ class PrepareSQL
 				HAVING 1=1";
 			if ($minimum_orders > 0)
 				$sql .= " AND COUNT(p.ID)  >= " . $minimum_orders;
-			if ($this->type == 'onetimeemail') {
+			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(max(p.post_date))  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -428,7 +429,7 @@ class PrepareSQL
 		}
 		$sql .= ") AS orders
 		ON orders.user_id = u.ID ";
-
+		
 		return $sql ;
 	}
 
@@ -506,7 +507,7 @@ class PrepareSQL
 			$previous_order
 			ORDER BY orders.orders_total DESC  ";
 		}
-		// \COUPONEMAILS\EmailFunctions::test_add_log('-- get_where_previous_order -- ' .  $previous_order . PHP_EOL  . $sql . PHP_EOL  );
+
 		return $sql;
 	}
 	

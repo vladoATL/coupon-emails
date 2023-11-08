@@ -9,7 +9,7 @@ $nameday_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('namedayemail');
 $afterorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('afterorderemail');
 $reviewed_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reviewedemail');
 $reorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reorderemail');
-$onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimeemail');
+$onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimecouponemail');
 $reviewreminder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reminderemail');
 $referral_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('referralemail');
 $heureka_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('heurekaemail');
@@ -84,11 +84,20 @@ $heureka_enable = apply_filters( 'couponemails_heureka_enable', $heureka_enable 
 	<?php
 switch ($tab) :
 case 'one-time':
-	?>
+?>
 	<div class="metabox-holder">
-		<?php include('onetime-email-admin-display.php'); ?>		
+		<?php
+		switch ($section) :
+		case 'no-coupon':
+			include('onetime-email-admin-display.php');
+			break;
+		default:
+			include('onetime-coupon-email-admin-display.php');
+			break;
+		endswitch;
+		?>
 	</div>
-	<?php
+<?php
 break;	
 case 'birth-day':
 	?>
@@ -137,9 +146,7 @@ case 'heureka':
 			default:
 				include ( ABSPATH . '/wp-content/plugins/coupon-emails-heureka/admin/partials/heureka-email-admin-display.php');
 				break;
-			endswitch;		
-			
-			
+			endswitch;				
 		} else {
 			include('heureka-email-admin-display.php');
 		}		

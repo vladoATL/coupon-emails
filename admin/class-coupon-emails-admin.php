@@ -79,88 +79,50 @@ class Coupon_Emails_Admin {
 	}
 	public function coupon_emails_init(){
 		register_setting( 'namedayemail_plugin_options', 'namedayemail_options', 
-		    array('sanitize_callback' => array( $this, 'namedayemail_validate_options' ),)
+		    array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );
 		register_setting( 'couponemails_plugin_log_options', 'couponemails_logs', 
-			array('sanitize_callback' => array( $this, 'namedayemail_validate_log_options' ),) 
+			array('sanitize_callback' => array( $this, '_validate_options' ),) 
 		 );	
 		 register_setting( 'couponemails_plugin_options', 'couponemails_options',
-		 array('sanitize_callback' => array( $this, 'couponemails_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );		
 		 register_setting( 'birtdayemail_plugin_options', 'birthdayemail_options',
-		 array('sanitize_callback' => array( $this, 'birthdayemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );	
 		 register_setting( 'onetimeemail_plugin_options', 'onetimeemail_options',
-		 array('sanitize_callback' => array( $this, 'onetimeemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );	
+		 register_setting( 'onetimecouponemail_plugin_options', 'onetimecouponemail_options',
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
+		 );			 
 		 register_setting( 'reorderemail_plugin_options', 'reorderemail_options',
-		 array('sanitize_callback' => array( $this, 'reorderemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );	
 		 register_setting( 'afterorderemail_plugin_options', 'afterorderemail_options',
-		 array('sanitize_callback' => array( $this, 'afterorderemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );	
 		 register_setting( 'reviewedemail_plugin_options', 'reviewedemail_options',
-		 array('sanitize_callback' => array( $this, 'reviewedemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );	
 		 register_setting( 'reviewreminderemail_plugin_options', 'reviewreminderemail_options',
-		 array('sanitize_callback' => array( $this, 'reviewreminderemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );
 		 register_setting( 'expirationreminderemail_plugin_options', 'expirationreminderemail_options',
-		 array('sanitize_callback' => array( $this, 'expirationreminderemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );	
 		 register_setting( 'referralemail_plugin_options', 'referralemail_options',
-		 array('sanitize_callback' => array( $this, 'referralemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );		
 		 register_setting( 'referralconfirmationemail_plugin_options', 'referralconfirmationemail_options',
-		 array('sanitize_callback' => array( $this, 'referralconfirmationemail_validate_options' ),)
+		 array('sanitize_callback' => array( $this, '_validate_options' ),)
 		 );			  	 
 	}
-	function referralconfirmationemail_validate_options($input)
+	function _validate_options($input)
 	{
 		return $input;
 	}	
-	function referralemail_validate_options($input)
-	{
-		return $input;
-	}	
-	function reviewedemail_validate_options($input)
-	{
-		return $input;
-	}	
-	function afterorderemail_validate_options($input)
-	{
-		return $input;
-	}	
-	function onetimeemail_validate_options($input)
-	{
-		return $input;
-	}
-	function reorderemail_validate_options($input)
-	{
-		return $input;
-	}		
-	function namedayemail_validate_options($input) 	{
-		return $input;
-	}
-	function birthdayemail_validate_options($input)
-	{
-		return $input;
-	}	
-	function namedayemail_validate_log_options($input) {
-		return $input;
-	}
-	function couponemails_validate_options($input)
-	{
-		return $input;
-	}
-	function reviewreminderemail_validate_options($input)
-	{
-		return $input;
-	}	
-	function expirationreminderemail_validate_options($input)
-	{
-		return $input;
-	}	
+
  	public function couponemails_clear_log() {
  		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce'] && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_couponemails_nonce_log' ) ) 
 		{
@@ -251,13 +213,18 @@ class Coupon_Emails_Admin {
 		}		
 	}
 	
-	public function onetimeemails_send(){
-		//\COUPONEMAILS\EmailFunctions::test_add_log('-- onetimeemails_send -- '  . PHP_EOL  );	
+	public function onetimeemail_send(){
+		//\COUPONEMAILS\EmailFunctions::test_add_log('-- onetimeemail_send -- '  . PHP_EOL  );	
+		if ( isset( $_POST['option_name'] )) {
+			$option_name = $_POST['option_name'];
+		} else {
+			wp_die();
+		}		
+		
 		if ( isset( $_POST['nonce'] ) && '' !== $_POST['nonce']
-		&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_onetime_nonce_send' ) ) {
-			
+		&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), '_onetime_nonce_send' ) ) {			
 			$onetimes = new \COUPONEMAILS\Onetimes();
-			$result = $onetimes->send_to_users_filtered();	
+			$result = $onetimes->send_to_users_filtered($option_name);	
 			wp_die();
 		}		
 	}
@@ -275,7 +242,7 @@ class Coupon_Emails_Admin {
 		{
 			$user = wp_get_current_user();
 			$funcs = new \COUPONEMAILS\EmailFunctions($option_name);
-			if (in_array($option_name, array('expirationreminderemail','referralconfirmationemail'))) {
+			if (in_array($option_name, array('expirationreminderemail','referralconfirmationemail','onetimeemail'))) {
 				$args = array("coupon" => "TESTCOUPON");
 				$funcs->	couponemails_create($user, true, $args);
 			} else {
@@ -309,9 +276,12 @@ class Coupon_Emails_Admin {
 				case "afterorderemail":
 					afterorderemail_save_defaults($add_new);
 					break;
+				case "onetimecouponemail":
+					onetimecouponemail_save_defaults($add_new);
+					break;
 				case "onetimeemail":
 					onetimeemail_save_defaults($add_new);
-					break;
+					break;					
 				case "birthdayemail":
 					birthdayemail_save_defaults($add_new);
 					break;

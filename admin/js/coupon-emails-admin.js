@@ -71,28 +71,28 @@
 	$(document).ready(function() {
 		$("#restore_namedayemail_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'namedayemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'namedayemail','email_restore_settings');
 		});
 	});
 
 	$(document).ready(function() {
 		$("#restore_referralconfirmationemail_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'referralconfirmationemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'referralconfirmationemail','email_restore_settings');
 		});
 	});
 
 	$(document).ready(function() {
 		$("#restore_referralemail_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'referralemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'referralemail','email_restore_settings');
 		});
 	});
 	
 	$(document).ready(function() {
 		$("#restore_reviewed_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'reviewedemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'reviewedemail','email_restore_settings');
 		});
 	});
 	
@@ -100,46 +100,52 @@
 	$(document).ready(function() {
 		$("#restore_onetimeemail_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'onetimeemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'onetimeemail','email_restore_settings');
 		});
 	});
 	
 	$(document).ready(function() {
+		$("#restore_onetimecouponemail_values_btn").click(function(e) {
+			e.preventDefault();
+			sendCouponEmailAjaxRequest($(this),'onetimecouponemail','email_restore_settings');
+		});
+	});
+		
+	$(document).ready(function() {
 		$("#restore_reorder_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'reorderemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'reorderemail','email_restore_settings');
 		});
 	});
 	
 	$(document).ready(function() {
 		$("#restore_reviewreminderemail_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'reviewreminderemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'reviewreminderemail','email_restore_settings');
 		});
 	});
 	
 	$(document).ready(function() {
 		$("#restore_expirationreminderemail_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'expirationreminderemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'expirationreminderemail','email_restore_settings');
 		});
 	});
 	
 	$(document).ready(function() {
 		$("#restore_afterorder_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'afterorderemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'afterorderemail','email_restore_settings');
 		});
 	});
 	
 	$(document).ready(function() {
 		$("#restore_birthdayemail_values_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'birthdayemail','heureka_restore_settings');
+			sendCouponEmailAjaxRequest($(this),'birthdayemail','email_restore_settings');
 		});
 	});	
-	
-	
+		
 	
 	$(document).ready(function() {
 		$("#test_namedayemail_btn").click(function(e) {
@@ -205,6 +211,13 @@
 	});
 	
 	$(document).ready(function() {
+		$("#test_onetimecoupon_btn").click(function(e) {
+			e.preventDefault();
+			sendCouponEmailAjaxRequest($(this),'onetimecouponemail', 'email_make_test');
+		});
+	});
+		
+	$(document).ready(function() {
 		$("#test_afterorder_btn").click(function(e) {
 			e.preventDefault();
 			sendCouponEmailAjaxRequest($(this),'afterorderemail', 'email_make_test');
@@ -213,12 +226,18 @@
 		
 		
 	$(document).ready(function() {
-		$("#send_onetime_btn").click(function(e) {
+		$("#send_onetimecoupon_btn").click(function(e) {
 			e.preventDefault();
-			sendCouponEmailAjaxRequest($(this),'', 'onetimeemails_send');
+			sendCouponEmailAjaxRequest($(this),'onetimecouponemail', 'onetimeemail_send');
 		});
 	});			
 		
+	$(document).ready(function() {
+		$("#send_onetime_btn").click(function(e) {
+			e.preventDefault();
+			sendCouponEmailAjaxRequest($(this),'onetimeemail', 'onetimeemail_send');
+		});
+	});		
 		
 })( jQuery );
 

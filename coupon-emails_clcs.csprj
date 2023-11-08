@@ -19,31 +19,33 @@
 </treenode>
 <treenode node="RC_PSD_PLUGIN_URL;PHP:PHP Word;1179152931;f9;20;26;20;;;;vpos;;v;;a;;rplugin_dir_url( __FILE__;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="afterorder-email-admin-display.php;PHP:PHP Include;406845169;f17;116;51;116;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="afterorder-email-admin-display.php;PHP:PHP Include;406845169;f17;125;51;125;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="averages.php;PHP:PHP Include;2682912466;f19;67;31;67;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="birth-day-email-admin-display.php;PHP:PHP Include;2789621384;f17;51;50;51;;406845169;f17;95;50;95;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="birth-day-email-admin-display.php;PHP:PHP Include;2789621384;f17;51;50;51;;406845169;f17;104;50;104;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="common-functions.php;PHP:PHP Include;2682912466;f11;18;31;18;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="common-settings-admin-display.php;PHP:PHP Include;2789621384;f17;79;50;79;;406845169;f17;184;50;184;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="common-settings-admin-display.php;PHP:PHP Include;2789621384;f17;79;50;79;;406845169;f17;191;50;191;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="coupon-form.php;PHP:PHP Include;520420923;f15;294;30;294;;1664627528;f15;190;30;190;;1281266515;f16;169;31;169;;2484810019;f16;226;31;226;;2308901532;f15;184;30;184;;1678060142;f15;156;30;156;;1291851985;f15;122;30;122;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="coupon-form.php;PHP:PHP Include;520420923;f15;294;30;294;;1281266515;f16;169;31;169;;1291851985;f15;122;30;122;;1942096958;f16;238;31;238;;2308901532;f15;184;30;184;;1664627528;f15;190;30;190;;1678060142;f15;158;30;158;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="critical-products.php;PHP:PHP Include;2682912466;f76;25;97;25;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="customers.php;PHP:PHP Include;2682912466;f19;77;32;77;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="email-table.php;PHP:PHP Include;2824250338;f15;142;30;142;;939397643;f15;202;30;202;;1217479557;f15;189;30;189;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="email-table.php;PHP:PHP Include;939397643;f15;202;30;202;;2484810019;f16;237;31;237;;2824250338;f15;142;30;142;;1217479557;f15;189;30;189;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="expiration-reminder-email-admin-display.php;PHP:PHP Include;406845169;f12;171;55;171;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="expiration-reminder-email-admin-display.php;PHP:PHP Include;406845169;f12;178;55;178;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="heureka-email-admin-display.php;PHP:PHP Include;406845169;f12;143;43;143;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="heureka-email-admin-display.php;PHP:PHP Include;406845169;f12;150;43;150;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="name-day-email-admin-display.php;PHP:PHP Include;2789621384;f17;65;49;65;;406845169;f17;109;49;109;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="name-day-email-admin-display.php;PHP:PHP Include;2789621384;f17;65;49;65;;406845169;f17;118;49;118;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="onetime-email-admin-display.php;PHP:PHP Include;2789621384;f17;44;48;44;;406845169;f17;88;48;88;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="onetime-coupon-email-admin-display.php;PHP:PHP Include;406845169;f12;94;50;94;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+</treenode>
+<treenode node="onetime-email-admin-display.php;PHP:PHP Include;2789621384;f17;44;48;44;;406845169;f12;91;43;91;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="orders-waiting.php;PHP:PHP Include;2682912466;f19;89;37;89;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -63,15 +65,15 @@
 </treenode>
 <treenode node="purchase-orders.php;PHP:PHP Include;2682912466;f19;52;38;52;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="referral-confirmation-email-admin-display.php;PHP:PHP Include;406845169;f12;155;57;155;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="referral-confirmation-email-admin-display.php;PHP:PHP Include;406845169;f12;162;57;162;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="referral-email-admin-display.php;PHP:PHP Include;406845169;f12;158;44;158;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="referral-email-admin-display.php;PHP:PHP Include;406845169;f12;165;44;165;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="reorder-email-admin-display.php;PHP:PHP Include;2789621384;f17;58;48;58;;406845169;f17;102;48;102;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="reorder-email-admin-display.php;PHP:PHP Include;2789621384;f17;58;48;58;;406845169;f17;111;48;111;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="review-reminder-email-admin-display.php;PHP:PHP Include;406845169;f11;174;50;174;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="review-reminder-email-admin-display.php;PHP:PHP Include;406845169;f11;181;50;181;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="reviewed-email-admin-display.php;PHP:PHP Include;406845169;f17;123;49;123;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="reviewed-email-admin-display.php;PHP:PHP Include;406845169;f17;132;49;132;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="sales-chart-multi.php;PHP:PHP Include;2682912466;f19;75;40;75;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -81,7 +83,7 @@
 </treenode>
 <treenode node="stock-value.php;PHP:PHP Include;2682912466;f19;51;34;51;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="COUPONEMAILS;PHP:NameSpace Name;4001538800;f9;1;23;1;;3522998931;f9;1;23;1;;3356829601;f9;2;23;2;;237619680;f9;1;23;1;;2154515678;f9;1;0;32;;2364669791;f9;1;0;36;;2517963379;f9;1;0;29;;2297512819;f9;1;0;110;;2824250338;f9;1;1;9;;3927596185;f9;1;0;35;;1746092610;f9;1;0;195;;1639069801;f9;1;0;104;;2266637914;f9;1;1;7;;892357129;f9;1;0;52;;520420923;f9;1;1;34;;3587982445;f9;1;0;255;;3553207714;f9;1;0;218;;2996272779;f9;1;0;43;;3096207147;f9;2;0;582;;1494945121;f9;1;0;130;;939397643;f9;1;1;9;;2283923697;f9;1;91;47;;822623065;f9;1;0;370;;4002202555;f9;1;0;240;;1664627528;f9;1;1;8;;1281266515;f9;1;1;31;;2484810019;f9;1;1;9;;2308901532;f9;1;1;9;;1678060142;f9;1;1;9;;1291851985;f9;1;5;61;;3849096211;f9;24;1;28;;2914115095;f9;1;0;827;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="COUPONEMAILS;PHP:NameSpace Name;3356829601;f9;2;23;2;;237619680;f9;1;23;1;;2154515678;f9;1;0;32;;2364669791;f9;1;0;36;;2517963379;f9;1;0;29;;520420923;f9;1;1;34;;3553207714;f9;1;0;218;;1494945121;f9;1;0;130;;1281266515;f9;1;1;31;;2297512819;f9;1;0;110;;1291851985;f9;1;5;61;;939397643;f9;1;1;9;;2283923697;f9;1;91;47;;4001538800;f9;1;0;35;;1639069801;f9;1;0;104;;3927596185;f9;1;0;35;;3522998931;f9;1;0;29;;3587982445;f9;1;0;256;;2484810019;f9;1;1;9;;1942096958;f9;1;1;9;;2996272779;f9;1;0;43;;2914115095;f9;1;0;839;;3096207147;f9;2;0;583;;1746092610;f9;1;0;195;;2308901532;f9;1;1;9;;4002202555;f9;1;0;248;;892357129;f9;1;0;52;;2824250338;f9;1;1;9;;1664627528;f9;1;1;8;;1678060142;f9;1;1;9;;822623065;f9;1;0;484;;2266637914;f9;1;1;7;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 <treenode node="email-table.php;PHP:PHP Include;2283923697;f15;42;30;42;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="AfterOrder;PHP:Class Name;2996272779;f0;3;1;42;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
@@ -132,22 +134,22 @@
 <treenode node="deactivate;PHP:Function Name;2154515678;f15;27;2;29;;2154515678;f15;27;2;29;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    deactivate()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    &lt;b&gt;since&lt;/b&gt;: 1.0.0;;d37,27;;b1,5;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
-<treenode node="Coupon_Emails;PHP:Class Name;4002202555;f0;30;1;239;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    class Coupon_Emails&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The core plugin class.&#10;This is used to define internationalization, admin-specific hooks, and&#10;public-facing site hooks.&#10;Also maintains the unique identifier of this plugin as well as the current&#10;version of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;package&lt;/b&gt;: Coupon_Emails&#10;&lt;b&gt;subpackage&lt;/b&gt;: Coupon_Emails/includes&#10;&lt;b&gt;author&lt;/b&gt;: Vlado Laco &lt;vlado&#10;&lt;b&gt;perties&lt;/b&gt;: .sk&gt;;;d20,30;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="Coupon_Emails;PHP:Class Name;4002202555;f0;30;1;247;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    class Coupon_Emails&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The core plugin class.&#10;This is used to define internationalization, admin-specific hooks, and&#10;public-facing site hooks.&#10;Also maintains the unique identifier of this plugin as well as the current&#10;version of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;package&lt;/b&gt;: Coupon_Emails&#10;&lt;b&gt;subpackage&lt;/b&gt;: Coupon_Emails/includes&#10;&lt;b&gt;author&lt;/b&gt;: Vlado Laco &lt;vlado&#10;&lt;b&gt;perties&lt;/b&gt;: .sk&gt;;;d20,30;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 <treenode node="__construct;PHP:Function Name;4002202555;f8;70;2;85;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    __construct()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Define the core functionality of the plugin.&#10;Set the plugin name and the plugin version that can be used throughout the plugin.&#10;Load the dependencies, define the locale, and set the hooks for the admin area and&#10;the public-facing side of the site.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d31,70;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="define_admin_hooks;PHP:Function Name;4002202555;f9;155;2;178;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    define_admin_hooks()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register all of the hooks related to the admin area functionality&#10;of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;access&lt;/b&gt;: private;;d39,155;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="define_admin_hooks;PHP:Function Name;4002202555;f9;155;2;186;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    define_admin_hooks()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register all of the hooks related to the admin area functionality&#10;of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;access&lt;/b&gt;: private;;d39,155;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="define_public_hooks;PHP:Function Name;4002202555;f9;187;2;197;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    define_public_hooks()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register all of the hooks related to the public-facing functionality&#10;of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;access&lt;/b&gt;: private;;d40,187;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="define_public_hooks;PHP:Function Name;4002202555;f9;195;2;205;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    define_public_hooks()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register all of the hooks related to the public-facing functionality&#10;of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;access&lt;/b&gt;: private;;d40,195;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_loader;PHP:Function Name;4002202555;f8;225;2;227;;;;vpos;;v;;aCoupon_Email_Loader;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    get_loader()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The reference to the class that orchestrates the hooks with the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Return:&lt;/b&gt;&#10;   Orchestrates the hooks of the plugin.;;d30,225;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_loader;PHP:Function Name;4002202555;f8;233;2;235;;;;vpos;;v;;aCoupon_Email_Loader;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    get_loader()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The reference to the class that orchestrates the hooks with the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Return:&lt;/b&gt;&#10;   Orchestrates the hooks of the plugin.;;d30,233;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_plugin_name;PHP:Function Name;4002202555;f8;215;2;217;;;;vpos;;v;;astring;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    get_plugin_name()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The name of the plugin used to uniquely identify it within the context of&#10;WordPress and to define internationalization functionality.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Return:&lt;/b&gt;&#10;   The name of the plugin.;;d35,215;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_plugin_name;PHP:Function Name;4002202555;f8;223;2;225;;;;vpos;;v;;astring;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    get_plugin_name()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The name of the plugin used to uniquely identify it within the context of&#10;WordPress and to define internationalization functionality.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Return:&lt;/b&gt;&#10;   The name of the plugin.;;d35,223;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_version;PHP:Function Name;4002202555;f8;235;2;237;;;;vpos;;v;;astring;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    get_version()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Retrieve the version number of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Return:&lt;/b&gt;&#10;   The version number of the plugin.;;d31,235;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_version;PHP:Function Name;4002202555;f8;243;2;245;;;;vpos;;v;;astring;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    get_version()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Retrieve the version number of the plugin.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Return:&lt;/b&gt;&#10;   The version number of the plugin.;;d31,243;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="load_dependencies;PHP:Function Name;4002202555;f9;103;2;129;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    load_dependencies()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Load the required dependencies for this plugin.&#10;Include the following files that make up the plugin:&#10;- Coupon_Email_Loader. Orchestrates the hooks of the plugin.&#10;- Coupon_Email_i18n. Defines internationalization functionality.&#10;- Coupon_Emails_Admin. Defines all hooks for the admin area.&#10;- Coupon_Emails_Public. Defines all hooks for the public side of the site.&#10;Create an instance of the loader which will be used to register the hooks&#10;with WordPress.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;access&lt;/b&gt;: private;;d38,103;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="run;PHP:Function Name;4002202555;f8;204;2;206;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    run()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Run the loader to execute all of the hooks with WordPress.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d23,204;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="run;PHP:Function Name;4002202555;f8;212;2;214;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    run()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Run the loader to execute all of the hooks with WordPress.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d23,212;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="set_locale;PHP:Function Name;4002202555;f9;140;2;146;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    set_locale()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Define the locale for this plugin for internationalization.&#10;Uses the Coupon_Email_i18n class in order to set the domain and to register the hook&#10;with WordPress.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&lt;b&gt;access&lt;/b&gt;: private;;d31,140;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -160,68 +162,58 @@
 <treenode node="$version;PHP:Var Name;4002202555;f11;58;19;58;;;;vposstring;;v;;a;;r;;d-1,-1;;b2,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
-<treenode node="Coupon_Emails_Admin;PHP:Class Name;822623065;f0;23;1;369;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    class Coupon_Emails_Admin&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The admin-specific functionality of the plugin.&#10;Defines the plugin name, version, and two examples hooks for how to&#10;enqueue the admin-specific stylesheet and JavaScript.&#10;&lt;b&gt;package&lt;/b&gt;: Coupon_Emails&#10;&lt;b&gt;subpackage&lt;/b&gt;: Coupon_Emails/admin&#10;&lt;b&gt;author&lt;/b&gt;: Vlado Laco &lt;vlado&#10;&lt;b&gt;perties&lt;/b&gt;: .sk&gt;;;d26,23;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
-<treenode node="__construct;PHP:Function Name;822623065;f8;50;2;54;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    __construct( $plugin_name, $version )&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Initialize the class and set its properties.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Parameters:&lt;/b&gt;&#10;    string &lt;b&gt;$plugin_name&lt;/b&gt;: The name of this plugin.&#10;    string &lt;b&gt;$version&lt;/b&gt;: The version of this plugin.;;d55,50;;b1,0;;m0;;e0;;i0;;o;;k;;l $plugin_name;;p $version;;p;;x;;x;;n">
+<treenode node="Coupon_Emails_Admin;PHP:Class Name;822623065;f0;23;1;483;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    class Coupon_Emails_Admin&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The admin-specific functionality of the plugin.&#10;Defines the plugin name, version, and two examples hooks for how to&#10;enqueue the admin-specific stylesheet and JavaScript.&#10;&lt;b&gt;package&lt;/b&gt;: Coupon_Emails&#10;&lt;b&gt;subpackage&lt;/b&gt;: Coupon_Emails/admin&#10;&lt;b&gt;author&lt;/b&gt;: Vlado Laco &lt;vlado&#10;&lt;b&gt;perties&lt;/b&gt;: .sk&gt;;;d26,23;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="__construct;PHP:Function Name;822623065;f8;52;2;57;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    __construct( $plugin_name, $version )&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Initialize the class and set its properties.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0&#10;&#10;&lt;b&gt;Parameters:&lt;/b&gt;&#10;    string &lt;b&gt;$plugin_name&lt;/b&gt;: The name of this plugin.&#10;    string &lt;b&gt;$version&lt;/b&gt;: The version of this plugin.;;d55,52;;b1,0;;m0;;e0;;i0;;o;;k;;l $plugin_name;;p $version;;p;;x;;x;;n">
 </treenode>
-<treenode node="afterorderemail_validate_options;PHP:Function Name;822623065;f1;126;2;129;;;;vpos;;v;;a;;r;;d1,127;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="_validate_options;PHP:Function Name;822623065;f1;120;2;123;;;;vpos;;v;;a;;r;;d1,121;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
 </treenode>
-<treenode node="birthdayemail_validate_options;PHP:Function Name;822623065;f1;141;2;144;;;;vpos;;v;;a;;r;;d1,142;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="add_coupon_category_column;PHP:Function Name;822623065;f8;304;2;317;;;;vpos;;v;;a;;r;;d1,305;;b1,0;;m0;;e0;;i0;;o;;k;;lcolumns;;p;;x;;n">
 </treenode>
-<treenode node="coupon_emails_init;PHP:Function Name;822623065;f8;76;2;113;;;;vpos;;v;;a;;r;;d37,76;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="add_coupon_email_column;PHP:Function Name;822623065;f8;319;2;323;;;;vpos;;v;;a;;r;;d1,320;;b1,0;;m0;;e0;;i0;;o;;k;;lcolumns;;p;;x;;n">
 </treenode>
-<treenode node="coupon_emails_menu;PHP:Function Name;822623065;f8;68;2;71;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    coupon_emails_menu()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Function to add menu.;;d38,68;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="add_shop_coupon_category_filter;PHP:Function Name;822623065;f8;377;2;405;;;;vpos;;v;;a;;r;;d1,378;;b1,0;;m0;;e0;;i0;;o;;k;;lpost_type;;p;;x;;n">
 </treenode>
-<treenode node="couponemails_clear_log;PHP:Function Name;822623065;f9;160;2;166;;;;vpos;;v;;a;;r;;d43,160;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="coupon_category_column_content;PHP:Function Name;822623065;f8;325;2;350;;;;vpos;;v;;a;;r;;d1,326;;b1,0;;m0;;e0;;i0;;o;;k;;lcolumn;;pcoupon_id;;p;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_menu_init;PHP:Function Name;822623065;f8;72;2;75;;;;vpos;;v;;a;;r;;d1,73;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="coupon_email_column_content;PHP:Function Name;822623065;f8;352;2;375;;;;vpos;;v;;a;;r;;d1,353;;b1,0;;m0;;e0;;i0;;o;;k;;lcolumn;;pcoupon_id;;p;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_validate_options;PHP:Function Name;822623065;f1;148;2;151;;;;vpos;;v;;a;;r;;d1,149;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="coupon_emails_init;PHP:Function Name;822623065;f8;79;2;119;;;;vpos;;v;;a;;r;;d37,79;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="email_make_test;PHP:Function Name;822623065;f8;261;2;282;;;;vpos;;v;;a;;r;;d1,262;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="coupon_emails_menu;PHP:Function Name;822623065;f8;71;2;74;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    coupon_emails_menu()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Function to add menu.;;d38,71;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="email_restore_settings;PHP:Function Name;822623065;f8;284;2;329;;;;vpos;;v;;a;;r;;d1,285;;b1,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="couponemails_clear_log;PHP:Function Name;822623065;f9;125;2;131;;;;vpos;;v;;a;;r;;d43,125;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="enqueue_scripts;PHP:Function Name;822623065;f8;352;2;367;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    enqueue_scripts()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register the JavaScript for the admin area.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d35,352;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="couponemails_menu_init;PHP:Function Name;822623065;f8;75;2;78;;;;vpos;;v;;a;;r;;d1,76;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="enqueue_styles;PHP:Function Name;822623065;f8;63;2;65;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    enqueue_styles()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register the stylesheets for the admin area.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d34,63;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="email_make_test;PHP:Function Name;822623065;f8;231;2;252;;;;vpos;;v;;a;;r;;d1,232;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="expirationreminderemail_validate_options;PHP:Function Name;822623065;f1;156;2;159;;;;vpos;;v;;a;;r;;d1,157;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="email_restore_settings;PHP:Function Name;822623065;f8;254;2;302;;;;vpos;;v;;a;;r;;d1,255;;b1,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="namedayemail_validate_log_options;PHP:Function Name;822623065;f1;145;2;147;;;;vpos;;v;;a;;r;;d52,145;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="enqueue_scripts;PHP:Function Name;822623065;f8;466;2;481;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    enqueue_scripts()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register the JavaScript for the admin area.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d35,466;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="namedayemail_validate_options;PHP:Function Name;822623065;f1;138;2;140;;;;vpos;;v;;a;;r;;d49,138;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="enqueue_styles;PHP:Function Name;822623065;f8;66;2;68;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    enqueue_styles()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register the stylesheets for the admin area.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d34,66;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="onetimeemail_validate_options;PHP:Function Name;822623065;f1;130;2;133;;;;vpos;;v;;a;;r;;d1,131;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="onetimeemail_send;PHP:Function Name;822623065;f8;215;2;229;;;;vpos;;v;;a;;r;;d36,215;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="onetimeemails_send;PHP:Function Name;822623065;f8;250;2;259;;;;vpos;;v;;a;;r;;d37,250;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="register_shop_coupon_cat_taxonomy;PHP:Function Name;822623065;f1;412;2;460;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    register_shop_coupon_cat_taxonomy()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Register coupon categories taxonomy.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0;;d1,413;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="referralconfirmationemail_validate_options;PHP:Function Name;822623065;f1;114;2;117;;;;vpos;;v;;a;;r;;d1,115;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="review_approve_comment_callback;PHP:Function Name;822623065;f8;168;2;175;;;;vpos;;v;;a;;r;;d1,169;;b1,0;;m0;;e0;;i0;;o;;k;;lnew_status;;pold_status;;pcomment;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="referralemail_validate_options;PHP:Function Name;822623065;f1;118;2;121;;;;vpos;;v;;a;;r;;d1,119;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="review_comment_posted_callback;PHP:Function Name;822623065;f8;133;2;140;;;;vpos;;v;;a;;r;;d1,134;;b1,0;;m0;;e0;;i0;;o;;k;;lcomment_id;;pcomment_approved;;pcomment;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="register_shop_coupon_cat_taxonomy;PHP:Function Name;822623065;f1;331;2;345;;;;vpos;;v;;a;;r;;d1,332;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="reviewedemail_create_coupon;PHP:Function Name;822623065;f1;193;2;213;;;;vpos;;v;;a;;r;;d1,194;;b0,0;;m0;;e0;;i0;;o;;k;;lcomment;;pcomment_ID;;p;;x;;x;;n">
 </treenode>
-<treenode node="reorderemail_validate_options;PHP:Function Name;822623065;f1;134;2;137;;;;vpos;;v;;a;;r;;d1,135;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
+<treenode node="site_reviews_approve_comment_callback;PHP:Function Name;822623065;f8;177;2;191;;;;vpos;;v;;a;;r;;d1,178;;b1,0;;m0;;e0;;i0;;o;;k;;lpost_ID;;ppost_after;;ppost_before;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="review_approve_comment_callback;PHP:Function Name;822623065;f8;203;2;210;;;;vpos;;v;;a;;r;;d1,204;;b1,0;;m0;;e0;;i0;;o;;k;;lnew_status;;pold_status;;pcomment;;p;;x;;x;;x;;n">
+<treenode node="site_reviews_comment_posted_callback;PHP:Function Name;822623065;f8;142;2;151;;;;vpos;;v;;a;;r;;d1,143;;b1,0;;m0;;e0;;i0;;o;;k;;lreview;;pcommand;;p;;x;;x;;n">
 </treenode>
-<treenode node="review_comment_posted_callback;PHP:Function Name;822623065;f8;168;2;175;;;;vpos;;v;;a;;r;;d1,169;;b1,0;;m0;;e0;;i0;;o;;k;;lcomment_id;;pcomment_approved;;pcomment;;p;;x;;x;;x;;n">
+<treenode node="site_reviews_create_coupon;PHP:Function Name;822623065;f1;153;2;167;;;;vpos;;v;;a;;r;;d1,154;;b0,0;;m0;;e0;;i0;;o;;k;;lreviewed;;p;;x;;n">
 </treenode>
-<treenode node="reviewedemail_create_coupon;PHP:Function Name;822623065;f1;228;2;248;;;;vpos;;v;;a;;r;;d1,229;;b0,0;;m0;;e0;;i0;;o;;k;;lcomment;;pcomment_ID;;p;;x;;x;;n">
-</treenode>
-<treenode node="reviewedemail_validate_options;PHP:Function Name;822623065;f1;122;2;125;;;;vpos;;v;;a;;r;;d1,123;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
-</treenode>
-<treenode node="reviewreminderemail_validate_options;PHP:Function Name;822623065;f1;152;2;155;;;;vpos;;v;;a;;r;;d1,153;;b0,0;;m0;;e0;;i0;;o;;k;;linput;;p;;x;;n">
-</treenode>
-<treenode node="site_reviews_approve_comment_callback;PHP:Function Name;822623065;f8;212;2;226;;;;vpos;;v;;a;;r;;d1,213;;b1,0;;m0;;e0;;i0;;o;;k;;lpost_ID;;ppost_after;;ppost_before;;p;;x;;x;;x;;n">
-</treenode>
-<treenode node="site_reviews_comment_posted_callback;PHP:Function Name;822623065;f8;177;2;186;;;;vpos;;v;;a;;r;;d1,178;;b1,0;;m0;;e0;;i0;;o;;k;;lreview;;pcommand;;p;;x;;x;;n">
-</treenode>
-<treenode node="site_reviews_create_coupon;PHP:Function Name;822623065;f1;188;2;202;;;;vpos;;v;;a;;r;;d1,189;;b0,0;;m0;;e0;;i0;;o;;k;;lreviewed;;p;;x;;n">
+<treenode node="$coumn_exists;PHP:Var Name;822623065;f9;34;22;34;;;;vpos;;v;;a;;r;;d-1,-1;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$plugin_name;PHP:Var Name;822623065;f9;32;21;32;;;;vposstring;;v;;a;;r;;d-1,-1;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$version;PHP:Var Name;822623065;f9;41;17;41;;;;vposstring;;v;;a;;r;;d-1,-1;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$version;PHP:Var Name;822623065;f9;43;17;43;;;;vposstring;;v;;a;;r;;d-1,-1;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
 <treenode node="Coupon_Emails_Public;PHP:Class Name;1494945121;f0;13;1;129;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    class Coupon_Emails_Public&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The public-facing functionality of the plugin.&#10;&lt;b&gt;link&lt;/b&gt;: https://starlogic.net&#10;&lt;b&gt;since&lt;/b&gt;: 1.2.1&#10;&lt;b&gt;package&lt;/b&gt;: Coupon_Emails&#10;&lt;b&gt;subpackage&lt;/b&gt;: Coupon_Emails/public;;d27,13;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
@@ -248,52 +240,52 @@
 <treenode node="$version;PHP:Var Name;1494945121;f9;31;17;31;;;;vposstring;;v;;a;;r;;d-1,-1;;b3,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
-<treenode node="EmailFunctions;PHP:Class Name;2914115095;f0;7;1;826;;;;vpos;;v;;a;;r;;d0,8;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="EmailFunctions;PHP:Class Name;2914115095;f0;7;1;838;;;;vpos;;v;;a;;r;;d0,8;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 <treenode node="__construct;PHP:Function Name;2914115095;f8;19;2;29;;;;vpos;;v;;a;;r;;d1,20;;b1,0;;m0;;e0;;i0;;o;;k;;ltype;;pproduct_name;;p;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_add_log;PHP:Function Name;2914115095;f1;232;2;251;;;;vpos;;v;;a;;r;;d1,233;;b0,0;;m0;;e0;;i0;;o;;k;;lentry;;p;;x;;n">
+<treenode node="couponemails_add_log;PHP:Function Name;2914115095;f1;242;2;261;;;;vpos;;v;;a;;r;;d1,243;;b0,0;;m0;;e0;;i0;;o;;k;;lentry;;p;;x;;n">
 </treenode>
-<treenode node="couponemails_coupon_category;PHP:Function Name;2914115095;f1;390;2;411;;;;vpos;;v;;a;;r;;d1,391;;b0,0;;m0;;e0;;i0;;o;;k;;lnew_coupon_id;;pcat_slug;;p;;x;;x;;n">
+<treenode node="couponemails_coupon_category;PHP:Function Name;2914115095;f1;400;2;421;;;;vpos;;v;;a;;r;;d1,401;;b0,0;;m0;;e0;;i0;;o;;k;;lnew_coupon_id;;pcat_slug;;p;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_coupon_category_create;PHP:Function Name;2914115095;f1;429;2;439;;;;vpos;;v;;a;;r;;d1,430;;b0,0;;m0;;e0;;i0;;o;;k;;lcategory;;pcat_slug;;p;;x;;x;;n">
+<treenode node="couponemails_coupon_category_create;PHP:Function Name;2914115095;f1;439;2;449;;;;vpos;;v;;a;;r;;d1,440;;b0,0;;m0;;e0;;i0;;o;;k;;lcategory;;pcat_slug;;p;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_create;PHP:Function Name;2914115095;f1;31;2;134;;;;vpos;;v;;a;;r;;d1,32;;b0,0;;m0;;e0;;i0;;o;;k;;luser;;pistest;;pargs;;phtml_body;;p;;x;;x;;x;;x;;n">
+<treenode node="couponemails_create;PHP:Function Name;2914115095;f1;31;2;144;;;;vpos;;v;;a;;r;;d1,32;;b0,0;;m0;;e0;;i0;;o;;k;;luser;;pistest;;pargs;;phtml_body;;p;;x;;x;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_delete_expired;PHP:Function Name;2914115095;f1;572;2;606;;;;vpos;;v;;a;;r;;d1,573;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="couponemails_delete_expired;PHP:Function Name;2914115095;f1;582;2;618;;;;vpos;;v;;a;;r;;d1,583;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="couponemails_get_cat_slug_id;PHP:Function Name;2914115095;f1;541;2;549;;;;vpos;;v;;a;;r;;d1,542;;b0,0;;m0;;e0;;i0;;o;;k;;lcat_slug;;p;;x;;n">
+<treenode node="couponemails_get_cat_slug_id;PHP:Function Name;2914115095;f1;551;2;559;;;;vpos;;v;;a;;r;;d1,552;;b0,0;;m0;;e0;;i0;;o;;k;;lcat_slug;;p;;x;;n">
 </treenode>
-<treenode node="couponemails_get_coupons_cat_name;PHP:Function Name;2914115095;f1;460;2;468;;;;vpos;;v;;a;;r;;d1,461;;b0,0;;m0;;e0;;i0;;o;;k;;lname;;p;;x;;n">
+<treenode node="couponemails_get_coupons_cat_name;PHP:Function Name;2914115095;f1;470;2;478;;;;vpos;;v;;a;;r;;d1,471;;b0,0;;m0;;e0;;i0;;o;;k;;lname;;p;;x;;n">
 </treenode>
-<treenode node="couponemails_get_coupons_cat_names;PHP:Function Name;2914115095;f1;441;2;452;;;;vpos;;v;;a;;r;;d1,442;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="couponemails_get_coupons_cat_names;PHP:Function Name;2914115095;f1;451;2;462;;;;vpos;;v;;a;;r;;d1,452;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="couponemails_get_coupons_cat_slugs;PHP:Function Name;2914115095;f1;454;2;458;;;;vpos;;v;;a;;r;;d1,455;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="couponemails_get_coupons_cat_slugs;PHP:Function Name;2914115095;f1;464;2;468;;;;vpos;;v;;a;;r;;d1,465;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="couponemails_get_full_stats;PHP:Function Name;2914115095;f1;496;2;539;;;;vpos;;v;;a;;r;;d1,497;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="couponemails_get_full_stats;PHP:Function Name;2914115095;f1;506;2;549;;;;vpos;;v;;a;;r;;d1,507;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="couponemails_get_stats;PHP:Function Name;2914115095;f1;470;2;494;;;;vpos;;v;;a;;r;;d1,471;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="couponemails_get_stats;PHP:Function Name;2914115095;f1;480;2;504;;;;vpos;;v;;a;;r;;d1,481;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="couponemails_get_unique_coupon;PHP:Function Name;2914115095;f1;286;2;388;;;;vpos;;v;;a;;r;;d1,287;;b0,0;;m0;;e0;;i0;;o;;k;;luser;;pprefix;;pcat_slug;;p;;x;;x;;x;;n">
+<treenode node="couponemails_get_unique_coupon;PHP:Function Name;2914115095;f1;296;2;398;;;;vpos;;v;;a;;r;;d1,297;;b0,0;;m0;;e0;;i0;;o;;k;;luser;;pprefix;;pcat_slug;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_headers;PHP:Function Name;2914115095;f1;270;2;284;;;;vpos;;v;;a;;r;;d1,271;;b0,0;;m0;;e0;;i0;;o;;k;;lfrom_name;;pfrom_address;;pemail_cc;;pemail_bcc;;pistest;;p;;x;;x;;x;;x;;x;;n">
+<treenode node="couponemails_headers;PHP:Function Name;2914115095;f1;280;2;294;;;;vpos;;v;;a;;r;;d1,281;;b0,0;;m0;;e0;;i0;;o;;k;;lfrom_name;;pfrom_address;;pemail_cc;;pemail_bcc;;pistest;;p;;x;;x;;x;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_replace_placeholders;PHP:Function Name;2914115095;f1;136;2;206;;;;vpos;;v;;a;;r;;d1,137;;b0,0;;m0;;e0;;i0;;o;;k;;lcontent;;puser;;poptions;;pargs;;p;;x;;x;;x;;x;;n">
+<treenode node="couponemails_replace_placeholders;PHP:Function Name;2914115095;f1;146;2;216;;;;vpos;;v;;a;;r;;d1,147;;b0,0;;m0;;e0;;i0;;o;;k;;lcontent;;puser;;poptions;;pargs;;p;;x;;x;;x;;x;;n">
 </treenode>
-<treenode node="couponemails_send_wc_email_html;PHP:Function Name;2914115095;f1;551;2;570;;;;vpos;;v;;a;;r;;d1,552;;b0,0;;m0;;e0;;i0;;o;;k;;lsubject;;precipient;;pbody;;pheading;;p;;x;;x;;x;;x;;n">
+<treenode node="couponemails_send_wc_email_html;PHP:Function Name;2914115095;f1;561;2;580;;;;vpos;;v;;a;;r;;d1,562;;b0,0;;m0;;e0;;i0;;o;;k;;lsubject;;precipient;;pbody;;pheading;;p;;x;;x;;x;;x;;n">
 </treenode>
-<treenode node="csvstring_to_json;PHP:Function Name;2914115095;f1;634;2;708;;;;vpos;;v;;a;;r;;d1,635;;b0,0;;m0;;e0;;i0;;o;;k;;lstring;;pseparatorChar;;penclosureChar;;pnewlineChar;;p;;x;;x;;x;;x;;n">
+<treenode node="csvstring_to_json;PHP:Function Name;2914115095;f1;646;2;720;;;;vpos;;v;;a;;r;;d1,647;;b0,0;;m0;;e0;;i0;;o;;k;;lstring;;pseparatorChar;;penclosureChar;;pnewlineChar;;p;;x;;x;;x;;x;;n">
 </treenode>
-<treenode node="get_last_order_date;PHP:Function Name;2914115095;f1;208;2;230;;;;vpos;;v;;a;;r;;d1,209;;b0,0;;m0;;e0;;i0;;o;;k;;luser_email;;p;;x;;n">
+<treenode node="get_last_order_date;PHP:Function Name;2914115095;f1;218;2;240;;;;vpos;;v;;a;;r;;d1,219;;b0,0;;m0;;e0;;i0;;o;;k;;luser_email;;p;;x;;n">
 </treenode>
-<treenode node="get_tab_top_color;PHP:Function Name;2914115095;f8;736;2;825;;;;vpos;;v;;a;;r;;d1,737;;b0,5;;m0;;e0;;i0;;o;;k;;ltype;;p;;x;;n">
+<treenode node="get_tab_top_color;PHP:Function Name;2914115095;f8;748;2;837;;;;vpos;;v;;a;;r;;d1,749;;b0,5;;m0;;e0;;i0;;o;;k;;ltype;;p;;x;;n">
 </treenode>
-<treenode node="is_coupon_in_category;PHP:Function Name;2914115095;f8;413;2;428;;;;vpos;;v;;a;;r;;d1,414;;b0,5;;m0;;e0;;i0;;o;;k;;lcoupon_code;;pcat_slug;;p;;x;;x;;n">
+<treenode node="is_coupon_in_category;PHP:Function Name;2914115095;f8;423;2;438;;;;vpos;;v;;a;;r;;d1,424;;b0,5;;m0;;e0;;i0;;o;;k;;lcoupon_code;;pcat_slug;;p;;x;;x;;n">
 </treenode>
-<treenode node="namedayemail_get_next_names;PHP:Function Name;2914115095;f1;608;2;632;;;;vpos;;v;;a;;r;;d1,609;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="namedayemail_get_next_names;PHP:Function Name;2914115095;f1;620;2;644;;;;vpos;;v;;a;;r;;d1,621;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="reviews_filtered;PHP:Function Name;2914115095;f1;710;2;734;;;;vpos;;v;;a;;r;;d1,711;;b0,0;;m0;;e0;;i0;;o;;k;;luser_id;;pcomment_main_prod_ID;;pcomment_ID;;p;;x;;x;;x;;n">
+<treenode node="reviews_filtered;PHP:Function Name;2914115095;f1;722;2;746;;;;vpos;;v;;a;;r;;d1,723;;b0,0;;m0;;e0;;i0;;o;;k;;luser_id;;pcomment_main_prod_ID;;pcomment_ID;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="test_add_log;PHP:Function Name;2914115095;f8;253;2;268;;;;vpos;;v;;a;;r;;d1,254;;b0,5;;m0;;e0;;i0;;o;;k;;lentry;;p;;x;;n">
+<treenode node="test_add_log;PHP:Function Name;2914115095;f8;263;2;278;;;;vpos;;v;;a;;r;;d1,264;;b0,5;;m0;;e0;;i0;;o;;k;;lentry;;p;;x;;n">
 </treenode>
 <treenode node="$coupon_code;PHP:Var Name;2914115095;f8;16;20;16;;;;vpos;;v;;a;;r;;d-1,-1;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -364,46 +356,46 @@
 <treenode node="remove_accents;PHP:Function Name;1639069801;f11;6;2;16;;;;vpos;;v;;a;;r;;d1,7;;b2,0;;m0;;e0;;i0;;o;;k;;lstr;;p;;x;;n">
 </treenode>
 </treenode>
-<treenode node="Onetimes;PHP:Class Name;3522998931;f0;3;1;29;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
-<treenode node="send_to_users_filtered;PHP:Function Name;3522998931;f8;6;2;28;;;;vpos;;v;;a;;r;;d1,7;;b1,0;;m0;;e0;;i0;;o;;k;;las_objects;;p;;x;;n">
+<treenode node="Onetimes;PHP:Class Name;3522998931;f0;3;1;28;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="send_to_users_filtered;PHP:Function Name;3522998931;f8;6;2;27;;;;vpos;;v;;a;;r;;d1,7;;b1,0;;m0;;e0;;i0;;o;;k;;loption_name;;pas_objects;;p;;x;;x;;n">
 </treenode>
 </treenode>
-<treenode node="PrepareSQL;PHP:Class Name;3096207147;f0;4;1;581;;;;vpos;;v;;a;;r;;d0,5;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
-<treenode node="__construct;PHP:Function Name;3096207147;f8;20;2;26;;;;vpos;;v;;a;;r;;d1,21;;b1,0;;m0;;e0;;i0;;o;;k;;ltype;;pdays_since_sign;;p;;x;;x;;n">
+<treenode node="PrepareSQL;PHP:Class Name;3096207147;f0;4;1;582;;;;vpos;;v;;a;;r;;d0,5;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="__construct;PHP:Function Name;3096207147;f8;20;2;27;;;;vpos;;v;;a;;r;;d1,21;;b1,0;;m0;;e0;;i0;;o;;k;;ltype;;pdays_since_sign;;p;;x;;x;;n">
 </treenode>
 <treenode node="add_where;PHP:Function Name;3096207147;f11;10;2;13;;;;vpos;;v;;a;;r;;d1,11;;b2,0;;m0;;e0;;i0;;o;;k;;ltxt;;p;;x;;n">
 </treenode>
-<treenode node="get_capabilities_sql;PHP:Function Name;3096207147;f1;535;2;562;;;;vpos;;v;;a;;r;;d1,536;;b0,0;;m0;;e0;;i0;;o;;k;;lroles;;pexclude;;p;;x;;x;;n">
+<treenode node="get_capabilities_sql;PHP:Function Name;3096207147;f1;536;2;563;;;;vpos;;v;;a;;r;;d1,537;;b0,0;;m0;;e0;;i0;;o;;k;;lroles;;pexclude;;p;;x;;x;;n">
 </treenode>
-<treenode node="get_comment_sql;PHP:Function Name;3096207147;f1;321;2;357;;;;vpos;;v;;a;;r;;d1,322;;b0,0;;m0;;e0;;i0;;o;;k;;lcomment_id;;pmin_rating;;pin_roles;;pnot_in_roles;;pin_cats;;pprod_id;;p;;x;;x;;x;;x;;x;;x;;n">
+<treenode node="get_comment_sql;PHP:Function Name;3096207147;f1;322;2;358;;;;vpos;;v;;a;;r;;d1,323;;b0,0;;m0;;e0;;i0;;o;;k;;lcomment_id;;pmin_rating;;pin_roles;;pnot_in_roles;;pin_cats;;pprod_id;;p;;x;;x;;x;;x;;x;;x;;n">
 </treenode>
-<treenode node="get_coupon_codes_for_email;PHP:Function Name;3096207147;f8;71;2;87;;;;vpos;;v;;a;;r;;d1,72;;b1,0;;m0;;e0;;i0;;o;;k;;lemail;;pcoupon_slug;;p;;x;;x;;n">
+<treenode node="get_coupon_codes_for_email;PHP:Function Name;3096207147;f8;72;2;88;;;;vpos;;v;;a;;r;;d1,73;;b1,0;;m0;;e0;;i0;;o;;k;;lemail;;pcoupon_slug;;p;;x;;x;;n">
 </treenode>
-<treenode node="get_join_capabilities_sql;PHP:Function Name;3096207147;f1;523;2;533;;;;vpos;;v;;a;;r;;d1,524;;b0,0;;m0;;e0;;i0;;o;;k;;lroles;;pexclude_roles;;pid_str;;p;;x;;x;;x;;n">
+<treenode node="get_join_capabilities_sql;PHP:Function Name;3096207147;f1;524;2;534;;;;vpos;;v;;a;;r;;d1,525;;b0,0;;m0;;e0;;i0;;o;;k;;lroles;;pexclude_roles;;pid_str;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="get_join_categories;PHP:Function Name;3096207147;f1;206;2;263;;;;vpos;;v;;a;;r;;d1,207;;b0,0;;m0;;e0;;i0;;o;;k;;lcategories;;pexclude;;p;;x;;x;;n">
+<treenode node="get_join_categories;PHP:Function Name;3096207147;f1;207;2;264;;;;vpos;;v;;a;;r;;d1,208;;b0,0;;m0;;e0;;i0;;o;;k;;lcategories;;pexclude;;p;;x;;x;;n">
 </treenode>
-<treenode node="get_join_last_activity_sql;PHP:Function Name;3096207147;f1;512;2;521;;;;vpos;;v;;a;;r;;d1,513;;b0,0;;m0;;e0;;i0;;o;;k;;ldays_after_active;;p;;x;;n">
+<treenode node="get_join_last_activity_sql;PHP:Function Name;3096207147;f1;513;2;522;;;;vpos;;v;;a;;r;;d1,514;;b0,0;;m0;;e0;;i0;;o;;k;;ldays_after_active;;p;;x;;n">
 </treenode>
-<treenode node="get_join_orders_sql;PHP:Function Name;3096207147;f1;358;2;432;;;;vpos;;v;;a;;r;;d1,359;;b0,0;;m0;;e0;;i0;;o;;k;;lminimum_orders;;pdays_since_last_order;;ptotal_spent;;p;;x;;x;;x;;n">
+<treenode node="get_join_orders_sql;PHP:Function Name;3096207147;f1;359;2;433;;;;vpos;;v;;a;;r;;d1,360;;b0,0;;m0;;e0;;i0;;o;;k;;lminimum_orders;;pdays_since_last_order;;ptotal_spent;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="get_join_products;PHP:Function Name;3096207147;f1;265;2;319;;;;vpos;;v;;a;;r;;d1,266;;b0,0;;m0;;e0;;i0;;o;;k;;lbought_products;;pexclude;;p;;x;;x;;n">
+<treenode node="get_join_products;PHP:Function Name;3096207147;f1;266;2;320;;;;vpos;;v;;a;;r;;d1,267;;b0,0;;m0;;e0;;i0;;o;;k;;lbought_products;;pexclude;;p;;x;;x;;n">
 </treenode>
-<treenode node="get_orders_sql;PHP:Function Name;3096207147;f1;481;2;510;;;;vpos;;v;;a;;r;;d1,482;;b0,0;;m0;;e0;;i0;;o;;k;;lminimum_orders;;pdays_after_order;;ptotal_spent;;palready_rated;;pprevious_order;;p;;x;;x;;x;;x;;x;;n">
+<treenode node="get_orders_sql;PHP:Function Name;3096207147;f1;482;2;511;;;;vpos;;v;;a;;r;;d1,483;;b0,0;;m0;;e0;;i0;;o;;k;;lminimum_orders;;pdays_after_order;;ptotal_spent;;palready_rated;;pprevious_order;;p;;x;;x;;x;;x;;x;;n">
 </treenode>
-<treenode node="get_select_previous_order;PHP:Function Name;3096207147;f1;434;2;452;;;;vpos;;v;;a;;r;;d1,435;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_select_previous_order;PHP:Function Name;3096207147;f1;435;2;453;;;;vpos;;v;;a;;r;;d1,436;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_spent_string;PHP:Function Name;3096207147;f1;564;2;580;;;;vpos;;v;;a;;r;;d1,565;;b0,0;;m0;;e0;;i0;;o;;k;;lminimum_spent;;pmaximum_spent;;p;;x;;x;;n">
+<treenode node="get_spent_string;PHP:Function Name;3096207147;f1;565;2;581;;;;vpos;;v;;a;;r;;d1,566;;b0,0;;m0;;e0;;i0;;o;;k;;lminimum_spent;;pmaximum_spent;;p;;x;;x;;n">
 </treenode>
-<treenode node="get_users_filtered;PHP:Function Name;3096207147;f8;132;2;204;;;;vpos;;v;;a;;r;;d1,133;;b1,0;;m0;;e0;;i0;;o;;k;;las_objects;;p;;x;;n">
+<treenode node="get_users_filtered;PHP:Function Name;3096207147;f8;133;2;205;;;;vpos;;v;;a;;r;;d1,134;;b1,0;;m0;;e0;;i0;;o;;k;;las_objects;;p;;x;;n">
 </treenode>
-<treenode node="get_users_from_emails;PHP:Function Name;3096207147;f8;27;2;69;;;;vpos;;v;;a;;r;;d1,28;;b1,0;;m0;;e0;;i0;;o;;k;;lemails;;pas_objects;;p;;x;;x;;n">
+<treenode node="get_users_from_emails;PHP:Function Name;3096207147;f8;28;2;70;;;;vpos;;v;;a;;r;;d1,29;;b1,0;;m0;;e0;;i0;;o;;k;;lemails;;pas_objects;;p;;x;;x;;n">
 </treenode>
-<treenode node="get_users_with_expired_coupons;PHP:Function Name;3096207147;f8;89;2;130;;;;vpos;;v;;a;;r;;d1,90;;b1,0;;m0;;e0;;i0;;o;;k;;las_objects;;p;;x;;n">
+<treenode node="get_users_with_expired_coupons;PHP:Function Name;3096207147;f8;90;2;131;;;;vpos;;v;;a;;r;;d1,91;;b1,0;;m0;;e0;;i0;;o;;k;;las_objects;;p;;x;;n">
 </treenode>
 <treenode node="get_where;PHP:Function Name;3096207147;f11;15;2;18;;;;vpos;;v;;a;;r;;d1,16;;b2,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_where_previous_order;PHP:Function Name;3096207147;f1;454;2;479;;;;vpos;;v;;a;;r;;d1,455;;b0,0;;m0;;e0;;i0;;o;;k;;lprevious_order;;p;;x;;n">
+<treenode node="get_where_previous_order;PHP:Function Name;3096207147;f1;455;2;480;;;;vpos;;v;;a;;r;;d1,456;;b0,0;;m0;;e0;;i0;;o;;k;;lprevious_order;;p;;x;;n">
 </treenode>
 <treenode node="$days_since_sign;PHP:Var Name;3096207147;f11;7;27;7;;;;vpos;;v;;a;;r;;d-1,-1;;b2,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -412,30 +404,30 @@
 <treenode node="$where;PHP:Var Name;3096207147;f11;6;17;6;;;;vpos;;v;;a;;r;;d-1,-1;;b2,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
-<treenode node="Referral;PHP:Class Name;3587982445;f0;3;1;254;;3587982445;f0;3;1;254;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="Referral;PHP:Class Name;3587982445;f0;3;1;255;;3587982445;f0;3;1;255;;;;vpos;;v;;a;;r;;d0,4;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 <treenode node="__construct;PHP:Function Name;3587982445;f8;17;2;41;;3587982445;f8;17;2;41;;;;vpos;;v;;a;;r;;d1,18;;b1,0;;m0;;e0;;i0;;o;;k;;luser_id;;p;;x;;n">
 </treenode>
 <treenode node="create_referral_coupon;PHP:Function Name;3587982445;f8;43;2;64;;;;vpos;;v;;a;;r;;d53,43;;b1,0;;m0;;e0;;i0;;o;;k;;luser;;p;;x;;n">
 </treenode>
-<treenode node="create_referral_couponemail;PHP:Function Name;3587982445;f8;83;2;107;;;;vpos;;v;;a;;r;;d1,84;;b1,0;;m0;;e0;;i0;;o;;k;;lemail;;phtml_body;;p;;x;;x;;n">
+<treenode node="create_referral_couponemail;PHP:Function Name;3587982445;f8;84;2;108;;;;vpos;;v;;a;;r;;d1,85;;b1,0;;m0;;e0;;i0;;o;;k;;lemail;;phtml_body;;p;;x;;x;;n">
 </treenode>
-<treenode node="get_referral_coupon;PHP:Function Name;3587982445;f8;193;2;196;;;;vpos;;v;;a;;r;;d38,193;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_referral_coupon;PHP:Function Name;3587982445;f8;194;2;197;;;;vpos;;v;;a;;r;;d38,194;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_referral_coupon_id;PHP:Function Name;3587982445;f8;198;2;226;;;;vpos;;v;;a;;r;;d1,199;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_referral_coupon_id;PHP:Function Name;3587982445;f8;199;2;227;;;;vpos;;v;;a;;r;;d1,200;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_referred_coupons;PHP:Function Name;3587982445;f8;109;2;113;;;;vpos;;v;;a;;r;;d1,110;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_referred_coupons;PHP:Function Name;3587982445;f8;110;2;114;;;;vpos;;v;;a;;r;;d1,111;;b1,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_reffered_users;PHP:Function Name;3587982445;f1;247;2;253;;;;vpos;;v;;a;;r;;d30,247;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="get_reffered_users;PHP:Function Name;3587982445;f1;248;2;254;;;;vpos;;v;;a;;r;;d30,248;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="get_term_id_by_slug;PHP:Function Name;3587982445;f1;228;2;245;;;;vpos;;v;;a;;r;;d1,229;;b0,0;;m0;;e0;;i0;;o;;k;;lslug;;pref;;p;;x;;x;;n">
+<treenode node="get_term_id_by_slug;PHP:Function Name;3587982445;f1;229;2;246;;;;vpos;;v;;a;;r;;d1,230;;b0,0;;m0;;e0;;i0;;o;;k;;lslug;;pref;;p;;x;;x;;n">
 </treenode>
-<treenode node="increase_referral_coupon_amount;PHP:Function Name;3587982445;f8;187;2;191;;;;vpos;;v;;a;;r;;d1,188;;b1,0;;m0;;e0;;i0;;o;;k;;lamount;;p;;x;;n">
+<treenode node="increase_referral_coupon_amount;PHP:Function Name;3587982445;f8;188;2;192;;;;vpos;;v;;a;;r;;d1,189;;b1,0;;m0;;e0;;i0;;o;;k;;lamount;;p;;x;;n">
 </treenode>
-<treenode node="is_email_registered;PHP:Function Name;3587982445;f8;66;2;81;;;;vpos;;v;;a;;r;;d1,67;;b1,0;;m0;;e0;;i0;;o;;k;;lemail;;p;;x;;n">
+<treenode node="is_email_registered;PHP:Function Name;3587982445;f8;66;2;82;;;;vpos;;v;;a;;r;;d1,67;;b1,0;;m0;;e0;;i0;;o;;k;;lemail;;p;;x;;n">
 </treenode>
-<treenode node="send_referral_order_confirmation;PHP:Function Name;3587982445;f8;115;2;150;;;;vpos;;v;;a;;r;;d1,116;;b1,0;;m0;;e0;;i0;;o;;k;;lorder_total;;preferred_user;;p;;x;;x;;n">
+<treenode node="send_referral_order_confirmation;PHP:Function Name;3587982445;f8;116;2;151;;;;vpos;;v;;a;;r;;d1,117;;b1,0;;m0;;e0;;i0;;o;;k;;lorder_total;;preferred_user;;p;;x;;x;;n">
 </treenode>
-<treenode node="update_referral_coupon;PHP:Function Name;3587982445;f8;152;2;185;;;;vpos;;v;;a;;r;;d1,153;;b1,0;;m0;;e0;;i0;;o;;k;;lcoupon_code;;pname;;porder_total;;p;;x;;x;;x;;n">
+<treenode node="update_referral_coupon;PHP:Function Name;3587982445;f8;153;2;186;;;;vpos;;v;;a;;r;;d1,154;;b1,0;;m0;;e0;;i0;;o;;k;;lcoupon_code;;pname;;porder_total;;p;;x;;x;;x;;n">
 </treenode>
 <treenode node="$confirm_option_name;PHP:Var Name;3587982445;f11;14;31;14;;;;vpos;;v;;a;;r;;d-1,-1;;b2,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -528,23 +520,25 @@
 <treenode node="set_reward_discount_type;PHP:Function Name;3553207714;f8;210;2;214;;;;vpos;;v;;a;;r;;d1,211;;b0,0;;m0;;e0;;i0;;o;;k;;lreward_discount_type;;p;;x;;n">
 </treenode>
 </treenode>
-<treenode node="$_GET;PHP:Var Name;2824250338;f12;5;17;5;;520420923;f12;5;17;5;;939397643;f12;5;17;5;;1664627528;f12;4;17;4;;1281266515;f12;6;17;6;;2484810019;f12;5;17;5;;2308901532;f12;5;17;5;;1678060142;f12;5;17;5;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$_GET;PHP:Var Name;520420923;f12;5;17;5;;1281266515;f12;6;17;6;;939397643;f12;5;17;5;;2484810019;f12;5;17;5;;1942096958;f12;5;17;5;;2308901532;f12;5;17;5;;2824250338;f12;5;17;5;;1664627528;f12;4;17;4;;1678060142;f12;5;17;5;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$bd;PHP:Var Name;1678060142;f1;6;4;6;;;;vpos\COUPONEMAILS\Birthdays;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$csv;PHP:Var Name;520420923;f1;9;5;9;;1281266515;f1;10;5;10;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$filename;PHP:Var Name;520420923;f1;23;10;23;;1281266515;f1;21;10;21;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$filename;PHP:Var Name;520420923;f1;23;10;23;;1281266515;f1;21;10;21;;;;vposvoid;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$key;PHP:Var Name;1281266515;f22;16;26;16;;1291851985;f26;58;30;58;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$nd;PHP:Var Name;1664627528;f1;5;4;5;;2308901532;f1;6;4;6;;;;vpos\COUPONEMAILS\Namedays;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$nd;PHP:Var Name;2308901532;f1;6;4;6;;1664627528;f1;5;4;5;;;;vpos\COUPONEMAILS\AfterOrder;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$onetimes;PHP:Var Name;2484810019;f1;6;10;6;;;;vposOnetimes;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$onetime;PHP:Var Name;2484810019;f1;6;9;6;;;;vposOnetimes;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$option_name;PHP:Var Name;2824250338;f0;3;12;3;;520420923;f0;2;12;2;;939397643;f0;2;12;2;;2283923697;f0;2;12;2;;1664627528;f0;2;12;2;;1281266515;f0;2;12;2;;2484810019;f0;3;12;3;;2308901532;f0;3;12;3;;1678060142;f0;3;12;3;;1291851985;f0;3;12;3;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$onetimes;PHP:Var Name;1942096958;f1;6;10;6;;;;vposOnetimes;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$options;PHP:Var Name;2283923697;f1;29;9;29;;1291851985;f0;20;8;20;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$option_name;PHP:Var Name;520420923;f0;2;12;2;;1281266515;f0;2;12;2;;1291851985;f0;3;12;3;;939397643;f0;2;12;2;;2283923697;f0;2;12;2;;2484810019;f0;3;12;3;;1942096958;f0;3;12;3;;2308901532;f0;3;12;3;;2824250338;f0;3;12;3;;1664627528;f0;2;12;2;;1678060142;f0;3;12;3;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+</treenode>
+<treenode node="$options;PHP:Var Name;1291851985;f0;20;8;20;;2283923697;f1;29;9;29;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$post;PHP:Var Name;2308901532;f21;2;26;2;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -554,7 +548,7 @@
 </treenode>
 <treenode node="$reorders;PHP:Var Name;1281266515;f1;13;10;13;;;;vposReorders;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$result;PHP:Var Name;520420923;f1;13;8;13;;1281266515;f1;14;8;14;;2484810019;f1;7;8;7;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$result;PHP:Var Name;520420923;f1;13;8;13;;1281266515;f1;14;8;14;;2484810019;f1;7;8;7;;1942096958;f1;7;8;7;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$role_ids;PHP:Var Name;1291851985;f4;55;13;55;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -568,7 +562,7 @@
 </treenode>
 <treenode node="$woocommerce;PHP:Var Name;2308901532;f7;2;19;2;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="$wp_roles;PHP:Var Name;2484810019;f7;2;16;2;;1291851985;f7;2;16;2;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="$wp_roles;PHP:Var Name;1291851985;f7;2;16;2;;2484810019;f7;2;16;2;;1942096958;f7;2;16;2;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="$wpdb;PHP:Var Name;520420923;f8;6;13;6;;1281266515;f8;7;13;7;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -791,27 +785,31 @@
 <treenode node="$wpdb;PHP:Var Name;2101586432;f8;4;13;4;;809085926;f8;5;13;5;;723873917;f8;5;13;5;;1988682237;f8;5;13;5;;1664627528;f8;5;13;5;;1678060142;f8;4;13;4;;2484810019;f8;5;13;5;;1281266515;f8;5;13;5;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </treenode>
-<treenode node="activate_coupon_emails;PHP:Function Name;3849096211;f0;56;1;59;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    activate_coupon_emails()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The code that runs during plugin activation.&#10;This action is documented in includes/class-coupon-emails-activator.php;;d34,56;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="activate_coupon_emails;PHP:Function Name;3849096211;f0;54;1;59;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    activate_coupon_emails()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The code that runs during plugin activation.&#10;This action is documented in includes/class-coupon-emails-activator.php;;d34,54;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="afterorderemail_save_defaults;PHP:Function Name;3849096211;f0;278;1;314;;;;vpos;;v;;a;;r;;d0,279;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="afterorderemail_save_defaults;PHP:Function Name;3849096211;f0;288;1;324;;;;vpos;;v;;a;;r;;d0,289;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
 <treenode node="birthdayemail_event;PHP:Function Name;69822534;f0;15;1;19;;4076403798;f0;40;1;44;;;;vpos;;v;;a;;r;;d0,41;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="birthdayemail_run_cron;PHP:Function Name;4076403798;f0;46;1;48;;;;vpos;;v;;a;;r;;d34,46;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="birthdayemail_save_defaults;PHP:Function Name;3849096211;f0;202;1;239;;;;vpos;;v;;a;;r;;d0,203;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="birthdayemail_save_defaults;PHP:Function Name;3849096211;f0;212;1;249;;;;vpos;;v;;a;;r;;d0,213;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="couponemails_plugin_deactivation;PHP:Function Name;3849096211;f0;566;1;571;;;;vpos;;v;;a;;r;;d44,566;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="coupon_emails_activation;PHP:Function Name;3849096211;f0;634;1;655;;;;vpos;;v;;a;;r;;d0,635;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="couponemails_plugin_save_defaults;PHP:Function Name;3849096211;f0;177;1;188;;;;vpos;;v;;a;;r;;d45,177;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="couponemails_plugin_deactivation;PHP:Function Name;3849096211;f0;606;1;610;;;;vpos;;v;;a;;r;;d44,606;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+</treenode>
+<treenode node="couponemails_plugin_save_defaults;PHP:Function Name;3849096211;f0;179;1;194;;;;vpos;;v;;a;;r;;d45,179;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="couponemails_run_cron_setup;PHP:Function Name;4076403798;f0;61;1;80;;;;vpos;;v;;a;;r;;d0,62;;b0,0;;m0;;e0;;i0;;o;;k;;ltype;;p;;x;;n">
 </treenode>
-<treenode node="couponemails_save_defaults;PHP:Function Name;3849096211;f0;190;1;200;;;;vpos;;v;;a;;r;;d0,191;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="couponemails_save_defaults;PHP:Function Name;3849096211;f0;196;1;210;;;;vpos;;v;;a;;r;;d0,197;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="couponemails_settings_link;PHP:Function Name;3849096211;f0;573;3;578;;;;vpos;;v;;a;;r;;d52,573;;b0,0;;m0;;e0;;i0;;o;;k;;llinks;;p;;x;;n">
+<treenode node="couponemails_settings_link;PHP:Function Name;3849096211;f0;612;3;617;;;;vpos;;v;;a;;r;;d52,612;;b0,0;;m0;;e0;;i0;;o;;k;;llinks;;p;;x;;n">
 </treenode>
-<treenode node="deactivate_coupon_emails;PHP:Function Name;3849096211;f0;65;1;68;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    deactivate_coupon_emails()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The code that runs during plugin deactivation.&#10;This action is documented in includes/class-coupon-emails-deactivator.php;;d36,65;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="cron_send_coupon_mail;PHP:Function Name;3849096211;f0;694;1;701;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    cron_send_coupon_mail()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    This function runs during cron requests to send emails previously scheduled by our&#10;overrided wp_mail function. We remove the last argument because it is just a random&#10;value added to make sure the cron job schedules correctly.&#10;&lt;b&gt;hook&lt;/b&gt;: cron_send_mail  10;;d0,695;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+</treenode>
+<treenode node="deactivate_coupon_emails;PHP:Function Name;3849096211;f0;65;1;69;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    deactivate_coupon_emails()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The code that runs during plugin deactivation.&#10;This action is documented in includes/class-coupon-emails-deactivator.php;;d36,65;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="deactivate_my_day_email;PHP:Function Name;2371161731;f0;55;1;58;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    deactivate_my_day_email()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    The code that runs during plugin deactivation.&#10;This action is documented in includes/class-my-day-email-deactivator.php;;d35,55;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
@@ -819,7 +817,7 @@
 </treenode>
 <treenode node="expirationreminderemail_run_cron;PHP:Function Name;4076403798;f0;25;1;28;;;;vpos;;v;;a;;r;;d0,26;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="expirationreminderemail_save_defaults;PHP:Function Name;3849096211;f0;346;1;375;;;;vpos;;v;;a;;r;;d0,347;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="expirationreminderemail_save_defaults;PHP:Function Name;3849096211;f0;356;1;385;;;;vpos;;v;;a;;r;;d0,357;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
 <treenode node="mydayemail_run_cron_setup;PHP:Function Name;69822534;f0;36;1;59;;;;vpos;;v;;a;;r;;d0,37;;b0,0;;m0;;e0;;i0;;o;;k;;ltype;;p;;x;;n">
 </treenode>
@@ -831,59 +829,63 @@
 </treenode>
 <treenode node="namedayemail_run_cron;PHP:Function Name;4076403798;f0;36;1;38;;;;vpos;;v;;a;;r;;d33,36;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="namedayemail_save_defaults;PHP:Function Name;3849096211;f0;492;2;526;;;;vpos;;v;;a;;r;;d53,492;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="namedayemail_save_defaults;PHP:Function Name;3849096211;f0;532;2;566;;;;vpos;;v;;a;;r;;d53,532;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="onetimeemail_save_defaults;PHP:Function Name;3849096211;f0;452;1;490;;;;vpos;;v;;a;;r;;d0,453;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="onetimecouponemail_save_defaults;PHP:Function Name;3849096211;f0;492;1;530;;;;vpos;;v;;a;;r;;d0,493;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+</treenode>
+<treenode node="onetimeemail_save_defaults;PHP:Function Name;3849096211;f0;460;1;490;;;;vpos;;v;;a;;r;;d0,461;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
 <treenode node="rc_psd_admin_css;PHP:Function Name;1179152931;f1;88;1;131;;;;vpos;;v;;a;;r;;d29,88;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="referralconfirmationemail_save_defaults;PHP:Function Name;3849096211;f0;377;1;402;;;;vpos;;v;;a;;r;;d0,378;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="referralconfirmationemail_save_defaults;PHP:Function Name;3849096211;f0;387;1;412;;;;vpos;;v;;a;;r;;d0,388;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="referralemail_save_defaults;PHP:Function Name;3849096211;f0;404;1;448;;;;vpos;;v;;a;;r;;d0,405;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="referralemail_save_defaults;PHP:Function Name;3849096211;f0;414;1;458;;;;vpos;;v;;a;;r;;d0,415;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="register_my_coupons_menu_item;PHP:Function Name;3849096211;f0;155;1;175;;;;vpos;;v;;a;;r;;d0,156;;b0,0;;m0;;e0;;i0;;o;;k;;litems;;p;;x;;n">
+<treenode node="register_my_coupons_menu_item;PHP:Function Name;3849096211;f0;157;1;177;;;;vpos;;v;;a;;r;;d0,158;;b0,0;;m0;;e0;;i0;;o;;k;;litems;;p;;x;;n">
 </treenode>
-<treenode node="register_referral_menu_item;PHP:Function Name;3849096211;f0;137;1;153;;;;vpos;;v;;a;;r;;d0,138;;b0,0;;m0;;e0;;i0;;o;;k;;litems;;p;;x;;n">
+<treenode node="register_referral_menu_item;PHP:Function Name;3849096211;f0;139;1;155;;;;vpos;;v;;a;;r;;d0,140;;b0,0;;m0;;e0;;i0;;o;;k;;litems;;p;;x;;n">
 </treenode>
-<treenode node="remove_account_coupons_menu_item;PHP:Function Name;3849096211;f0;131;1;135;;;;vpos;;v;;a;;r;;d0,132;;b0,0;;m0;;e0;;i0;;o;;k;;lmenu_links;;p;;x;;n">
+<treenode node="remove_account_coupons_menu_item;PHP:Function Name;3849096211;f0;133;1;137;;;;vpos;;v;;a;;r;;d0,134;;b0,0;;m0;;e0;;i0;;o;;k;;lmenu_links;;p;;x;;n">
 </treenode>
-<treenode node="remove_referral_menu_item;PHP:Function Name;3849096211;f0;125;1;129;;;;vpos;;v;;a;;r;;d0,126;;b0,0;;m0;;e0;;i0;;o;;k;;lmenu_links;;p;;x;;n">
+<treenode node="remove_referral_menu_item;PHP:Function Name;3849096211;f0;127;1;131;;;;vpos;;v;;a;;r;;d0,128;;b0,0;;m0;;e0;;i0;;o;;k;;lmenu_links;;p;;x;;n">
 </treenode>
 <treenode node="reorderemail_event;PHP:Function Name;4076403798;f0;50;1;54;;;;vpos;;v;;a;;r;;d0,51;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="reorderemail_run_cron;PHP:Function Name;4076403798;f0;56;1;59;;;;vpos;;v;;a;;r;;d0,57;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="reorderemail_save_defaults;PHP:Function Name;3849096211;f0;241;1;276;;;;vpos;;v;;a;;r;;d0,242;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="reorderemail_save_defaults;PHP:Function Name;3849096211;f0;251;1;286;;;;vpos;;v;;a;;r;;d0,252;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="reviewedemail_save_defaults;PHP:Function Name;3849096211;f0;528;1;563;;;;vpos;;v;;a;;r;;d0,529;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="reviewedemail_save_defaults;PHP:Function Name;3849096211;f0;568;1;603;;;;vpos;;v;;a;;r;;d0,569;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
 <treenode node="reviewreminderemail_event;PHP:Function Name;4076403798;f0;8;1;12;;;;vpos;;v;;a;;r;;d0,9;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="reviewreminderemail_run_cron;PHP:Function Name;4076403798;f0;14;1;17;;;;vpos;;v;;a;;r;;d0,15;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="reviewreminderemail_save_defaults;PHP:Function Name;3849096211;f0;316;1;344;;;;vpos;;v;;a;;r;;d0,317;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
+<treenode node="reviewreminderemail_save_defaults;PHP:Function Name;3849096211;f0;326;1;354;;;;vpos;;v;;a;;r;;d0,327;;b0,0;;m0;;e0;;i0;;o;;k;;ladd_new;;p;;x;;n">
 </treenode>
-<treenode node="run_coupon_emails;PHP:Function Name;3849096211;f0;588;1;593;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    run_coupon_emails()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Begins execution of the plugin.&#10;Since everything within the plugin is registered via hooks,&#10;then kicking off the plugin from this point in the file does&#10;not affect the page life cycle.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d29,588;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="run_coupon_emails;PHP:Function Name;3849096211;f0;627;1;632;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    run_coupon_emails()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Begins execution of the plugin.&#10;Since everything within the plugin is registered via hooks,&#10;then kicking off the plugin from this point in the file does&#10;not affect the page life cycle.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d29,627;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="run_my_day_email;PHP:Function Name;2371161731;f0;304;1;309;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    run_my_day_email()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Begins execution of the plugin.&#10;Since everything within the plugin is registered via hooks,&#10;then kicking off the plugin from this point in the file does&#10;not affect the page life cycle.&#10;&lt;b&gt;since&lt;/b&gt;: 1.0.0;;d28,304;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="time_utc;PHP:Function Name;69822534;f0;61;1;70;;4076403798;f0;82;1;91;;;;vpos;;v;;a;;r;;d0,83;;b0,0;;m0;;e0;;i0;;o;;k;;ldateTime;;p;;x;;n">
 </treenode>
+<treenode node="wp_mail;PHP:Function Name;3849096211;f1;665;2;684;;;;vpos;;v;;a;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    wp_mail()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    Email Async.&#10;We override the wp_mail function for all non-cron requests with a function that simply&#10;captures the arguments and schedules a cron event to send the email.;;d1,666;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+</treenode>
 </phptree>
 <jstree>
 <treenode node="addLoaderClass;JS:Function Name;1045876254;f0;24;2;28;;;;vpos;;v;;aObject_;;c;;r&#10;&lt;b&gt;Definition&lt;/b&gt;&#10;    function addLoaderClass()&#10;&#10;&lt;b&gt;Description&lt;/b&gt;&#10;    All of the code for your admin-facing JavaScript source&#10;should reside in this file.&#10;Note: It has been assumed you will write jQuery code here, so the&#10;$ function reference has been prepared for usage within the scope&#10;of this function.&#10;This enables you to define handlers, for when the DOM is ready:&#10;$(function() {&#10;});s&#10;When the window is loaded:&#10;$( window ).load(function() {&#10;});s;;d1,25;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="checkButtonStatus;JS:Function Name;2824250338;f0;157;3;161;;939397643;f0;217;3;221;;1664627528;f0;205;3;209;;2484810019;f0;244;3;249;;2308901532;f0;199;3;203;;1678060142;f0;169;3;173;;;;vpos;;v;;aObject_;;c;;r;;d2,170;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="checkButtonStatus;JS:Function Name;939397643;f0;217;3;221;;2484810019;f0;255;3;260;;1942096958;f0;256;3;261;;2308901532;f0;199;3;203;;2824250338;f0;157;3;161;;1664627528;f0;205;3;209;;1678060142;f0;171;3;175;;;;vpos;;v;;aObject_;;c;;r;;d2,172;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="removeLoaderClass;JS:Function Name;1045876254;f0;30;2;34;;;;vpos;;v;;aObject_;;c;;r;;d1,31;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 <treenode node="sendCouponEmailAjaxRequest;JS:Function Name;1045876254;f0;36;2;61;;;;vpos;;v;;aObject_;;c;;r;;d1,37;;b0,0;;m0;;e0;;i0;;o;;k;;lelement;;poption;;paction;;p;;x;;x;;x;;n">
 </treenode>
-<treenode node="enabled_hidden;JS:JS Var Name;2824250338;f8;153;22;153;;939397643;f8;213;22;213;;1664627528;f8;201;22;201;;2484810019;f8;239;22;239;;2308901532;f8;195;22;195;;1678060142;f8;165;22;165;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="enabled_hidden;JS:JS Var Name;939397643;f8;213;22;213;;2484810019;f8;250;22;250;;1942096958;f8;251;22;251;;2308901532;f8;195;22;195;;2824250338;f8;153;22;153;;1664627528;f8;201;22;201;;1678060142;f8;167;22;167;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="runNowButton;JS:JS Var Name;2824250338;f8;154;20;154;;939397643;f8;214;20;214;;1664627528;f8;202;20;202;;2484810019;f8;240;20;240;;2308901532;f8;196;20;196;;1678060142;f8;166;20;166;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="runNowButton;JS:JS Var Name;939397643;f8;214;20;214;;2484810019;f8;251;20;251;;1942096958;f8;252;20;252;;2308901532;f8;196;20;196;;2824250338;f8;154;20;154;;1664627528;f8;202;20;202;;1678060142;f8;168;20;168;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
-<treenode node="sendButton;JS:JS Var Name;2484810019;f8;241;18;241;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
+<treenode node="sendButton;JS:JS Var Name;2484810019;f8;252;18;252;;1942096958;f8;253;18;253;;;;vpos;;v;;a;;r;;d-1,-1;;b0,0;;m0;;e0;;i0;;o;;k;;l;;n">
 </treenode>
 </jstree>
 <pythontree>

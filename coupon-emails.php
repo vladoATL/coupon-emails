@@ -13,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders, referral email and more with many customization options.
- * Version:           1.4.7
+ * Version:           1.4.9
  * Author:            Vlado Laco
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -22,7 +22,7 @@
  * Date of Start:	  16.8.2023
  */
 
-namespace COUPONEMAILS;
+//namespace COUPONEMAILS;
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.4.7.1' );
+define( 'COUPON_EMAILS_VERSION', '1.4.8.2' );
 define( 'MAX_TEST_EMAILS', '10' );
 if (!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') ) {
 	define( 'ENABLE_SQL_LOGS', '0' );
@@ -42,14 +42,11 @@ if (!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stag
 }
 define( 'PREFIX_BASE_PATH', plugin_dir_path( __FILE__ ) );
 
-
-
 add_action( 'before_woocommerce_init', function() {
 	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
 		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 	}
 } );
-
 
 /**
  * The code that runs during plugin activation.
@@ -59,7 +56,7 @@ function activate_coupon_emails() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coupon-emails-activator.php';
 	ob_end_clean();
 	coupon_emails_activation();
-	Coupon_Email_Activator::activate();	
+	\COUPONEMAILS\Coupon_Email_Activator::activate();	
 }
 
 /**
@@ -68,15 +65,16 @@ function activate_coupon_emails() {
  */
 function deactivate_coupon_emails() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coupon-emails-deactivator.php';
-	coupon_emails_activation();
-	Coupon_Email_Deactivator::deactivate();
+	//coupon_emails_deactivation();
+	\COUPONEMAILS\Coupon_Email_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, '\COUPONEMAILS\activate_coupon_emails' );
-register_deactivation_hook( __FILE__, '\COUPONEMAILS\deactivate_coupon_emails' );
-register_deactivation_hook( __FILE__, '\COUPONEMAILS\couponemails_plugin_deactivation' );
-register_activation_hook( __FILE__, '\COUPONEMAILS\couponemails_plugin_save_defaults' );
+register_activation_hook( __FILE__, 'activate_coupon_emails' );
+register_deactivation_hook( __FILE__, 'deactivate_coupon_emails' );
+register_deactivation_hook( __FILE__, 'couponemails_plugin_deactivation' );
+register_activation_hook( __FILE__, 'couponemails_plugin_save_defaults' );
 
+//require (ABSPATH . 'wp-includes/pluggable.php');
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -109,21 +107,22 @@ require_once plugin_dir_path( __FILE__ ) .  'public/includes/class-referral.php'
 \COUPONEMAILS\BirthdayField::register();
 
 
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), '\COUPONEMAILS\couponemails_settings_link' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'couponemails_settings_link' );
 
 $options = get_option('couponemails_options');
 $show_account_coupons = isset($options["show_account_coupons"]) ? $options["show_account_coupons"] : 0;
+
 if ($show_account_coupons) {
-	add_filter( 'woocommerce_account_menu_items',  '\COUPONEMAILS\register_my_coupons_menu_item', 10  );
-} else {
-	add_filter( 'woocommerce_account_menu_items', '\COUPONEMAILS\remove_account_coupons_menu_item' );
-}
+	add_filter( 'woocommerce_account_menu_items',  'register_my_coupons_menu_item', 6, 1  );
+	} else {
+	add_filter( 'woocommerce_account_menu_items', 'remove_account_coupons_menu_item' );
+	}
 
 $enable_referral = isset($options["enable_referral"]) ? $options["enable_referral"] : 0;
 if ($enable_referral) {
-	add_filter( 'woocommerce_account_menu_items',  '\COUPONEMAILS\register_referral_menu_item', 10  );
+	add_filter( 'woocommerce_account_menu_items',  'register_referral_menu_item', 10, 1  );
 } else {
-	add_filter( 'woocommerce_account_menu_items', '\COUPONEMAILS\remove_referral_menu_item' );
+	add_filter( 'woocommerce_account_menu_items', 'remove_referral_menu_item' );
 }
 
 
@@ -168,10 +167,33 @@ function register_my_coupons_menu_item( array $items )
 		$filtered_items[ $key ] = $item;
 		// insert my accounts menu item after account details.
 		if ( 'edit-account' === $key ) {
-			if (! is_plugin_active('advanced-coupons-for-woocommerce/advanced-coupons-for-woocommerce.php')) {
 				$filtered_items[ 'account-coupons' ] = __( 'My Coupons','coupon-emails' );
+		}
+	}
+
+	return $filtered_items;
+}
+
+function register_my_coupons_menu_item_old( array $items )
+{
+	if ( ! is_user_logged_in() ) {
+		return $items;
+	}
+
+	$filtered_items = array();
+	foreach ( $items as $key => $item ) {
+		$filtered_items[ $key ] = $item;
+		// insert my accounts menu item after account details.  
+		if ( 'edit-account' === $key ) {
+			if ( is_plugin_active('advanced-coupons-for-woocommerce/advanced-coupons-for-woocommerce.php')) {
+				$options = get_option('acfw_general_hide_my_coupons_tab');
+				if ($options === "yes") {
+					$filtered_items[ 'account-coupons' ] = __( 'My Coupons','coupon-emails' );
+				} else {
+					unset( $filtered_items[ 'account-coupons' ] );
+				}							
 			} else {
-				unset( $filtered_items[ 'account-coupons' ] );
+				$filtered_items[ 'account-coupons' ] = __( 'My Coupons','coupon-emails' );
 			}
 		}
 	}
@@ -187,6 +209,7 @@ function couponemails_plugin_save_defaults() {
 		reorderemail_save_defaults(true);
 		afterorderemail_save_defaults(true);
 		onetimeemail_save_defaults(true);
+		onetimecouponemail_save_defaults(true);
 		couponemails_save_defaults(true);
 		reviewreminderemail_save_defaults(true);
 		expirationreminderemail_save_defaults(true);
@@ -459,9 +482,39 @@ Greetings,<br>{referrer}</p><br>
 	}
 }
 
-
-
 function onetimeemail_save_defaults($add_new = false)
+{
+	$current_user = wp_get_current_user();
+
+	$option_array = array(
+	'subject'	=>	_x('{fname}, make a profit','Email Subject','coupon-emails') ,
+	'header'  =>	_x('Gain with us','Email Header','coupon-emails') ,
+	'wc_template' =>	1,
+	'roles' => array('customer'),
+	'test' =>	1,
+	'minimum_orders' => 1,
+	'from_name'	=>	get_bloginfo('name'),
+	'from_address'	=>	get_bloginfo('admin_email'),
+	'bcc_address' => $current_user->user_email,
+	'email_footer' => '{site_name_url}',
+	'email_body'	=> _x("<p style='font-size: 20px;font-weight:600;'>Thank you for shopping with us, {fname}! We have a special offer for you:</p>
+<p style='font-size: 18px;'>Return to our website</p>
+<p style='font-size: 24px; font-weight:800;'>{site_name_url}</p>
+<p style='font-size: 18px;'>and log in to your account. In the <i>My Referrals</i> section, you will find an option to send your friends an email that you can earn money from. Your friends get a discount on their first purchase and we'll credit you <strong>10% of the value of their purchase</strong> to your account.You can find more information by logging in to our website.</p>
+<p style='font-size: 18px; font-weight:600;'>ENJOY !</p>
+<p style='font-size: 18px;'>The Team of {site_name}</p>
+<p style='font-size: 18px; line-height: 95%;'>Login procedure on our website:<br>
+1. click on My Account<br>
+2. click on 'Lost password' and you will be able to choose your password to log in.</p>" ,'Email Body', 'coupon-emails'	) ,
+	);
+	if ($add_new == true) {
+		add_option( 'onetimeemail_options', $option_array );
+	} else {
+		update_option( 'onetimeemail_options', $option_array );
+	}
+}
+
+function onetimecouponemail_save_defaults($add_new = false)
 {
 	$current_user = wp_get_current_user();
 
@@ -495,9 +548,9 @@ function onetimeemail_save_defaults($add_new = false)
 	'coupon_cat' =>	_x('One-time email','Coupon category', 'coupon-emails'	) ,
 	);
 	if ($add_new == true) {
-		add_option( 'onetimeemail_options', $option_array );
+		add_option( 'onetimecouponemail_options', $option_array );
 	} else {
-		update_option( 'onetimeemail_options', $option_array );
+		update_option( 'onetimecouponemail_options', $option_array );
 	}
 }
 
@@ -579,7 +632,6 @@ function couponemails_plugin_deactivation() {
     wp_clear_scheduled_hook( 'namedayemail_cron' );
 	wp_clear_scheduled_hook( 'birthdayemail_cron' );
 	wp_clear_scheduled_hook( 'reorderemail_cron' );
-	wp_clear_scheduled_hook( 'onetimeemail_cron' );
 }
 
 function couponemails_settings_link( array $links ) {
@@ -599,7 +651,7 @@ function couponemails_settings_link( array $links ) {
  */
 function run_coupon_emails() {
 
-	$plugin = new Coupon_Emails();
+	$plugin = new \COUPONEMAILS\Coupon_Emails();
 	$plugin->run();
 
 }
@@ -627,5 +679,56 @@ function coupon_emails_activation()
 	wp_mail( $to, $subject, $message );
 }
 
+/**
+* Email Async.
+*
+* We override the wp_mail function for all non-cron requests with a function that simply
+* captures the arguments and schedules a cron event to send the email.
+*/
+/*if ( ! defined( 'DOING_CRON' ) || ( defined( 'DOING_CRON' ) && ! DOING_CRON ) ) {
+
+	function wp_mail()
+	{
+		// Get the args passed to the wp_mail function
+		$args = func_get_args();
+		// Add a random value to work around that fact that identical events scheduled within 10 minutes of each other
+		// will not work. See: http://codex.wordpress.org/Function_Reference/wp_schedule_single_event
+		$args[] = mt_rand();
+		$time_to_send = get_option( 'couponemails_time_to_send', time() ) + 10;
+		// Schedule the email to be sent
+		wp_schedule_single_event( $time_to_send , 'cron_send_mail', $args );
+		if (get_option('couponemails_time_to_send')) {
+			if ($time_to_send < time() ) {
+				$time_to_send = time();
+			}
+			update_option('couponemails_time_to_send', $time_to_send);
+		} else {
+			add_option('couponemails_time_to_send', $time_to_send);
+		}
+		usleep( 500000 );
+	}
+}*/
+
+/**
+* This function runs during cron requests to send emails previously scheduled by our
+* overrided wp_mail function. We remove the last argument because it is just a random
+* value added to make sure the cron job schedules correctly.
+*
+* @hook    cron_send_mail  10
+*/
+function cron_send_coupon_mail()
+{
+	$args = func_get_args();
+	// Remove the random number that was added to the arguments
+	array_pop( $args );
+	\COUPONEMAILS\EmailFunctions::test_add_log('-- cron_send_coupon_mail -- '  );
+	call_user_func_array( 'wp_mail', $args );
+}
+
+/**
+* Hook the mail sender. We accept more arguments than wp_mail currently takes just in case
+* they add more in the future.
+*/
+add_action( 'cron_send_mail', 'cron_send_coupon_mail', 10, 10 );
 
 run_coupon_emails();

@@ -26,13 +26,17 @@ class EmailFunctions
 		}
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
-		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimeemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral", "heureka"];
+		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimecouponemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral", "heureka"];
 	}
 
 	function couponemails_create($user, $istest = false, $args = array(), $html_body = "")
 	{				
 		$success = true;
 		$options = $this->options_array;
+		if (! $options) {
+			EmailFunctions::test_add_log('-- couponemails_create error -- ' . $this->type . PHP_EOL );
+			return;
+		}
 		$subject_user = $options['subject'];		
 		$html_body = empty($html_body) ? $options['email_body'] : $html_body;
 		$from_name = $options['from_name'];
@@ -101,10 +105,15 @@ class EmailFunctions
 				if (empty($coupon)) {
 					$coupon_str = "";
 				} else {
-					$coupon_str = ", " . _x("coupon", "Log file", "coupon-emails") . ": " . $coupon ;
+					if ( $coupon == "TESTCOUPON") {
+						$coupon_str = "";
+					} else {
+						$coupon_str = ", " . _x("coupon", "Log file", "coupon-emails") . ": " . $coupon ;
+					}
 				}
 					
 				if ($istest == true) {
+
 					$this->couponemails_add_log(sprintf( _x( "Test email sent to %s instead of to", "Log file", "coupon-emails" ), $email ) . " " . $user_email . $coupon_str);
 					$success = false;
 				} else {
@@ -131,6 +140,7 @@ class EmailFunctions
 			$this->emails_cnt +=1;
 			$success = false;
 		}
+
 		return $coupon; // $success;
 	}
 
@@ -191,7 +201,7 @@ class EmailFunctions
 		ucfirst(strtolower($first_name)),
 		$inflection->inflect(ucfirst(strtolower($first_name)))[5],
 		ucfirst(strtolower($last_name)),
-		isset($options['max_products'] ) ? $options['max_products'] : '{products_cnt}' ,
+		isset($options['max_products'] ) ? $options['max_products'] : '' ,
 		strtolower($user-> user_email),
 		$this->product_name,
 		$this->get_last_order_date($user-> user_email),
@@ -242,7 +252,7 @@ class EmailFunctions
 			$entry =$name . ": " . current_time( 'mysql' ) . " " .  $entry  ;
 			$options = get_option('couponemails_logs');
 
-			if (empty($options)) {
+			if (! $options ||  empty($options)) {
 				add_option( 'couponemails_logs', array('logs'	=>	$entry) );
 			} else {
 				$log = $options['logs'];
@@ -258,12 +268,12 @@ class EmailFunctions
 				$entry = json_encode( $entry );
 			}
 			$options = get_option('couponemails_logs');
-
-			if (empty($options)) {
+			$entry = current_time( 'mysql' ) . ": " .  $entry  ;
+			if (! $options ||  empty($options)) {
 				add_option( 'couponemails_logs', array('logs'	=>	$entry) );
 			} else {
 				$log = $options['logs'];
-				update_option( 'couponemails_logs',array('logs'	=>	$log . PHP_EOL .  $entry . PHP_EOL . PHP_EOL ) );
+				update_option( 'couponemails_logs',array('logs'	=>	$log . PHP_EOL .  $entry . PHP_EOL ) );
 			}
 		}
 	}
@@ -375,7 +385,7 @@ class EmailFunctions
 		if ($this->type != 'referralemail' || $prefix == "ref_") {				
 			update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
 		}
-		update_post_meta( $new_coupon_id, 'customer_id', $user->id );
+		update_post_meta( $new_coupon_id, 'customer_id', $user->user_id );
 		
 		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
 		update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
@@ -602,6 +612,8 @@ class EmailFunctions
 		$wpdb->get_results($sql_pm);
 		$wpdb->get_results($sql_p);
 		$wpdb->get_results($sql_tr);
+		
+		delete_option('couponemails_time_to_send');
 
 		$this->couponemails_add_log(sprintf( _n( 'One expired unused coupon was deleted.', '%s expired unused coupons were deleted.', $count,  'coupon-emails'), $count));
 	}
@@ -740,7 +752,7 @@ class EmailFunctions
 		$options = get_option($type_option);
 		
 		switch ($type) :
-			case 'onetimeemail':
+			case 'onetimecouponemail':
 			if (isset($options['test']) && $options['test']) {
 				return "top-orange";
 			} else {

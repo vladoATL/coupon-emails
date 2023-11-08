@@ -66,6 +66,12 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.4.9 =
+* Errors fix
+
+= 1.4.8 =
+* Add compatibility with PHP 8.0
+
 = 1.4.7 =
 * Add coupon categories to Edit coupon page
 
