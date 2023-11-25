@@ -26,7 +26,7 @@ class Coupon_Email_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-		add_filter( 'woocommerce_account_menu_items', 'remove_account_coupons_links' );
+		add_filter( 'woocommerce_account_menu_items', 'remove_account_coupons_links' );		
 	}
 	
 }

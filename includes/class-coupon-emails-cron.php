@@ -1,68 +1,71 @@
 <?php
 
-add_action( 'namedayemail_cron', 'namedayemail_event' );
-add_action( 'birthdayemail_cron', 'birthdayemail_event' );
-add_action( 'reorderemail_cron', 'reorderemail_event' );
-add_action( 'expirationreminderemail_cron', 'expirationreminderemail_event' );
-add_action( 'reviewreminderemail_cron', 'reviewreminderemail_event' );
+add_action( 'couponemails_nameday_cron', 'couponemails_nameday_event' );
+add_action( 'couponemails_birthday_cron', 'couponemails_birthday_event' );
+add_action( 'couponemails_reorder_cron', 'couponemails_reorder_event' );
+add_action( 'couponemails_expirationreminder_cron', 'couponemails_expirationreminder_event' );
+add_action( 'couponemails_reviewreminder_cron', 'couponemails_reviewreminder_event' );
 
-function reviewreminderemail_event()
+function couponemails_reviewreminder_event()
 {
-	$reminders =  new \COUPONEMAILS\AfterOrder('reviewreminderemail');
+	$reminders =  new \COUPONEMAILS\Coupon_Emails_AfterOrder('couponemails_reviewreminder');
 	$reminders->afterorderemail_event_setup();
 }
 
-function reviewreminderemail_run_cron()
+function couponemails_reviewreminder_run_cron()
 {
-	couponemails_run_cron_setup("reviewreminderemail");
+	couponemails_run_cron_setup("couponemails_reviewreminder");
 }
 
-function expirationreminderemail_event()
+function couponemails_expirationreminder_event()
 {
-	$reminders =  new \COUPONEMAILS\ExpirationReminder();
+	$reminders =  new \COUPONEMAILS\Coupon_Emails_ExpirationReminder();
 	$reminders->expirationreminderemail_event_setup();
 }
 
-function expirationreminderemail_run_cron()
+function couponemails_expirationreminder_run_cron()
 {
-	couponemails_run_cron_setup("expirationreminderemail");
+	couponemails_run_cron_setup("couponemails_expirationreminder");
 }
 
 
-function namedayemail_event(){
-	$celebrating =  new \COUPONEMAILS\Namedays();
+function couponemails_nameday_event()
+{
+	$celebrating =  new \COUPONEMAILS\Coupon_Emails_Namedays();
 	$celebrating->namedayemail_event_setup();	
 }
 
-function namedayemail_run_cron() {
-	couponemails_run_cron_setup("namedayemail");
+function couponemails_nameday_run_cron()
+{
+	couponemails_run_cron_setup("couponemails_nameday");
 }
 
-function birthdayemail_event()
+function couponemails_birthday_event()
 {
-	$celebrating =  new \COUPONEMAILS\Birthdays();
+	$celebrating =  new \COUPONEMAILS\Coupon_Emails_Birthdays();
 	$celebrating->birthdayemail_event_setup();
 }
 
-function birthdayemail_run_cron() {
-	couponemails_run_cron_setup("birthdayemail");
+function couponemails_birthday_run_cron()
+{
+	couponemails_run_cron_setup("couponemails_birthday");
 }
 
-function reorderemail_event()
+function couponemails_reorder_event()
 {
-	$coupons =  new \COUPONEMAILS\Reorders();
-	$coupons->reorderemail_event_setup();
+	$coupons =  new \COUPONEMAILS\Coupon_Emails_Reorders();
+	$coupons->couponemails_reorder_event_setup();
 }
 
-function reorderemail_run_cron()
+function couponemails_reorder_run_cron()
 {
-	couponemails_run_cron_setup("reorderemail");
+	couponemails_run_cron_setup("couponemails_birthday");
 }
 
 function couponemails_run_cron_setup($type)
 {
 	$options = get_option($type . '_options');
-	$logs = new \COUPONEMAILS\EmailFunctions($type);
+	$logs = new \COUPONEMAILS\Coupon_Emails_EmailFunctions($type);
 
 	if (isset($options['enabled'])) {
 		wp_clear_scheduled_hook($type . '_cron' );
@@ -74,9 +77,9 @@ function couponemails_run_cron_setup($type)
 
 		$res = wp_reschedule_event( $tm, 'daily', $type . '_cron' );
 		if ($res == 1 )
-			$logs->couponemails_add_log($type . _x("_cron scheduled", "Log file", "coupon-emails") . " " . date("T H:i", $tm));
+			$logs->couponemails_add_log($type . esc_html_x("_cron scheduled", "Log file", "coupon-emails") . " " . date("T H:i", $tm));
 			else
-				$logs->couponemails_add_log(_x("Cron scheduling error" , "Log file", "coupon-emails") );			
+				$logs->couponemails_add_log(esc_html_x("Cron scheduling error" , "Log file", "coupon-emails") );			
 	}	
 }
 

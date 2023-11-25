@@ -1,7 +1,7 @@
 <?php
 namespace COUPONEMAILS;
 
-class AfterOrder
+class Coupon_Emails_AfterOrder
 {
 	protected $type;
 	
@@ -12,7 +12,7 @@ class AfterOrder
 
 	public function get_users_afterorder($as_objects = false)
 	{
-		$sql = new PrepareSQL( $this->type , '=');
+		$sql = new Coupon_Emails_PrepareSQL( $this->type , '=');
 		return $sql->get_users_filtered($as_objects);
 	}
 
@@ -23,7 +23,7 @@ class AfterOrder
 
 		if ( (!empty($options['enabled']) && '1' == $options['enabled']) || $istest ) {
 
-			$funcs = new EmailFunctions($this->type);
+			$funcs = new Coupon_Emails_EmailFunctions($this->type);
 			$users = $this->get_users_afterorder(true);
 
 			foreach ($users as $user) {
@@ -31,7 +31,7 @@ class AfterOrder
 				if (!empty($user->user_firstname)) {					
 					$funcs->couponemails_create($user, $istest);
 					$i = $i + 1;
-					if ( $istest && $i >= MAX_TEST_EMAILS) {
+					if ( $istest && $i >= COUPON_EMAILS_MAX_TEST_EMAILS) {
 						break;
 					}
 				}

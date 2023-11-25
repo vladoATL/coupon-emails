@@ -17,13 +17,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 coupon_emails_activation();
 delete_option('couponemails_options');
 delete_option('couponemails_logs');
-delete_option('namedayemail_options');
-delete_option('onetimeemail_options');
-delete_option('reorderemail_options');
-delete_option('birthdayemail_options');
-delete_option('afterorderemail_options');
-delete_option('reviewedemail_options')
-delete_option('reviewreminderemail_options');
-delete_option('expirationreminderemail_options');
-delete_option('referralemail_options');
-delete_option('referralconfirmationemail_options');
+$fun = new \COUPONEMAILS\Coupon_Emails_EmailFunctions();
+$types = $fun->get_types();
+foreach ($types as $type) {
+	delete_option($type . '_options');	
+}

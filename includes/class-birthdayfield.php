@@ -5,7 +5,7 @@ namespace COUPONEMAILS;
 if( !defined( 'ABSPATH' ) ) exit();
 
 /** Add a user birthday field. */
-class BirthdayField
+class Coupon_Emails_BirthdayField
 {
 	static function register()
 	{
@@ -50,7 +50,7 @@ class BirthdayField
 	{
 		$fields['billing'][$this->getDefaultBirthdayMetaKey()] = array(
 			'type'        => 'date',
-			'label'       => _x("Date of birth - Year is not important but helps","Check out", "coupon-emails"),
+			'label'       => esc_html_x("Date of birth - Year is not important but helps","Check out", "coupon-emails"),
 			'required'    => false
 		);
 		return $fields;
@@ -58,9 +58,9 @@ class BirthdayField
 
 	function myaccountRegisterForm()
 	{
-		$field = $this->getDefaultBirthdayMetaKey();
-		$label = _x("Date of birth","Registration", "coupon-emails");
-		$legend = _x("Year is not important but helps","DOB note", "coupon-emails");
+		$field = esc_html($this->getDefaultBirthdayMetaKey());
+		$label = esc_html(esc_html_x("Date of birth","Registration", "coupon-emails"));
+		$legend = esc_html(esc_html_x("Year is not important but helps","DOB note", "coupon-emails"));
 
 		echo "<p class='woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide'>";
 		echo "<label for='{$field}'>$label</label>";
@@ -74,7 +74,7 @@ class BirthdayField
 		$birthday = $this->grabBirthdayFromPost();
 		if( false === $birthday ){
 			$field = $this->getDefaultBirthdayMetaKey();
-			$validation_error->add($field, __("Invalid date format for date of birth", "coupon-emails"), 'birthday');
+			$validation_error->add($field, esc_html__("Invalid date format for date of birth", "coupon-emails"), 'birthday');
 		}
 		return $validation_error;
 	}
@@ -88,9 +88,9 @@ class BirthdayField
 	function myaccountDetailForm()
 	{
 		$userId = \get_current_user_id();
-		$field = $this->getDefaultBirthdayMetaKey();
-		$label = _x("Date of birth","My account", "coupon-emails");
-		$legend = _x("Year is not important but helps","DOB note", "coupon-emails");
+		$field = esc_html($this->getDefaultBirthdayMetaKey());
+		$label = esc_html(esc_html_x("Date of birth","My account", "coupon-emails"));
+		$legend = esc_html(esc_html_x("Year is not important but helps","DOB note", "coupon-emails"));
 		$value = \esc_attr(\get_user_meta($userId, $field, true));
 
 		echo "<fieldset>";
@@ -108,7 +108,7 @@ class BirthdayField
 		if( $birthday !== false )
 			\update_user_meta($userId, $this->getDefaultBirthdayMetaKey(), $birthday);
 		else
-			\wc_add_notice(__("Invalid date format for date of birth", "coupon-emails"), 'error');
+			\wc_add_notice(esc_html__("Invalid date format for date of birth", "coupon-emails"), 'error');
 	}
 
 	function grabBirthdayFromPost()
@@ -119,12 +119,12 @@ class BirthdayField
 		{
 			$date = \date_create($birthday);
 			if (empty($date)) {
-				\wc_add_notice(__("Invalid date format for date of birth", "coupon-emails"), 'error');
+				\wc_add_notice(esc_html__("Invalid date format for date of birth", "coupon-emails"), 'error');
 				$birthday = false;
 			}
 /*			$today = \date_create();
 			if ($date > $today) {
-				\wc_add_notice(__("Enter your date of birth, not your next birthday", "coupon-emails"), 'error');
+				\wc_add_notice(esc_html__("Enter your date of birth, not your next birthday", "coupon-emails"), 'error');
 				$birthday = false;
 			}*/
 		}
@@ -133,9 +133,9 @@ class BirthdayField
 
 	function showProfileBirthday($user)
 	{
-		$field = $this->getDefaultBirthdayMetaKey();
-		$label = _x("Date of birth", "Profile", "coupon-emails");
-		$header = _x("Date of birth", "Profile", "coupon-emails");
+		$field = esc_html($this->getDefaultBirthdayMetaKey());
+		$label = esc_html(esc_html_x("Date of birth", "Profile", "coupon-emails"));
+		$header = esc_html(esc_html_x("Date of birth", "Profile", "coupon-emails"));
 		$value = \esc_attr(\get_user_meta($user->ID, $field, true));
 		echo <<<EOT
 <table class="form-table">

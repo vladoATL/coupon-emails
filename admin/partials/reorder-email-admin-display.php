@@ -1,17 +1,23 @@
 <?php
 namespace COUPONEMAILS;
-$option_name = "reorderemail";
-reorderemail_run_cron();
+$option_name = "couponemails_reorder";
+couponemails_reorder_run_cron();
+
+if ( isset( $_GET['runtest'] ) ) {
+	$rr = new \COUPONEMAILS\Coupon_Emails_AfterOrder('couponemails_reorder');
+	$rr -> afterorderemail_event_setup();
+	header("location:admin.php?page=couponemails&tab=reorder");
+}
 
 // Process export
 if ( isset( $_GET['reorderexport'] ) ) {
 	global $wpdb;
 	ob_end_clean();
-	$table_head = array('Email', 'First Name', 'Last Name', 'User ID', 'Orders count', 'Order total', 'Last order' );
+	$table_head = array('Email', 'First Name', 'Last Name', 'Last Activity', 'User ID', 'Orders count', 'Order total', 'Last order' );
 	$csv = implode( ';' , $table_head );
 	$csv .= "\n";
 	
-	$reorders = new Reorders();	
+	$reorders = new Coupon_Emails_Reorders();	
 	$result = $reorders->get_users_reorders();
 
 	foreach ( $result as $key => $value ) {
@@ -34,50 +40,52 @@ if ( isset( $_GET['reorderexport'] ) ) {
 ?>
 
 <div class="wrap woocommerce">
-<div id="reorderemail-setting"  class="coupon-emails-setting">
+	<div id="<?php echo $option_name; ?>-setting"  class="coupon-emails-setting">
 <div class="couponemails_loader_cover">
 	<div class="couponemails_loader"></div> </div>
-	<input type="button" value="<?php echo  __( 'Restore Defaults', 'coupon-emails' ); ?>" class="button button-primary btn-restore"
+	<input type="button" value="<?php echo  esc_html__( 'Restore Defaults', 'coupon-emails' ); ?>" class="button button-primary btn-restore"
 attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce' ) ); ?>"
-id="restore_reorder_values_btn" />
+id="restore_<?php echo $option_name; ?>_values_btn" />
 
 <div class="icon32" id="icon-options-general"><br></div>
-<h2><?php echo _x('Order Reorder Emails Settings','Setting', 'coupon-emails'); ?> </h2>
-
-<form method="post" id="form4" name="form4" action="options.php">
+<h2><?php echo esc_html_x('Order Reorder Emails Settings','Setting', 'coupon-emails'); ?> </h2>
+<h4><?php echo esc_html_x('In this section, coupon emails are automatically generated to users after certain days since their last order. The most common use is for users who have not created any orders for a very long time.','Setting', 'coupon-emails'); ?> </h4>
+<form method="post" id="form_<?php echo $option_name; ?>" name="form_<?php echo $option_name; ?>" action="options.php">
 	<?php
 	settings_fields( $option_name .'_plugin_options');
 	$options = get_option( $option_name .'_options');
 	?>
 	<table class="form-table">
 		<tr valign="top">
-			<th class="titledesc"><?php echo __( 'Enable auto sending emails', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Enable auto sending emails', 'coupon-emails' ); ?>:</th>
 			<td><input type="checkbox" name="<?php echo $option_name; ?>_options[enabled]" id="<?php echo $option_name; ?>_options[enabled]"  value="1" <?php echo checked( 1, $options['enabled'] ?? '', false ) ?? '' ; ?>>
-				<?php  echo wc_help_tip(__( 'Turn on and off the automatic functionality of email sending', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(esc_html__( 'Turn on and off the automatic functionality of email sending', 'coupon-emails' ), false); ?>
 			</td>
 		</tr>
 		<tr valign="top">
-			<th class="titledesc"><?php echo __( 'Run in test mode', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Run in test mode', 'coupon-emails' ); ?>:</th>
 			<td><input type="checkbox" name="<?php echo $option_name; ?>_options[test]" id="<?php echo $option_name; ?>_options[test]"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>
-				<?php  echo wc_help_tip(__( 'Turn on when testing. The user will not get emails. All emails will be sent to BCC/Test address.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(esc_html__( 'Turn on when testing. The user will not get emails. All emails will be sent to BCC/Test address.', 'coupon-emails' ), false); ?>
+				<button type="button" class="button button-primary" id="run_button" onClick="window.location.search += '&runtest=1'"><?php echo esc_html__( 'Run now', 'coupon-emails' ); ?></button>
+				<input type="checkbox" style="display: none;" name="test_enabled" id="test_enabled"  value="1" <?php echo checked( 1, $options['test'] ?? '', false ) ?? '' ; ?>>	<?php  echo wc_help_tip(sprintf(_n( 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupon will be created and email sent to administrator.', 'If you want to run a test, check the chekbox and save. After pushing this button maximum %s coupons will be created and test emails sent to administrator.', COUPON_EMAILS_MAX_TEST_EMAILS, 'coupon-emails' ), number_format_i18n(COUPON_EMAILS_MAX_TEST_EMAILS)), false); ?>				
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Days after last order', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Days after last order', 'coupon-emails' ); ?>:</th>
 			<td>
 				<input type="number" id="<?php echo $option_name; ?>_options[days_after_order]" name="<?php echo $option_name; ?>_options[days_after_order]"  style="width: 100px;" value="<?php echo $options['days_after_order'] ?? ''; ?>"</input>
-				<?php  echo wc_help_tip(__( 'Enter the number of days after last order when to send this email with coupon.', 'coupon-emails'), false); ?>
+				<?php  echo wc_help_tip(esc_html__( 'Enter the number of days after last order when to send this email with coupon.', 'coupon-emails'), false); ?>
 			</td>
 		</tr>	
 		<tr>
-			<th class="titledesc"><?php echo __( 'Send email every day at', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Send email every day at', 'coupon-emails' ); ?>:</th>
 			<td>
 				<input type="time" id="<?php echo $option_name; ?>_options[send_time]" name="<?php echo $option_name; ?>_options[send_time]"  style="width: 100px;" value="<?php echo $options['send_time'] ?? ''; ?>"</input>
-				<?php  echo wc_help_tip(__( 'This is time when cron sends the email messages.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(esc_html__( 'This is time when cron sends the email messages.', 'coupon-emails' ), false); ?>
 			</td>
 		</tr>		
 		<tr>
-			<th class="titledesc"><?php echo __( 'Users who bought one of these products', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Users who bought one of these products', 'coupon-emails' ); ?>:</th>
 			<td>
 				<select class="wc-product-search" multiple="multiple" style="width: 50%;" id="<?php echo $option_name; ?>_options[bought_products]" name="<?php echo $option_name; ?>_options[bought_products][]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce' ); ?>" data-action="woocommerce_json_search_products_and_variations" >
 					<?php
@@ -92,11 +100,11 @@ id="restore_reorder_values_btn" />
 		}
 		?>
 				</select>
-				<?php  echo wc_help_tip(__( 'The email will be sent to users who have previously purchased at least one of the selected products. Select the main product if you want it to include all variants.', 'coupon-emails' ), false); ?>
+				<?php  echo wc_help_tip(esc_html__( 'The email will be sent to users who have previously purchased at least one of the selected products. Select the main product if you want it to include all variants.', 'coupon-emails' ), false); ?>
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Users who never bought these products', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Users who never bought these products', 'coupon-emails' ); ?>:</th>
 			<td>
 				<select class="wc-product-search" multiple="multiple" style="width: 50%;" id="<?php echo $option_name; ?>_options[not_bought_products]" name="<?php echo $option_name; ?>_options[not_bought_products][]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce' ); ?>" data-action="woocommerce_json_search_products_and_variations" >
 					<?php
@@ -111,11 +119,11 @@ id="restore_reorder_values_btn" />
 		}
 		?>
 				</select>
-				<?php  echo wc_help_tip(__( 'The email will be sent to users who have never purchased any of the selected products.', 'coupon-emails' ), false) ; ?>
+				<?php  echo wc_help_tip(esc_html__( 'The email will be sent to users who have never purchased any of the selected products.', 'coupon-emails' ), false) ; ?>
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Users who bought products in these categories', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Users who bought products in these categories', 'coupon-emails' ); ?>:</th>
 			<td>
 				<select id="<?php echo $option_name; ?>_options[bought_cats]" name="<?php echo $option_name; ?>_options[bought_cats][]" style="width: 50%;"  class="wc-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'All categories', 'woocommerce' ); ?>">
 					<?php
@@ -128,11 +136,11 @@ id="restore_reorder_values_btn" />
 		}
 		?>
 				</select>
-				<?php  echo wc_help_tip(__(  'The email will be sent to users who have previously purchased products in the selected categories.', 'coupon-emails'), false) ; ?>
+				<?php  echo wc_help_tip(esc_html__(  'The email will be sent to users who have previously purchased products in the selected categories.', 'coupon-emails'), false) ; ?>
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Users who never bought products in these categories', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Users who never bought products in these categories', 'coupon-emails' ); ?>:</th>
 			<td>
 				<select id="<?php echo $option_name; ?>_options[not_bought_cats]" name="<?php echo $option_name; ?>_options[not_bought_cats][]" style="width: 50%;"  class="wc-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'No categories', 'woocommerce' ); ?>">
 					<?php
@@ -145,24 +153,24 @@ id="restore_reorder_values_btn" />
 		}
 		?>
 				</select>
-				<?php  echo wc_help_tip(__('The email will be sent to users who have never purchased products in the selected categories.', 'coupon-emails' ), false) ; ?>
+				<?php  echo wc_help_tip(esc_html__('The email will be sent to users who have never purchased products in the selected categories.', 'coupon-emails' ), false) ; ?>
 			</td>
 		</tr>
 		<tr>
-			<th class="titledesc"><?php echo __( 'Users who total spent', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'Users who total spent', 'coupon-emails' ); ?>:</th>
 			<td>
-				<?php echo __( 'Minimum', 'coupon-emails' ); ?>:
+				<?php echo esc_html__( 'Minimum', 'coupon-emails' ); ?>:
 				<input type="number" id="<?php echo $option_name; ?>_options[minimum_spent]" name="<?php echo $option_name; ?>_options[minimum_spent]"  style="width: 80px;" value="<?php echo $options['minimum_spent'] ?? ''; ?>"</input>&nbsp;
-				<?php echo __( 'Maximum', 'coupon-emails' ); ?>:
+				<?php echo esc_html__( 'Maximum', 'coupon-emails' ); ?>:
 				<input type="number" id="<?php echo $option_name; ?>_options[maximum_spent]" name="<?php echo $option_name; ?>_options[maximum_spent]"  style="width: 80px;" value="<?php echo $options['maximum_spent'] ?? ''; ?>"</input>
-				<?php  echo wc_help_tip(__( 'These fields allow you to filter users by the minimum and maximum amount of their total spending.', 'coupon-emails'), false); ?>
+				<?php  echo wc_help_tip(esc_html__( 'These fields allow you to filter users by the minimum and maximum amount of their total spending.', 'coupon-emails'), false); ?>
 			</td>
 		</tr>			
 		<tr>
-			<th class="titledesc"><?php echo __( 'List of users who receive the email today', 'coupon-emails' ); ?>:</th>
+			<th class="titledesc"><?php echo esc_html__( 'List of users who receive the email today', 'coupon-emails' ); ?>:</th>
 			<td>
-				<a class="button button-primary" href="admin.php?page=couponemails&tab=reorder&reorderexport=table&noheader=1"><?php echo __( 'Download csv', 'coupon-emails' ); ?></a>
-				<?php  echo wc_help_tip(__( "Download csv file with filtered users for today's email.", 'coupon-emails' ), false); ?>
+				<a class="button button-primary" href="admin.php?page=couponemails&tab=reorder&reorderexport=table&noheader=1"><?php echo esc_html__( 'Download csv', 'coupon-emails' ); ?></a>
+				<?php  echo wc_help_tip(esc_html__( "Download csv file with filtered users for today's email.", 'coupon-emails' ), false); ?>
 			</td>
 		</tr>		
 	</table>	
@@ -172,8 +180,8 @@ id="restore_reorder_values_btn" />
 			
 </form>
 <p>
-<input type="button" value="<?php echo  __( 'Create a test', 'coupon-emails' ); ?>" class="button button-primary" 
-attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce_test' ) ); ?>" id="test_reorder_btn" />
+<input type="button" value="<?php echo  esc_html__( 'Create a test', 'coupon-emails' ); ?>" class="button button-primary" 
+attr-nonce="<?php echo esc_attr( wp_create_nonce( '_' .  $option_name . '_nonce_test' ) ); ?>" id="test_<?php echo $option_name; ?>_btn" />
 </p>
 </div>
 </div>

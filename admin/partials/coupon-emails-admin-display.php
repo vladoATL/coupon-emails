@@ -4,22 +4,22 @@ if ( ! current_user_can( 'read' ) ) {
 	return;
 }
 wp_enqueue_script( 'jquery-tiptip' );
-$birthday_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('birthdayemail');
-$nameday_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('namedayemail');
-$afterorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('afterorderemail');
-$reviewed_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reviewedemail');
-$reorder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reorderemail');
-$onetime_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('onetimecouponemail');
-$reviewreminder_top = \COUPONEMAILS\EmailFunctions::get_tab_top_color('reminderemail');
-$referral_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('referralemail');
-$heureka_top  = \COUPONEMAILS\EmailFunctions::get_tab_top_color('heurekaemail');
+$birthday_top = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('couponemails_birthday');
+$nameday_top = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('couponemails_nameday');
+$afterorder_top = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('couponemails_afterorder');
+$reviewed_top = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('couponemails_reviewed');
+$reorder_top = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('couponemails_reorder');
+$onetime_top = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('couponemails_onetimecoupon');
+$reviewreminder_top = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('reminderemail');
+$referral_top  = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('couponemails_referralemail');
+$heureka_top  = \COUPONEMAILS\Coupon_Emails_EmailFunctions::get_tab_top_color('heurekaemail');
 $options = get_option('couponemails_options');
 $enable_referral = isset($options["enable_referral"]) ? $options["enable_referral"] : 0;
 
 //Get the active tab from the $_GET param
 $default_tab = null;
-$tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
-$section = isset($_GET['section']) ? $_GET['section'] : $default_tab;
+$tab = isset($_GET['tab']) ? sanitize_text_field( $_GET['tab']) : $default_tab;
+$section = isset($_GET['section']) ? sanitize_text_field($_GET['section']) : $default_tab;
 
 $heureka_enable = false;
 $heureka_enable = apply_filters( 'couponemails_heureka_enable', $heureka_enable );
@@ -31,43 +31,43 @@ $heureka_enable = apply_filters( 'couponemails_heureka_enable', $heureka_enable 
 <nav class="nav-tab-wrapper">
 	<a href="?page=couponemails" class="nav-tab <?php
 	if ($tab===null) : ?>nav-tab-active<?php
-	endif; ?> top-gray"><?php echo  __( 'Common', 'coupon-emails' ); ?></a>
+	endif; ?> top-gray"><?php echo  esc_html__( 'Common', 'coupon-emails' ); ?></a>
 	<a href="?page=couponemails&tab=birth-day" class="nav-tab
 		<?php
 	if ($tab==='birth-day') : ?>nav-tab-active<?php
-	endif; echo(' ' . $birthday_top); ?>"> <?php echo  __( 'Birthday', 'coupon-emails' ); ?></a>	
+	endif; echo(' ' . $birthday_top); ?>"> <?php echo  esc_html__( 'Birthday', 'coupon-emails' ); ?></a>	
 	<a href="?page=couponemails&tab=name-day" class="nav-tab 
 		<?php
 		if ($tab==='name-day') : ?>nav-tab-active<?php
-		endif; echo(' ' . $nameday_top); ?>"> <?php echo  __( 'Name Day', 'coupon-emails' ); ?></a>
+		endif; echo(' ' . $nameday_top); ?>"> <?php echo  esc_html__( 'Name Day', 'coupon-emails' ); ?></a>
 				
 	<a href="?page=couponemails&tab=reorder" class="nav-tab <?php
 			if ($tab==='reorder') : ?>nav-tab-active<?php
-			endif; echo(' ' . $reorder_top); ?>"><?php echo  __( 'Reorder', 'coupon-emails' ); ?></a>
+			endif; echo(' ' . $reorder_top); ?>"><?php echo  esc_html__( 'Reorder', 'coupon-emails' ); ?></a>
 
 	<a href="?page=couponemails&tab=after-order" class="nav-tab
 		<?php
 			if ($tab==='after-order') : ?>nav-tab-active<?php
-			endif; echo(' ' . $afterorder_top); ?>"> <?php echo  __( 'After Order', 'coupon-emails' ); ?></a>
+			endif; echo(' ' . $afterorder_top); ?>"> <?php echo  esc_html__( 'After Order', 'coupon-emails' ); ?></a>
 						
 	<a href="?page=couponemails&tab=reviewed" class="nav-tab <?php
 		if ($tab==='reviewed') : ?>nav-tab-active<?php
-		endif; echo(' ' . $reviewed_top); ?>"><?php echo  __( 'After Reviewed', 'coupon-emails' ); ?></a>
+		endif; echo(' ' . $reviewed_top); ?>"><?php echo  esc_html__( 'After Reviewed', 'coupon-emails' ); ?></a>
 				
 	<a href="?page=couponemails&tab=one-time" class="nav-tab
 		<?php
 		if ($tab==='one-time') : ?>nav-tab-active<?php
-		endif; echo(' ' . $onetime_top); ?>"> <?php echo  __( 'One Time', 'coupon-emails' ); ?></a>
+		endif; echo(' ' . $onetime_top); ?>"> <?php echo  esc_html__( 'One Time', 'coupon-emails' ); ?></a>
 
 	<a href="?page=couponemails&tab=reminder" class="nav-tab
 		<?php
 		if ($tab==='reminder') : ?>nav-tab-active<?php
-	endif; echo(' ' . $reviewreminder_top); ?>"> <?php echo  __( 'Reminders', 'coupon-emails' ); ?></a>
+	endif; echo(' ' . $reviewreminder_top); ?>"> <?php echo  esc_html__( 'Reminders', 'coupon-emails' ); ?></a>
 
 	<a href="?page=couponemails&tab=referral" class="nav-tab
 		<?php
 		if ($tab==='referral') : ?>nav-tab-active<?php
-		endif; echo(' ' . $referral_top); ?>"> <?php echo  __( 'Referrals', 'coupon-emails' ); ?></a>
+		endif; echo(' ' . $referral_top); ?>"> <?php echo  esc_html__( 'Referrals', 'coupon-emails' ); ?></a>
 	
 	<?php
 	// display Heureka tab from a different plugin
@@ -75,7 +75,7 @@ $heureka_enable = apply_filters( 'couponemails_heureka_enable', $heureka_enable 
 	<a href="?page=couponemails&tab=heureka" class="nav-tab
 	<?php
 	if ($tab==='heureka') : ?>nav-tab-active<?php
-	endif; echo(' ' . $heureka_top); ?>"> <?php echo  __( 'Heureka', 'coupon-emails' ); ?></a>
+	endif; echo(' ' . $heureka_top); ?>"> <?php echo  esc_html__( 'Heureka', 'coupon-emails' ); ?></a>
 	<?php } ?>
 		
 </nav>

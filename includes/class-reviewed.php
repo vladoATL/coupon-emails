@@ -1,7 +1,7 @@
 <?php
 namespace COUPONEMAILS;
 
-class Reviewed
+class Coupon_Emails_Reviewed
 {
 	public $comment_ID ;
 	public $user_id;
@@ -51,7 +51,7 @@ class Reviewed
 		global $wpdb;
 		if ($this->approved == 0) return false;
 		
-		$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $this->product);
+		$funcs = new \COUPONEMAILS\Coupon_Emails_EmailFunctions("couponemails_reviewed", $this->product);
 		$options = $funcs->options_array;
 
 		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
@@ -119,11 +119,11 @@ class Reviewed
 	public function filter_comment($user_id)
 	{
 		global $wpdb;
-		$funcs = new \COUPONEMAILS\EmailFunctions("reviewedemail", $this->product);
+		$funcs = new \COUPONEMAILS\Coupon_Emails_EmailFunctions("couponemails_reviewed", $this->product);
 		$options = $funcs->options_array;
 		$isOK = false;
 		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
-			$sql = new PrepareSQL('reviewedemail');
+			$sql = new Coupon_Emails_PrepareSQL('couponemails_reviewed');
 			$categories = isset( $options['bought_cats']) ? $options['bought_cats'] : "";
 			$cat_str = !empty($categories) ? implode(',', $categories) : "";
 			$products =  isset( $options['bought_products']) ? $options['bought_products'] : "";
@@ -145,7 +145,7 @@ class Reviewed
 	
 	public function get_users_filtered($as_objects = false)
 	{
-		$sql = new PrepareSQL('reviewedemail', '=');
+		$sql = new Coupon_Emails_PrepareSQL('couponemails_reviewed', '=');
 		return $sql->get_users_filtered();		
 	}	
 	

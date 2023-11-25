@@ -5,7 +5,7 @@ namespace COUPONEMAILS;
 if ( !defined( 'ABSPATH' ) )
 	exit();
 
-class EmailFunctions
+class Coupon_Emails_EmailFunctions
 {
 	protected $type;
 	protected $options_name;
@@ -26,7 +26,8 @@ class EmailFunctions
 		}
 		$this->emails_cnt = 0;
 		$this->product_name = $product_name;
-		$this->types_array = ["namedayemail","birthdayemail","reorderemail","onetimecouponemail","afterorderemail","reviewedemail","expirationreminderemail", "referralemail", "referral", "heureka"];
+		$this->types_array = ["couponemails_nameday","couponemails_birthday","couponemails_reorder","couponemails_onetimecoupon","couponemails_onetimeemail","couponemails_referralconfirmation",
+		"couponemails_afterorder","couponemails_reviewed","couponemails_expirationreminder", "couponemails_referralemail","couponemails_reviewreminder" , "referral", "heureka"];
 	}
 
 	function couponemails_create($user, $istest = false, $args = array(), $html_body = "")
@@ -34,7 +35,7 @@ class EmailFunctions
 		$success = true;
 		$options = $this->options_array;
 		if (! $options) {
-			EmailFunctions::test_add_log('-- couponemails_create error -- ' . $this->type . PHP_EOL );
+			Coupon_Emails_EmailFunctions::test_add_log('-- couponemails_create error -- ' . $this->type . PHP_EOL );
 			return;
 		}
 		$subject_user = $options['subject'];		
@@ -72,7 +73,7 @@ class EmailFunctions
 					$cat_id = $this->couponemails_coupon_category($user->coupon_ID, $this->type);
 				}
 				if (empty($coupon)) {
-					$this->couponemails_add_log(_x( 'No available coupons to create.', 'Log file', 'coupon-emails' ) );
+					$this->couponemails_add_log(esc_html_x( 'No available coupons to create.', 'Log file', 'coupon-emails' ) );
 					$success = false;
 					return $success;
 				}
@@ -94,7 +95,7 @@ class EmailFunctions
 		if ((!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') && $options['test'] != 1) || $istest == true) {
 			if (is_email($email)) {
 				if ($istest == true) {
-					$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(__( "This is a test email sent to %s instead of to ", 'coupon-emails' ), $email)
+					$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(esc_html__( "This is a test email sent to %s instead of to ", 'coupon-emails' ), $email)
 					. ': ' . $user_email . "</p>";
 				}
 				if (isset($options['wc_template']) && $options['wc_template'] == 1) {
@@ -108,33 +109,33 @@ class EmailFunctions
 					if ( $coupon == "TESTCOUPON") {
 						$coupon_str = "";
 					} else {
-						$coupon_str = ", " . _x("coupon", "Log file", "coupon-emails") . ": " . $coupon ;
+						$coupon_str = ", " . esc_html_x("coupon", "Log file", "coupon-emails") . ": " . $coupon ;
 					}
 				}
 					
 				if ($istest == true) {
 
-					$this->couponemails_add_log(sprintf( _x( "Test email sent to %s instead of to", "Log file", "coupon-emails" ), $email ) . " " . $user_email . $coupon_str);
+					$this->couponemails_add_log(sprintf( esc_html_x( "Test email sent to %s instead of to", "Log file", "coupon-emails" ), $email ) . " " . $user_email . $coupon_str);
 					$success = false;
 				} else {
-					$this->couponemails_add_log( _x("Email sent to", "Log file", "coupon-emails")  . ': ' . $email . $coupon_str  ) ;
+					$this->couponemails_add_log( esc_html_x("Email sent to", "Log file", "coupon-emails")  . ': ' . $email . $coupon_str  ) ;
 				}
 			} else {
-				$this->couponemails_add_log( _x("Cannot send email to incorrect or missing address" , "Log file", "coupon-emails") . ': ' . $email ) ;
+				$this->couponemails_add_log( esc_html_x("Cannot send email to incorrect or missing address" , "Log file", "coupon-emails") . ': ' . $email ) ;
 				$success = false;
 			}
 		} else {
-			$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(__( "This is a test email sent to %s instead of to ", 'coupon-emails' ), $admin_email)  . ': ' . $email . "</p>";
+			$html_body = $html_body . "<p style='font-size: 9px;'>" .  sprintf(esc_html__( "This is a test email sent to %s instead of to ", 'coupon-emails' ), $admin_email)  . ': ' . $email . "</p>";
 
-			if ($this->emails_cnt <= MAX_TEST_EMAILS ) {
+			if ($this->emails_cnt <= COUPON_EMAILS_MAX_TEST_EMAILS ) {
 				if ($options['wc_template'] == 1) {
 					$this->couponemails_send_wc_email_html($subject_user, $admin_email, $html_body, $header);
 				} else {
 					$sendmail_user = wp_mail( $admin_email, $subject_user, $html_body, $headers_user );
 				}
-				$this->couponemails_add_log(sprintf( _x( "Test email sent to %s instead of to", "Log file", "coupon-emails" ), $admin_email ) . " " . $email );
+				$this->couponemails_add_log(sprintf( esc_html_x( "Test email sent to %s instead of to", "Log file", "coupon-emails" ), $admin_email ) . " " . $email );
 			} else {
-				$this->couponemails_add_log(sprintf( _x( "An email was created but not sent to %s because the number of test emails exceeded", "Log file", "coupon-emails" ), $email ) . " " . MAX_TEST_EMAILS);
+				$this->couponemails_add_log(sprintf( esc_html_x( "An email was created but not sent to %s because the number of test emails exceeded", "Log file", "coupon-emails" ), $email ) . " " . COUPON_EMAILS_MAX_TEST_EMAILS);
 			}
 
 			$this->emails_cnt +=1;
@@ -164,7 +165,7 @@ class EmailFunctions
 			$days_before =0;
 		}
 		$current_user = wp_get_current_user();
-		$inflection = new Inflection();
+		$inflection = new Coupon_Emails_Inflection();
 		$first_name =  isset($user->user_firstname) &&  ! empty($user->user_firstname)  ?  $user->user_firstname : $user->user_email ;
 		$last_name = isset($user->user_lastname) &&  ! empty($user->user_lastname)  ? $user->user_lastname : "";
 		$replaced_text = str_replace(
@@ -220,7 +221,7 @@ class EmailFunctions
 	{
 		global $wpdb;
 		
-		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+		if (\COUPONEMAILS\Coupon_Emails_Helper_Functions::is_HPOS_in_use()) {
 			$sql = "SELECT max(DATE(wco.date_created_gmt)) AS last_order_date
 				FROM {$wpdb->prefix}wc_orders AS wco
 				JOIN {$wpdb->prefix}users AS u ON wco.customer_id = u.ID AND  u.user_email = '{$user_email}'
@@ -263,7 +264,7 @@ class EmailFunctions
 
 	static function test_add_log($entry)
 	{
-		if (ENABLE_SQL_LOGS == 1) {
+		if (COUPON_EMAILS_ENABLE_SQL_LOGS == 1) {
 			if ( is_array( $entry ) ) {
 				$entry = json_encode( $entry );
 			}
@@ -382,7 +383,7 @@ class EmailFunctions
 		//update_post_meta( $new_coupon_id, 'date_expires_local', $expiry_date );
 		$this->coupon_expiration = $expiry_date;
 		update_post_meta( $new_coupon_id, 'free_shipping', $free_shipping );
-		if ($this->type != 'referralemail' || $prefix == "ref_") {				
+		if ($this->type != 'couponemails_referralemail' || $prefix == "ref_") {				
 			update_post_meta( $new_coupon_id, 'customer_email', array($user->user_email) );
 		}
 		update_post_meta( $new_coupon_id, 'customer_id', $user->user_id );
@@ -390,7 +391,7 @@ class EmailFunctions
 		update_post_meta( $new_coupon_id, '_acfw_enable_date_range_schedules', 'yes' );
 		update_post_meta( $new_coupon_id, '_acfw_schedule_end', $expiry_date );
 		// update_post_meta( $new_coupon_id, '_acfw_allowed_customers', $user->ID );
-		if (! in_array($cat_slug, array("referralconfirmationemail"))) {
+		if (! in_array($cat_slug, array("couponemails_referralconfirmation"))) {
 			$cat_id = $this->couponemails_coupon_category($new_coupon_id, $cat_slug );
 		}
 		$this->new_coupon_id = $new_coupon_id;
@@ -630,7 +631,7 @@ class EmailFunctions
 		$m = intval(date("m", $dateValue));
 		$d = intval(date("d", $dateValue));
 
-		$nd = new Namedays();
+		$nd = new Coupon_Emails_Namedays();
 
 		$names = $nd->get_names_for_day($d, $m , false );
 		if (empty($names))
@@ -638,7 +639,7 @@ class EmailFunctions
 		$names = implode(',',array_unique(explode(',', $names)));
 
 		if ($prior_days == 0) {
-			return  sprintf(__(  'Today %s is Name Day celebrated by',  'coupon-emails'), $d . '.' . $m . '.') . " : " . $names;
+			return  sprintf(esc_html__(  'Today %s is Name Day celebrated by',  'coupon-emails'), $d . '.' . $m . '.') . " : " . $names;
 		} else {
 			return  $d . "." . $m . ". - " . sprintf( _n( 'Tomorrow is Name Day celebrated by', 'In %s days is Name Day celebrated by', $prior_days, 'coupon-emails' ), $prior_days )  . " " . $names;
 		}
@@ -683,7 +684,7 @@ class EmailFunctions
 
 						$columnIndex++;
 					} elseif ($char==$newlineChar) {
-						echo $char;
+						echo esc_html($char);
 						$array[$rowIndex][$columnIndex] = $fieldValue;
 						$fieldValue="";
 						$columnIndex=0;
@@ -726,7 +727,7 @@ class EmailFunctions
 		$options = $this->options_array;
 		$isOK = false;
 		if ( !empty($options['enabled']) && '1' == $options['enabled'] ) {
-			$sql = new PrepareSQL('reviewedemail');
+			$sql = new Coupon_Emails_PrepareSQL('couponemails_reviewed');
 			$categories = isset( $options['bought_cats']) ? $options['bought_cats'] : "";
 			$cat_str = !empty($categories) ? implode(',', $categories) : "";
 			$products =  isset( $options['bought_products']) ? $options['bought_products'] : "";
@@ -746,21 +747,25 @@ class EmailFunctions
 		return $isOK;
 	}
 
+	function get_types(){
+		return $this->types_array;
+	}
+	
 	static function get_tab_top_color($type)
 	{
 		$type_option = $type . '_options';
 		$options = get_option($type_option);
 		
 		switch ($type) :
-			case 'onetimecouponemail':
+		case 'couponemails_onetimecoupon':
 			if (isset($options['test']) && $options['test']) {
 				return "top-orange";
 			} else {
 				return "top-gray";
 			}			
 			break;
-		case 'referralemail':
-			$options_r = get_option("couponemails_options");
+		case 'couponemails_referralemail':
+			$options_r = get_option("couponemails_referralemail_options");
 			if (isset($options['enabled']) && $options['enabled']) {
 				if (isset($options_r['enable_referral']) && $options_r['enable_referral']) {
 					return "top-green";
@@ -796,7 +801,7 @@ class EmailFunctions
 
 			break;			
 		case 'reminderemail':
-			$options_array = array( 'reviewreminderemail','expirationreminderemail');
+		$options_array = array( 'couponemails_reviewreminder','expirationreminderemail');
 			$isenabled = 0;
 			$istest = 0;
 			foreach ($options_array as $option) {

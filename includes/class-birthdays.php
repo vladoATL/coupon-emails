@@ -1,7 +1,7 @@
 <?php
 namespace COUPONEMAILS;
 
-class Birthdays
+class Coupon_Emails_Birthdays
 {
 	public function get_celebrating_users($d, $m)
 	{
@@ -17,7 +17,7 @@ class Birthdays
 		JOIN {$wpdb->prefix}usermeta AS lmu ON u.ID = lmu.user_id AND lmu.meta_key = 'billing_last_name'
 		LEFT JOIN {$wpdb->prefix}usermeta AS dmu ON u.ID = dmu.user_id AND dmu.meta_key = 'dob-coupon-sent'
 		WHERE m.meta_value LIKE '%-{$date_str}'";		
-		EmailFunctions::test_add_log('-- get_celebrating_users - Birthdays -- ' . PHP_EOL  . $sql);			
+		Coupon_Emails_EmailFunctions::test_add_log('-- get_celebrating_users - Coupon_Emails_Birthdays -- ' . PHP_EOL  . $sql);			
 		$result = $wpdb->get_results($sql, OBJECT);
 
 		return $result;
@@ -57,7 +57,7 @@ class Birthdays
 			$dateValue = strtotime($str_nameday);
 			$m = intval(date("m", $dateValue));
 			$d = intval(date("d", $dateValue));
-			$funcs = new EmailFunctions('birthdayemail');
+			$funcs = new Coupon_Emails_EmailFunctions('birthdayemail');
 			$i = 0;
 			$users = $this->get_celebrating_users($d,$m);
 			foreach ($users as $user) {
@@ -72,16 +72,16 @@ class Birthdays
 				if ( $runit) {
 					$success = $funcs->couponemails_create($user, $istest);
 					$i = $i + 1;
-					if ( $istest && $i >= MAX_TEST_EMAILS) {
+					if ( $istest && $i >= COUPON_EMAILS_MAX_TEST_EMAILS) {
 						break;
 					}
 					if ( $success) {
 						$this->couponemails_set_sent($user);
 					} else {
-						$funcs->couponemails_add_log(_x("Birth day coupon flag has not been updated for", "Log file", "coupon-emails")  . " " . $user->user_email);
+						$funcs->couponemails_add_log(esc_html_x("Birth day coupon flag has not been updated for", "Log file", "coupon-emails")  . " " . $user->user_email);
 					}
 				} else {
-					$funcs->couponemails_add_log(_x("This user has already received birthday coupon this year", "Log file", "coupon-emails")  . " " . $user->user_email);
+					$funcs->couponemails_add_log(esc_html_x("This user has already received birthday coupon this year", "Log file", "coupon-emails")  . " " . $user->user_email);
 				}
 			}
 			if (! $istest) 

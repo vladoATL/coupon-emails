@@ -2,7 +2,7 @@
 
 namespace COUPONEMAILS;
 
-class PrepareSQL
+class Coupon_Emails_PrepareSQL
 {
 	protected $where;
 	protected $days_since_sign;
@@ -24,8 +24,8 @@ class PrepareSQL
 			WHERE 1=1 ';
 		$this->days_since_sign = $days_since_sign;
 		$this->type = $type;
-		EmailFunctions::test_add_log('-- __construct -- ' . $this->type . PHP_EOL );
 	}
+	
 	public function get_users_from_emails($emails, $as_objects = false)
 	{
 		global $wpdb;
@@ -35,7 +35,7 @@ class PrepareSQL
 		$trimmed_array = array_map('trim', $email_address);
 		$addresses = sprintf("'%s'", implode("','", $trimmed_array ) );
 		
-		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+		if (\COUPONEMAILS\Coupon_Emails_Helper_Functions::is_HPOS_in_use()) {
 			$sql2 = "
 			SELECT wco.customer_id AS user_id, COUNT(wco.ID) AS orders_count, ROUND(SUM(wco.total_amount),2) AS orders_total, DATE(MAX(wco.date_created_gmt)) AS last_order
 			FROM {$wpdb->prefix}wc_orders AS wco
@@ -60,7 +60,7 @@ class PrepareSQL
 			ON orders.user_id = u.ID
 			WHERE u.user_email IN ($addresses)
 			";
-			EmailFunctions::test_add_log('-- get_users_from_emails -- ' . $this->type . PHP_EOL  . $sql);
+			Coupon_Emails_EmailFunctions::test_add_log('-- get_users_from_emails -- ' . $this->type . PHP_EOL  . $sql);
 		if ($as_objects) {
 			$result = $wpdb->get_results($sql, OBJECT);
 		} else {
@@ -115,7 +115,7 @@ class PrepareSQL
 				AND (pmu.meta_value = 0 OR pmu.meta_value IS  NULL)
 				GROUP BY p.ID";
 				
-				EmailFunctions::test_add_log('-- get_users_with_expired_coupons -- ' . $this->type . PHP_EOL  . $sql);
+				Coupon_Emails_EmailFunctions::test_add_log('-- get_users_with_expired_coupons -- ' . $this->type . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
 		foreach ($result as  $value) {
 			$value->user_email = maybe_unserialize($value->user_email)[0];
@@ -138,13 +138,16 @@ class PrepareSQL
 		$options = get_option($this->type . '_options');
 		$emails =  isset( $options['email_address']) ? $options['email_address'] : "";
 		$days_after_order =  isset( $options['days_after_order']) && is_numeric($options['days_after_order']) ? $options['days_after_order'] : "";
+		
+/*		Coupon_Emails_EmailFunctions::test_add_log('-- $days_after_order = '  . $days_after_order);	*/	
 		$days_after_active =  isset( $options['days_after_active']) && is_numeric($options['days_after_active']) ? $options['days_after_active'] : "";
 		$already_rated = isset( $options['already_rated']) ? $options['already_rated'] : "";
 		if (! empty( $emails))
 			return $this->get_users_from_emails ($emails, $as_objects);
 		$minimum_orders = isset( $options['minimum_orders']) ? $options['minimum_orders'] : "";
 		$previous_order = isset( $options['previous_order']) ? $options['previous_order'] : "0";
-		if ($this->type != 'onetimeemail' && $this->type != 'onetimecouponemail') 	$minimum_orders = 1;
+		if ($this->type != 'couponemails_onetimecoupon' && $this->type != 'couponemails_onetimecoupon')
+			$minimum_orders = 1;
 				
 		$minimum_spent = isset( $options['minimum_spent']) ? $options['minimum_spent'] : "";
 		$maximum_spent = isset( $options['maximum_spent']) ? $options['maximum_spent'] : "";
@@ -193,7 +196,7 @@ class PrepareSQL
 
 		$sql .= $this->get_orders_sql($minimum_orders, $days_after_order, $total_spent, $already_rated, $where_previous_order_str) 	;
 		
-		EmailFunctions::test_add_log('-- get_users_filtered -- ' . $this->type . PHP_EOL  . $sql);
+		Coupon_Emails_EmailFunctions::test_add_log('-- get_users_filtered -- ' . $this->type . PHP_EOL  . $sql);
 		//return $sql;
 
 		if ($as_objects) {
@@ -226,7 +229,7 @@ class PrepareSQL
 				$field = "";
 			}
 			$cat_str = implode(',', $categories);
-			if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+			if (\COUPONEMAILS\Coupon_Emails_Helper_Functions::is_HPOS_in_use()) {
 				$sql.= "
 				SELECT o.customer_id AS user_id, p.ID AS prod_id, tr.term_taxonomy_id AS cat_id, t.name AS cat_name , COUNT(p.ID) AS orders_cnt
 				FROM {$wpdb->prefix}wc_orders o
@@ -285,7 +288,7 @@ class PrepareSQL
 			}
 			$prod_str = implode(',', $bought_products);
 			
-			if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+			if (\COUPONEMAILS\Coupon_Emails_Helper_Functions::is_HPOS_in_use()) {
 				$sql .= "
 				SELECT p.customer_id AS user_id $field
 				FROM {$wpdb->prefix}wc_orders AS p
@@ -327,7 +330,7 @@ class PrepareSQL
 				FROM {$wpdb->prefix}comments AS c
 				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS cm ON c.comment_ID = cm.comment_id AND cm.meta_key = 'rating'
 				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS ct ON c.comment_ID = ct.comment_id AND ct.meta_key = '_wp_trash_meta_status' 
-				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS cs ON c.comment_ID = cs.comment_id AND cs.meta_key = 'reviewedemail_sent' "
+				LEFT OUTER JOIN {$wpdb->prefix}commentmeta AS cs ON c.comment_ID = cs.comment_id AND cs.meta_key = 'couponemails_reviewed_email_sent' "
 				. $this->get_join_capabilities_sql($in_roles, $not_in_roles,"c.user_id");
 
 		if (! empty($in_cats)) {
@@ -353,7 +356,7 @@ class PrepareSQL
 			$sql .="				
 				AND c.comment_ID = $comment_id 
 				GROUP BY c.comment_ID ";
-				EmailFunctions::test_add_log('-- get_comment_sql -- ' . $sql . PHP_EOL  );				
+				Coupon_Emails_EmailFunctions::test_add_log('-- get_comment_sql -- ' . $sql . PHP_EOL  );				
 		return $sql;
 	
 	}
@@ -365,7 +368,7 @@ class PrepareSQL
 			$since_last_order_date = date('Y-m-d', strtotime('-' . $days_since_last_order . ' days'));
 		}		
 		if ($minimum_orders > 0) {
-			if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+			if (\COUPONEMAILS\Coupon_Emails_Helper_Functions::is_HPOS_in_use()) {
 				$minimum_orders_str = ", COUNT(p.ID) AS orders_count, ROUND(SUM(p.total_amount),2) AS orders_total, DATE(max(p.date_created_gmt)) AS last_order";			
 			} else {
 				$minimum_orders_str = ", COUNT(p.ID) AS orders_count, ROUND(SUM(upmt.meta_value),2) AS orders_total, DATE(max(p.post_date)) AS last_order";
@@ -382,11 +385,11 @@ class PrepareSQL
 		}
 		$sql = " JOIN (";
 		
-		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+		if (\COUPONEMAILS\Coupon_Emails_Helper_Functions::is_HPOS_in_use()) {
 			$sql .="SELECT p.customer_id AS user_id $minimum_orders_str
 			FROM {$wpdb->prefix}wc_orders AS p
 				WHERE p.status = 'wc-completed'";
-			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
+				if ($this->type == 'couponemails_onetimeemail' || $this->type == 'couponemails_onetimecoupon') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(p.date_created_gmt)  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -397,7 +400,7 @@ class PrepareSQL
 				HAVING 1=1";
 			if ($minimum_orders > 0)
 				$sql .= " AND COUNT(p.ID)  >= " . $minimum_orders;
-			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
+				if ($this->type == 'couponemails_onetimeemail' || $this->type == 'couponemails_onetimecoupon') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(max(p.date_created_gmt))  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -409,7 +412,7 @@ class PrepareSQL
 				JOIN $wpdb->postmeta AS upm ON upm.post_id = p.ID AND upm.meta_key = '_customer_user'
 				$min_orders_join
 				WHERE p.post_type = 'shop_order' AND p.post_status = 'wc-completed'";
-			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
+				if ($this->type == 'couponemails_onetimeemail' || $this->type == 'couponemails_onetimecoupon') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(p.post_date)  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -420,7 +423,7 @@ class PrepareSQL
 				HAVING 1=1";
 			if ($minimum_orders > 0)
 				$sql .= " AND COUNT(p.ID)  >= " . $minimum_orders;
-			if ($this->type == 'onetimeemail' || $this->type == 'onetimecouponemail') {
+				if ($this->type == 'couponemails_onetimeemail' || $this->type == 'couponemails_onetimecoupon') {
 				if (! empty($days_since_last_order))
 					$sql .= " AND DATE(max(p.post_date))  {$this->days_since_sign} '" . $since_last_order_date . "' ";
 				if (! empty($total_spent) )
@@ -436,7 +439,7 @@ class PrepareSQL
 	function get_select_previous_order()
 	{
 		global $wpdb;
-		if (\COUPONEMAILS\Helper_Functions::is_HPOS_in_use()) {
+		if (\COUPONEMAILS\Coupon_Emails_Helper_Functions::is_HPOS_in_use()) {
 			$sql = ", (SELECT date(pp.date_created_gmt) AS previous_order
 				FROM {$wpdb->prefix}wc_orders AS pp
 				WHERE pp.status = 'wc-completed' AND pp.customer_id = u.ID
@@ -493,20 +496,30 @@ class PrepareSQL
 		} else {
 			$sql .= $this->get_join_orders_sql($minimum_orders, $days_after_order, $total_spent);
 			$sql .= $this->get_where();
+			
+			if ($days_after_order != '' && $days_after_order > 0 && 
+				('couponemails_reorder' == $this->type || 'couponemails_afterorder' == $this->type || 'couponemails_reviewreminder' == $this->type)) 
+			{
+				$since_last_order_date = date('Y-m-d', strtotime('-' . $days_after_order . ' days'));
+				$sql .= " AND orders.last_order  = '$since_last_order_date'";
+			}
+			
 			if ($already_rated != '' && $already_rated > 0)
 			{
-				$rev = new \COUPONEMAILS\Reviewed('reviewreminderemail');
+				$rev = new \COUPONEMAILS\Coupon_Emails_Reviewed('couponemails_reviewreminder');
 				$users_rated =  $rev->get_reviewer_ids();
 				if ($already_rated == 1) {
 					$not = 'NOT';
 				}
 				$sql .= 'AND u.ID ' . $not . ' IN (' . $users_rated . ')';
 			}
+			
+			
 			$sql .="
 			GROUP BY u.ID
 			$previous_order
 			ORDER BY orders.orders_total DESC  ";
-		}
+		}		
 
 		return $sql;
 	}

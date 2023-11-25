@@ -80,8 +80,8 @@ class Coupon_Emails {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-		if ( defined( 'MAX_TEST_EMAILS' ) ) {
-			$this->max_test_emails = MAX_TEST_EMAILS;
+		if ( defined( 'COUPON_EMAILS_MAX_TEST_EMAILS' ) ) {
+			$this->max_test_emails = COUPON_EMAILS_MAX_TEST_EMAILS;
 		}
 	}
 
@@ -168,8 +168,8 @@ class Coupon_Emails {
 		$this->loader->add_action( 'wp_ajax_email_restore_settings', $plugin_admin, 'email_restore_settings' );		
 		$this->loader->add_action( 'wp_ajax_couponemails_clear_log', $plugin_admin, 'couponemails_clear_log' );
 		$this->loader->add_action( 'wp_ajax_email_make_test', $plugin_admin, 'email_make_test' );		
-		$this->loader->add_action( 'wp_ajax_onetimeemail_send', $plugin_admin, 'onetimeemail_send' );		
-		$this->loader->add_action( 'wp_ajax_onetimecouponemail_send', $plugin_admin, 'onetimecouponemail_send' );	
+		$this->loader->add_action( 'wp_ajax_couponemails_onetimeemail_send', $plugin_admin, 'couponemails_onetimeemail_send' );		
+		$this->loader->add_action( 'wp_ajax_couponemails_onetimecoupon_send', $plugin_admin, 'couponemails_onetimecoupon_send' );	
 		
 		if ( is_plugin_active( 'site-reviews/site-reviews.php' ) ) {
 			$this->loader->add_action('site-reviews/review/created',  $plugin_admin, 'site_reviews_comment_posted_callback' , 11, 2);

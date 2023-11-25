@@ -1,9 +1,10 @@
 === Coupon Emails ===
 Contributors: perties2
-Tags: coupon, Name Day, meniny, Birthday, Slovak, Czech, Polish, email, review, Heureka
+Tags: coupon, Name Day, marketing, Birthday, Slovak, Czech, Polish, email, review, Heureka
+Version: 1.4.10
 Requires at least: 5.8
-Tested up to: 6.3.1
-Stable tag: 5.8
+Tested up to: 6.4.1
+Stable tag: 1.4.10
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +67,10 @@ Keep the 'Run in test mode' checkbox checked when setting the filters and the em
 2. Example of coupon email setting
 
 == Upgrade Notice ==
+= 1.4.10 =
+* Enhancement and Errors fix
+* Sanitize outputs
+
 = 1.4.9 =
 * Errors fix
 

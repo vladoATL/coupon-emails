@@ -1,7 +1,7 @@
 <?php
 namespace COUPONEMAILS;
 
-class Namedays
+class Coupon_Emails_Namedays
 {
 
 	protected function remove_accents($str)
@@ -18,8 +18,8 @@ class Namedays
 
 	public function get_names_for_day( $d, $m, $with_alt = true)
 	{
-		$options = get_option('namedayemail_options');
-		$calendar =new \COUPONEMAILS\Calendars();
+		$options = get_option('couponemails_nameday_options');
+		$calendar =new \COUPONEMAILS\Coupon_Emails_Calendars();
 		
 		if (! isset($options['language']) )
 			return;
@@ -72,7 +72,7 @@ class Namedays
 				WHERE umfn.meta_value IN ($names)
 					AND umfn.meta_value <> '' 
 					AND umfn.meta_value IS NOT NULL";
-					EmailFunctions::test_add_log('-- get_celebrating_users - Namedays --' . PHP_EOL  . $sql);
+					Coupon_Emails_EmailFunctions::test_add_log('-- get_celebrating_users - Coupon_Emails_Namedays --' . PHP_EOL  . $sql);
 		$result = $wpdb->get_results($sql, OBJECT);
 
 		return $result;
@@ -80,21 +80,21 @@ class Namedays
 	
 	function namedayemail_event_setup()
 	{
-		$options = get_option('namedayemail_options');
+		$options = get_option('couponemails_nameday_options');
 		$istest = isset($options['test']) ? $options['test'] : 0;
 		if ( (!empty($options['enabled']) && '1' == $options['enabled']) || $istest ) {
 			$str_nameday =  date('Y-m-d',strtotime('+' . $options['days_before'] . ' day'));			
 			$dateValue = strtotime($str_nameday);
 			$m = intval(date("m", $dateValue));
 			$d = intval(date("d", $dateValue));
-			$funcs = new EmailFunctions('namedayemail');
+			$funcs = new Coupon_Emails_EmailFunctions('couponemails_nameday');
 			$i = 0;
 			$users = $this->get_celebrating_users($d,$m);
 			foreach ($users as $user) {
 				if (!empty($user->user_firstname)) {
 					$funcs->couponemails_create($user, $istest);
 					$i = $i + 1;
-					if ( $istest && $i >= MAX_TEST_EMAILS) {
+					if ( $istest && $i >= COUPON_EMAILS_MAX_TEST_EMAILS) {
 						break;}
 				}
 			}

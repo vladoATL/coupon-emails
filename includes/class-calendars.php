@@ -1,7 +1,7 @@
 <?php
 namespace COUPONEMAILS;
 
-class Calendars
+class Coupon_Emails_Calendars
 {	
 			public function get_slovak_namedays_array()
 			{

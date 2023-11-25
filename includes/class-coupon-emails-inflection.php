@@ -7,7 +7,7 @@ namespace COUPONEMAILS;
  *
  * @author Mikuláš Dítě 2014
  */
-class Inflection
+class Coupon_Emails_Inflection
 {
     /**
      * @var array
