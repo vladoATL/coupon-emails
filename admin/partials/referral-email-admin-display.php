@@ -6,7 +6,7 @@ $option_name = "couponemails_referralemail";
 if ( isset( $_GET['referralexport'] ) ) {
 	global $wpdb;
 	ob_end_clean();
-	$table_head = array('Expiratiopn', 'Coupon', 'Email', 'Reward');
+	$table_head = array('Created', 'Expiration', 'Coupon', 'Email', 'Referred by',  'Reward');
 	$csv = implode( ';' , $table_head );
 	$csv .= "\n";
 
@@ -14,9 +14,11 @@ if ( isset( $_GET['referralexport'] ) ) {
 	$result = $referrals->get_reffered_users();
 
 	foreach ( $result as $value ) {
+		$csv .= maybe_unserialize($value->meta_value)["created"] . ";";
 		$csv .= maybe_unserialize($value->meta_value)["coupon_expiration"] . ";";
 		$csv .= maybe_unserialize($value->meta_value)["coupon_code"] . ";";
 		$csv .= maybe_unserialize($value->meta_value)["email"] . ";";
+		$csv .= maybe_unserialize($value->meta_value)["referred_by"] . ";";
 		$csv .= maybe_unserialize($value->meta_value)["reward"] . ";";
 		$csv .= "\n";
 	}

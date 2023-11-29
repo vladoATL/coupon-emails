@@ -16,9 +16,9 @@
  * Version:           1.4.11
  * Requires at least: 5.8
  * Tested up to: 	  6.4.1
- * Stable tag:        1.4.10
+ * Stable tag:        1.4.11
  * Requires PHP:      7.0 
- * Author:            Vlado Laco
+ * Author:            Starlogic
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       coupon-emails
@@ -61,6 +61,7 @@ function activate_coupon_emails() {
 	ob_end_clean();
 	coupon_emails_activation();
 	\COUPONEMAILS\Coupon_Email_Activator::activate();	
+	couponemails_plugin_save_defaults();
 }
 
 /**
@@ -69,14 +70,14 @@ function activate_coupon_emails() {
  */
 function deactivate_coupon_emails() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coupon-emails-deactivator.php';
-	//coupon_emails_deactivation();
+	//coupon_emails_deactivation();register_deactivation_hook
 	\COUPONEMAILS\Coupon_Email_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_coupon_emails' );
 register_deactivation_hook( __FILE__, 'deactivate_coupon_emails' );
 register_deactivation_hook( __FILE__, 'couponemails_plugin_deactivation' );
-register_activation_hook( __FILE__, 'couponemails_plugin_save_defaults' );
+
 
 //require (ABSPATH . 'wp-includes/pluggable.php');
 

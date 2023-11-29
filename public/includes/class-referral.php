@@ -101,7 +101,14 @@ class Coupon_Emails_Referral
 		$user = \COUPONEMAILS\Coupon_Emails_Helper_Functions::create_user_data($email);
 		$coupon = $funcs->couponemails_create( $user, false, "" , $html_body);
 
-		$coupon_array = array("coupon_id" => $funcs->new_coupon_id, "coupon_code" => $funcs->coupon_code, "coupon_expiration" => $funcs->coupon_expiration, "email" => $email);	
+		$coupon_array = array("coupon_id" => $funcs->new_coupon_id, 
+						"coupon_code" => $funcs->coupon_code, 
+						"created" => wp_date('j.n.Y'),
+						"coupon_expiration" =>   $funcs->coupon_expiration, 
+						"referred_by" => $this->user_email,
+						"email" => $email);	
+						
+						
 		add_post_meta( $funcs->new_coupon_id, 'referred_by_id', $this->user_id );
 		add_post_meta( $this->referral_coupon_id, 'referral', $coupon_array );
 		
