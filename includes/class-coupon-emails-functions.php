@@ -196,7 +196,7 @@ class Coupon_Emails_EmailFunctions
 		'<a href=' . home_url() . '>' . get_option( 'blogname' ) . '</a>',
 		$expires_in_days,				
 		$expires,
-		date_i18n('j. F Y', strtotime('+' . $days_before . ' days')),
+		date_i18n('j. F Y', strtotime('+' . $expires_in_days . ' days')),
 		$coupon_amount,
 		$coupon_amount,
 		ucfirst(strtolower($first_name)),
@@ -801,7 +801,7 @@ class Coupon_Emails_EmailFunctions
 
 			break;			
 		case 'reminderemail':
-		$options_array = array( 'couponemails_reviewreminder','expirationreminderemail');
+		$options_array = array( 'couponemails_reviewreminder','couponemails_expirationreminder');
 			$isenabled = 0;
 			$istest = 0;
 			foreach ($options_array as $option) {

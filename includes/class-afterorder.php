@@ -25,14 +25,13 @@ class Coupon_Emails_AfterOrder
 
 			$funcs = new Coupon_Emails_EmailFunctions($this->type);
 			$users = $this->get_users_afterorder(true);
-
 			foreach ($users as $user) {
-				
-				if (!empty($user->user_firstname)) {					
-					$funcs->couponemails_create($user, $istest);
+				if (isset($user)) {
 					$i = $i + 1;
-					if ( $istest && $i >= COUPON_EMAILS_MAX_TEST_EMAILS) {
-						break;
+					if ( $istest && $i > COUPON_EMAILS_MAX_TEST_EMAILS) {
+						$funcs->couponemails_add_log(sprintf( esc_html_x( "An email was created but not sent to %s because the number of test emails exceeded", "Log file", "coupon-emails" ), $user->user_email ) . " " . COUPON_EMAILS_MAX_TEST_EMAILS);
+					} else {
+						$funcs->couponemails_create($user, $istest);
 					}
 				}
 			}

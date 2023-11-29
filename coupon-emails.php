@@ -13,7 +13,7 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders, referral email and more with many customization options.
- * Version:           1.4.10
+ * Version:           1.4.11
  * Requires at least: 5.8
  * Tested up to: 	  6.4.1
  * Stable tag:        1.4.10
@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'COUPON_EMAILS_VERSION', '1.4.10.1' );
-define( 'COUPON_EMAILS_MAX_TEST_EMAILS', '10' );
+define( 'COUPON_EMAILS_MAX_TEST_EMAILS', '11' );
 if (!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') ) {
 	define( 'COUPON_EMAILS_ENABLE_SQL_LOGS', '0' );
 } else {
@@ -475,8 +475,10 @@ function referralemail_save_defaults($add_new = false)
 <p style='font-size: 18px;'>I am also sending a coupon for a {percent}% discount, which can be redeemed at {site_name_url} for the following {expires_in_days} days until {expires}:</p>
 <div style='font-size: 24px;font-weight:800;'>{coupon}</div>
 <div style='font-size: 18px;font-weight:600;'>{personal_text}</div>
-<p style='font-size: 18px;'>Visit this website {site_url} and save!<br>
-Greetings,<br>{referrer}</p><br>
+<div>
+<div style='font-size: 18px;'>Visit this website {site_url} and save!<br>
+Greetings,<br>{referrer}</div>
+</div>
 <div style='font-size: 14px; line-height: 95%;'>Some products are excluded from the discount. The validity of the voucher cannot be extended.</div>" ,'Email Body', 'coupon-emails')),
 	'ref_coupon_cat' =>	esc_html_x('Referrer','Coupon category', 'coupon-emails'	) ,
 	'coupon_cat' =>	esc_html_x('Referred','Coupon category', 'coupon-emails'	) ,

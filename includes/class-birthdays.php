@@ -70,10 +70,13 @@ class Coupon_Emails_Birthdays
 					$runit = true;
 				}
 				if ( $runit) {
-					$success = $funcs->couponemails_create($user, $istest);
+
 					$i = $i + 1;
-					if ( $istest && $i >= COUPON_EMAILS_MAX_TEST_EMAILS) {
-						break;
+					if ( $istest && $i > COUPON_EMAILS_MAX_TEST_EMAILS) {
+						$funcs->couponemails_add_log(sprintf( esc_html_x( "An email was created but not sent to %s because the number of test emails exceeded", "Log file", "coupon-emails" ), $user->user_email ) . " " . COUPON_EMAILS_MAX_TEST_EMAILS);
+						$success = false;
+					} else {
+						$success = $funcs->couponemails_create($user, $istest);
 					}
 					if ( $success) {
 						$this->couponemails_set_sent($user);
