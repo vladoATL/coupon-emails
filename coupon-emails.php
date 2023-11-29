@@ -58,10 +58,10 @@ add_action( 'before_woocommerce_init', function() {
  */
 function activate_coupon_emails() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coupon-emails-activator.php';
-	ob_end_clean();
-	coupon_emails_activation();
+	ob_end_clean();	
 	\COUPONEMAILS\Coupon_Email_Activator::activate();	
 	couponemails_plugin_save_defaults();
+	coupon_emails_activation_deactivation();
 }
 
 /**
@@ -70,7 +70,8 @@ function activate_coupon_emails() {
  */
 function deactivate_coupon_emails() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coupon-emails-deactivator.php';
-	//coupon_emails_deactivation();register_deactivation_hook
+	ob_end_clean();	
+	coupon_emails_activation_deactivation();
 	\COUPONEMAILS\Coupon_Email_Deactivator::deactivate();
 }
 
@@ -667,7 +668,7 @@ function run_coupon_emails() {
 
 }
 
-function coupon_emails_activation()
+function coupon_emails_activation_deactivation()
 {
 	$options = get_option('couponemails_options');
 	$installed = ( isset($options['install_date'])) ? $options['install_date'] : "";
@@ -676,17 +677,18 @@ function coupon_emails_activation()
 	$plugin_name = $plugin_data['Name'];
 	$to = 'vlado@vlaco.net';
 	$current_user = wp_get_current_user();
-	$subject = ucfirst(sanitize_text_field($_GET["action"])) . ' plugin '  . $plugin_name;
+	$action =  isset($_GET["action"]) ? sanitize_text_field($_GET["action"]) : "INSTALL";
+	$subject = ucfirst($action) . ' plugin '  . $plugin_name;
 	$message = 
-	strtoupper(sanitize_text_field($_GET["action"])) . PHP_EOL 
+	strtoupper($action) . PHP_EOL 
 	. get_home_url() . PHP_EOL
 	. $plugin_name . " "
 	. COUPON_EMAILS_VERSION . PHP_EOL
 	. sanitize_text_field($_GET["plugin"])  . PHP_EOL	
 	. $current_user->user_email . PHP_EOL
 	. get_option('timezone_string') . PHP_EOL
-	. $installed  . PHP_EOL . PHP_EOL
-	. date("Y-m-d H:i:s")  ;
+	. 'Install: ' . $installed  . PHP_EOL 
+	. ucfirst($action) . ': ' . date("Y-m-d H:i:s")  ;
 	wp_mail( $to, $subject, $message );
 }
 
