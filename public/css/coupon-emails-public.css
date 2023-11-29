@@ -1,0 +1,144 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+ <style>
+  .coupons-list-block .coupons-grid {
+}
+ 
+ .coupons-list-block .coupons-grid {
+	display: grid;
+	grid-gap: 0.7em;
+	grid-auto-rows: 150px;
+	margin-bottom: 0.7em;
+}
+
+.single-coupon-block {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 350px;
+	padding: 1em 1em 1.7em;
+	border: 2px dashed #7A7A7A;
+	font-size: 1em;
+	background: #f9fafa;
+	box-shadow: 0 0 0 3px #f9fafa;
+	border-radius: var(--borderRadius-medium, 4px) !important;
+}
+.single-coupon-block .coupon-usage-limit {
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	display: block;
+	font-size: 0.7em;
+	line-height: 1em;
+}
+.single-coupon-block .coupon-content {
+	width: 100%;
+	text-align: left;
+}
+
+.single-coupon-block .coupon-content .coupon-code {
+	display: block;
+	margin-top: 0.2em;
+	font-size: 1.5em;
+	font-weight: bold;
+	line-height: 1.3em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.single-coupon-block .coupon-content .coupon-discount-info {
+	display: block;
+	font-size: 0.9em;
+}
+
+
+.single-coupon-block .coupon-content a {
+	color: #269bd1;
+}
+
+.single-coupon-block .coupon-content .coupon-description {
+	display: -webkit-box;
+	font-size: 0.7em;
+	line-height: 1.2em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.single-coupon-block .coupon-schedule {
+	position: absolute;
+	bottom: 0.5em;
+	right: 0.5em;
+	text-align: right;
+	font-size: 0.7em;
+	line-height: 1.0em;
+}
+
+.single-coupon-block .coupon-restriction {
+	position: absolute;
+	bottom: 0.5em;
+	left: 0.5em;
+	text-align: left;
+	font-size: 0.7em;
+	line-height: 1.0em;
+}
+
+.single-coupon {
+	min-height: 180px;
+}
+.two-columns-coupons{
+	font-size: 0.9rem;
+}
+ .referral_directions {
+	 font-size: 0.9em; 
+	 font-weight: 400;
+	 line-height: 1.2em;
+ }
+ 
+ .referral_headline {
+	 font-size: 1em; 
+	 font-weight: 600;
+	 line-height: 1.2em;
+ }
+ 
+ .coupon-table {
+	 font-size: 0.8em;
+	 margin-top: 15px;
+	 border: 0;
+ }
+ 
+ .coupon-in-table{
+	 font-size: 1.1rem;
+ }
+ 
+ .coupon-table th {
+	  border: 0;
+	  padding: 10px 0 0 0 ;
+	  line-height: 1.2em;
+  }
+  
+.coupon-table td {
+	border: 0;
+	padding: 0;
+}
+
+.coupon-table .emailtext {
+	background: #f9fafa;
+	padding: 5px;
+}
+
+.emailerrortext{
+	color:red;
+	line-height: 1.1em;
+	font-size: .9em;
+}
+
+.send_referralemails_btn {
+	margin: 10px 0 !important;
+}
+ </style>
