@@ -13,10 +13,10 @@
  * @wordpress-plugin
  * Plugin Name:       Coupon Emails
  * Description:       Generate emails with unique coupons for birthdays, name days, after placing an order, send reminders, referral email and more with many customization options.
- * Version:           1.4.11
+ * Version:           1.4.12
  * Requires at least: 5.8
  * Tested up to: 	  6.4.1
- * Stable tag:        1.4.11
+ * Stable tag:        1.4.12
  * Requires PHP:      7.0 
  * Author:            Starlogic
  * License:           GPL-2.0+
@@ -37,7 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'COUPON_EMAILS_VERSION', '1.4.11.1' );
+define( 'COUPON_EMAILS_VERSION', '1.4.12.1' );
 define( 'COUPON_EMAILS_MAX_TEST_EMAILS', '11' );
 if (!str_contains(get_home_url(), 'test') && !str_contains(get_home_url(), 'stage') ) {
 	define( 'COUPON_EMAILS_ENABLE_SQL_LOGS', '0' );

@@ -339,14 +339,15 @@ class Coupon_Emails_Admin {
 			echo '–';
 			return;
 		}
-
-		$content = array_map(
-		function ( $term ) {
-			$filter_link = admin_url( 'edit.php?post_type=shop_coupon&' . 'shop_coupon_cat' . '=' . $term->slug );
-			return sprintf( '<a href="%s">%s</a>', $filter_link, $term->name  );
-		},
-		$categories
-		);
+		if (isset($term->slug)) {
+			$content = array_map(
+			function ( $term ) {
+				$filter_link = admin_url( 'edit.php?post_type=shop_coupon&' . 'shop_coupon_cat' . '=' . $term->slug );
+				return sprintf( '<a href="%s">%s</a>', $filter_link, $term->name  );
+			},
+			$categories
+			);
+		}
 
 		echo wp_kses_post( implode( ', ', $content ) );
 	}
@@ -364,13 +365,15 @@ class Coupon_Emails_Admin {
 			return;
 		}
 
-		$content = array_map(
-		function ( $term ) {
-			$filter_link = admin_url( 'edit.php?post_type=shop_coupon&' . 'shop_coupon_cat' . '=' . $term->slug );
-			return sprintf( '<a href="%s">%s</a>', $filter_link, $term->name  );
-		},
-		$emails
-		);
+		if (isset($term->slug)) {
+			$content = array_map(
+			function ( $term ) {
+				$filter_link = admin_url( 'edit.php?post_type=shop_coupon&' . 'shop_coupon_cat' . '=' . $term->slug );
+				return sprintf( '<a href="%s">%s</a>', $filter_link, $term->name  );
+			},
+			$emails
+			);
+		}
 
 		echo wp_kses_post( implode( ', ', $emails[0] ) );
 		//echo print_r($emails, true);

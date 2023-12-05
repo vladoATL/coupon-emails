@@ -85,16 +85,21 @@ class Coupon_Emails_Referral
 	public function create_referral_couponemail($email, $html_body)
 	{
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$this->email_error .= sprintf(esc_html__( "%s is invalid email format.", 'coupon-emails' ), $email) . "<br>";
+			$this->email_error .= sprintf(esc_html__( "%s is invalid email format.", 'coupon-emails' ), $email);
 			return;
 		}
 		
+		if ($this->user_email == $email) {
+			$this->email_error .= sprintf(esc_html__( "It is not possible to send a referral email to yourself.", 'coupon-emails' ), $email);
+			return;
+		}
+				
 		if ($this->is_email_registered($email)) {
-			$this->email_error .= sprintf(esc_html__( "A user with email %s has already received a referral email.", 'coupon-emails' ), $email) . "<br>";
+			$this->email_error .= sprintf(esc_html__( "A user with email %s has already received a referral email.", 'coupon-emails' ), $email);
 			return; 
 		}
 		if (email_exists( $email ) && ! $this->options["existing"]) {
-			$this->email_error .= sprintf(esc_html__( "The user with the email %s is already registered on our website.", 'coupon-emails' ), $email) . "<br>";
+			$this->email_error .= sprintf(esc_html__( "The user with the email %s is already registered on our website.", 'coupon-emails' ), $email);
 			return; 
 		}
 		$funcs = new \COUPONEMAILS\Coupon_Emails_EmailFunctions($this->option_name);
