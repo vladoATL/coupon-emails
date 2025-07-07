@@ -12,9 +12,9 @@
  <removed value=";"/>
  <added value=""/>
  <lastopfiles>
-  <file name="C:\PHP Code\coupon-emails\public\templates\single-coupon.php"/>
   <file name="C:\PHP Code\coupon-emails\coupon-emails.php"/>
-  <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-functions.php"/>
+  <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-deactivator.php"/>
+  <file name="C:\PHP Code\coupon-emails\includes\class-coupon-emails-activator.php"/>
   <lastactivefile name=""/>
  </lastopfiles>
  <errors version="1.12.0">
@@ -34,8 +34,8 @@
    <error val="0;183;94;183;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\referral-email-admin-display.php">
-   <error val="0;53;89;53;2002;1;"/>
-   <error val="0;310;94;310;2002;1;"/>
+   <error val="0;55;89;55;2002;1;"/>
+   <error val="0;312;94;312;2002;1;"/>
   </errfile>
   <errfile name="C:\PHP Code\coupon-emails\admin\partials\referral-confirmation-email-admin-display.php">
    <error val="0;20;89;20;2002;1;"/>
@@ -84,5 +84,5 @@
   </todofile>
  </todoblock>
  <dbgurls/>
- <lasttime value="1701211515"/>
+ <lasttime value="1702638919"/>
 </project>

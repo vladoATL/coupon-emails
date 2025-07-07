@@ -1,0 +1,102 @@
+<?php
+namespace COUPONEMAILS;
+
+class Email_Coupon extends WC_Coupon 
+{
+	/*
+	|--------------------------------------------------------------------------
+	| Class Properties
+	|--------------------------------------------------------------------------
+	*/
+
+	/**
+	* Model that houses the main plugin object.
+	*
+	* @since 1.0
+	* @access private
+	* @var Abstract_Main_Plugin_Class
+	*/
+	private $_main_plugin;
+
+	/**
+	* Model that houses all the plugin constants.
+	*
+	* @since 1.0
+	* @access protected
+	* @var Plugin_Constants
+	*/
+	protected $_constants;
+
+	/**
+	* Property that houses all the helper functions of the plugin.
+	*
+	* @since 1.0
+	* @access protected
+	* @var Helper_Functions
+	*/
+	protected $_helper_functions;
+
+	/**
+	* Stores advanced coupon data.
+	*
+	* @since 1.0
+	* @access private
+	* @var array
+	*/
+	protected $advanced_data = array();
+
+	/**
+	* This is where changes to the $data will be saved.
+	*
+	* @since 1.0
+	* @access private
+	* @var object
+	*/
+	protected $advanced_changes = array();
+
+	/**
+	* Stores boolean if the data has been read from the database or not.
+	*
+	* @since 1.0
+	* @access private
+	* @var object
+	*/
+	protected $advanced_read = false;
+	
+	/**
+	* Class constructor.
+	*
+	* @since 1.0
+	* @access public
+	*
+	* @param mixed $code WC_Coupon ID, code or object.
+	* @throws \Exception Error message.
+	*/
+	public function __construct( $code )
+	{
+/*		$this->_constants        = \ACFWF()->Plugin_Constants;
+		$this->_helper_functions = \ACFWF()->Helper_Functions;*/
+
+		// if provided value is int, then get the equivalent coupon code.
+		if ( is_int( $code ) ) {
+			$code = absint( $code );
+			$this->set_id( $code );
+		} elseif ( is_string( $code ) ) {
+
+			// check if code has a valid equivalent ID.
+			$temp = wc_get_coupon_id_by_code( $code );
+		}
+
+		// make sure that the provided parameter is valid.
+		if ( is_a( $code, 'WC_Coupon' ) || is_string( $code ) || is_int( $code ) ) {
+			// construct parent object and set the code.
+			parent::__construct( $code );
+		} else {
+			throw new \Exception( 'Invalid parameter provided for Advanced_Coupon. It either needs a coupon code string, coupon ID, or a WC_Coupon object.' );
+		}
+
+		$this->advanced_read();
+	}		
+	
+}
+?>
